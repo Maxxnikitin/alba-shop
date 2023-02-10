@@ -1,7 +1,7 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react', '@typescript-eslint', 'prettier'],
-  extends: ['prettier'],
+  extends: ['react-app', 'react-app/jest'],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
