@@ -6,15 +6,31 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
   },
   rules: {
     'prettier/prettier': [
       'off',
       {
-        usePrettierrc: true
-      }
+        usePrettierrc: true,
+      },
+    ],
+    'import/order': [
+      2,
+      {
+        groups: ['external', 'builtin', 'index', 'sibling', 'parent', 'internal', 'type'],
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+        'newlines-between': 'always-and-inside-groups',
+      },
     ],
     'no-multi-spaces': ['error'],
     'comma-dangle': 'off',
@@ -54,14 +70,14 @@ module.exports = {
           'public-instance-field',
           'private-instance-method',
           'protected-instance-method',
-          'public-instance-method'
-        ]
-      }
-    ]
+          'public-instance-method',
+        ],
+      },
+    ],
   },
   settings: {
     react: {
-      version: 'detect'
-    }
-  }
+      version: 'detect',
+    },
+  },
 };

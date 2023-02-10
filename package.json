@@ -21,13 +21,31 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:css": "stylelint ./src/**/*.scss --custom-syntax postcss-scss"
+    "lint:css": "stylelint ./src/**/*.scss --custom-syntax postcss-scss",
+    "lint:css:fix": "npm run lint:css -- --fix",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "lint-staged": {
+    "{src,config}/**/*.{js,jsx,ts,tsx}": [
+      "prettier-eslint --write",
+      "eslint"
+    ],
+    "*.scss": [
+      "prettier-eslint --write",
+      "stylelint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "browserslist": {
     "production": [
@@ -47,12 +65,18 @@
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
     "eslint": "^8.33.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.0",
     "postcss-scss": "^4.0.6",
     "prettier": "^2.8.4",
     "sass": "^1.58.0",
+    "shelljs": "^0.8.5",
     "stylelint": "^14.16.1",
+    "stylelint-config-clean-order": "^2.3.1",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-standard-scss": "^6.1.0",
     "stylelint-order": "^6.0.2",
     "stylelint-prettier": "^2.0.0",
     "stylelint-scss": "^4.3.0"
