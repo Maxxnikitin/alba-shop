@@ -13,6 +13,9 @@ module.exports = {
     'import/resolver': {
       typescript: {},
     },
+    react: {
+      version: 'detect',
+    },
   },
   rules: {
     'prettier/prettier': [
@@ -74,10 +77,5 @@ module.exports = {
         ],
       },
     ],
-  },
-  settings: {
-    react: {
-      version: 'detect',
-    },
   },
 };
