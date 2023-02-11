@@ -6,12 +6,13 @@ import styles from './input.module.scss';
 interface IInput extends HTMLProps<HTMLInputElement> {}
 
 export const Input = forwardRef<HTMLInputElement, IInput>(
-  ({ className = '', id, label = '', ...rest }, ref) => (
+  ({ className = '', id, label = '', type = 'text', ...rest }, ref) => (
     <div className={styles.input_field}>
       <input
         className={clsx(styles.input, { [styles.extratop]: label }, className)}
         id={id}
         ref={ref}
+        type={type}
         {...rest}
       />
       {label && (

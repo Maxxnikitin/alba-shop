@@ -19,7 +19,11 @@ export function App() {
       <Input ref={el => el?.focus()} label='Город' />
       <Input placeholder='Имя' label='Имя' />
       <Input placeholder='Пароль' type='password' />
-      <PhoneInputWithCountrySelect defaultCountry='RU' onChange={() => console.log('tt')} />
+      <PhoneInputWithCountrySelect
+        defaultCountry='RU'
+        inputComponent={Input}
+        onChange={() => console.log('tt')}
+      />
     </div>
   );
 }
