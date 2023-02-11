@@ -10,6 +10,7 @@
     "@types/node": "^16.18.12",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "clsx": "^1.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -33,11 +34,9 @@
   },
   "lint-staged": {
     "{src,config}/**/*.{js,jsx,ts,tsx}": [
-      "prettier-eslint --write",
       "eslint"
     ],
     "*.scss": [
-      "prettier-eslint --write",
       "stylelint"
     ]
   },

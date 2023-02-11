@@ -1,0 +1,88 @@
+@import '../common';
+
+.button {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 34px;
+
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 130%;
+  color: $gray2;
+  text-align: center;
+
+  border: none;
+  border-radius: $common-large-border-radius;
+  outline: none;
+
+  transition: $common-transition;
+
+  &_type_primary {
+    background: $blue-gradient1;
+  }
+
+  // &_type_primary:hover {
+  //   box-shadow: $blue-gradient1-shadow;
+  //   filter: $blue-gradient1-filter;
+  // }
+
+  &_type_secondary {
+    background: $text-gray;
+  }
+
+  &_type_menu {
+    padding: 12px 20px;
+    color: $text-white;
+    background: $blue-gradient1;
+  }
+
+  &_type_addition {
+    padding: 10px 30px;
+    color: $text-black;
+    background: none;
+    border: 1px solid $text-dark;
+  }
+
+  &_type_load {
+    width: 100%;
+    padding-top: 18px;
+    padding-bottom: 18px;
+
+    color: $text-black;
+
+    background-color: $gray2;
+  }
+
+  &_type_item-missing {
+    color: $text-white;
+    background-color: $text-dark;
+  }
+
+  &_type_sign-in {
+    width: 100%;
+    max-width: 320px;
+    background: $blue-gradient1;
+    border-radius: $common-small-border-radius;
+  }
+
+  &_type_delay {
+    width: 100%;
+    max-width: 320px;
+    background: $text-gray;
+    border-radius: $common-small-border-radius;
+  }
+
+  &_icon {
+    margin-right: 8px;
+  }
+}
+
+.button:hover {
+  opacity: 0.8;
+}

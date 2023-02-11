@@ -1,0 +1,35 @@
+$common-large-border-radius: 33px;
+$common-small-border-radius: 5px;
+$common-transition: all 0.3s ease-in;
+
+// colors
+
+$blue-gradient1: linear-gradient(105.05deg, #b36bff -14.86%, #5a75ff 104.8%);
+$blue-gradient2: linear-gradient(
+  105.05deg,
+  rgb(179 107 255 / 24%) -14.86%,
+  rgb(90 117 255 / 24%) 104.8%
+);
+$blue-gradient1-shadow: 0 0 16px 8px rgb(51 51 255 / 25%),
+  0 0 8px 8px rgb(51 51 255 / 25%);
+$blue-gradient1-filter: drop-shadow(0 4px 32px rgb(51 51 255 / 50%));
+$gray-gradient: linear-gradient(90deg, #bdc3c7 -23.98%, #2c3e50 100%);
+$gray1: #d5dadc;
+$gray2: #f4f4f4;
+$gray3: #cdcdcd;
+$gray4: #f6f6f6;
+$red1: #f00;
+$red2: #d50000;
+$red3: #d40000;
+$red-bg: rgb(255 0 0 / 13%);
+$orange-gradient: linear-gradient(90deg, #e91e1e 0%, #f8861e 100%);
+$orange1: #ffbf2f;
+$orange2: #ffb550;
+$orange3: #fff2e2;
+$black1: #1c1c1c;
+$green1: #4ccc49;
+$green-bg: rgb(76 204 73 / 12%);
+$text-black: #292929;
+$text-dark: #636363;
+$text-gray: #a3a3a3;
+$text-white: #fff;
