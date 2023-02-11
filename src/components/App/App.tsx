@@ -1,6 +1,9 @@
-import styles from './App.module.scss';
+import PhoneInputWithCountrySelect from 'react-phone-number-input';
 
-import { Button } from '../ui';
+import styles from './App.module.scss';
+import 'react-phone-number-input/style.css';
+
+import { Button, Input } from '../ui';
 
 export function App() {
   return (
@@ -13,6 +16,10 @@ export function App() {
       <Button text='Ожидает поступления' kind='item-missing' />
       <Button text='Войти' kind='sign-in' />
       <Button text='Отправить повторно через 50с' kind='delay' />
+      <Input ref={el => el?.focus()} label='Город' />
+      <Input placeholder='Имя' label='Имя' />
+      <Input placeholder='Пароль' type='password' />
+      <PhoneInputWithCountrySelect defaultCountry='RU' onChange={() => console.log('tt')} />
     </div>
   );
 }
