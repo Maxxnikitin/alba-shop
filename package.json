@@ -26,6 +26,8 @@
     "eject": "react-scripts eject",
     "lint:css": "stylelint ./src/**/*.scss --custom-syntax postcss-scss",
     "lint:css:fix": "npm run lint:css -- --fix",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write .",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -36,7 +38,7 @@
   },
   "lint-staged": {
     "{src,config}/**/*.{js,jsx,ts,tsx}": [
-      "eslint"
+      "npm run prettier:fix"
     ],
     "*.scss": [
       "npm run lint:css:fix"

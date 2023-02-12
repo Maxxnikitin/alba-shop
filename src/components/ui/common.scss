@@ -10,8 +10,7 @@ $blue-gradient2: linear-gradient(
   rgb(179 107 255 / 24%) -14.86%,
   rgb(90 117 255 / 24%) 104.8%
 );
-$blue-gradient1-shadow: 0 0 16px 8px rgb(51 51 255 / 25%),
-  0 0 8px 8px rgb(51 51 255 / 25%);
+$blue-gradient1-shadow: 0 0 16px 8px rgb(51 51 255 / 25%), 0 0 8px 8px rgb(51 51 255 / 25%);
 $blue-gradient1-filter: drop-shadow(0 4px 32px rgb(51 51 255 / 50%));
 $gray-gradient: linear-gradient(90deg, #bdc3c7 -23.98%, #2c3e50 100%);
 $gray1: #d5dadc;
