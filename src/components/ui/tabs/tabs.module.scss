@@ -1,0 +1,11 @@
+@import '../common';
+
+.tabs {
+  display: flex;
+
+  box-sizing: border-box;
+
+  background-color: $gray2;
+  border: 1px solid $gray1;
+  border-radius: $common-small-border-radius;
+}

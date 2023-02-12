@@ -1,0 +1,27 @@
+@import '../common';
+
+.tab {
+  cursor: pointer;
+
+  width: 120px;
+  padding: 8px 25px;
+
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 130%;
+  color: $text-black;
+  text-align: center;
+
+  background: none;
+  border: none;
+  border-radius: $common-small-border-radius;
+  outline: none;
+
+  transition: $common-transition;
+
+  &_active {
+    background-color: $gray1;
+  }
+}
