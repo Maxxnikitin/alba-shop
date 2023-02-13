@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { createElement, FC, HTMLProps } from 'react';
+import { createElement, FC, HTMLProps, memo } from 'react';
 
 import styles from './title.module.scss';
 
@@ -17,7 +17,7 @@ enum ETitleLevel {
   h6 = 'h6',
 }
 
-export const Title: FC<ITitle> = ({ text, level = ETitleLevel.h3, className = '', ...rest }) =>
+export const Title: FC<ITitle> = memo(({ text, level = ETitleLevel.h3, className = '', ...rest }) =>
   createElement(
     level,
     {
@@ -25,4 +25,5 @@ export const Title: FC<ITitle> = ({ text, level = ETitleLevel.h3, className = ''
       ...rest,
     },
     text,
-  );
+  ),
+);

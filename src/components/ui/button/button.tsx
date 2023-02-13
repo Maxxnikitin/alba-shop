@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, HTMLProps } from 'react';
+import { FC, HTMLProps, memo } from 'react';
 
 import styles from './button.module.scss';
 
@@ -19,25 +19,21 @@ interface IButton extends HTMLProps<HTMLButtonElement> {
     | 'delay';
 }
 
-export const Button: FC<IButton> = ({
-  text,
-  type = 'button',
-  kind = 'primary',
-  className = '',
-  ...rest
-}) => (
-  <button
-    className={clsx(
-      styles.button,
-      {
-        [styles[`button_type_${kind}`]]: kind,
-      },
-      className,
-    )}
-    type={type}
-    {...rest}
-  >
-    {kind === 'menu' && <img className={styles.button_icon} src={MenuIcon} alt='Иконка.' />}
-    {text}
-  </button>
+export const Button: FC<IButton> = memo(
+  ({ text, type = 'button', kind = 'primary', className = '', ...rest }) => (
+    <button
+      className={clsx(
+        styles.button,
+        {
+          [styles[`button_type_${kind}`]]: kind,
+        },
+        className,
+      )}
+      type={type}
+      {...rest}
+    >
+      {kind === 'menu' && <img className={styles.button_icon} src={MenuIcon} alt='Иконка.' />}
+      {text}
+    </button>
+  ),
 );
