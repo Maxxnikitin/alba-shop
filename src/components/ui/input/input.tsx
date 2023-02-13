@@ -3,11 +3,13 @@ import { forwardRef, HTMLProps } from 'react';
 
 import styles from './input.module.scss';
 
-interface IInput extends HTMLProps<HTMLInputElement> {}
+interface IInput extends HTMLProps<HTMLInputElement> {
+  fieldClassName?: string;
+}
 
 export const Input = forwardRef<HTMLInputElement, IInput>(
-  ({ className = '', id, label = '', type = 'text', ...rest }, ref) => (
-    <div className={styles.input_field}>
+  ({ className = '', fieldClassName = '', id, label = '', type = 'text', ...rest }, ref) => (
+    <div className={clsx(styles.input_field, fieldClassName)}>
       <input
         className={clsx(styles.input, { [styles.extratop]: label }, className)}
         id={id}
