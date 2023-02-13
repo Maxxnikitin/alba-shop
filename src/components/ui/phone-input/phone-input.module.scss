@@ -1,11 +1,5 @@
 @import '../../common';
 
-.input_field {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
 .input {
   box-sizing: border-box;
   padding: 16px;
@@ -20,22 +14,6 @@
   background-color: $text-white;
   border: 1px solid $gray3;
   border-radius: $common-small-border-radius;
-}
-
-.label {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  margin-bottom: 5px;
-  margin-left: 8px;
-
-  font-family: 'SF Pro Display', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 19px;
-  color: $text-black;
 }
 
 .input::placeholder {
@@ -54,16 +32,4 @@
   border-image-source: $blue-gradient1;
   border-image-slice: 1;
   outline: none;
-}
-
-.input:focus + label {
-  background-image: $blue-gradient1;
-  background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-
-.extratop {
-  margin-top: 24px;
 }

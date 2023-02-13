@@ -1,4 +1,4 @@
-@import './components/ui/common';
+@import './components/common';
 
 body {
   margin: 0;
@@ -17,4 +17,8 @@ code {
   padding: 8px;
   border: 1px solid $gray3;
   border-radius: $common-small-border-radius;
+}
+
+.PhoneInput {
+  width: 100%;
 }

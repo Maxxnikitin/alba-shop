@@ -1,14 +1,15 @@
 import PhoneInputWithCountrySelect from 'react-phone-number-input';
 
-import styles from './App.module.scss';
+import styles from './app.module.scss';
 import 'react-phone-number-input/style.css';
 
-import { Button, Input, Tabs } from '../ui';
+import { SignIn } from '..';
+import { Button, Input } from '../ui';
 
 export function App() {
   return (
     <div className={styles.container}>
-      <Tabs />
+      <SignIn />
       <Button text='Да, очистить корзину' />
       <Button text='Отменить' kind='secondary' />
       <Button text='Каталог' kind='menu' />
