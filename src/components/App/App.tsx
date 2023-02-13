@@ -3,7 +3,7 @@ import PhoneInputWithCountrySelect from 'react-phone-number-input';
 import styles from './app.module.scss';
 import 'react-phone-number-input/style.css';
 
-import { SignIn } from '../';
+import { SignIn } from '..';
 import { Button, Input } from '../ui';
 
 export function App() {
