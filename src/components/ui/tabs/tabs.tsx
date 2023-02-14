@@ -1,18 +1,13 @@
 import clsx from 'clsx';
-import { Dispatch, FC, MouseEventHandler, SetStateAction } from 'react';
+import { FC, MouseEventHandler } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
 import styles from './tabs.module.scss';
 
-import { ETypes } from '../../../utils/common-types';
-import { Tab } from '../tab/tab';
+import { ITabs, ETypes } from './types';
 
-interface ITabs {
-  activeTab: ETypes;
-  setActiveTab: Dispatch<SetStateAction<ETypes>>;
-  className?: string;
-}
+import { Tab } from '../tab/tab';
 
 export const Tabs: FC<ITabs> = ({ className = '', activeTab, setActiveTab, ...rest }) => {
   const { t } = useTranslation();

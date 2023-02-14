@@ -5,17 +5,14 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './sign-in.module.scss';
 
+import { ISignIn } from './types';
+
 import { SignInSms, SignInEmail } from '../';
 import logo from '../../images/logo.jpg';
-import { ETypes } from '../../utils/common-types';
-import { Tabs } from '../ui';
-
-interface ISignIn {
-  className?: string;
-}
+import { ETypes, Tabs } from '../ui';
 
 export const SignIn: FC<ISignIn> = ({ className = '', ...rest }) => {
-  const [activeTab, setActiveTab] = useState<ETypes>(ETypes.email);
+  const [activeTab, setActiveTab] = useState<ETypes>(ETypes.phone);
 
   const { t } = useTranslation();
 

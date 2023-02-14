@@ -20,6 +20,10 @@
   background-color: $text-white;
   border: 1px solid $gray3;
   border-radius: $common-small-border-radius;
+
+  &_error {
+    border: 1px solid $red1;
+  }
 }
 
 .label {
@@ -66,4 +70,17 @@
 
 .extratop {
   margin-top: 24px;
+}
+
+.error {
+  align-self: flex-start;
+
+  margin-bottom: 4px;
+
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  color: $red1;
 }

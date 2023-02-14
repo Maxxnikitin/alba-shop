@@ -1,13 +1,8 @@
 import clsx from 'clsx';
-import { FC, HTMLProps } from 'react';
+import { FC } from 'react';
 
 import styles from './tab.module.scss';
-
-interface ITab extends HTMLProps<HTMLButtonElement> {
-  text: string;
-  type?: 'button' | 'submit' | 'reset';
-  isActive?: boolean;
-}
+import { ITab } from './types';
 
 export const Tab: FC<ITab> = ({
   type = 'button',

@@ -1,9 +1,8 @@
 import clsx from 'clsx';
-import { forwardRef, HTMLProps } from 'react';
+import { forwardRef } from 'react';
 
 import styles from './phone-input.module.scss';
-
-interface IPhoneInput extends HTMLProps<HTMLInputElement> {}
+import { IPhoneInput } from './types';
 
 export const PhoneInput = forwardRef<HTMLInputElement, IPhoneInput>(
   ({ className = '', id, type = 'tel', placeholder = '(999) 999-99-99', ...rest }, ref) => (
