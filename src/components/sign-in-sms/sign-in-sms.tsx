@@ -9,7 +9,7 @@ import 'react-phone-number-input/style.css';
 
 import { ISignInSms, THandleSignInRequest, TInputsData } from './types';
 
-import { Button, Paragraph, PhoneInput, SmsInput, Title } from '../ui';
+import { Button, EButtonKinds, Paragraph, PhoneInput, SmsInput, Title } from '../ui';
 
 export const SignInSms: FC<ISignInSms> = ({ className = '', ...rest }) => {
   const [step, setStep] = useState<1 | 2>(1);
@@ -67,7 +67,12 @@ export const SignInSms: FC<ISignInSms> = ({ className = '', ...rest }) => {
           handleRequest={handleRequest}
         />
       )}
-      <Button text={t('sign-in.submit-btn')} kind='sign-in' className={styles.btn} type='submit' />
+      <Button
+        text={t('sign-in.submit-btn')}
+        kind={EButtonKinds.signIn}
+        className={styles.btn}
+        type='submit'
+      />
     </form>
   );
 };

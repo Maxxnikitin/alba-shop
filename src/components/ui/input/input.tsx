@@ -1,14 +1,11 @@
 import clsx from 'clsx';
-import { forwardRef, HTMLProps, memo } from 'react';
+import { forwardRef, memo } from 'react';
 
 import styles from './input.module.scss';
 
-import { Paragraph } from '..';
+import { IInput } from './types';
 
-interface IInput extends HTMLProps<HTMLInputElement> {
-  fieldClassName?: string;
-  errorText?: string;
-}
+import { Paragraph } from '..';
 
 export const Input = memo(
   forwardRef<HTMLInputElement, IInput>(

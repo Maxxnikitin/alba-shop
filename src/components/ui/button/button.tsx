@@ -1,23 +1,11 @@
 import clsx from 'clsx';
-import { FC, HTMLProps, memo } from 'react';
+import { FC, memo } from 'react';
 
 import styles from './button.module.scss';
 
-import MenuIcon from '../../../images/icons/menu-icon.svg';
+import { IButton } from './types';
 
-interface IButton extends HTMLProps<HTMLButtonElement> {
-  text: string;
-  type?: 'button' | 'submit' | 'reset';
-  kind?:
-    | 'primary'
-    | 'secondary'
-    | 'menu'
-    | 'addition'
-    | 'load'
-    | 'item-missing'
-    | 'sign-in'
-    | 'delay';
-}
+import MenuIcon from '../../../images/icons/menu-icon.svg';
 
 export const Button: FC<IButton> = memo(
   ({ text, type = 'button', kind = 'primary', className = '', ...rest }) => (

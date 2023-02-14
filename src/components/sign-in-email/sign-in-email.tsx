@@ -12,11 +12,9 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './sign-in-email.module.scss';
 
-import { Button, Input, Paragraph, Title } from '../ui';
+import { ISignInEmail } from './types';
 
-interface ISignInEmail {
-  className?: string;
-}
+import { Button, EButtonKinds, Input, Paragraph, Title } from '../ui';
 
 export const SignInEmail: FC<ISignInEmail> = ({ className = '', ...rest }) => {
   const [inputsData, setInputsData] = useState({
@@ -70,7 +68,7 @@ export const SignInEmail: FC<ISignInEmail> = ({ className = '', ...rest }) => {
         value={inputsData.password}
         onChange={handleChangeInputs}
       />
-      <Button text={t('sign-in.submit-btn')} kind='sign-in' type='submit' />
+      <Button text={t('sign-in.submit-btn')} kind={EButtonKinds.signIn} type='submit' />
     </form>
   );
 };
