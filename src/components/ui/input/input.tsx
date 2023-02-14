@@ -9,13 +9,23 @@ import { Paragraph } from '..';
 
 export const Input = memo(
   forwardRef<HTMLInputElement, IInput>(
-    ({ className = '', fieldClassName = '', id, label = '', errorText = '', ...rest }, ref) => (
+    (
+      {
+        className = '',
+        fieldClassName = '',
+        id,
+        label = '',
+        errorText = '',
+        isError = false,
+        ...rest
+      },
+      ref,
+    ) => (
       <div className={clsx(styles.input_field, fieldClassName)}>
-        {errorText && <Paragraph className={styles.error}>{errorText}</Paragraph>}
         <input
           className={clsx(
             styles.input,
-            { [styles.extratop]: label, [styles.input_error]: errorText },
+            { [styles.extratop]: label, [styles.input_error]: isError },
             className,
           )}
           id={id}
@@ -26,6 +36,11 @@ export const Input = memo(
           <label className={styles.label} htmlFor={id}>
             {label}
           </label>
+        )}
+        {errorText && (
+          <Paragraph className={styles.error} isError>
+            {errorText}
+          </Paragraph>
         )}
       </div>
     ),
