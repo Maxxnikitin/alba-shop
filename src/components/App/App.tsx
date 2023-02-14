@@ -18,14 +18,9 @@ export function App() {
       <Button text='Ожидает поступления' kind='item-missing' />
       <Button text='Войти' kind='sign-in' />
       <Button text='Отправить повторно через 50с' kind='delay' />
-      <Input ref={el => el?.focus()} label='Город' />
+      <Input label='Город' />
       <Input placeholder='Имя' label='Имя' />
       <Input placeholder='Пароль' type='password' />
-      <PhoneInputWithCountrySelect
-        defaultCountry='RU'
-        inputComponent={Input}
-        onChange={() => console.log('tt')}
-      />
     </div>
   );
 }

@@ -1,5 +1,13 @@
 import clsx from 'clsx';
-import { FC, FormEventHandler, useCallback, useState } from 'react';
+import {
+  ChangeEventHandler,
+  FC,
+  FormEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from './sign-in-email.module.scss';
@@ -16,18 +24,15 @@ export const SignInEmail: FC<ISignInEmail> = ({ className = '', ...rest }) => {
     password: '',
   });
 
-  console.log('render SignInEmail');
-
   const { t } = useTranslation();
 
-  const handleChangeInputs: FormEventHandler<HTMLInputElement> = useCallback(
-    e => {
-      const id = (e.target as HTMLInputElement).id;
-      const value = (e.target as HTMLInputElement).value;
+  const emailInputRef = useRef(null);
 
+  const handleChangeInputs: ChangeEventHandler<HTMLInputElement> = useCallback(
+    e => {
       setInputsData({
         ...inputsData,
-        [id]: value,
+        [e.target.id]: e.target.value,
       });
     },
     [inputsData],
@@ -38,10 +43,16 @@ export const SignInEmail: FC<ISignInEmail> = ({ className = '', ...rest }) => {
     console.log('submit');
   };
 
+  useEffect(() => {
+    if (emailInputRef.current) {
+      (emailInputRef.current as HTMLInputElement).focus();
+    }
+  }, [emailInputRef]);
+
   return (
     <form className={clsx(styles.form, className)} noValidate onSubmit={handleSubmit} {...rest}>
-      <Title text={t('sign-in.title')} className={styles.title} />
-      <Paragraph text={t('sign-in.subtitle')} className={styles.paragraph} />
+      <Title className={styles.title}>{t('sign-in.title')}</Title>
+      <Paragraph className={styles.paragraph}>{t('sign-in.subtitle')}</Paragraph>
       <Input
         placeholder='E-mail'
         fieldClassName={styles.input}
@@ -49,6 +60,7 @@ export const SignInEmail: FC<ISignInEmail> = ({ className = '', ...rest }) => {
         id='email'
         value={inputsData.email}
         onChange={handleChangeInputs}
+        ref={emailInputRef}
       />
       <Input
         placeholder={t('inputs.password') || ''}

@@ -15,7 +15,7 @@ interface ISignIn {
 }
 
 export const SignIn: FC<ISignIn> = ({ className = '', ...rest }) => {
-  const [activeTab, setActiveTab] = useState<ETypes>(ETypes.email);
+  const [activeTab, setActiveTab] = useState<ETypes>(ETypes.phone);
 
   const { t } = useTranslation();
 
