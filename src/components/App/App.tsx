@@ -2,8 +2,7 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './app.module.scss';
 
-import { SignIn } from '..';
-import { Header } from '../header';
+import { SignIn, Header } from '..';
 import { Button, EButtonKinds, Input } from '../ui';
 
 export function App() {
