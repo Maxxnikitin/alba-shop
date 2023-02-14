@@ -27,9 +27,13 @@ export const SmsInput: FC<TSmsInput> = memo(
     const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
       e => {
         const id = +e.target.id;
-        const value = e.target.value;
+        let value = e.target.value;
 
-        if ((value !== '' && !+value) || value.length > 1) return;
+        if (value !== '' && !+value) return;
+
+        if (value.length > 1) {
+          value = value.substring(value.length - 1);
+        }
 
         setInputsData(prevState => ({
           ...prevState,

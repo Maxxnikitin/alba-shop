@@ -26,11 +26,11 @@
 }
 
 .fill {
-  border: 1px solid;
-  border-width: 1px;
+  background-image: linear-gradient(white, white), $blue-gradient1;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  border: double 1px transparent;
   border-radius: $common-small-border-radius;
-  border-image-source: $blue-gradient1;
-  border-image-slice: 1;
   outline: none;
 }
 
