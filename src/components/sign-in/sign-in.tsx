@@ -18,7 +18,7 @@ export const SignIn: FC<ISignIn> = ({ className = '', ...rest }) => {
 
   return (
     <section className={clsx(styles.signin, { [className]: className })} {...rest}>
-      <img className={styles.logo} alt={t('sign-in.logo-alt') || ''} src={logo} />
+      <img className={styles.logo} alt={t('alts.logo-alt') || ''} src={logo} />
       <Tabs className={styles.tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTab === ETypes.phone ? <SignInSms /> : <SignInEmail />}
     </section>

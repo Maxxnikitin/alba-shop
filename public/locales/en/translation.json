@@ -1,6 +1,8 @@
 {
   "sign-in": {
-    "title": "Welcome!",
+    "title": "Welcome!"
+  },
+  "alts": {
     "logo-alt": "Logo."
   }
 }
