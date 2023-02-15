@@ -10,3 +10,4 @@ export * from './sms-input';
 export * from './navigation';
 export * from './category-item';
 export * from './checkbox';
+export * from './switch';
