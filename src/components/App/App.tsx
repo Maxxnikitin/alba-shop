@@ -3,7 +3,7 @@ import { useRoutes } from 'react-router-dom';
 import styles from './App.module.scss';
 
 import { SignIn, Header, Footer } from '..';
-import { Button, EButtonKinds, Input } from '../ui';
+import { Button, Checkbox, EButtonKinds, Input } from '../ui';
 
 export function App() {
   console.log('Render App');
@@ -13,6 +13,9 @@ export function App() {
       element: (
         <>
           <SignIn />
+          <div style={{ width: 292 }}>
+            <Checkbox label='Apple' amount={100} />
+          </div>
           <Button text='Да, очистить корзину' />
           <Button text='Отменить' kind={EButtonKinds.secondary} />
           <Button text='Каталог' kind={EButtonKinds.menu} />
