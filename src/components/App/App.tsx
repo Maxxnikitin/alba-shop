@@ -1,18 +1,17 @@
 import { useRoutes } from 'react-router-dom';
 
-import styles from './app.module.scss';
+import styles from './App.module.scss';
 
-import { SignIn } from '..';
-import { Header } from '../header';
+import { SignIn, Header, Footer } from '..';
 import { Button, EButtonKinds, Input } from '../ui';
 
 export function App() {
+  console.log('Render App');
   const routes = useRoutes([
     {
       path: '/',
       element: (
         <>
-          <Header />
           <SignIn />
           <Button text='Да, очистить корзину' />
           <Button text='Отменить' kind={EButtonKinds.secondary} />
@@ -42,5 +41,11 @@ export function App() {
     },
   ]);
 
-  return <div className={styles.container}>{routes}</div>;
+  return (
+    <div className={styles.container}>
+      <Header />
+      {routes}
+      <Footer />
+    </div>
+  );
 }

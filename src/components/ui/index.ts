@@ -8,3 +8,4 @@ export * from './title';
 export * from './paragraph';
 export * from './sms-input';
 export * from './navigation';
+export * from './category-item';

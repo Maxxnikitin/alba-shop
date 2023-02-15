@@ -13,7 +13,8 @@ i18n
   .init({
     // Стандартный язык
     fallbackLng: 'ru',
-    debug: process.env.NODE_ENV === 'development' ? true : false,
+    // debug: process.env.NODE_ENV === 'development' ? true : false,
+    debug: false,
     // Распознавание и кэширование языковых кук
     detection: {
       order: ['queryString', 'cookie'],

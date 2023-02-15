@@ -1,0 +1,20 @@
+@import '../common';
+
+.footer {
+  width: 100%;
+  background-color: $black1;
+}
+
+.container {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 60px 70px 37px;
+}
+
+.main {
+  display: flex;
+  flex-flow: column wrap;
+  box-sizing: border-box;
+  max-height: 255px;
+}

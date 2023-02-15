@@ -42,28 +42,39 @@
     padding: 12px 20px;
     color: $text-white;
     background: $blue-gradient1;
+
+    .text {
+      color: $text-white;
+    }
   }
 
   &_type_addition {
     padding: 10px 30px;
-    color: $text-black;
     background: none;
     border: 1px solid $text-dark;
+
+    .text {
+      color: $text-black;
+    }
   }
 
   &_type_load {
     width: 100%;
     padding-top: 18px;
     padding-bottom: 18px;
-
-    color: $text-black;
-
     background-color: $gray2;
+
+    .text {
+      color: $text-black;
+    }
   }
 
   &_type_item-missing {
-    color: $text-white;
     background-color: $text-dark;
+
+    .text {
+      color: $text-white;
+    }
   }
 
   &_type_sign-in {
