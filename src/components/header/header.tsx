@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -9,7 +9,7 @@ import { IHeader } from './types';
 import logoIcon from '../../images/logo-white.png';
 import { Button, EButtonKinds, Navigation, SearchInput } from '../ui';
 
-export const Header: FC<IHeader> = ({ className = '', ...rest }) => {
+export const Header: FC<IHeader> = memo(({ className = '', ...rest }) => {
   const { t } = useTranslation();
 
   return (
@@ -22,4 +22,4 @@ export const Header: FC<IHeader> = ({ className = '', ...rest }) => {
       </div>
     </header>
   );
-};
+});

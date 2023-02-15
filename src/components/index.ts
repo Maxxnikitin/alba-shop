@@ -3,3 +3,4 @@ export * from './sign-in';
 export * from './sign-in-sms';
 export * from './sign-in-email';
 export * from './header';
+export * from './footer';
