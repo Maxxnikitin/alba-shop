@@ -23,8 +23,6 @@
   margin: 0;
 
   vertical-align: top;
-
-  appearance: none;
   appearance: none;
   appearance: none;
   background: $text-white;
@@ -87,4 +85,5 @@
   font-style: normal;
   line-height: 14px;
   color: $text-black;
+  white-space: nowrap;
 }

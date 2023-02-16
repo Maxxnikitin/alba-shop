@@ -1,1 +1,3 @@
-export interface ITemplate {}
+export interface ITemplate {
+  className?: string;
+}
