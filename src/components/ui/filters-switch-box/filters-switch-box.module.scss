@@ -1,0 +1,47 @@
+@import '../../common';
+
+.btn {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 1px 0;
+
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 25px;
+  color: $text-black;
+}
+
+.img {
+  transform: rotate(180deg);
+  transition: $common-transition;
+
+  &_open {
+    transform: rotate(0);
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  margin: 0;
+  padding: 0;
+
+  &_item {
+    list-style-type: none;
+  }
+}

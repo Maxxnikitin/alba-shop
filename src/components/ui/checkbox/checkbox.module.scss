@@ -33,6 +33,7 @@
   font-style: normal;
   line-height: 14px;
   color: $text-black;
+  white-space: nowrap;
 }
 
 .label::before {
@@ -57,7 +58,7 @@ input:checked + .label::before {
   border: none;
 }
 
-.amount {
+.quantity {
   padding-left: 12px;
 
   font-size: 16px;

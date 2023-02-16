@@ -32,6 +32,25 @@
     "logo-cart": "В корзину.",
     "logo-favourite": "В избранное.",
     "logo-search": "Поиск.",
-    "category-icon": "Иконка."
+    "category-icon": "Иконка.",
+    "arrow-icon": "Развернуть список.",
+    "close-icon": "Закрыть."
+  },
+  "filters": {
+    "description": "Описание",
+    "brand": "Бренд",
+    "color": "Цвет",
+    "model": "Модель устройства",
+    "material": "Материал",
+    "length": "Длина",
+    "output": "Разъём",
+    "charging_type": "Вид зарядки",
+    "connector_type": "Мощность",
+    "price": "Цена",
+    "is_new": "Новинка",
+    "is_hit": "Хит",
+    "in_stock": "В наличии",
+    "discount": "Со скидкой",
+    "close-btn": "Сбросить фильтр"
   }
 }

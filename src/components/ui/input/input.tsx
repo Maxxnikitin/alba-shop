@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { nanoid } from 'nanoid';
 import { forwardRef, memo } from 'react';
 
 import styles from './input.module.scss';
@@ -20,29 +21,33 @@ export const Input = memo(
         ...rest
       },
       ref,
-    ) => (
-      <div className={clsx(styles.input_field, fieldClassName)}>
-        <input
-          className={clsx(
-            styles.input,
-            { [styles.extratop]: label, [styles.input_error]: isError },
-            className,
+    ) => {
+      const currId = id ?? nanoid();
+
+      return (
+        <div className={clsx(styles.input_field, fieldClassName)}>
+          <input
+            className={clsx(
+              styles.input,
+              { [styles.extratop]: label, [styles.input_error]: isError },
+              className,
+            )}
+            id={currId}
+            ref={ref}
+            {...rest}
+          />
+          {label && (
+            <label className={styles.label} htmlFor={currId}>
+              {label}
+            </label>
           )}
-          id={id}
-          ref={ref}
-          {...rest}
-        />
-        {label && (
-          <label className={styles.label} htmlFor={id}>
-            {label}
-          </label>
-        )}
-        {errorText && (
-          <Paragraph className={styles.error} isError>
-            {errorText}
-          </Paragraph>
-        )}
-      </div>
-    ),
+          {errorText && (
+            <Paragraph className={styles.error} isError>
+              {errorText}
+            </Paragraph>
+          )}
+        </div>
+      );
+    },
   ),
 );

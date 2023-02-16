@@ -1,4 +1,5 @@
 export * from './button';
+export * from './close-button';
 export * from './input';
 export * from './phone-input';
 export * from './search-input';
@@ -11,3 +12,5 @@ export * from './navigation';
 export * from './category-item';
 export * from './checkbox';
 export * from './switch';
+export * from './filters-box';
+export * from './filters-switch-box';
