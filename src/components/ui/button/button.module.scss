@@ -1,0 +1,115 @@
+@import '../../common';
+
+.button {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 34px;
+
+  border: none;
+  border-radius: $common-large-border-radius;
+  outline: none;
+
+  transition: $common-transition;
+
+  .text {
+    font-family: 'SF Pro Display', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 130%;
+    color: $gray2;
+    text-align: center;
+  }
+
+  &_type_primary {
+    background: $blue-gradient1;
+  }
+
+  // &_type_primary:hover {
+  //   box-shadow: $blue-gradient1-shadow;
+  //   filter: $blue-gradient1-filter;
+  // }
+
+  &_type_secondary {
+    background: $text-gray;
+  }
+
+  &_type_menu {
+    padding: 12px 20px;
+    color: $text-white;
+    background: $blue-gradient1;
+
+    .text {
+      color: $text-white;
+    }
+  }
+
+  &_type_addition {
+    padding: 10px 30px;
+    background: none;
+    border: 1px solid $text-dark;
+
+    .text {
+      color: $text-black;
+    }
+  }
+
+  &_type_load {
+    width: 100%;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    background-color: $gray2;
+
+    .text {
+      color: $text-black;
+    }
+  }
+
+  &_type_item-missing {
+    background-color: $text-dark;
+
+    .text {
+      color: $text-white;
+    }
+  }
+
+  &_type_sign-in {
+    width: 100%;
+    max-width: 320px;
+    background: $blue-gradient1;
+    border-radius: $common-small-border-radius;
+  }
+
+  &_type_delay {
+    width: 100%;
+    max-width: 320px;
+    background: $text-gray;
+    border-radius: $common-small-border-radius;
+  }
+
+  &_icon {
+    margin-right: 8px;
+  }
+}
+
+.button:hover {
+  opacity: $common-hover-opacity;
+}
+
+@media screen and (max-width: 550px) {
+  .button {
+    padding: 10px;
+
+    &_icon {
+      margin: 0;
+    }
+  }
+
+  .text_none {
+    display: none;
+  }
+}

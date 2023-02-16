@@ -10,8 +10,16 @@
     "@types/node": "^16.18.12",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "clsx": "^1.2.1",
+    "i18next": "^22.4.9",
+    "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-http-backend": "^2.1.1",
+    "nanoid": "^4.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.1.5",
+    "react-phone-number-input": "^3.2.18",
+    "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
@@ -23,6 +31,8 @@
     "eject": "react-scripts eject",
     "lint:css": "stylelint ./src/**/*.scss --custom-syntax postcss-scss",
     "lint:css:fix": "npm run lint:css -- --fix",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write .",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -33,12 +43,10 @@
   },
   "lint-staged": {
     "{src,config}/**/*.{js,jsx,ts,tsx}": [
-      "prettier-eslint --write",
-      "eslint"
+      "npm run prettier:fix"
     ],
     "*.scss": [
-      "prettier-eslint --write",
-      "stylelint"
+      "npm run lint:css:fix"
     ]
   },
   "husky": {
@@ -72,7 +80,6 @@
     "postcss-scss": "^4.0.6",
     "prettier": "^2.8.4",
     "sass": "^1.58.0",
-    "shelljs": "^0.8.5",
     "stylelint": "^14.16.1",
     "stylelint-config-clean-order": "^2.3.1",
     "stylelint-config-prettier": "^9.0.4",

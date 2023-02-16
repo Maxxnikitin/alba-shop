@@ -1,0 +1,35 @@
+@import '../../common';
+
+.input {
+  box-sizing: border-box;
+  padding: 16px;
+
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  color: $text-black;
+
+  background-color: $text-white;
+  border: 1px solid $gray3;
+  border-radius: $common-small-border-radius;
+}
+
+.input::placeholder {
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  color: $text-gray;
+}
+
+.input:focus {
+  background-image: linear-gradient(white, white), $blue-gradient1;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  border: double 1px transparent;
+  border-radius: $common-small-border-radius;
+  outline: none;
+}

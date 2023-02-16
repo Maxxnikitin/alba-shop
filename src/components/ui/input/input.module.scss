@@ -1,0 +1,91 @@
+@import '../../common';
+
+.input_field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.input::placeholder {
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  color: $text-gray;
+}
+
+.input {
+  box-sizing: border-box;
+  padding: 16px;
+
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  color: $text-black;
+
+  background-color: $text-white;
+  border: 1px solid $gray3;
+  border-radius: $common-small-border-radius;
+
+  &_error {
+    color: $red1;
+    border: 1px solid $red1;
+  }
+
+  &_error::placeholder {
+    color: $red1;
+  }
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  margin-bottom: 5px;
+  margin-left: 8px;
+
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 19px;
+  color: $text-black;
+}
+
+.input:focus {
+  background-image: linear-gradient(white, white), $blue-gradient1;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  border: double 1px transparent;
+  border-radius: $common-small-border-radius;
+  outline: none;
+}
+
+.input:focus + label {
+  background-image: $blue-gradient1;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+
+.extratop {
+  margin-top: 24px;
+}
+
+.error {
+  align-self: flex-start;
+
+  margin-bottom: 4px;
+
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  color: $red1;
+}

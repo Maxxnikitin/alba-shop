@@ -1,0 +1,39 @@
+@import '../../common';
+
+.form {
+  position: relative;
+  width: 50%;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px 48px 14px 24px;
+
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  color: $text-black;
+
+  background-color: $text-white;
+  border: none;
+  border-radius: $common-extralarge-border-radius;
+  outline: none;
+}
+
+.input::placeholder {
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  color: $text-dark;
+}
+
+.icon {
+  position: absolute;
+  top: 11px;
+  right: 24px;
+}

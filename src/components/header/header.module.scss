@@ -1,0 +1,102 @@
+@import '../common';
+
+.header {
+  width: 100%;
+  background-color: $black1;
+}
+
+.container {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 32px 70px;
+}
+
+.logo {
+  margin-right: 32px;
+}
+
+.btn {
+  margin-right: 44px;
+}
+
+.nav {
+  margin-left: 64px;
+}
+
+@media screen and (max-width: 1050px) {
+  .logo {
+    margin-right: 16px;
+  }
+
+  .btn {
+    margin-right: 24px;
+  }
+
+  .nav {
+    margin-left: 32px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    padding: 28px 36px;
+  }
+
+  .logo {
+    width: 100px;
+  }
+
+  .nav {
+    margin-left: 24px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .btn {
+    margin-right: 16px;
+  }
+
+  .nav {
+    margin-left: 16px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .container {
+    justify-content: space-between;
+  }
+
+  .btn {
+    margin: 0;
+  }
+
+  .logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    margin: 0;
+  }
+
+  .nav {
+    margin: 0;
+  }
+
+  .header_search {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .container {
+    padding: 16px;
+  }
+}

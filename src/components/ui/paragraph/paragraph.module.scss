@@ -1,0 +1,19 @@
+@import '../../common';
+
+.paragraph {
+  margin: 0;
+
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 140%;
+  color: $text-dark;
+  text-align: center;
+}
+
+.error {
+  font-size: 14px;
+  line-height: 120%;
+  color: $red1;
+}

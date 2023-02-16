@@ -1,0 +1,89 @@
+@import '../../common';
+
+.container {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.input {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-block;
+
+  box-sizing: border-box;
+  width: 36px;
+  height: 20px;
+  margin: 0;
+
+  vertical-align: top;
+  appearance: none;
+  appearance: none;
+  background: $text-white;
+  border: 1px solid $text-gray;
+  border-radius: $common-switch-border-radius;
+  outline: none;
+}
+
+.input::after {
+  content: '';
+
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  transform: translateX(0);
+
+  display: inline-block;
+
+  width: 16px;
+  height: 16px;
+
+  background-color: $gray3;
+  border-radius: $common-switch-border-radius;
+
+  transition: $common-transition;
+}
+
+.input::before {
+  content: '';
+
+  position: absolute;
+  top: -1px;
+  left: -1px;
+
+  display: inline-block;
+
+  width: 36px;
+  height: 20px;
+
+  opacity: 0;
+  background: $blue-gradient1;
+  border-radius: $common-switch-border-radius;
+
+  transition: $common-transition;
+}
+
+.input:checked::after {
+  transform: translateX(calc(100% - 1px));
+  background-color: $text-white;
+}
+
+.input:checked::before {
+  opacity: 1;
+}
+
+.label {
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 14px;
+  color: $text-black;
+  white-space: nowrap;
+}

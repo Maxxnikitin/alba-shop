@@ -1,0 +1,80 @@
+@import '../../common';
+
+.list {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+
+  &_item {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &_link {
+    display: flex;
+
+    width: 46px;
+    height: 46px;
+
+    text-decoration: none;
+
+    transition: $common-transition;
+  }
+
+  &_link:hover {
+    opacity: $common-hover-opacity;
+  }
+
+  &_item_search {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .icon {
+    width: 36px;
+  }
+
+  .list {
+    gap: 15px;
+
+    &_link {
+      width: 36px;
+      height: 36px;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .list {
+    &_item_search {
+      display: block;
+    }
+  }
+
+  .icon_search {
+    width: 22px;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .list {
+    &_item_mob_none {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .list {
+    &_link {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}

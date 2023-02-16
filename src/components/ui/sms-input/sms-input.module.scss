@@ -1,0 +1,47 @@
+@import '../../common';
+
+.container {
+  width: 100%;
+}
+
+.inputs_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input {
+  box-sizing: border-box;
+  max-width: 68px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  text-align: center;
+}
+
+.fill {
+  background-image: linear-gradient(white, white), $blue-gradient1;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  border: double 1px transparent;
+  border-radius: $common-small-border-radius;
+  outline: none;
+}
+
+.error {
+  margin-bottom: 4px;
+
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 120%;
+  color: $red1;
+  text-align: left;
+}
