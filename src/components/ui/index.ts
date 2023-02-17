@@ -14,4 +14,4 @@ export * from './category-item';
 export * from './checkbox';
 export * from './switch';
 export * from './filters-box';
-export * from './filters-switch-box';
+export * from './filters-box-with-children';

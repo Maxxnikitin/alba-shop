@@ -1,19 +1,17 @@
-import { Dispatch, SetStateAction } from 'react';
+import { ReactNode } from 'react';
 
-export interface IFiltersSwitchBox {
+export interface IFiltersBoxWithChildren {
   title: string;
-  filtersList: TFilterSwitchItem[];
-  checkedFiltersData: TSwitchFiltersData;
-  setCheckedFiltersData: Dispatch<SetStateAction<TSwitchFiltersData>>;
+  children: ReactNode;
   className?: string;
 }
 
-export type TFilterSwitchItem = {
+export type TFiltersBoxWithChildrenItem = {
   f_id: number | string;
   f_name: string;
 };
 
-export type TFilterSwitchBlock = Record<number | string, boolean>;
+export type TFiltersBoxWithChildrenBlock = Record<number | string, boolean>;
 
 export type TSwitchFiltersData = {
   [key: string]: boolean;

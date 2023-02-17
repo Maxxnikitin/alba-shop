@@ -36,9 +36,7 @@ export const FiltersBox: FC<IFiltersBox> = memo(
     return (
       <div className={clsx(styles.container, className)} {...rest}>
         <button className={styles.btn} type='button' onClick={handleOpenList}>
-          <Title level={ETitleLevel.h6} className={styles.title}>
-            {t(`filters.${title}`)}
-          </Title>
+          <Title level={ETitleLevel.h6}>{t(`filters.${title}`)}</Title>
           <img
             className={clsx(styles.img, { [styles.img_open]: isOpen })}
             src={arrowIcon}
