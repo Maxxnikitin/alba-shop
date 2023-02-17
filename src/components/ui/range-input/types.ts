@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react';
 
-export interface IRangeInput {
+export interface IRangeInputProps {
   className?: string;
   min: number;
   max: number;

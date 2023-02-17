@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import styles from './navigation.module.scss';
-import { INavigation } from './types';
+import { INavigationProps } from './types';
 
 import accountIcon from '../../../images/icons/account.svg';
 import cartIcom from '../../../images/icons/cart.svg';
 import favouritesIcon from '../../../images/icons/favourites-nav.svg';
 import searchIcon from '../../../images/icons/search-mob.svg';
 
-export const Navigation: FC<INavigation> = ({ className = '', ...rest }) => {
+export const Navigation: FC<INavigationProps> = ({ className = '', ...rest }) => {
   const { t } = useTranslation();
 
   return (

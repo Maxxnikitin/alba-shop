@@ -4,12 +4,12 @@ import { forwardRef, memo } from 'react';
 
 import styles from './input.module.scss';
 
-import { IInput } from './types';
+import { IInputProps } from './types';
 
 import { Paragraph } from '..';
 
 export const Input = memo(
-  forwardRef<HTMLInputElement, IInput>(
+  forwardRef<HTMLInputElement, IInputProps>(
     (
       {
         className = '',

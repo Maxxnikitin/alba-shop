@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { FC, memo } from 'react';
 
 import styles from './footer.module.scss';
-import { IFooter } from './types';
+import { IFooterProps } from './types';
 
 import { CategoryItem } from '../ui';
 
@@ -16,7 +16,7 @@ const categories = [
   'Детские товары',
 ];
 
-export const Footer: FC<IFooter> = memo(({ className = '', ...rest }) => (
+export const Footer: FC<IFooterProps> = memo(({ className = '', ...rest }) => (
   <footer className={clsx(styles.footer, className)} {...rest}>
     <div className={styles.container}>
       <div className={styles.main}>

@@ -7,11 +7,11 @@ import PhoneInputWithCountrySelect from 'react-phone-number-input';
 import styles from './sign-in-sms.module.scss';
 import 'react-phone-number-input/style.css';
 
-import { ISignInSms, THandleSignInRequest, TInputsData } from './types';
+import { ISignInSmsProps, THandleSignInRequest, TInputsData } from './types';
 
 import { Button, EButtonKinds, Paragraph, PhoneInput, SmsInput, Title } from '../ui';
 
-export const SignInSms: FC<ISignInSms> = ({ className = '', ...rest }) => {
+export const SignInSms: FC<ISignInSmsProps> = ({ className = '', ...rest }) => {
   const [step, setStep] = useState<1 | 2>(1);
   const [phoneNum, setPhoneNum] = useState('');
   const [codeInputsData, setCodeInputsData] = useState<TInputsData>({

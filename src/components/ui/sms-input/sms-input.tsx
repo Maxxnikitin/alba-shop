@@ -11,11 +11,11 @@ import {
 } from 'react';
 
 import styles from './sms-input.module.scss';
-import { TSmsInput } from './types';
+import { TSmsInputProps } from './types';
 
 import { Input, Paragraph } from '..';
 
-export const SmsInput: FC<TSmsInput> = memo(
+export const SmsInput: FC<TSmsInputProps> = memo(
   ({ handleRequest, setInputsData, inputsData, fieldClassName = '', errorText = '', ...rest }) => {
     const input0Ref = useRef(null);
     const input1Ref = useRef(null);

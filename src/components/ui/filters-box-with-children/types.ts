@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export interface IFiltersBoxWithChildren {
+export interface IFiltersBoxWithChildrenProps {
   title: string;
   children: ReactNode;
   className?: string;

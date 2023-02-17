@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './tabs.module.scss';
 
-import { ITabs, ETypes } from './types';
+import { ITabsProps, ETypes } from './types';
 
 import { Tab } from '../tab/tab';
 
-export const Tabs: FC<ITabs> = ({ className = '', activeTab, setActiveTab, ...rest }) => {
+export const Tabs: FC<ITabsProps> = ({ className = '', activeTab, setActiveTab, ...rest }) => {
   const { t } = useTranslation();
 
   const handleTabClick: MouseEventHandler<HTMLButtonElement> = e => {

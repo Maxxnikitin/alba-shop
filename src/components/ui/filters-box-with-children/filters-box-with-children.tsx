@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './filters-box-with-children.module.scss';
 
-import { IFiltersBoxWithChildren } from './types';
+import { IFiltersBoxWithChildrenProps } from './types';
 
 import { Title, ETitleLevel } from '..';
 import arrowIcon from '../../../images/icons/arrow.svg';
 
-export const FiltersBoxWithChildren: FC<IFiltersBoxWithChildren> = memo(
+export const FiltersBoxWithChildren: FC<IFiltersBoxWithChildrenProps> = memo(
   ({ className = '', children, title, ...rest }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { t } = useTranslation();

@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './filters-box.module.scss';
 
-import { IFiltersBox } from './types';
+import { IFiltersBoxProps } from './types';
 
 import { Title, ETitleLevel, Checkbox } from '..';
 import arrowIcon from '../../../images/icons/arrow.svg';
 
-export const FiltersBox: FC<IFiltersBox> = memo(
+export const FiltersBox: FC<IFiltersBoxProps> = memo(
   ({ className = '', title, filtersList, checkedFiltersData, setCheckedFiltersData, ...rest }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { t } = useTranslation();

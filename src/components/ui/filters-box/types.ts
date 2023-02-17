@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export interface IFiltersBox {
+export interface IFiltersBoxProps {
   title: string;
   filtersList: TFilterItem[];
   checkedFiltersData: TCheckboxFiltersData;

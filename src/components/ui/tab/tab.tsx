@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import { FC } from 'react';
 
 import styles from './tab.module.scss';
-import { ITab } from './types';
+import { ITabProps } from './types';
 
-export const Tab: FC<ITab> = ({
+export const Tab: FC<ITabProps> = ({
   type = 'button',
   text,
   isActive = false,

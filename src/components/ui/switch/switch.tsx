@@ -3,9 +3,9 @@ import { nanoid } from 'nanoid';
 import { FC, memo } from 'react';
 
 import styles from './switch.module.scss';
-import { ISwitch } from './types';
+import { ISwitchProps } from './types';
 
-export const Switch: FC<ISwitch> = memo(
+export const Switch: FC<ISwitchProps> = memo(
   ({ className = '', boxClassName = '', label, id, ...rest }) => {
     const currId = id ?? nanoid();
     console.log('Render Switch');

@@ -3,12 +3,12 @@ import Slider from 'rc-slider';
 import { FC } from 'react';
 
 import styles from './range-input.module.scss';
-import { IRangeInput } from './types';
+import { IRangeInputProps } from './types';
 
 import { Input } from '..';
 import { handleStyle } from '../../../utils';
 
-export const RangeInput: FC<IRangeInput> = ({
+export const RangeInput: FC<IRangeInputProps> = ({
   className = '',
   from = 1,
   to = 300000,

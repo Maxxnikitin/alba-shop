@@ -5,7 +5,7 @@ import { ChangeEventHandler, FC, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from './filters.module.scss';
-import { IFilters } from './types';
+import { IFiltersProps } from './types';
 
 import {
   FiltersBox,
@@ -18,7 +18,7 @@ import {
   TSwitchFiltersData,
 } from '../ui';
 
-export const Filters: FC<IFilters> = ({ classList = '', ...rest }) => {
+export const Filters: FC<IFiltersProps> = ({ classList = '', ...rest }) => {
   const [data, setData] = useState({
     brand: [
       { f_id: 1, f_name: 'Автомобильные', f_quantity: 2 },
