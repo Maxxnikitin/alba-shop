@@ -11,11 +11,11 @@ import {
 } from 'react';
 
 import styles from './sms-input.module.scss';
-import { TSmsInput } from './types';
+import { TSmsInputProps } from './types';
 
 import { Input, Paragraph } from '..';
 
-export const SmsInput: FC<TSmsInput> = memo(
+export const SmsInput: FC<TSmsInputProps> = memo(
   ({ handleRequest, setInputsData, inputsData, fieldClassName = '', errorText = '', ...rest }) => {
     const input0Ref = useRef(null);
     const input1Ref = useRef(null);
@@ -26,8 +26,8 @@ export const SmsInput: FC<TSmsInput> = memo(
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
       e => {
-        const id = +e.target.id;
-        let value = e.target.value;
+        const { id } = e.target;
+        let { value } = e.target;
 
         if (value !== '' && !+value) return;
 
@@ -41,7 +41,7 @@ export const SmsInput: FC<TSmsInput> = memo(
         }));
 
         if (value) {
-          const nextInput: MutableRefObject<HTMLInputElement | null> = refsData[id + 1];
+          const nextInput: MutableRefObject<HTMLInputElement | null> = refsData[+id + 1];
           if (nextInput) {
             nextInput.current?.focus();
           } else {

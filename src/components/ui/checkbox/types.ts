@@ -1,6 +1,6 @@
 import { HTMLProps } from 'react';
 
-export interface ICheckbox extends Omit<HTMLProps<HTMLInputElement>, 'type'> {
+export interface ICheckboxProps extends Omit<HTMLProps<HTMLInputElement>, 'type'> {
   label: string;
   boxClassName?: string;
   quantity?: number;

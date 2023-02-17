@@ -1,6 +1,6 @@
 import { HTMLProps } from 'react';
 
-export interface ITitle extends HTMLProps<HTMLTitleElement> {
+export interface ITitleProps extends HTMLProps<HTMLTitleElement> {
   level?: ETitleLevel;
 }
 

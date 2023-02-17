@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export interface IPhoneInput extends HTMLProps<HTMLInputElement> {}
+export interface IPhoneInputProps extends HTMLProps<HTMLInputElement> {}

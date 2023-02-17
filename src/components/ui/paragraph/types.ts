@@ -1,5 +1,5 @@
 import { HTMLProps } from 'react';
 
-export interface IParagraph extends HTMLProps<HTMLParagraphElement> {
+export interface IParagraphProps extends HTMLProps<HTMLParagraphElement> {
   isError?: boolean;
 }

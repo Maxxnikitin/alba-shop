@@ -4,12 +4,12 @@ import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from './header.module.scss';
-import { IHeader } from './types';
+import { IHeaderProps } from './types';
 
 import logoIcon from '../../images/logo-white.png';
 import { Button, EButtonKinds, Navigation, SearchInput } from '../ui';
 
-export const Header: FC<IHeader> = memo(({ className = '', ...rest }) => {
+export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
   const { t } = useTranslation();
 
   return (

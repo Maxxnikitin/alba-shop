@@ -1,3 +1,3 @@
-export interface IFilters {
+export interface IFiltersProps {
   classList?: string;
 }

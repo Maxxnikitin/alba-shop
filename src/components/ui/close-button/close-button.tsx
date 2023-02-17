@@ -5,13 +5,13 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './close-button.module.scss';
 
-import { ICloseButton } from './types';
+import { ICloseButtonProps } from './types';
 
 import { Paragraph } from '..';
 
 import crossIcon from '../../../images/icons/cross.svg';
 
-export const CloseButton: FC<ICloseButton> = ({
+export const CloseButton: FC<ICloseButtonProps> = ({
   className = '',
   textClassName = '',
   text,
