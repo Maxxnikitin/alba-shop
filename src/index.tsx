@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
+import './fonts/San Francisco Pro Display/fonts.css';
 import 'rc-slider/assets/index.css';
 import './index.scss';
 import { App } from './components';

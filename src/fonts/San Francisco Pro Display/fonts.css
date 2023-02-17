@@ -1,0 +1,71 @@
+@font-face {
+  src: url('./SF-Pro-Display-Light.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 300;
+}
+
+@font-face {
+  src: url('./SF-Pro-Display-LightItalic.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 300;
+}
+
+@font-face {
+  src: url('./SF-Pro-Display-Regular.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 400;
+}
+
+@font-face {
+  src: url('./SF-Pro-Display-RegularItalic.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 400;
+}
+
+@font-face {
+  src: url('./SF-Pro-Display-Medium.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 500;
+}
+
+@font-face {
+  src: url('./SF-Pro-Display-MediumItalic.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 500;
+}
+
+@font-face {
+  src: url('./SF-Pro-Display-Semibold.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 600;
+}
+
+@font-face {
+  src: url('./SF-Pro-Display-SemiboldItalic.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 600;
+}
+
+@font-face {
+  src: url('./SF-Pro-Display-Bold.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 700;
+}
+
+@font-face {
+  src: url('./SF-Pro-Display-BoldItalic.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 700;
+}
+
+@font-face {
+  src: url('./SF-Pro-Display-Black.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 900;
+}
+
+@font-face {
+  src: url('./SF-Pro-Display-BoldItalic.otf') format('otf');
+  font-family: 'SF Pro Display';
+  font-weight: 900;
+}
