@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
 
-export const handleStyle: CSSProperties = {
+export const rangeHandlerStyle: CSSProperties = {
   width: 20,
   height: 20,
   marginTop: '-9px',

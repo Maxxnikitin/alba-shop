@@ -6,7 +6,8 @@ import styles from './range-input.module.scss';
 import { IRangeInputProps } from './types';
 
 import { Input } from '..';
-import { handleStyle } from '../../../utils';
+
+import { rangeHandlerStyle } from '~utils';
 
 export const RangeInput: FC<IRangeInputProps> = ({
   className = '',
@@ -42,7 +43,7 @@ export const RangeInput: FC<IRangeInputProps> = ({
         />
       </div>
       <Slider
-        handleStyle={handleStyle}
+        handleStyle={rangeHandlerStyle}
         range
         min={from}
         max={to}
