@@ -26,8 +26,8 @@ export const SmsInput: FC<TSmsInput> = memo(
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
       e => {
-        const id = +e.target.id;
-        let value = e.target.value;
+        const { id } = e.target;
+        let { value } = e.target;
 
         if (value !== '' && !+value) return;
 
@@ -41,7 +41,7 @@ export const SmsInput: FC<TSmsInput> = memo(
         }));
 
         if (value) {
-          const nextInput: MutableRefObject<HTMLInputElement | null> = refsData[id + 1];
+          const nextInput: MutableRefObject<HTMLInputElement | null> = refsData[+id + 1];
           if (nextInput) {
             nextInput.current?.focus();
           } else {

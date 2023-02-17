@@ -5,7 +5,13 @@ import { FC, useMemo, useState } from 'react';
 import styles from './filters.module.scss';
 import { IFilters } from './types';
 
-import { FiltersBox, FiltersSwitchBox, TCheckboxFiltersData, TSwitchFiltersData } from '../ui';
+import {
+  FiltersBox,
+  FiltersSwitchBox,
+  RangeInput,
+  TCheckboxFiltersData,
+  TSwitchFiltersData,
+} from '../ui';
 
 export const Filters: FC<IFilters> = ({ classList = '', ...rest }) => {
   const [data, setData] = useState({
@@ -57,6 +63,7 @@ export const Filters: FC<IFilters> = ({ classList = '', ...rest }) => {
 
   return (
     <div className={clsx(styles.container, classList)} {...rest}>
+      <RangeInput />
       <FiltersSwitchBox
         key={'in_stock'}
         title={'in_stock'}

@@ -22,3 +22,27 @@ code {
 .PhoneInput {
   width: 100%;
 }
+
+.rc-slider-rail {
+  height: 2px;
+  background-color: $gray5;
+}
+
+.rc-slider-track {
+  height: 2px;
+  background: $blue-gradient1;
+}
+
+.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  box-shadow: 0 0 5px 5px rgb(90 117 255 / 60%);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+input[type='number'] {
+  appearance: textfield;
+}
