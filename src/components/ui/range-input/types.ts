@@ -2,10 +2,10 @@ import { ChangeEventHandler } from 'react';
 
 export interface IRangeInputProps {
   className?: string;
-  min: number;
-  max: number;
-  from?: number;
-  to?: number;
+  minValue: number;
+  maxValue: number;
+  rangeStart?: number;
+  rangeEnd?: number;
   onRangeChange: TOnRangeChange;
   onInputsChange: TOnInputsChange;
 }

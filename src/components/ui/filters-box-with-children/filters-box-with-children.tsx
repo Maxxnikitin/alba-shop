@@ -30,7 +30,7 @@ export const FiltersBoxWithChildren: FC<IFiltersBoxWithChildrenProps> = memo(
             alt={t('alts.arrow-icon') || ''}
           />
         </button>
-        {isOpen && <ul className={styles.list}>{children}</ul>}
+        <ul className={clsx(styles.list, { [styles.list_open]: isOpen })}>{children}</ul>
       </div>
     );
   },

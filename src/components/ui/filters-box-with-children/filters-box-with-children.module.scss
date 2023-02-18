@@ -26,12 +26,20 @@
 }
 
 .list {
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
   gap: 16px;
 
+  max-height: 0;
   margin: 0;
   padding: 0;
+
+  transition: $common-transition;
+
+  &_open {
+    max-height: 150px;
+  }
 
   &_item {
     list-style-type: none;

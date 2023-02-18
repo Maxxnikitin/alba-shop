@@ -134,8 +134,8 @@ export const Filters: FC<IFiltersProps> = ({ classList = '', ...rest }) => {
     () => (
       <>
         <RangeInput
-          min={priceFilterData.price.min}
-          max={priceFilterData.price.max}
+          minValue={priceFilterData.price.min}
+          maxValue={priceFilterData.price.max}
           onRangeChange={handlePriceChange}
           onInputsChange={handleInputsChange}
         />
