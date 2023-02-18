@@ -43,21 +43,19 @@ export const FiltersBox: FC<IFiltersBoxProps> = memo(
             alt={t('alts.arrow-icon') || ''}
           />
         </button>
-        {isOpen && (
-          <ul className={styles.list}>
-            {filtersList.map(item => (
-              <li className={styles.list_item} key={item.f_id}>
-                <Checkbox
-                  label={item.f_name}
-                  quantity={item.f_quantity}
-                  checked={checkedFiltersData[title][item.f_id] ?? false}
-                  id={item.f_id?.toString()}
-                  onChange={handleChange}
-                />
-              </li>
-            ))}
-          </ul>
-        )}
+        <ul className={clsx(styles.list, { [styles.list_open]: isOpen })}>
+          {filtersList.map(item => (
+            <li className={styles.list_item} key={item.f_id}>
+              <Checkbox
+                label={item.f_name}
+                quantity={item.f_quantity}
+                checked={checkedFiltersData[title][item.f_id] ?? false}
+                id={item.f_id?.toString()}
+                onChange={handleChange}
+              />
+            </li>
+          ))}
+        </ul>
       </div>
     );
   },

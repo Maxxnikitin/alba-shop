@@ -11,10 +11,10 @@ import { rangeHandlerStyle } from '~utils';
 
 export const RangeInput: FC<IRangeInputProps> = ({
   className = '',
-  from = 1,
-  to = 300000,
-  min,
-  max,
+  rangeStart = 1,
+  rangeEnd = 300000,
+  minValue,
+  maxValue,
   onRangeChange,
   onInputsChange,
   ...rest
@@ -27,27 +27,27 @@ export const RangeInput: FC<IRangeInputProps> = ({
           fieldClassName={styles.input}
           type='number'
           name='min'
-          min={from}
-          max={to}
-          value={min}
+          min={rangeStart}
+          max={rangeEnd}
+          value={minValue}
           onChange={onInputsChange}
         />
         <Input
           fieldClassName={styles.input}
           type='number'
           name='max'
-          min={from}
-          max={to}
-          value={max}
+          min={rangeStart}
+          max={rangeEnd}
+          value={maxValue}
           onChange={onInputsChange}
         />
       </div>
       <Slider
         handleStyle={rangeHandlerStyle}
         range
-        min={from}
-        max={to}
-        value={[min, max]}
+        min={rangeStart}
+        max={rangeEnd}
+        value={[minValue, maxValue]}
         onChange={onRangeChange}
       />
     </div>
