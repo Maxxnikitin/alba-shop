@@ -1,0 +1,19 @@
+@import '../../common';
+
+.container {
+  box-sizing: border-box;
+  width: 19px;
+  padding: 4px;
+
+  background: $orange-gradient;
+  border-radius: 50%;
+}
+
+.text {
+  font-size: 10px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 110%;
+  color: $text-white;
+  text-align: center;
+}
