@@ -4,10 +4,8 @@
   box-sizing: border-box;
   padding: 16px;
 
-  font-family: 'SF Pro Display', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  font-style: normal;
   line-height: 120%;
   color: $text-black;
 
@@ -17,10 +15,8 @@
 }
 
 .input::placeholder {
-  font-family: 'SF Pro Display', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  font-style: normal;
   line-height: 120%;
   color: $text-gray;
 }

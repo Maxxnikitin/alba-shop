@@ -2,21 +2,18 @@
 
 .title {
   margin: 0;
-  font-family: 'SF Pro Display', sans-serif;
   color: $text-black;
   text-align: center;
 
   &_h3 {
     font-size: 32px;
     font-weight: 600;
-    font-style: normal;
     line-height: 146.84%;
   }
 
   &_h6 {
     font-size: 18px;
     font-weight: 500;
-    font-style: normal;
     line-height: 25px;
     color: $text-black;
   }
