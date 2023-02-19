@@ -7,11 +7,11 @@ import { ICountProps } from './types';
 import { Paragraph } from '../paragraph';
 
 export const Count: FC<ICountProps> = memo(({ className = '', count, ...rest }) => {
-  const currNum = useMemo(() => (count <= 99 ? count : 99), [count]);
+  const displayCount = useMemo(() => (count <= 99 ? count : 99), [count]);
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>
-      <Paragraph className={styles.text}>{currNum}</Paragraph>
+      <Paragraph className={styles.text}>{displayCount}</Paragraph>
     </div>
   );
 });
