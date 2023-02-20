@@ -43,6 +43,7 @@ export const RangeInput: FC<IRangeInputProps> = ({
         />
       </div>
       <Slider
+        className={styles.range}
         handleStyle={rangeHandlerStyle}
         range
         min={rangeStart}
