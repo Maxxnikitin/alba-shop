@@ -9,6 +9,7 @@
   cursor: pointer;
 
   display: flex;
+  gap: 20px;
   align-items: center;
   justify-content: space-between;
 
@@ -51,6 +52,10 @@
     margin-top: 8px;
     margin-bottom: 24px;
   }
+}
+
+.title {
+  text-align: left;
 }
 
 .text {
