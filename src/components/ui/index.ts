@@ -16,3 +16,4 @@ export * from './switch';
 export * from './filters-box';
 export * from './filters-box-with-children';
 export * from './count';
+export * from './accordion';

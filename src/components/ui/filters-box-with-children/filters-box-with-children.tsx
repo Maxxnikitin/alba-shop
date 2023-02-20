@@ -9,20 +9,18 @@ import { IFiltersBoxWithChildrenProps } from './types';
 import { Title, ETitleLevel } from '..';
 import arrowIcon from '../../../images/icons/arrow.svg';
 
+import { handleToggleList } from '~utils';
+
 export const FiltersBoxWithChildren: FC<IFiltersBoxWithChildrenProps> = memo(
   ({ className = '', children, title, ...rest }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { t } = useTranslation();
 
-    const handleOpenList = () => {
-      setIsOpen(!isOpen);
-    };
-
     console.log('Render Filters SwitchBox');
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
-        <button className={styles.btn} type='button' onClick={handleOpenList}>
+        <button className={styles.btn} type='button' onClick={handleToggleList(setIsOpen)}>
           <Title level={ETitleLevel.h6}>{t(`filters.${title}`)}</Title>
           <img
             className={clsx(styles.img, { [styles.img_open]: isOpen })}

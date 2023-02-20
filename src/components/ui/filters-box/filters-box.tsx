@@ -9,14 +9,12 @@ import { IFiltersBoxProps } from './types';
 import { Title, ETitleLevel, Checkbox } from '..';
 import arrowIcon from '../../../images/icons/arrow.svg';
 
+import { handleToggleList } from '~utils';
+
 export const FiltersBox: FC<IFiltersBoxProps> = memo(
   ({ className = '', title, filtersList, checkedFiltersData, setCheckedFiltersData, ...rest }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { t } = useTranslation();
-
-    const handleOpenList = () => {
-      setIsOpen(!isOpen);
-    };
 
     console.log('Render Filters Checkbox');
 
@@ -35,7 +33,7 @@ export const FiltersBox: FC<IFiltersBoxProps> = memo(
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
-        <button className={styles.btn} type='button' onClick={handleOpenList}>
+        <button className={styles.btn} type='button' onClick={handleToggleList(setIsOpen)}>
           <Title level={ETitleLevel.h6}>{t(`filters.${title}`)}</Title>
           <img
             className={clsx(styles.img, { [styles.img_open]: isOpen })}
@@ -43,7 +41,10 @@ export const FiltersBox: FC<IFiltersBoxProps> = memo(
             alt={t('alts.arrow-icon') || ''}
           />
         </button>
-        <ul className={clsx(styles.list, { [styles.list_open]: isOpen })}>
+        <ul
+          className={clsx(styles.list, { [styles.list_open]: isOpen })}
+          style={(isOpen && { maxHeight: filtersList.length * 35 }) || {}}
+        >
           {filtersList.map(item => (
             <li className={styles.list_item} key={item.f_id}>
               <Checkbox
