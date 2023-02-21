@@ -9,7 +9,7 @@ import { IFiltersBoxProps } from './types';
 import { Title, ETitleLevel, Checkbox } from '..';
 import arrowIcon from '../../../images/icons/arrow.svg';
 
-import { handleToggleList } from '~utils';
+import { handleToggleState } from '~utils';
 
 export const FiltersBox: FC<IFiltersBoxProps> = memo(
   ({ className = '', title, filtersList, checkedFiltersData, setCheckedFiltersData, ...rest }) => {
@@ -33,7 +33,7 @@ export const FiltersBox: FC<IFiltersBoxProps> = memo(
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
-        <button className={styles.btn} type='button' onClick={handleToggleList(setIsOpen)}>
+        <button className={styles.btn} type='button' onClick={handleToggleState(setIsOpen)}>
           <Title level={ETitleLevel.h6}>{t(`filters.${title}`)}</Title>
           <img
             className={clsx(styles.img, { [styles.img_open]: isOpen })}

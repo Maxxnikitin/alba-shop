@@ -35,7 +35,8 @@
     "category-icon": "Иконка.",
     "arrow-icon": "Иконка открытия и закрытия списка.",
     "close-icon": "Закрыть.",
-    "not-found": "Ничего не найдено."
+    "not-found": "Ничего не найдено.",
+    "confirmed-order": "Подтверждение заказа."
   },
   "filters": {
     "description": "Описание",
@@ -61,5 +62,11 @@
   "query-not-found": {
     "title": "По вашему запросу ничего не найдено",
     "btn": "На главную"
+  },
+  "orders": {
+    "conformed-title": "Спасибо за заказ!",
+    "conformed-order-number-text": "Номер вашего заказа",
+    "wait-call-text": "Ожидайте звонка нашего менджера",
+    "btn": "Перейти на главную"
   }
 }

@@ -15,4 +15,5 @@ export enum EButtonKinds {
   itemMissing = 'item-missing',
   signIn = 'sign-in',
   delay = 'delay',
+  order = 'order',
 }

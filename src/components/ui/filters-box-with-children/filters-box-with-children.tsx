@@ -9,7 +9,7 @@ import { IFiltersBoxWithChildrenProps } from './types';
 import { Title, ETitleLevel } from '..';
 import arrowIcon from '../../../images/icons/arrow.svg';
 
-import { handleToggleList } from '~utils';
+import { handleToggleState } from '~utils';
 
 export const FiltersBoxWithChildren: FC<IFiltersBoxWithChildrenProps> = memo(
   ({ className = '', children, title, ...rest }) => {
@@ -20,7 +20,7 @@ export const FiltersBoxWithChildren: FC<IFiltersBoxWithChildrenProps> = memo(
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
-        <button className={styles.btn} type='button' onClick={handleToggleList(setIsOpen)}>
+        <button className={styles.btn} type='button' onClick={handleToggleState(setIsOpen)}>
           <Title level={ETitleLevel.h6}>{t(`filters.${title}`)}</Title>
           <img
             className={clsx(styles.img, { [styles.img_open]: isOpen })}
