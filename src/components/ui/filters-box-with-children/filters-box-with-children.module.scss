@@ -9,7 +9,7 @@
 
   width: 100%;
   margin-bottom: 16px;
-  padding: 1px 0;
+  padding: 1px 16px;
 
   background: none;
   border: none;
@@ -33,7 +33,7 @@
 
   max-height: 0;
   margin: 0;
-  padding: 0;
+  padding: 0 16px;
 
   transition: $common-transition;
 
