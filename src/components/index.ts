@@ -7,3 +7,4 @@ export * from './footer';
 export * from './filters';
 export * from './query-not-found';
 export * from './confirmed-order-modal';
+export * from './empty-cart';
