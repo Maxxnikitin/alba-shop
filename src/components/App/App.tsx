@@ -3,7 +3,7 @@ import { useRoutes } from 'react-router-dom';
 import styles from './App.module.scss';
 
 import { SignIn, Header, Footer, Filters } from '..';
-import { FaqPage } from '../../pages';
+import { FaqPage, NotFound } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
 export function App() {
@@ -47,6 +47,10 @@ export function App() {
     {
       path: '/faq',
       element: <FaqPage />,
+    },
+    {
+      path: '*',
+      element: <NotFound />,
     },
   ]);
 

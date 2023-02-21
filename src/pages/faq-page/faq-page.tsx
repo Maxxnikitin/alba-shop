@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { MouseEventHandler, FC, memo, useCallback, useEffect, useState } from 'react';
 
-import styles from './faqPage.module.scss';
+import styles from './faq-page.module.scss';
 import { IFaqPageProps } from './types';
 
 import { Title, Accordion } from '../../components/ui';

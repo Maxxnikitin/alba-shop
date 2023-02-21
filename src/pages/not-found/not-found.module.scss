@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 98px;
+  padding-bottom: 96px;
+}
+
+.title {
+  margin-top: 48px;
+  margin-bottom: 20px;
+}
+
+.img {
+  width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 44px 16px 170px;
+  }
+}

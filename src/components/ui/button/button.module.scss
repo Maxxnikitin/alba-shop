@@ -100,7 +100,9 @@
 
 @media screen and (max-width: 550px) {
   .button {
-    padding: 10px;
+    &_type_menu {
+      padding: 10px;
+    }
 
     &_icon {
       margin: 0;
