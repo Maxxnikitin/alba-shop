@@ -17,3 +17,7 @@ export * from './filters-box';
 export * from './filters-box-with-children';
 export * from './count';
 export * from './accordion';
+export * from './modal';
+export * from './tag';
+export * from './tags-box';
+export * from './item-full-photo';

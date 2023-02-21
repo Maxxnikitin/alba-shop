@@ -89,6 +89,18 @@
     border-radius: $common-small-border-radius;
   }
 
+  &_type_order {
+    background: none;
+    background-image: linear-gradient(white, white), $blue-gradient1;
+    background-clip: padding-box, border-box;
+    background-origin: border-box;
+    border: double 1px transparent;
+
+    .text {
+      color: $text-black;
+    }
+  }
+
   &_icon {
     margin-right: 8px;
   }
@@ -100,7 +112,11 @@
 
 @media screen and (max-width: 550px) {
   .button {
-    padding: 10px;
+    &_type_menu {
+      width: 36px;
+      height: 36px;
+      padding: 10px;
+    }
 
     &_icon {
       margin: 0;

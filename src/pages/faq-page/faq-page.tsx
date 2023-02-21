@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { MouseEventHandler, FC, memo, useCallback, useEffect, useState } from 'react';
 
-import styles from './faqPage.module.scss';
+import styles from './faq-page.module.scss';
 import { IFaqPageProps } from './types';
 
 import { Title, Accordion } from '../../components/ui';
@@ -12,8 +12,10 @@ export const FaqPage: FC<IFaqPageProps> = memo(({ className = '', ...rest }) => 
   const [data, setData] = useState<TGetFaqDataRes[]>([]);
   const [openId, setOpenId] = useState<string>('');
 
-  const handleOpen: MouseEventHandler<HTMLButtonElement> = useCallback(({ target }) => {
-    const id = (target as HTMLButtonElement).id;
+  const handleOpen: MouseEventHandler<HTMLButtonElement> = useCallback(e => {
+    const target = e.target as HTMLElement;
+
+    const id = target.id || target.closest('button')!.id;
     setOpenId(id);
   }, []);
 
@@ -51,16 +53,18 @@ export const FaqPage: FC<IFaqPageProps> = memo(({ className = '', ...rest }) => 
   return (
     <section className={clsx(styles.container, className)} {...rest}>
       <Title className={styles.title}>FAQ</Title>
-      {data.length &&
-        data.map(data => (
-          <Accordion
-            key={data.id}
-            dataObj={data}
-            className={styles.accordion}
-            isOpen={data.id.toString() === openId}
-            onBtnClick={handleOpen}
-          />
-        ))}
+      <div className={styles.list}>
+        {data.length &&
+          data.map(data => (
+            <Accordion
+              key={data.id}
+              dataObj={data}
+              className={styles.accordion}
+              isOpen={data.id.toString() === openId}
+              onBtnClick={handleOpen}
+            />
+          ))}
+      </div>
     </section>
   );
 });

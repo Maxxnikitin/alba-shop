@@ -1,0 +1,51 @@
+@import '../../common';
+
+.modal {
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-sizing: border-box;
+  min-width: 616px;
+  padding: 36px 40px;
+
+  background-color: $text-white;
+  border-radius: $common-large-border-radius;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background-color: $overlay-color;
+}
+
+@media screen and (max-width: 650px) {
+  .modal {
+    min-width: 450px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .modal {
+    top: 68px;
+    left: 0;
+    transform: none;
+
+    min-width: 100%;
+    height: calc(100% - 68px);
+    padding: 66px 14px;
+
+    border-radius: 0;
+  }
+}
