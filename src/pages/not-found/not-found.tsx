@@ -9,12 +9,12 @@ import { INotFoundProps } from './types';
 import { Button, ETitleLevel, Title } from '../../components/ui';
 import notGoundImg from '../../images/404.svg';
 
-import { useReturnCallback } from '~utils';
+import { useReturn } from '~utils';
 
 export const NotFound: FC<INotFoundProps> = memo(({ className = '', ...rest }) => {
   const { t } = useTranslation();
 
-  const { handleReturnClick } = useReturnCallback();
+  const { handleReturnClick } = useReturn();
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>
