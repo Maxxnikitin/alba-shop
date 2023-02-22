@@ -1,5 +1,5 @@
 export interface IItemFullPhotoProps {
-  img: string;
+  photo: string;
   inFavourite: boolean;
   isHit: boolean;
   isNew: boolean;

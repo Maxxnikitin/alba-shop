@@ -1,0 +1,19 @@
+@import '../../common';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.img {
+  cursor: pointer;
+  width: 106px;
+  height: 107px;
+  transition: $common-transition;
+
+  &_active {
+    border-radius: $common-small-border-radius;
+    box-shadow: 0 0 8px 5px $gray3;
+  }
+}
