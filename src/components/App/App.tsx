@@ -2,15 +2,9 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemGallery } from '..';
+import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails } from '..';
 import { FaqPage, NotFound } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
-const data = {
-  img: 'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
-  inFavourite: false,
-  isNew: true,
-  isHit: true,
-};
 
 export function App() {
   console.log('Render App');
@@ -20,7 +14,7 @@ export function App() {
       element: (
         <>
           <SignIn />
-          <ItemGallery {...data} />
+          <ItemDetails />
           <EmptyCart />
           <QueryNotFound />
           <div style={{ width: 292 }}>

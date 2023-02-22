@@ -1,5 +1,5 @@
 export interface IItemGalleryProps {
-  img: string;
+  photos: string[];
   inFavourite: boolean;
   isNew: boolean;
   isHit: boolean;

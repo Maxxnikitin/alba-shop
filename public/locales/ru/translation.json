@@ -78,5 +78,12 @@
   "tags": {
     "new": "Новинка",
     "hit": "Хит"
+  },
+  "item": {
+    "article": "Артикул",
+    "weight": "Вес: {{amount}} г",
+    "description": "Описание",
+    "btn": "В корзину",
+    "stock": "В наличии {{amount}} шт."
   }
 }
