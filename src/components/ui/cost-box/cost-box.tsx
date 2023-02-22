@@ -16,7 +16,7 @@ export const CostBox: FC<ICostBoxProps> = memo(({ className = '', price, discoun
     const [priceWithoutPenny] = price.split('.');
     const priceToNum = +priceWithoutPenny;
 
-    return Math.floor(priceToNum - (priceToNum / 100) * displayDiscount);
+    return Math.round(priceToNum - (priceToNum / 100) * displayDiscount);
   }, [price, displayDiscount]);
 
   return (

@@ -1,8 +1,13 @@
 @import '../../common';
 
 .container {
+  overflow-x: auto;
   display: flex;
   gap: 20px;
+
+  box-sizing: border-box;
+  max-width: 427px;
+  padding: 16px;
 }
 
 .img_box {
@@ -36,4 +41,14 @@
   font-size: 14px;
   font-weight: 700;
   line-height: 100%;
+}
+
+.stock_off {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 100%;
+  }
 }

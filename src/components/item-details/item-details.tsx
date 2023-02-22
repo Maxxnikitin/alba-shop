@@ -30,7 +30,7 @@ const mockData = {
       name: 'Чехол Luxo original green',
       product_id: 'string44',
       weight: 10,
-      stock: 200,
+      stock: 0,
       in_cart: 0,
       price: '510.00',
       discount: '10.00',
@@ -40,6 +40,10 @@ const mockData = {
         'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
         'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
         'https://img.mvideo.ru/Pdb/50129627b.jpg',
+        'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
+        'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+        'https://img.mvideo.ru/Pdb/50129627b.jpg',
+        'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
       ],
     },
     {
@@ -48,7 +52,7 @@ const mockData = {
       name: 'Чехол Luxo original gray',
       product_id: 'string44',
       weight: 10,
-      stock: 200,
+      stock: 0,
       in_cart: 0,
       price: '487.00',
       discount: '0.00',
@@ -81,6 +85,42 @@ const mockData = {
     {
       type: 'characteristics',
       id: 'rrewecdscf',
+      name: 'Чехол Luxo original black',
+      product_id: 'string44',
+      weight: 10,
+      stock: 200,
+      in_cart: 0,
+      price: '410.00',
+      discount: '21.00',
+      color: 'Black',
+      in_favourite: false,
+      photo: [
+        'https://белоеяблоко.рф/upload/resize_cache/iblock/e98/800_800_1a1fde8d5e7dcaa11be442336c9d37f5e/y3xladtiypp4q4asb15458430j8h59wv.jpeg',
+        'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+        'https://img.mvideo.ru/Pdb/50129627b.jpg',
+      ],
+    },
+    {
+      type: 'characteristics',
+      id: 'rrewecdscdt',
+      name: 'Чехол Luxo original yellow',
+      product_id: 'string44',
+      weight: 10,
+      stock: 200,
+      in_cart: 0,
+      price: '460.00',
+      discount: '13.00',
+      color: 'Black',
+      in_favourite: false,
+      photo: [
+        'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+        'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+        'https://img.mvideo.ru/Pdb/50129627b.jpg',
+      ],
+    },
+    {
+      type: 'characteristics',
+      id: 'rrewecdscfr',
       name: 'Чехол Luxo original black',
       product_id: 'string44',
       weight: 10,
@@ -141,20 +181,15 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
     // getProduct(id!).then(res => setData(res))
     setData(mockData);
     setCharacteristics(mockData.characteristics);
+
+    for (let item of mockData.characteristics) {
+      if (item.stock > 0) {
+        setCurrentCharacteristic(item);
+        return;
+      }
+    }
     setCurrentCharacteristic(mockData.characteristics[0]);
   }, [id]);
-
-  // useEffect(() => {
-  //   if (characteristics?.length) {
-  //     for (let item of characteristics) {
-  //       if (item.stock > 0) {
-  //         setCurrentCharacteristic(item);
-  //         return;
-  //       }
-  //     }
-  //     setCurrentCharacteristic(characteristics[0]);
-  //   }
-  // }, [characteristics]);
 
   if (!currentCharacteristic || !data || !characteristics) {
     return <p>loader</p>;

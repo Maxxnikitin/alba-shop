@@ -18,6 +18,7 @@ export const CharacteristicsPhotoBox: FC<ICharacteristicsPhotoBoxProps> = memo(
             <img
               className={clsx(styles.img, {
                 [styles.img_active]: currentCharacteristic.id === item.id,
+                [styles.stock_off]: !item.stock,
               })}
               src={item.photo[0]}
               id={item.id}

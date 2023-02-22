@@ -28,6 +28,7 @@ export const ItemGallery: FC<IItemGalleryProps> = memo(
           isHit={isHit}
           isNew={isNew}
           onLikeClick={onLikeClick}
+          className={styles.photo}
         />
       </div>
     );
