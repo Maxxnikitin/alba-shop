@@ -8,7 +8,7 @@ import { IItemFullPhotoProps } from './types';
 import { TagsBox } from '..';
 
 export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
-  ({ className = '', photo, inFavourite, isHit, isNew, ...rest }) => {
+  ({ className = '', photo, inFavourite, isHit, isNew, onLikeClick, ...rest }) => {
     const { t } = useTranslation();
 
     const tagsArr = useMemo(() => {
@@ -26,7 +26,7 @@ export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
         <div className={styles.additions}>
           <button
             className={clsx(styles.like, { [styles.like_active]: inFavourite })}
-            // onClick={}
+            onClick={onLikeClick}
           />
           {tagsArr.length && <TagsBox dataArr={tagsArr} />}
         </div>

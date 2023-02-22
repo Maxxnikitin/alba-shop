@@ -1,0 +1,39 @@
+@import '../../common';
+
+.container {
+  display: flex;
+  gap: 20px;
+}
+
+.img_box {
+  position: relative;
+}
+
+.img {
+  cursor: pointer;
+
+  width: 84px;
+  height: 84px;
+
+  filter: drop-shadow(0 2.2929px 2.2929px rgb(0 0 0 / 15%));
+
+  transition: $common-transition;
+
+  &_active {
+    border-radius: $common-small-border-radius;
+    box-shadow: 0 0 8px 5px $gray3;
+  }
+}
+
+.tag {
+  position: absolute;
+  right: 12px;
+  bottom: 0;
+
+  width: 24px;
+  padding: 4px;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 100%;
+}

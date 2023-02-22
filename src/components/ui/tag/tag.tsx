@@ -6,12 +6,10 @@ import { ITagProps } from './types';
 
 import { Paragraph } from '../paragraph';
 
-export const Tag: FC<ITagProps> = memo(({ className = '', text, ...rest }) => {
-  console.log('Render Tag');
+export const Tag: FC<ITagProps> = memo(({ className = '', text, ...rest }) => (
+  // console.log('Render Tag');
 
-  return (
-    <Paragraph className={clsx(styles.container, className)} {...rest}>
-      {text}
-    </Paragraph>
-  );
-});
+  <Paragraph className={clsx(styles.container, className)} {...rest}>
+    {text}
+  </Paragraph>
+));

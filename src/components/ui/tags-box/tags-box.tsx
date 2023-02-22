@@ -10,7 +10,6 @@ import { Tag } from '..';
 
 export const TagsBox: FC<ITagsBoxProps> = memo(({ className = '', dataArr, ...rest }) => {
   const { t } = useTranslation();
-  console.log('q');
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>

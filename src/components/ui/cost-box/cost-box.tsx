@@ -14,18 +14,20 @@ export const CostBox: FC<ICostBoxProps> = memo(({ className = '', price, discoun
 
   const displayPrice = useMemo(() => {
     const [priceWithoutPenny] = price.split('.');
-    return +priceWithoutPenny - (+priceWithoutPenny / 100) * displayDiscount;
+    const priceToNum = +priceWithoutPenny;
+
+    return Math.floor(priceToNum - (priceToNum / 100) * displayDiscount);
   }, [price, displayDiscount]);
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>
       <Title className={styles.cost}>{displayPrice} ₽</Title>
-      {displayDiscount && (
+      {displayDiscount ? (
         <>
           <Paragraph className={styles.cost_prev}>{price}</Paragraph>
           <Tag text={`-${displayDiscount}%`} />
         </>
-      )}
+      ) : null}
     </div>
   );
 });

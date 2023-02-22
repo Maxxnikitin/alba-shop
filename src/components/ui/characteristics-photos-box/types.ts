@@ -2,9 +2,8 @@ import { HTMLProps } from 'react';
 
 import { TCharacteristics } from '~utils';
 
-export interface IItemCharacteristicsProps extends HTMLProps<HTMLDivElement> {
+export interface ICharacteristicsPhotoBoxProps extends HTMLProps<HTMLImageElement> {
   characteristics: TCharacteristics[];
   currentCharacteristic: TCharacteristics;
-  description: string[] | null;
   className?: string;
 }

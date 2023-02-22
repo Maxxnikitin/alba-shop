@@ -5,12 +5,11 @@ import { useTranslation } from 'react-i18next';
 import styles from './item-characteristics.module.scss';
 import { IItemCharacteristicsProps } from './types';
 
-import { Button, CostBox, ETitleLevel, Paragraph, Title } from '../ui';
+import { Button, CharacteristicsPhotoBox, CostBox, ETitleLevel, Paragraph, Title } from '../ui';
 
 export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
-  ({ className = '', characteristics, currentCharacteristic, description, ...rest }) => {
+  ({ className = '', characteristics, currentCharacteristic, description, onClick, ...rest }) => {
     const { t } = useTranslation();
-    console.log('q');
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
@@ -22,6 +21,12 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
           </Paragraph>
         </div>
         <CostBox price={currentCharacteristic.price} discount={currentCharacteristic.discount} />
+        <CharacteristicsPhotoBox
+          className={styles.photos_box}
+          characteristics={characteristics}
+          currentCharacteristic={currentCharacteristic}
+          onClick={onClick}
+        />
         <Title level={ETitleLevel.h4} className={styles.description_title}>
           {t('item.description')}
         </Title>

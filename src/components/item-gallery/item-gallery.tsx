@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, memo, MouseEventHandler, useCallback, useState } from 'react';
+import { FC, memo, MouseEventHandler, useCallback, useEffect, useState } from 'react';
 
 import styles from './item-gallery.module.scss';
 import { IItemGalleryProps } from './types';
@@ -7,14 +7,17 @@ import { IItemGalleryProps } from './types';
 import { ItemFullPhoto, PhotosBox } from '../ui';
 
 export const ItemGallery: FC<IItemGalleryProps> = memo(
-  ({ className = '', photos, inFavourite, isHit, isNew, ...rest }) => {
+  ({ className = '', photos, inFavourite, isHit, isNew, onLikeClick, ...rest }) => {
     const [activePhoto, setActivePhoto] = useState(0);
-    console.log('q');
 
     const handlePhotoClick: MouseEventHandler<HTMLImageElement> = useCallback(({ target }) => {
       const id = +(target as HTMLImageElement).id;
       setActivePhoto(id);
     }, []);
+
+    useEffect(() => {
+      setActivePhoto(0);
+    }, [photos]);
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
@@ -24,6 +27,7 @@ export const ItemGallery: FC<IItemGalleryProps> = memo(
           inFavourite={inFavourite}
           isHit={isHit}
           isNew={isNew}
+          onLikeClick={onLikeClick}
         />
       </div>
     );

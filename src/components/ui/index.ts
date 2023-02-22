@@ -23,3 +23,4 @@ export * from './tags-box';
 export * from './item-full-photo';
 export * from './photos-box';
 export * from './cost-box';
+export * from './characteristics-photos-box';

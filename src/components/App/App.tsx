@@ -14,7 +14,6 @@ export function App() {
       element: (
         <>
           <SignIn />
-          <ItemDetails />
           <EmptyCart />
           <QueryNotFound />
           <div style={{ width: 292 }}>
@@ -46,6 +45,10 @@ export function App() {
     {
       path: '/favourites',
       element: <p>Favourites</p>,
+    },
+    {
+      path: '/catalog/:id',
+      element: <ItemDetails />,
     },
     {
       path: '/faq',
