@@ -6,5 +6,6 @@ export interface IItemFullPhotoProps {
   isHit: boolean;
   isNew: boolean;
   className?: string;
+  isMobile?: boolean;
   onLikeClick: MouseEventHandler<HTMLButtonElement>;
 }

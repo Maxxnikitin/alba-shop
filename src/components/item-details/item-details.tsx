@@ -209,7 +209,11 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
         characteristics={characteristics}
         currentCharacteristic={currentCharacteristic}
         description={data.description}
+        isNew={data.is_new}
+        isHit={data.is_hit}
+        inFavourite={currentCharacteristic.in_favourite}
         onClick={handleChangecurrentCharacteristic}
+        onLikeClick={handleLikeToggle}
       />
     </div>
   );

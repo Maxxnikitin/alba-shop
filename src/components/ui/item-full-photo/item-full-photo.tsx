@@ -28,8 +28,9 @@ export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
             className={clsx(styles.like, { [styles.like_active]: inFavourite })}
             onClick={onLikeClick}
           />
-          {tagsArr.length && <TagsBox dataArr={tagsArr} />}
+          {tagsArr.length && <TagsBox dataArr={tagsArr} className={styles.tabs} />}
         </div>
+        {tagsArr.length && <TagsBox dataArr={tagsArr} className={styles.tabs_mobile} />}
       </div>
     );
   },

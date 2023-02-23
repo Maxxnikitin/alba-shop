@@ -25,6 +25,10 @@
   }
 }
 
+.container::-webkit-scrollbar {
+  width: 0;
+}
+
 @media screen and (max-width: 1000px) {
   .container {
     overflow-x: auto;

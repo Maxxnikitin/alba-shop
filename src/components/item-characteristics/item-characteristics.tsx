@@ -1,14 +1,35 @@
 import clsx from 'clsx';
-import { FC, memo } from 'react';
+import { FC, memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Navigation, Pagination } from 'swiper';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 
 import styles from './item-characteristics.module.scss';
 import { IItemCharacteristicsProps } from './types';
 
-import { Button, CharacteristicsPhotoBox, CostBox, ETitleLevel, Paragraph, Title } from '../ui';
+import {
+  Button,
+  CharacteristicsPhotoBox,
+  CostBox,
+  ETitleLevel,
+  ItemFullPhoto,
+  Paragraph,
+  Title,
+} from '../ui';
 
 export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
-  ({ className = '', characteristics, currentCharacteristic, description, onClick, ...rest }) => {
+  ({
+    className = '',
+    characteristics,
+    currentCharacteristic,
+    description,
+    inFavourite,
+    isHit,
+    isNew,
+    onClick,
+    onLikeClick,
+    ...rest
+  }) => {
     const { t } = useTranslation();
 
     return (
@@ -21,6 +42,30 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
           </Paragraph>
         </div>
         <CostBox price={currentCharacteristic.price} discount={currentCharacteristic.discount} />
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={20}
+          loop
+          onSwiper={swiper => console.log(swiper)}
+          pagination={{
+            clickable: true,
+          }}
+          navigation
+          modules={[Navigation, Pagination]}
+          className={styles.swiper}
+        >
+          {currentCharacteristic.photo.map((item, i) => (
+            <SwiperSlide key={i}>
+              <ItemFullPhoto
+                photo={item}
+                inFavourite={inFavourite}
+                isHit={isHit}
+                isNew={isNew}
+                onLikeClick={onLikeClick}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
         <CharacteristicsPhotoBox
           className={styles.photos_box}
           characteristics={characteristics}
