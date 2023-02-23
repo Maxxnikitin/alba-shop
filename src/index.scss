@@ -10,9 +10,86 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.body::-webkit-scrollbar {
+  width: 15px;
+}
+
+.body::-webkit-scrollbar-track {
+  background: $gray3;
+}
+
+.body::-webkit-scrollbar-thumb {
+  width: 9px;
+  background: $text-white;
+}
+
 button,
 input {
   font-family: 'SF Pro Display', sans-serif;
+}
+
+.swiper {
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 25px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  right: 0;
+  width: 30px;
+  height: 54px;
+  transition: all 0.3s;
+}
+
+.swiper-button-prev {
+  left: 0;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  opacity: 0.7;
+}
+
+.swiper-button-next::after {
+  content: url('./images/icons/prev.svg');
+
+  // font-size: 30px;
+}
+
+.swiper-button-prev::after {
+  content: url('./images/icons/next.svg');
+
+  // font-size: 30px;
+}
+
+.swiper-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-pagination-bullet {
+  width: 7px;
+  height: 7px;
+  opacity: 1;
+  background: $blue-gradient1;
+}
+
+.swiper-pagination-bullet-active {
+  width: 9px;
+  height: 9px;
+
+  background-image: linear-gradient(white, white), $blue-gradient1;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  border: double 2px transparent;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 0 8px;
 }
 
 .PhoneInputCountry {
@@ -48,3 +125,13 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   appearance: textfield;
 }
+
+// @media screen and (max-width: 600px) {
+//   .swiper .swiper-pagination {
+//     bottom: 0;
+//   }
+
+//   .swiper {
+//     padding-bottom: 36px;
+//   }
+// }

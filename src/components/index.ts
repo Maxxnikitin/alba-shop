@@ -11,3 +11,4 @@ export * from './empty-cart';
 export * from './item';
 export * from './item-details';
 export * from './item-gallery';
+export * from './item-characteristics';

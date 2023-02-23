@@ -4,6 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './fonts/San Francisco Pro Display/fonts.css';
 import 'rc-slider/assets/index.css';
+// import 'swiper/css';
+// import 'swiper/css/navigation';
+// import 'swiper/css/pagination';
+// import 'swiper/css/scrollbar';
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+import 'swiper/scss/pagination';
 import './index.scss';
 import { App } from './components';
 import reportWebVitals from './reportWebVitals';

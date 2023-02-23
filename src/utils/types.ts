@@ -17,18 +17,14 @@ export type TGetFaqDataRes = {
   description: string[];
 };
 
-export type TGetProductDto = {
-  id: string;
-};
-
 export type TGetProductRes = {
-  type: 'products';
+  type: string;
   id: string;
   name: string;
   is_hit: boolean;
   is_new: boolean;
   has_discount: boolean;
-  description: string | null;
+  description: string[] | null;
   photo: string;
   category_id: number;
   min_price: string;
@@ -37,7 +33,7 @@ export type TGetProductRes = {
 };
 
 export type TCharacteristics = {
-  type: 'characteristics';
+  type: string;
   id: string;
   name: string;
   product_id: string;
@@ -47,5 +43,6 @@ export type TCharacteristics = {
   price: string;
   discount: string;
   color: string;
+  in_favourite: boolean;
   photo: string[];
 };

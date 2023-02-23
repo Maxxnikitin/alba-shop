@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  gap: 54px;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1226px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 850px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .container {
+    .gallery {
+      display: none;
+    }
+  }
+}

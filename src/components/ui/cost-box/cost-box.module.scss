@@ -1,0 +1,22 @@
+@import '../../common';
+
+.container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.cost {
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cost_prev {
+  margin-right: 10px;
+  margin-left: 6px;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 120%;
+  color: $text-gray;
+  text-decoration-line: line-through;
+}

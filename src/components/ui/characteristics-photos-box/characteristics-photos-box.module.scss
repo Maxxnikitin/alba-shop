@@ -1,0 +1,58 @@
+@import '../../common';
+
+.container {
+  overflow-x: auto;
+  display: flex;
+  gap: 20px;
+
+  box-sizing: border-box;
+  max-width: 427px;
+  padding: 16px;
+}
+
+.img_box {
+  position: relative;
+}
+
+.img {
+  cursor: pointer;
+
+  width: 84px;
+  height: 84px;
+
+  filter: drop-shadow(0 2.2929px 2.2929px rgb(0 0 0 / 15%));
+
+  transition: $common-transition;
+
+  &_active {
+    border-radius: $common-small-border-radius;
+    box-shadow: 0 0 8px 5px $gray3;
+  }
+}
+
+.tag {
+  position: absolute;
+  right: 12px;
+  bottom: 0;
+
+  width: 24px;
+  padding: 4px;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.stock_off {
+  opacity: 0.5;
+}
+
+.container::-webkit-scrollbar {
+  width: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 100%;
+  }
+}

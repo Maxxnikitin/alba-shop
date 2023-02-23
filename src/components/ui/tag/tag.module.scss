@@ -1,6 +1,9 @@
 @import '../../common';
 
 .container {
+  user-select: none;
+
+  box-sizing: border-box;
   padding: 4px 8px;
 
   font-size: 11px;

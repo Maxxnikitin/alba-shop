@@ -1,18 +1,35 @@
 import clsx from 'clsx';
-import { FC, memo } from 'react';
+import { FC, memo, MouseEventHandler, useCallback, useEffect, useState } from 'react';
 
 import styles from './item-gallery.module.scss';
 import { IItemGalleryProps } from './types';
 
-import { ItemFullPhoto } from '../ui';
+import { ItemFullPhoto, PhotosBox } from '../ui';
 
 export const ItemGallery: FC<IItemGalleryProps> = memo(
-  ({ className = '', img, inFavourite, isHit, isNew, ...rest }) => {
-    console.log('q');
+  ({ className = '', photos, inFavourite, isHit, isNew, onLikeClick, ...rest }) => {
+    const [activePhoto, setActivePhoto] = useState(0);
+
+    const handlePhotoClick: MouseEventHandler<HTMLImageElement> = useCallback(({ target }) => {
+      const id = +(target as HTMLImageElement).id;
+      setActivePhoto(id);
+    }, []);
+
+    useEffect(() => {
+      setActivePhoto(0);
+    }, [photos]);
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
-        <ItemFullPhoto img={img} inFavourite={inFavourite} isHit={isHit} isNew={isNew} />
+        <PhotosBox photos={photos} activePhoto={activePhoto} onClick={handlePhotoClick} />
+        <ItemFullPhoto
+          photo={photos[activePhoto]}
+          inFavourite={inFavourite}
+          isHit={isHit}
+          isNew={isNew}
+          onLikeClick={onLikeClick}
+          className={styles.photo}
+        />
       </div>
     );
   },

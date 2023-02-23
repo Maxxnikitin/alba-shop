@@ -1,7 +1,11 @@
+import { MouseEventHandler } from 'react';
+
 export interface IItemFullPhotoProps {
-  img: string;
+  photo: string;
   inFavourite: boolean;
   isHit: boolean;
   isNew: boolean;
   className?: string;
+  isMobile?: boolean;
+  onLikeClick: MouseEventHandler<HTMLButtonElement>;
 }
