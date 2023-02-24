@@ -12,10 +12,9 @@ export const FaqPage: FC<IFaqPageProps> = memo(({ className = '', ...rest }) => 
   const [data, setData] = useState<TGetFaqDataRes[]>([]);
   const [openId, setOpenId] = useState<string>('');
 
-  const handleOpen: MouseEventHandler<HTMLButtonElement> = useCallback(e => {
-    const target = e.target as HTMLElement;
+  const handleOpen: MouseEventHandler<HTMLButtonElement> = useCallback(({ currentTarget }) => {
+    const { id } = currentTarget;
 
-    const id = target.id || target.closest('button')!.id;
     setOpenId(id);
   }, []);
 
