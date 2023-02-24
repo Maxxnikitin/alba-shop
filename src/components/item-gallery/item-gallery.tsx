@@ -7,7 +7,8 @@ import { IItemGalleryProps } from './types';
 import { ItemFullPhoto, PhotosBox } from '../ui';
 
 export const ItemGallery: FC<IItemGalleryProps> = memo(
-  ({ className = '', photos, inFavourite, isHit, isNew, onLikeClick, ...rest }) => {
+  ({ className = '', currentCharacteristic, dataObj, onLikeClick, ...rest }) => {
+    const { photo: photos } = currentCharacteristic;
     const [activePhoto, setActivePhoto] = useState(0);
 
     const handlePhotoClick: MouseEventHandler<HTMLImageElement> = useCallback(({ target }) => {
@@ -24,9 +25,8 @@ export const ItemGallery: FC<IItemGalleryProps> = memo(
         <PhotosBox photos={photos} activePhoto={activePhoto} onClick={handlePhotoClick} />
         <ItemFullPhoto
           photo={photos[activePhoto]}
-          inFavourite={inFavourite}
-          isHit={isHit}
-          isNew={isNew}
+          currentCharacteristic={currentCharacteristic}
+          dataObj={dataObj}
           onLikeClick={onLikeClick}
           className={styles.photo}
         />

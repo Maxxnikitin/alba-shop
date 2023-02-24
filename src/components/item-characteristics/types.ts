@@ -1,14 +1,10 @@
 import { HTMLProps, MouseEventHandler } from 'react';
 
-import { TCharacteristics } from '~utils';
+import { TCharacteristics, TGetProductRes } from '~utils';
 
 export interface IItemCharacteristicsProps extends HTMLProps<HTMLDivElement> {
   characteristics: TCharacteristics[];
   currentCharacteristic: TCharacteristics;
-  description: string[] | null;
-  inFavourite: boolean;
-  isNew: boolean;
-  isHit: boolean;
-  className?: string;
+  dataObj: TGetProductRes;
   onLikeClick: MouseEventHandler<HTMLButtonElement>;
 }

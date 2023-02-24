@@ -9,7 +9,7 @@ import { ItemGallery } from '..';
 
 import { ItemCharacteristics } from '../item-characteristics';
 
-import { getProduct, TCharacteristics, TGetProductRes } from '~utils';
+import { TCharacteristics, TGetProductRes } from '~utils';
 
 const mockData = {
   type: 'products',
@@ -199,19 +199,14 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
     <div className={clsx(styles.container, className)} {...rest}>
       <ItemGallery
         className={styles.gallery}
-        photos={currentCharacteristic.photo}
-        inFavourite={currentCharacteristic.in_favourite}
-        isNew={data?.is_new}
-        isHit={data?.is_hit}
+        dataObj={data}
+        currentCharacteristic={currentCharacteristic}
         onLikeClick={handleLikeToggle}
       />
       <ItemCharacteristics
         characteristics={characteristics}
         currentCharacteristic={currentCharacteristic}
-        description={data.description}
-        isNew={data.is_new}
-        isHit={data.is_hit}
-        inFavourite={currentCharacteristic.in_favourite}
+        dataObj={data}
         onClick={handleChangecurrentCharacteristic}
         onLikeClick={handleLikeToggle}
       />

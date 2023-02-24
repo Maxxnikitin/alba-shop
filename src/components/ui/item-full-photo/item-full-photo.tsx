@@ -8,7 +8,10 @@ import { IItemFullPhotoProps } from './types';
 import { TagsBox } from '..';
 
 export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
-  ({ className = '', photo, inFavourite, isHit, isNew, onLikeClick, ...rest }) => {
+  ({ className = '', photo, currentCharacteristic, dataObj, onLikeClick, ...rest }) => {
+    const { is_hit: isHit, is_new: isNew } = dataObj;
+    const { in_favourite: inFavourite, stock: inStock } = currentCharacteristic;
+
     const { t } = useTranslation();
 
     const tagsArr = useMemo(() => {
@@ -28,9 +31,13 @@ export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
             className={clsx(styles.like, { [styles.like_active]: inFavourite })}
             onClick={onLikeClick}
           />
-          {tagsArr.length && <TagsBox dataArr={tagsArr} className={styles.tabs} />}
+          {tagsArr.length && (
+            <TagsBox dataArr={tagsArr} inStock={!!inStock} className={styles.tabs} />
+          )}
         </div>
-        {tagsArr.length && <TagsBox dataArr={tagsArr} className={styles.tabs_mobile} />}
+        {tagsArr.length && (
+          <TagsBox dataArr={tagsArr} inStock={!!inStock} className={styles.tabs_mobile} />
+        )}
       </div>
     );
   },

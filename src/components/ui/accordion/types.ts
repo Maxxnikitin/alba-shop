@@ -6,5 +6,4 @@ export interface IAccordionProps extends HTMLProps<HTMLDivElement> {
   dataObj: TGetFaqDataRes;
   isOpen: boolean;
   onBtnClick: MouseEventHandler<HTMLButtonElement>;
-  className?: string;
 }

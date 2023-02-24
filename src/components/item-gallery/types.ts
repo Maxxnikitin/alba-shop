@@ -1,10 +1,10 @@
 import { MouseEventHandler } from 'react';
 
+import { TCharacteristics, TGetProductRes } from '~utils';
+
 export interface IItemGalleryProps {
-  photos: string[];
-  inFavourite: boolean;
-  isNew: boolean;
-  isHit: boolean;
+  currentCharacteristic: TCharacteristics;
+  dataObj: TGetProductRes;
   className?: string;
   onLikeClick: MouseEventHandler<HTMLButtonElement>;
 }
