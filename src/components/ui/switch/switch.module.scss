@@ -24,7 +24,6 @@
 
   vertical-align: top;
   appearance: none;
-  appearance: none;
   background: $text-white;
   border: 1px solid $text-gray;
   border-radius: $common-switch-border-radius;
@@ -79,10 +78,8 @@
 }
 
 .label {
-  font-family: 'SF Pro Display', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  font-style: normal;
   line-height: 14px;
   color: $text-black;
   white-space: nowrap;

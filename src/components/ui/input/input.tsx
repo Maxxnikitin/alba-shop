@@ -4,12 +4,12 @@ import { forwardRef, memo } from 'react';
 
 import styles from './input.module.scss';
 
-import { IInput } from './types';
+import { IInputProps } from './types';
 
 import { Paragraph } from '..';
 
 export const Input = memo(
-  forwardRef<HTMLInputElement, IInput>(
+  forwardRef<HTMLInputElement, IInputProps>(
     (
       {
         className = '',
@@ -17,6 +17,7 @@ export const Input = memo(
         id,
         label = '',
         errorText = '',
+        kind = 'main',
         isError = false,
         ...rest
       },
@@ -29,7 +30,11 @@ export const Input = memo(
           <input
             className={clsx(
               styles.input,
-              { [styles.extratop]: label, [styles.input_error]: isError },
+              {
+                [styles.extratop]: label,
+                [styles.input_error]: isError,
+                [styles.small]: kind === 'small',
+              },
               className,
             )}
             id={currId}

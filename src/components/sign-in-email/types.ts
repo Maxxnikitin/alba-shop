@@ -1,3 +1,3 @@
-export interface ISignInEmail {
+export interface ISignInEmailProps {
   className?: string;
 }

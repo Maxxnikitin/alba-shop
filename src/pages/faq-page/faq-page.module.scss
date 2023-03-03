@@ -1,0 +1,38 @@
+@import '../../components/common';
+
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1366px;
+  padding: 84px 70px 164px;
+
+  .title {
+    margin-bottom: 45px;
+    text-align: left;
+  }
+}
+
+.list {
+  max-width: 1018px;
+}
+
+.accordion:last-of-type {
+  border-bottom: 1px solid $text-black;
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    padding: 56px 36px 156px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .container {
+    padding-right: 16px;
+    padding-left: 16px;
+
+    .title {
+      margin-bottom: 38px;
+    }
+  }
+}

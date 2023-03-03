@@ -4,7 +4,7 @@ import { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from './category-item.module.scss';
-import { EIconType, ICategoryItem } from './types';
+import { EIconType, ICategoryItemProps } from './types';
 
 import cableIcon from '../../../images/icons/cable.svg';
 import carIcon from '../../../images/icons/car.svg';
@@ -17,7 +17,7 @@ import headphoneIcon from '../../../images/icons/headphone.svg';
 import strapIcon from '../../../images/icons/strap.svg';
 import { Paragraph } from '../paragraph';
 
-export const CategoryItem: FC<ICategoryItem> = ({
+export const CategoryItem: FC<ICategoryItemProps> = ({
   text,
   className = '',
   icon = EIconType.caseIcon,

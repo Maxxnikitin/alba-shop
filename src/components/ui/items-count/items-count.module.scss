@@ -1,0 +1,76 @@
+@import '../../common';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  min-width: 290px;
+  height: 48px;
+  padding: 12px 20px;
+
+  background: $blue-gradient2;
+  border-radius: $common-large-border-radius;
+
+  .input {
+    width: 58px;
+    height: 30px;
+    padding: 6px;
+
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 130%;
+    color: $text-black;
+    text-align: right;
+
+    background: none;
+    border: none;
+    outline: none;
+  }
+}
+
+.btn {
+  cursor: pointer;
+
+  width: 24px;
+  height: 24px;
+  padding: 0;
+
+  background: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+
+  transition: $common-transition;
+
+  &_minus {
+    background-image: url('../../../images/icons/minus.svg');
+  }
+
+  &_plus {
+    background-image: url('../../../images/icons/plus.svg');
+  }
+}
+
+.btn:hover {
+  opacity: $common-hover-opacity;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+}
+
+.amount_box {
+  display: flex;
+  align-items: center;
+  margin-left: -29px;
+}
+
+.amount {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 130%;
+  color: $text-black;
+}

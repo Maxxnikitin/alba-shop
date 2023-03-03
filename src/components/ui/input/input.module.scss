@@ -7,22 +7,19 @@
 }
 
 .input::placeholder {
-  font-family: 'SF Pro Display', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  font-style: normal;
   line-height: 120%;
   color: $text-gray;
 }
 
 .input {
   box-sizing: border-box;
+  height: 51px;
   padding: 16px;
 
-  font-family: 'SF Pro Display', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  font-style: normal;
   line-height: 120%;
   color: $text-black;
 
@@ -48,10 +45,8 @@
   margin-bottom: 5px;
   margin-left: 8px;
 
-  font-family: 'SF Pro Display', sans-serif;
   font-size: 16px;
   font-weight: 400;
-  font-style: normal;
   line-height: 19px;
   color: $text-black;
 }
@@ -82,10 +77,15 @@
 
   margin-bottom: 4px;
 
-  font-family: 'SF Pro Display', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  font-style: normal;
   line-height: 120%;
   color: $red1;
+}
+
+.small {
+  height: 40px;
+  padding: 8px 12px;
+  font-size: 18px;
+  line-height: 130%;
 }

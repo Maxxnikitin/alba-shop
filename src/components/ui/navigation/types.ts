@@ -1,3 +1,3 @@
 import { HTMLProps } from 'react';
 
-export interface INavigation extends HTMLProps<HTMLElement> {}
+export interface INavigationProps extends HTMLProps<HTMLElement> {}

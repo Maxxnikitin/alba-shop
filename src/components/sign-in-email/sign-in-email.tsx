@@ -12,11 +12,11 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './sign-in-email.module.scss';
 
-import { ISignInEmail } from './types';
+import { ISignInEmailProps } from './types';
 
 import { Button, EButtonKinds, Input, Paragraph, Title } from '../ui';
 
-export const SignInEmail: FC<ISignInEmail> = ({ className = '', ...rest }) => {
+export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) => {
   const [inputsData, setInputsData] = useState({
     email: '',
     password: '',

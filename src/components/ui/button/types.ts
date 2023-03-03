@@ -1,6 +1,6 @@
 import { HTMLProps } from 'react';
 
-export interface IButton extends HTMLProps<HTMLButtonElement> {
+export interface IButtonProps extends HTMLProps<HTMLButtonElement> {
   text: string;
   type?: 'button' | 'submit' | 'reset';
   kind?: EButtonKinds;
@@ -15,4 +15,5 @@ export enum EButtonKinds {
   itemMissing = 'item-missing',
   signIn = 'sign-in',
   delay = 'delay',
+  order = 'order',
 }

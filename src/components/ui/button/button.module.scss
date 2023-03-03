@@ -16,10 +16,8 @@
   transition: $common-transition;
 
   .text {
-    font-family: 'SF Pro Display', sans-serif;
     font-size: 18px;
     font-weight: 500;
-    font-style: normal;
     line-height: 130%;
     color: $gray2;
     text-align: center;
@@ -91,18 +89,46 @@
     border-radius: $common-small-border-radius;
   }
 
+  &_type_order {
+    background: none;
+    background-image: linear-gradient(white, white), $blue-gradient1;
+    background-clip: padding-box, border-box;
+    background-origin: border-box;
+    border: double 1px transparent;
+
+    .text {
+      color: $text-black;
+    }
+  }
+
+  &_type_primary:hover,
+  &_type_sign-in:hover,
+  &_type_menu:hover {
+    filter: $blue-gradient1-filter;
+    box-shadow: $blue-gradient1-shadow;
+  }
+
+  &_type_secondary:hover,
+  &_type_addition:hover,
+  &_type_load:hover,
+  &_type_item-missing:hover,
+  &_type_delay:hover,
+  &_type_order:hover {
+    opacity: $common-hover-opacity;
+  }
+
   &_icon {
     margin-right: 8px;
   }
 }
 
-.button:hover {
-  opacity: $common-hover-opacity;
-}
-
 @media screen and (max-width: 550px) {
   .button {
-    padding: 10px;
+    &_type_menu {
+      width: 36px;
+      height: 36px;
+      padding: 10px;
+    }
 
     &_icon {
       margin: 0;
@@ -113,3 +139,9 @@
     display: none;
   }
 }
+
+// @media screen and (max-width: 425px) {
+//   .button {
+//     width: 100%;
+//   }
+// }

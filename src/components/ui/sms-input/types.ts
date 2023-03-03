@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { THandleSignInRequest, TInputsData } from '../../sign-in-sms';
 
-export type TSmsInput = {
+export type TSmsInputProps = {
   inputsData: TInputsData;
   handleRequest: THandleSignInRequest;
   setInputsData: Dispatch<SetStateAction<TInputsData>>;

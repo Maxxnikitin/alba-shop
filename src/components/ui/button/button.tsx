@@ -3,12 +3,12 @@ import { FC, memo } from 'react';
 
 import styles from './button.module.scss';
 
-import { IButton } from './types';
+import { IButtonProps } from './types';
 
 import MenuIcon from '../../../images/icons/menu-icon.svg';
 import { Paragraph } from '../paragraph';
 
-export const Button: FC<IButton> = memo(
+export const Button: FC<IButtonProps> = memo(
   ({ text, type = 'button', kind = 'primary', className = '', ...rest }) => (
     <button
       className={clsx(

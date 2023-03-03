@@ -2,7 +2,8 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import { SignIn, Header, Footer, Filters } from '..';
+import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails } from '..';
+import { FaqPage, NotFound } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
 export function App() {
@@ -13,6 +14,8 @@ export function App() {
       element: (
         <>
           <SignIn />
+          <EmptyCart />
+          <QueryNotFound />
           <div style={{ width: 292 }}>
             <CloseButton text='Close filters' />
             <Filters />
@@ -42,6 +45,18 @@ export function App() {
     {
       path: '/favourites',
       element: <p>Favourites</p>,
+    },
+    {
+      path: '/catalog/:id',
+      element: <ItemDetails />,
+    },
+    {
+      path: '/faq',
+      element: <FaqPage />,
+    },
+    {
+      path: '*',
+      element: <NotFound />,
     },
   ]);
 
