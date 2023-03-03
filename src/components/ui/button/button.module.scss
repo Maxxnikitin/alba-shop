@@ -101,13 +101,25 @@
     }
   }
 
+  &_type_primary:hover,
+  &_type_sign-in:hover,
+  &_type_menu:hover {
+    filter: $blue-gradient1-filter;
+    box-shadow: $blue-gradient1-shadow;
+  }
+
+  &_type_secondary:hover,
+  &_type_addition:hover,
+  &_type_load:hover,
+  &_type_item-missing:hover,
+  &_type_delay:hover,
+  &_type_order:hover {
+    opacity: $common-hover-opacity;
+  }
+
   &_icon {
     margin-right: 8px;
   }
-}
-
-.button:hover {
-  opacity: $common-hover-opacity;
 }
 
 @media screen and (max-width: 550px) {
