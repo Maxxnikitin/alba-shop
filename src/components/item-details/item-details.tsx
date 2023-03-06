@@ -150,7 +150,7 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
     [characteristics],
   );
 
-  const handleChangecurrentCharacteristic: MouseEventHandler<HTMLImageElement> = useCallback(
+  const handleChangeCurrentCharacteristic: MouseEventHandler<HTMLImageElement> = useCallback(
     ({ target }) => {
       const { id } = target as HTMLImageElement;
       if (characteristicsMap) setCurrentCharacteristic(characteristicsMap[id]);
@@ -207,7 +207,7 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
         characteristics={characteristics}
         currentCharacteristic={currentCharacteristic}
         dataObj={data}
-        onClick={handleChangecurrentCharacteristic}
+        onClick={handleChangeCurrentCharacteristic}
         onLikeClick={handleLikeToggle}
       />
     </div>
