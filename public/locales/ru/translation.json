@@ -89,5 +89,13 @@
     "btn-wait": "Ожидает поступления",
     "stock": "В наличии {{amount}} шт.",
     "unit": "шт"
+  },
+  "footer": {
+    "faq-link": "FAQ",
+    "about-link": "О компании",
+    "privacy": "Политика конфиденциальности",
+    "copyright": "\u00A9 Alba. Все права защищены",
+    "title-items": "Категории товаров",
+    "title-about": "Про Alba"
   }
 }

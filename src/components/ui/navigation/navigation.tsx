@@ -45,7 +45,7 @@ export const Navigation: FC<INavigationProps> = ({ className = '', ...rest }) =>
         <li className={styles.list_item}>
           <Link className={styles.list_link} to='/cart'>
             <img className={styles.icon} src={cartIcom} alt={t('alts.logo-cart') || ''} />
-            <Count className={styles.count} count={1} />
+            <Count className={styles.count} count={222} />
           </Link>
         </li>
       </ul>

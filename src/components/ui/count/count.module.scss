@@ -2,11 +2,11 @@
 
 .container {
   box-sizing: border-box;
-  width: 19px;
+  min-width: 19px;
   padding: 4px;
 
   background: $orange-gradient;
-  border-radius: 50%;
+  border-radius: 29px;
 }
 
 .text {

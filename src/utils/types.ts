@@ -46,3 +46,16 @@ export type TCharacteristics = {
   in_favourite: boolean;
   photo: string[];
 };
+
+export type TCategory = {
+  type: string;
+  id: number;
+  name: string;
+  icon: string;
+  photo: string;
+  level: number;
+  slug: string;
+  parend_id: number | null;
+};
+
+export type TGetCategoriesRes = TCategory[];
