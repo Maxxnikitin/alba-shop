@@ -1,5 +1,7 @@
 export * from './button';
 export * from './close-button';
+export * from './cart-button';
+export * from './items-count';
 export * from './input';
 export * from './phone-input';
 export * from './search-input';

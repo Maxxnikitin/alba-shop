@@ -8,8 +8,7 @@ import styles from './item-characteristics.module.scss';
 import { IItemCharacteristicsProps } from './types';
 
 import {
-  Button,
-  // CartButton,
+  CartButton,
   CharacteristicsPhotoBox,
   CostBox,
   ETitleLevel,
@@ -85,18 +84,13 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
           </ul>
         )}
         <div className={styles.btn_box}>
-          {/* {currentCharacteristic.stock ? ( */}
-          <Button text={t('item.btn')} />
-          {/* ) : (
-            <Button text={t('item.btn-empty')} />
-          )} */}
+          <CartButton max={10} amount={currentCharacteristic.in_cart} />
           {stock ? (
             <Paragraph className={styles.stock_text}>
               {t('item.stock', { amount: stock })}
             </Paragraph>
           ) : null}
         </div>
-        {/* <CartButton max={2222} /> */}
       </div>
     );
   },

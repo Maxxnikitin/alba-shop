@@ -12,7 +12,7 @@ export function App() {
     {
       path: '/',
       element: (
-        <>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
           <SignIn />
           <EmptyCart />
           <QueryNotFound />
@@ -31,7 +31,7 @@ export function App() {
           <Input label='Город' />
           <Input placeholder='Имя' label='Имя' />
           <Input placeholder='Пароль' type='password' />
-        </>
+        </div>
       ),
     },
     {
