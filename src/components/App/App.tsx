@@ -3,11 +3,37 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails } from '..';
+import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails, Item } from '..';
 import { AboutPage, FaqPage, NotFound } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
 import { DataContext, mockContactsData, TDataContext } from '~utils';
+
+const itemMockData = {
+  type: 'characteristics',
+  id: 'rrewecdsc',
+  name: 'Чехол Luxo original green',
+  product_id: 'string44',
+  weight: 10,
+  stock: 20,
+  in_cart: 0,
+  price: '510.00',
+  discount: 10,
+  discounted_price: '410.00',
+  color: 'Black',
+  is_new: true,
+  is_hit: true,
+  in_favorite: false,
+  photo: [
+    'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
+    'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+    'https://img.mvideo.ru/Pdb/50129627b.jpg',
+    'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
+    'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+    'https://img.mvideo.ru/Pdb/50129627b.jpg',
+    'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+  ],
+};
 
 export function App() {
   const [contextData, setContextData] = useState<TDataContext>({ contacts: null });
@@ -22,6 +48,7 @@ export function App() {
       path: '/',
       element: (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+          <Item data={itemMockData} onLikeClick={() => console.log('like')} />
           <SignIn />
           <EmptyCart />
           <QueryNotFound />
@@ -52,8 +79,8 @@ export function App() {
       element: <p>Cart</p>,
     },
     {
-      path: '/favourites',
-      element: <p>Favourites</p>,
+      path: '/favorites',
+      element: <p>Favorites</p>,
     },
     {
       path: '/catalog/:id',

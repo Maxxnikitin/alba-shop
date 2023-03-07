@@ -29,7 +29,7 @@
   height: 35px;
 
   background: none;
-  background-image: url('../../../images/icons/favourite.svg');
+  background-image: url('../../../images/icons/favorite.svg');
   background-repeat: no-repeat;
   background-position: center;
   border: none;
@@ -38,7 +38,7 @@
   transition: $common-transition;
 
   &_active {
-    background-image: url('../../../images/icons/favourite-active.svg');
+    background-image: url('../../../images/icons/favorite-active.svg');
   }
 }
 

@@ -25,7 +25,7 @@ export const CharacteristicsPhotoBox: FC<ICharacteristicsPhotoBoxProps> = memo(
               alt={t('alts.item') || ''}
               onClick={onClick}
             />
-            {item.discount !== '0.00' && <Tag className={styles.tag} text='%' />}
+            {item.discount && <Tag className={styles.tag} text='%' />}
           </div>
         ))}
       </div>

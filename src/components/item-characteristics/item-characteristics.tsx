@@ -27,8 +27,15 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
     onLikeClick,
     ...rest
   }) => {
-    const { description } = dataObj;
-    const { name, weight, discount, price, photo, stock } = currentCharacteristic;
+    const { description, weight } = dataObj;
+    const {
+      name,
+      discount,
+      price,
+      photo,
+      stock,
+      discounted_price: discountedPrice,
+    } = currentCharacteristic;
 
     const { t } = useTranslation();
 
@@ -41,7 +48,7 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
             {t('item.weight', { amount: weight })}
           </Paragraph>
         </div>
-        <CostBox price={price} discount={discount} />
+        <CostBox price={price} discount={discount} discountedPrice={discountedPrice} size='large' />
         <Swiper
           slidesPerView={1}
           spaceBetween={20}

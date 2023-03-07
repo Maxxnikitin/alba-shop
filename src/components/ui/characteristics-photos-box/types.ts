@@ -1,8 +1,8 @@
 import { HTMLProps } from 'react';
 
-import { TCharacteristics } from '~utils';
+import { TCharacteristic } from '~utils';
 
 export interface ICharacteristicsPhotoBoxProps extends HTMLProps<HTMLImageElement> {
-  characteristics: TCharacteristics[];
-  currentCharacteristic: TCharacteristics;
+  characteristics: TCharacteristic[];
+  currentCharacteristic: TCharacteristic;
 }

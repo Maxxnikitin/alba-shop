@@ -2,15 +2,22 @@
 
 .container {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .cost {
   font-weight: 700;
   line-height: 1;
+
+  &_small {
+    font-size: 24px;
+    line-height: 150%;
+  }
 }
 
 .cost_prev {
+  align-self: flex-end;
+
   margin-right: 10px;
   margin-left: 6px;
 
@@ -19,4 +26,24 @@
   line-height: 120%;
   color: $text-gray;
   text-decoration-line: line-through;
+
+  &_small {
+    align-self: center;
+
+    margin-right: 8px;
+    margin-left: 8px;
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 150%;
+  }
+}
+
+.tag_small {
+  width: 24px;
+  padding: 4px;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 100%;
 }

@@ -20,30 +20,28 @@ export type TGetFaqDataRes = {
 export type TGetProductRes = {
   type: string;
   id: string;
+  article: string;
   name: string;
-  is_hit: boolean;
-  is_new: boolean;
-  has_discount: boolean;
-  description: string[] | null;
-  photo: string;
+  description: string[];
+  weight: number;
   category_id: number;
-  min_price: string;
-  in_stock: boolean;
-  characteristics: TCharacteristics[];
+  characteristics: TCharacteristic[];
 };
 
-export type TCharacteristics = {
+export type TCharacteristic = {
   type: string;
   id: string;
   name: string;
   product_id: string;
-  weight: number;
-  stock: number;
+  is_new: boolean;
+  is_hit: boolean;
   in_cart: number;
+  in_favorite: boolean;
+  stock: number;
   price: string;
-  discount: string;
+  discount: number;
+  discounted_price: string;
   color: string;
-  in_favourite: boolean;
   photo: string[];
 };
 
