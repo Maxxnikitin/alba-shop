@@ -7,7 +7,7 @@ import { URL } from './constants';
 import type {
   TGetAboutInfoRes,
   TGetCategoriesRes,
-  TGetContactsRes,
+  TContacts,
   TGetFaqDataRes,
   TGetProductRes,
 } from './types';
@@ -43,6 +43,4 @@ export const getAboutInfo = () =>
     .then((res: AxiosResponse<TGetAboutInfoRes>) => checkResponse(res));
 
 export const getContacts = () =>
-  axios
-    .get(`${URL}/pages/contacts/`)
-    .then((res: AxiosResponse<TGetContactsRes>) => checkResponse(res));
+  axios.get(`${URL}/pages/contacts/`).then((res: AxiosResponse<TContacts>) => checkResponse(res));

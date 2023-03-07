@@ -1,7 +1,7 @@
-import { TGetContactsRes } from '~utils';
+import { TContacts } from '~utils';
 
 export interface ISocialIconsProps {
-  contactsData: TGetContactsRes;
+  contactsData: TContacts;
   isDark?: boolean;
   className?: string;
 }

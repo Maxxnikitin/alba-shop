@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, memo, useContext, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -10,10 +10,11 @@ import { Contacts, SocialIcons } from '../../components';
 import { Title, Paragraph } from '../../components/ui';
 import img from '../../images/about.jpg';
 
-import { mockContactsData } from '~utils';
+import { DataContext } from '~utils';
 
 export const AboutPage: FC<IAboutPageProps> = memo(({ className = '', ...rest }) => {
   const [aboutText, setAboutText] = useState('');
+  const { contacts } = useContext(DataContext);
 
   const { t } = useTranslation();
 
@@ -24,6 +25,8 @@ export const AboutPage: FC<IAboutPageProps> = memo(({ className = '', ...rest })
     );
   }, []);
 
+  if (!contacts) return <div>loader</div>;
+
   return (
     <section className={clsx(styles.container, className)} {...rest}>
       <div className={styles.main_content}>
@@ -32,9 +35,9 @@ export const AboutPage: FC<IAboutPageProps> = memo(({ className = '', ...rest })
           <img className={styles.mobile_img} src={img} alt={t('alts.about') || ''} />
           <Paragraph className={styles.text}>{aboutText}</Paragraph>
           <Title className={styles.title}>{t('about.contacts-title')}</Title>
-          <Contacts data={mockContactsData} className={styles.contacts} />
+          <Contacts data={contacts} className={styles.contacts} />
           <Title className={styles.title}>{t('about.social-title')}</Title>
-          <SocialIcons className={styles.socials} contactsData={mockContactsData} isDark />
+          <SocialIcons className={styles.socials} contactsData={contacts} isDark />
         </div>
         <div className={styles.img_box}>
           <img className={styles.img} src={img} alt={t('alts.about') || ''} />

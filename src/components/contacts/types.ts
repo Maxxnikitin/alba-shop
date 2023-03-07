@@ -1,6 +1,6 @@
-import { TGetContactsRes } from '~utils';
+import { TContacts } from '~utils';
 
 export interface IContactsProps {
-  data: TGetContactsRes;
+  data: TContacts;
   className?: string;
 }

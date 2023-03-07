@@ -66,7 +66,7 @@ export type TGetAboutInfoRes = {
   text: string;
 };
 
-export type TGetContactsRes = {
+export type TContacts = {
   type: string;
   id: number;
   address: string;
@@ -76,4 +76,8 @@ export type TGetContactsRes = {
   telegram: string;
   instagram: string;
   vk: string;
+};
+
+export type TDataContext = {
+  contacts: TContacts | null;
 };

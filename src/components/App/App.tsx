@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
@@ -6,8 +7,16 @@ import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails 
 import { AboutPage, FaqPage, NotFound } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
+import { DataContext, mockContactsData, TDataContext } from '~utils';
+
 export function App() {
+  const [contextData, setContextData] = useState<TDataContext>({ contacts: null });
   console.log('Render App');
+
+  useEffect(() => {
+    setContextData({ contacts: mockContactsData });
+  }, []);
+
   const routes = useRoutes([
     {
       path: '/',
@@ -66,9 +75,11 @@ export function App() {
 
   return (
     <div className={styles.container}>
-      <Header />
-      {routes}
-      <Footer />
+      <DataContext.Provider value={contextData}>
+        <Header />
+        {routes}
+        <Footer />
+      </DataContext.Provider>
     </div>
   );
 }

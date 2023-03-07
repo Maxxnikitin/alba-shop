@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, memo, useContext, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { IFooterProps } from './types';
 import { SocialIcons } from '..';
 import { CategoryItem, Paragraph } from '../ui';
 
-import { mockContactsData, TCategory } from '~utils';
+import { DataContext, TCategory } from '~utils';
 
 const mockData = [
   {
@@ -108,6 +108,7 @@ const mockData = [
 
 export const Footer: FC<IFooterProps> = memo(({ className = '', ...rest }) => {
   const [categories, setCategories] = useState<TCategory[] | null>(null);
+  const { contacts } = useContext(DataContext);
 
   const { t } = useTranslation();
 
@@ -115,6 +116,8 @@ export const Footer: FC<IFooterProps> = memo(({ className = '', ...rest }) => {
     // getCategories().then(res => setCategories(res))
     setCategories(mockData);
   }, [categories]);
+
+  if (!contacts) return <div>loader</div>;
 
   return (
     <footer className={clsx(styles.footer, className)} {...rest}>
@@ -142,12 +145,12 @@ export const Footer: FC<IFooterProps> = memo(({ className = '', ...rest }) => {
           <div className={styles.about_box}>
             <a
               className={clsx(styles.text, styles.phone, styles.about_text)}
-              href='tel:+74993423324'
+              href={`tel:${contacts.phone}`}
             >
-              +7 (499) 342-33-24
+              {contacts.phone}
             </a>
-            <a className={clsx(styles.text, styles.about_text)} href='mailto:alba.frolov@gmail.com'>
-              alba.frolov@gmail.com
+            <a className={clsx(styles.text, styles.about_text)} href={`mailto:${contacts.email}`}>
+              {contacts.email}
             </a>
           </div>
         </div>
@@ -157,7 +160,7 @@ export const Footer: FC<IFooterProps> = memo(({ className = '', ...rest }) => {
           <Paragraph className={styles.copyright_text}>{t('footer.privacy')}</Paragraph>
           <Paragraph className={styles.copyright_text}>{t('footer.copyright')}</Paragraph>
         </div>
-        <SocialIcons className={styles.social_links} contactsData={mockContactsData} />
+        <SocialIcons className={styles.social_links} contactsData={contacts} />
       </div>
     </footer>
   );
