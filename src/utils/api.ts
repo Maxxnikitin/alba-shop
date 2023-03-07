@@ -4,7 +4,13 @@ import { TAuthSetPhoneDto, TAuthSetPhoneRes } from '.';
 
 import { URL } from './constants';
 
-import type { TGetCategoriesRes, TGetFaqDataRes, TGetProductRes } from './types';
+import type {
+  TGetAboutInfoRes,
+  TGetCategoriesRes,
+  TGetContactsRes,
+  TGetFaqDataRes,
+  TGetProductRes,
+} from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
   if (res.status === 200) {
@@ -30,3 +36,13 @@ export const getCategories = () =>
   axios
     .get(`${URL}/categories/`)
     .then((res: AxiosResponse<TGetCategoriesRes>) => checkResponse(res));
+
+export const getAboutInfo = () =>
+  axios
+    .get(`${URL}/pages/about/`)
+    .then((res: AxiosResponse<TGetAboutInfoRes>) => checkResponse(res));
+
+export const getContacts = () =>
+  axios
+    .get(`${URL}/pages/contacts/`)
+    .then((res: AxiosResponse<TGetContactsRes>) => checkResponse(res));

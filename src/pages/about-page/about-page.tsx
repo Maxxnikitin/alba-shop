@@ -1,0 +1,45 @@
+import clsx from 'clsx';
+import { FC, memo, useEffect, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import styles from './about-page.module.scss';
+import { IAboutPageProps } from './types';
+
+import { Contacts, SocialIcons } from '../../components';
+import { Title, Paragraph } from '../../components/ui';
+import img from '../../images/about.jpg';
+
+import { mockContactsData } from '~utils';
+
+export const AboutPage: FC<IAboutPageProps> = memo(({ className = '', ...rest }) => {
+  const [aboutText, setAboutText] = useState('');
+
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    // getAboutInfo().then(res => setAboutText(res.text));
+    setAboutText(
+      'Повседневная практика показывает, что внедрение современных методик выявляет срочную потребность модели развития. Прежде всего, высокотехнологичная концепция общественного уклада требует определения и уточнения соответствующих условий активизации. Как принято считать, непосредственные участники технического прогресса являются только методом политического участия и ассоциативно распределены по отраслям. ',
+    );
+  }, []);
+
+  return (
+    <section className={clsx(styles.container, className)} {...rest}>
+      <div className={styles.main_content}>
+        <div className={styles.column}>
+          <Title className={styles.title}>{t('about.about-title')}</Title>
+          <img className={styles.mobile_img} src={img} alt={t('alts.about') || ''} />
+          <Paragraph className={styles.text}>{aboutText}</Paragraph>
+          <Title className={styles.title}>{t('about.contacts-title')}</Title>
+          <Contacts data={mockContactsData} className={styles.contacts} />
+          <Title className={styles.title}>{t('about.social-title')}</Title>
+          <SocialIcons className={styles.socials} contactsData={mockContactsData} isDark />
+        </div>
+        <div className={styles.img_box}>
+          <img className={styles.img} src={img} alt={t('alts.about') || ''} />
+        </div>
+      </div>
+    </section>
+  );
+});

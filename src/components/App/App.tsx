@@ -3,7 +3,7 @@ import { useRoutes } from 'react-router-dom';
 import styles from './App.module.scss';
 
 import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails } from '..';
-import { FaqPage, NotFound } from '../../pages';
+import { AboutPage, FaqPage, NotFound } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
 export function App() {
@@ -53,6 +53,10 @@ export function App() {
     {
       path: '/faq',
       element: <FaqPage />,
+    },
+    {
+      path: '/about',
+      element: <AboutPage />,
     },
     {
       path: '*',

@@ -59,3 +59,21 @@ export type TCategory = {
 };
 
 export type TGetCategoriesRes = TCategory[];
+
+export type TGetAboutInfoRes = {
+  type: string;
+  id: number;
+  text: string;
+};
+
+export type TGetContactsRes = {
+  type: string;
+  id: number;
+  address: string;
+  opening_hours: string;
+  phone: string;
+  email: string;
+  telegram: string;
+  instagram: string;
+  vk: string;
+};

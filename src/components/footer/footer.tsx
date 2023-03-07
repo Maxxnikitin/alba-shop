@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 import styles from './footer.module.scss';
 import { IFooterProps } from './types';
 
+import { SocialIcons } from '..';
 import { CategoryItem, Paragraph } from '../ui';
 
-import { TCategory } from '~utils';
+import { mockContactsData, TCategory } from '~utils';
 
 const mockData = [
   {
@@ -145,12 +146,6 @@ export const Footer: FC<IFooterProps> = memo(({ className = '', ...rest }) => {
             >
               +7 (499) 342-33-24
             </a>
-            <a
-              className={clsx(styles.text, styles.phone, styles.about_text)}
-              href='tel:+74991103359'
-            >
-              +7 (499) 110-33-59
-            </a>
             <a className={clsx(styles.text, styles.about_text)} href='mailto:alba.frolov@gmail.com'>
               alba.frolov@gmail.com
             </a>
@@ -162,38 +157,7 @@ export const Footer: FC<IFooterProps> = memo(({ className = '', ...rest }) => {
           <Paragraph className={styles.copyright_text}>{t('footer.privacy')}</Paragraph>
           <Paragraph className={styles.copyright_text}>{t('footer.copyright')}</Paragraph>
         </div>
-        <ul className={styles.social_links}>
-          <li className={styles.social_list_item}>
-            <a
-              className={clsx(styles.social_link, styles.social_link_tg)}
-              target='_blank'
-              href='https://vk.com'
-              rel='noreferrer'
-            >
-              {' '}
-            </a>
-          </li>
-          <li className={styles.social_list_item}>
-            <a
-              className={clsx(styles.social_link, styles.social_link_insta)}
-              target='_blank'
-              href='https://vk.com'
-              rel='noreferrer'
-            >
-              {' '}
-            </a>
-          </li>
-          <li className={styles.social_list_item}>
-            <a
-              className={clsx(styles.social_link, styles.social_link_vk)}
-              target='_blank'
-              href='https://vk.com'
-              rel='noreferrer'
-            >
-              {' '}
-            </a>
-          </li>
-        </ul>
+        <SocialIcons className={styles.social_links} contactsData={mockContactsData} />
       </div>
     </footer>
   );

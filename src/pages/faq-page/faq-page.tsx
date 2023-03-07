@@ -6,7 +6,7 @@ import { IFaqPageProps } from './types';
 
 import { Title, Accordion } from '../../components/ui';
 
-import { getFaqData, TGetFaqDataRes } from '~utils';
+import { TGetFaqDataRes } from '~utils';
 
 export const FaqPage: FC<IFaqPageProps> = memo(({ className = '', ...rest }) => {
   const [data, setData] = useState<TGetFaqDataRes[]>([]);
