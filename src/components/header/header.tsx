@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import styles from './header.module.scss';
 import { IHeaderProps } from './types';
 
-import logoIcon from '../../images/logo-white.png';
+import logoIcon from '../../images/logo-white.svg';
 import { Button, EButtonKinds, Navigation, SearchInput } from '../ui';
 
 export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
