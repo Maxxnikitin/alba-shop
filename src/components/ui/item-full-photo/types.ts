@@ -1,10 +1,10 @@
 import { MouseEventHandler } from 'react';
 
-import { TCharacteristics, TGetProductRes } from '~utils';
+import { TCharacteristic, TGetProductRes } from '~utils';
 
 export interface IItemFullPhotoProps {
   photo: string;
-  currentCharacteristic: TCharacteristics;
+  currentCharacteristic: TCharacteristic;
   dataObj: TGetProductRes;
   className?: string;
   isMobile?: boolean;

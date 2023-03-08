@@ -9,8 +9,12 @@ import { TagsBox } from '..';
 
 export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
   ({ className = '', photo, currentCharacteristic, dataObj, onLikeClick, ...rest }) => {
-    const { is_hit: isHit, is_new: isNew } = dataObj;
-    const { in_favourite: inFavourite, stock: inStock } = currentCharacteristic;
+    const {
+      is_hit: isHit,
+      is_new: isNew,
+      in_favorite: inFavorite,
+      stock: inStock,
+    } = currentCharacteristic;
 
     const { t } = useTranslation();
 
@@ -28,7 +32,7 @@ export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
         <img className={styles.img} src={photo} alt={t('alts.item') || ''} />
         <div className={styles.additions}>
           <button
-            className={clsx(styles.like, { [styles.like_active]: inFavourite })}
+            className={clsx(styles.like, { [styles.like_active]: inFavorite })}
             onClick={onLikeClick}
           />
           {tagsArr.length && (

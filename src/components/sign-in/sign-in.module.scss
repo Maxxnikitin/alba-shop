@@ -7,7 +7,13 @@
 }
 
 .logo {
+  width: 123px;
+  height: 47px;
   margin-bottom: 46px;
+
+  background-image: url('../../images/logo.svg');
+  background-position: center;
+  background-size: 132%;
 }
 
 .tabs {

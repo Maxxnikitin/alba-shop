@@ -9,7 +9,7 @@ import { INavigationProps } from './types';
 import { Count } from '..';
 import accountIcon from '../../../images/icons/account.svg';
 import cartIcom from '../../../images/icons/cart.svg';
-import favouritesIcon from '../../../images/icons/favourites-nav.svg';
+import favoritesIcon from '../../../images/icons/favorites-nav.svg';
 import searchIcon from '../../../images/icons/search-mob.svg';
 
 export const Navigation: FC<INavigationProps> = ({ className = '', ...rest }) => {
@@ -33,12 +33,8 @@ export const Navigation: FC<INavigationProps> = ({ className = '', ...rest }) =>
           </Link>
         </li>
         <li className={clsx(styles.list_item, styles.list_item_mob_none)}>
-          <Link className={styles.list_link} to='/favourites'>
-            <img
-              className={styles.icon}
-              src={favouritesIcon}
-              alt={t('alts.logo-favourites') || ''}
-            />
+          <Link className={styles.list_link} to='/favorites'>
+            <img className={styles.icon} src={favoritesIcon} alt={t('alts.logo-favorites') || ''} />
             <Count className={styles.count} count={100} />
           </Link>
         </li>

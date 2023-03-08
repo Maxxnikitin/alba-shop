@@ -30,14 +30,21 @@
     "logo-alt": "Логотип.",
     "logo-account": "В аккаунт.",
     "logo-cart": "В корзину.",
-    "logo-favourite": "В избранное.",
+    "logo-favorite": "В избранное.",
     "logo-search": "Поиск.",
     "category-icon": "Иконка.",
     "arrow-icon": "Иконка открытия и закрытия списка.",
     "close-icon": "Закрыть.",
     "not-found": "Ничего не найдено.",
     "confirmed-order": "Подтверждение заказа.",
-    "item": "Фото товара."
+    "item": "Фото товара.",
+    "about": "Фото техники.",
+    "contacts": {
+      "address": "Иконка локации.",
+      "time": "Иконка расписания.",
+      "phone": "Иконка телефона.",
+      "email": "Иконка почты"
+    }
   },
   "filters": {
     "description": "Описание",
@@ -97,5 +104,10 @@
     "copyright": "\u00A9 Alba. Все права защищены",
     "title-items": "Категории товаров",
     "title-about": "Про Alba"
+  },
+  "about": {
+    "about-title": "О компании",
+    "contacts-title": "Контакты",
+    "social-title": "Социальные сети"
   }
 }

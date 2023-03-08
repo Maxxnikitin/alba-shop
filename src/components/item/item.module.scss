@@ -1,0 +1,57 @@
+@import '../common';
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 292px;
+}
+
+.img {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.like {
+  cursor: pointer;
+
+  position: absolute;
+  top: 16px;
+  right: 8px;
+
+  width: 35px;
+  height: 35px;
+
+  background: none;
+  background-image: url('../../images/icons/favorite.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  outline: none;
+
+  transition: $common-transition;
+
+  &_active {
+    background-image: url('../../images/icons/favorite-active.svg');
+  }
+}
+
+.like:hover {
+  opacity: $common-hover-opacity;
+}
+
+.tabs {
+  position: absolute;
+  top: 16px;
+  left: 8px;
+  align-items: flex-start;
+}
+
+.name {
+  margin-top: 2px;
+  margin-bottom: 15px;
+
+  line-height: 150%;
+  color: $text-black;
+  text-align: left;
+}
