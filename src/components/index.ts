@@ -9,6 +9,7 @@ export * from './query-not-found';
 export * from './confirmed-order-modal';
 export * from './empty-cart';
 export * from './item';
+export * from './items-box';
 export * from './item-details';
 export * from './item-gallery';
 export * from './item-characteristics';
