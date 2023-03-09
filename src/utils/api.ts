@@ -1,8 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { TAuthSetPhoneDto, TAuthSetPhoneRes } from '.';
-
-import { URL } from './constants';
+import { TAuthSetPhoneDto, TAuthSetPhoneRes, URL } from '.';
 
 import type {
   TGetAboutInfoRes,
