@@ -22,7 +22,7 @@ const mockItems = [
   {
     type: 'characteristics',
     id: 'rrewecdsc1',
-    name: 'Чехол Luxo original green',
+    name: 'Чехол Luxo original green Чехол Luxo original green Чехол Luxo original green',
     product_id: 'string441',
     weight: 10,
     stock: 20,

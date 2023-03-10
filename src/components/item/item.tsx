@@ -33,17 +33,25 @@ export const Item: FC<IItemProps> = memo(
     }, [isNew, isHit]);
 
     return (
-      <article className={clsx(styles.container, className)} {...rest}>
-        <img className={styles.img} src={photo[0]} alt={t('alts.item') || ''} />
-        <button
-          className={clsx(styles.like, { [styles.like_active]: inFavorite })}
-          onClick={onLikeClick}
-        />
-        {tagsArr.length && <TagsBox dataArr={tagsArr} inStock={!!stock} className={styles.tabs} />}
-        <CostBox price={price} discount={discount} discountedPrice={discountedPrice} />
-        <Paragraph className={styles.name}>{name}</Paragraph>
-        {isCartButton && <CartButton max={stock} amount={inCart} />}
-      </article>
+      <li className={clsx(styles.container, className)} {...rest}>
+        <article className={styles.article}>
+          <img className={styles.img} src={photo[0]} alt={t('alts.item') || ''} />
+          <div className={styles.addition_box}>
+            <div className={styles.tags_like_box}>
+              <button
+                className={clsx(styles.like, { [styles.like_active]: inFavorite })}
+                onClick={onLikeClick}
+              />
+              {tagsArr.length && (
+                <TagsBox dataArr={tagsArr} inStock={!!stock} className={styles.tabs} />
+              )}
+            </div>
+            <CostBox price={price} discount={discount} discountedPrice={discountedPrice} />
+            <Paragraph className={styles.name}>{name}</Paragraph>
+          </div>
+          {isCartButton && <CartButton max={stock} amount={inCart} />}
+        </article>
+      </li>
     );
   },
 );

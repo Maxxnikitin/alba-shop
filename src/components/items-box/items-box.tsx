@@ -12,14 +12,14 @@ import { IItemsBoxProps } from './types';
 
 import { Item } from '..';
 import arrowIcon from '../../images/icons/arrow-link.svg';
-import { Paragraph, Title } from '../ui';
+import { Button, EButtonKinds, Paragraph, Title } from '../ui';
 
 export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', ...rest }) => {
   const { t } = useTranslation();
 
   return (
     <section className={clsx(styles.container, className)} {...rest}>
-      <Title>{t(`items.${type}-title`)}</Title>
+      <Title className={styles.title}>{t(`items.${type}-title`)}</Title>
       <Link to={`/${type}`} className={styles.link}>
         <Paragraph className={styles.text}>
           {t(`items.${type}-action`)}{' '}
@@ -40,6 +40,12 @@ export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', 
           </SwiperSlide>
         ))}
       </Swiper>
+      <ul className={styles.list_mobile}>
+        {data.map(item => (
+          <Item key={item.id} data={item} onLikeClick={() => console.log('like')} />
+        ))}
+      </ul>
+      <Button className={styles.btn_mobile} kind={EButtonKinds.load} text={t('items.latest-btn')} />
     </section>
   );
 });
