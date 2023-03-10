@@ -1,17 +1,31 @@
 .container {
   display: flex;
+  flex-direction: column;
+  gap: 150px;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1226px;
+  margin: 0 auto;
+  padding: 33px 24px 110px;
+}
+
+.main_box {
+  display: flex;
   gap: 54px;
   align-items: flex-start;
   justify-content: space-between;
 
   box-sizing: border-box;
   width: 100%;
-  max-width: 1226px;
-  margin: 0 auto;
 }
 
 @media screen and (max-width: 850px) {
   .container {
+    gap: 100px;
+  }
+
+  .main_box {
     flex-direction: column;
     gap: 20px;
     align-items: center;
@@ -20,6 +34,13 @@
 
 @media screen and (max-width: 450px) {
   .container {
+    gap: 60px;
+    padding: 24px 16px 60px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .main_box {
     .gallery {
       display: none;
     }

@@ -49,8 +49,8 @@ export const Item: FC<IItemProps> = memo(
             <CostBox price={price} discount={discount} discountedPrice={discountedPrice} />
             <Paragraph className={styles.name}>{name}</Paragraph>
           </div>
-          {isCartButton && <CartButton max={stock} amount={inCart} />}
         </article>
+        {isCartButton && <CartButton max={stock} amount={inCart} />}
       </li>
     );
   },
