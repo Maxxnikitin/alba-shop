@@ -33,3 +33,40 @@
 .slide {
   max-width: 292px;
 }
+
+.btn_mobile {
+  display: none;
+}
+
+.list_mobile {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .swiper {
+    display: none;
+  }
+
+  .link {
+    display: none;
+  }
+
+  .title {
+    align-self: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .btn_mobile {
+    display: block;
+    margin-top: 16px;
+  }
+
+  .list_mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+}
