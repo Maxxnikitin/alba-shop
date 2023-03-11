@@ -3,166 +3,44 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import {
-  SignIn,
-  Header,
-  Footer,
-  Filters,
-  QueryNotFound,
-  EmptyCart,
-  ItemDetails,
-  ItemsBox,
-} from '..';
+import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails } from '..';
 import { AboutPage, FaqPage, NotFound } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
-import { DataContext, mockContactsData, TDataContext } from '~utils';
-
-const mockItems = [
-  {
-    type: 'characteristics',
-    id: 'rrewecdsc1',
-    name: 'Чехол Luxo original green Чехол Luxo original green Чехол Luxo original green',
-    product_id: 'string441',
-    weight: 10,
-    stock: 20,
-    in_cart: 0,
-    price: '510.00',
-    discount: 10,
-    discounted_price: '410.00',
-    color: 'Black',
-    is_new: false,
-    is_hit: true,
-    in_favorite: false,
-    photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
-  },
-  {
-    type: 'characteristics',
-    id: 'rrewecdsc2',
-    name: 'Чехол Luxo original green',
-    product_id: 'string442',
-    weight: 10,
-    stock: 20,
-    in_cart: 0,
-    price: '510.00',
-    discount: 10,
-    discounted_price: '410.00',
-    color: 'Black',
-    is_new: true,
-    is_hit: false,
-    in_favorite: false,
-    photo: ['https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg'],
-  },
-  {
-    type: 'characteristics',
-    id: 'rrewecdsc3',
-    name: 'Чехол Luxo original green',
-    product_id: 'string443',
-    weight: 10,
-    stock: 20,
-    in_cart: 0,
-    price: '510.00',
-    discount: 10,
-    discounted_price: '410.00',
-    color: 'Black',
-    is_new: true,
-    is_hit: true,
-    in_favorite: true,
-    photo: ['https://img.mvideo.ru/Pdb/50129627b.jpg'],
-  },
-  {
-    type: 'characteristics',
-    id: 'rrewecdsc4',
-    name: 'Чехол Luxo original green',
-    product_id: 'string444',
-    weight: 10,
-    stock: 20,
-    in_cart: 0,
-    price: '510.00',
-    discount: 10,
-    discounted_price: '410.00',
-    color: 'Black',
-    is_new: true,
-    is_hit: true,
-    in_favorite: true,
-    photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
-  },
-  {
-    type: 'characteristics',
-    id: 'rrewecdsc5',
-    name: 'Чехол Luxo original green',
-    product_id: 'string445',
-    weight: 10,
-    stock: 20,
-    in_cart: 0,
-    price: '510.00',
-    discount: 10,
-    discounted_price: '410.00',
-    color: 'Black',
-    is_new: true,
-    is_hit: true,
-    in_favorite: false,
-    photo: ['https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg'],
-  },
-  {
-    type: 'characteristics',
-    id: 'rrewecdsc6',
-    name: 'Чехол Luxo original green',
-    product_id: 'string446',
-    weight: 10,
-    stock: 20,
-    in_cart: 0,
-    price: '510.00',
-    discount: 10,
-    discounted_price: '410.00',
-    color: 'Black',
-    is_new: true,
-    is_hit: true,
-    in_favorite: false,
-    photo: ['https://img.mvideo.ru/Pdb/50129627b.jpg'],
-  },
-  {
-    type: 'characteristics',
-    id: 'rrewecdsc7',
-    name: 'Чехол Luxo original green',
-    product_id: 'string447',
-    weight: 10,
-    stock: 20,
-    in_cart: 0,
-    price: '510.00',
-    discount: 10,
-    discounted_price: '410.00',
-    color: 'Black',
-    is_new: true,
-    is_hit: true,
-    in_favorite: true,
-    photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
-  },
-  {
-    type: 'characteristics',
-    id: 'rrewecdsc8',
-    name: 'Чехол Luxo original green',
-    product_id: 'string448',
-    weight: 10,
-    stock: 20,
-    in_cart: 0,
-    price: '510.00',
-    discount: 10,
-    discounted_price: '410.00',
-    color: 'Black',
-    is_new: true,
-    is_hit: false,
-    in_favorite: false,
-    photo: ['https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg'],
-  },
-];
+import {
+  DataContext,
+  // getContacts,
+  // getHitsItems,
+  // getLatestItems,
+  mockCharacteristicsData,
+  mockContactsData,
+  TDataContext,
+} from '~utils';
 
 export function App() {
-  const [contextData, setContextData] = useState<TDataContext>({ contacts: null });
+  const [contextData, setContextData] = useState<TDataContext>({
+    contacts: null,
+    latestSuggestedItems: [],
+    hitsSuggestedItems: [],
+  });
   console.log('Render App');
 
   useEffect(() => {
-    setContextData({ contacts: mockContactsData });
+    // Promise.all([getContacts(), getLatestItems('?limit=7'), getHitsItems('?limit=7')])
+    //   .then(([contacts, latest, hits]) =>
+    //     setContextData({
+    //       contacts,
+    //       latestSuggestedItems: latest.data,
+    //       hitsSuggestedItems: hits.data,
+    //     }),
+    //   )
+    //   .catch(err => console.error(err));
+
+    setContextData({
+      contacts: mockContactsData,
+      latestSuggestedItems: mockCharacteristicsData,
+      hitsSuggestedItems: mockCharacteristicsData,
+    });
   }, []);
 
   const routes = useRoutes([
@@ -170,7 +48,6 @@ export function App() {
       path: '/',
       element: (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
-          <ItemsBox type='latest' data={mockItems} />
           <SignIn />
           <EmptyCart />
           <QueryNotFound />
@@ -202,7 +79,7 @@ export function App() {
     },
     {
       path: '/favorites',
-      element: <ItemsBox type='latest' data={mockItems} />,
+      element: <p>favorite</p>,
     },
     {
       path: '/catalog/:id',

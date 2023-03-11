@@ -74,8 +74,27 @@ export type TContacts = {
   telegram: string;
   instagram: string;
   vk: string;
+  map: string;
 };
 
 export type TDataContext = {
   contacts: TContacts | null;
+  latestSuggestedItems: TCharacteristic[];
+  hitsSuggestedItems: TCharacteristic[];
+};
+
+export type TPagination = {
+  total_items: number;
+  num_pages: number;
+  next: number | null;
+  previous: number | null;
+};
+
+export type TMeta = {
+  pagination: TPagination;
+};
+
+export type TItemsWithPagination = {
+  meta: TMeta;
+  data: TCharacteristic[];
 };

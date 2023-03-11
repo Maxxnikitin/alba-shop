@@ -1,11 +1,10 @@
-import clsx from 'clsx';
 import { FC, memo, MouseEventHandler, useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import styles from './item-details.module.scss';
 import { IItemDetailsProps } from './types';
 
-import { ItemGallery } from '..';
+import { ItemGallery, PageWrapperWithCommonBlocks } from '..';
 
 import { ItemCharacteristics } from '../item-characteristics';
 
@@ -30,11 +29,11 @@ const mockData = {
       name: 'Чехол Luxo original green',
       product_id: 'string44',
       weight: 10,
-      stock: 0,
+      stock: 20,
       in_cart: 0,
       price: '510.00',
-      discount: 10,
-      discounted_price: '410.00',
+      discount: 0,
+      discounted_price: '510.00',
       color: 'Black',
       is_new: true,
       is_hit: true,
@@ -214,20 +213,22 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
   }
 
   return (
-    <div className={clsx(styles.container, className)} {...rest}>
-      <ItemGallery
-        className={styles.gallery}
-        dataObj={data}
-        currentCharacteristic={currentCharacteristic}
-        onLikeClick={handleLikeToggle}
-      />
-      <ItemCharacteristics
-        characteristics={characteristics}
-        currentCharacteristic={currentCharacteristic}
-        dataObj={data}
-        onClick={handleChangeCurrentCharacteristic}
-        onLikeClick={handleLikeToggle}
-      />
-    </div>
+    <PageWrapperWithCommonBlocks className={className} {...rest}>
+      <div className={styles.main_box}>
+        <ItemGallery
+          className={styles.gallery}
+          dataObj={data}
+          currentCharacteristic={currentCharacteristic}
+          onLikeClick={handleLikeToggle}
+        />
+        <ItemCharacteristics
+          characteristics={characteristics}
+          currentCharacteristic={currentCharacteristic}
+          dataObj={data}
+          onClick={handleChangeCurrentCharacteristic}
+          onLikeClick={handleLikeToggle}
+        />
+      </div>
+    </PageWrapperWithCommonBlocks>
   );
 });

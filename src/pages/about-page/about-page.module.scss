@@ -17,7 +17,7 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 1287px;
-  padding: 84px 9px 107px 70px;
+  padding: 84px 9px 107px 24px;
 }
 
 .column {
@@ -70,12 +70,6 @@
   }
 }
 
-@media screen and (max-width: 900px) {
-  .main_content {
-    padding-left: 36px;
-  }
-}
-
 @media screen and (max-width: 750px) {
   .img_box {
     display: none;
@@ -95,7 +89,13 @@
   }
 
   .main_content {
-    padding: 84px 40px 70px;
+    padding: 84px 24px 70px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .main_content {
+    padding: 84px 16px 70px;
   }
 }
 

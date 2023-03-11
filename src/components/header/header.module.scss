@@ -13,9 +13,9 @@
 
   box-sizing: border-box;
   width: 100%;
-  max-width: 1366px;
+  max-width: 1274px;
   margin: 0 auto;
-  padding: 32px 70px;
+  padding: 32px 24px;
 }
 
 .logo {
@@ -46,7 +46,7 @@
 
 @media screen and (max-width: 900px) {
   .container {
-    padding: 28px 36px;
+    padding: 28px 24px;
   }
 
   .logo {
@@ -97,7 +97,7 @@
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 700px) {
   .container {
     padding: 16px;
   }

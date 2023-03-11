@@ -45,7 +45,11 @@ export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', 
           <Item key={item.id} data={item} onLikeClick={() => console.log('like')} />
         ))}
       </ul>
-      <Button className={styles.btn_mobile} kind={EButtonKinds.load} text={t('items.latest-btn')} />
+      <Button
+        className={styles.btn_mobile}
+        kind={EButtonKinds.load}
+        text={t(`items.${type}-btn`)}
+      />
     </section>
   );
 });
