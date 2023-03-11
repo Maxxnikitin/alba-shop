@@ -7,14 +7,22 @@ import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails 
 import { AboutPage, FaqPage, NotFound } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
-import { DataContext, mockContactsData, TDataContext } from '~utils';
+import { DataContext, mockCharacteristicsData, mockContactsData, TDataContext } from '~utils';
 
 export function App() {
-  const [contextData, setContextData] = useState<TDataContext>({ contacts: null });
+  const [contextData, setContextData] = useState<TDataContext>({
+    contacts: null,
+    latestSuggestedItems: [],
+    hitsSuggestedItems: [],
+  });
   console.log('Render App');
 
   useEffect(() => {
-    setContextData({ contacts: mockContactsData });
+    setContextData({
+      contacts: mockContactsData,
+      latestSuggestedItems: mockCharacteristicsData,
+      hitsSuggestedItems: mockCharacteristicsData,
+    });
   }, []);
 
   const routes = useRoutes([

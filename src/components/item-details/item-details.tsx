@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import styles from './item-details.module.scss';
 import { IItemDetailsProps } from './types';
 
-import { ItemGallery, ItemsBox } from '..';
+import { ItemGallery, PageWrapperWithCommonBlocks } from '..';
 
 import { ItemCharacteristics } from '../item-characteristics';
 
@@ -214,7 +214,7 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
   }
 
   return (
-    <div className={clsx(styles.container, className)} {...rest}>
+    <PageWrapperWithCommonBlocks className={className} {...rest}>
       <div className={styles.main_box}>
         <ItemGallery
           className={styles.gallery}
@@ -230,9 +230,6 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
           onLikeClick={handleLikeToggle}
         />
       </div>
-
-      <ItemsBox type='latest' data={mockData.characteristics} />
-      <ItemsBox type='hits' data={mockData.characteristics} />
-    </div>
+    </PageWrapperWithCommonBlocks>
   );
 });

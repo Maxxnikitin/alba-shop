@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1274px;
+  margin: 0 auto;
+  padding: 33px 24px 110px;
+}
+
+@media screen and (max-width: 850px) {
+  .container {
+    gap: 100px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    padding: 24px 16px 60px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .container {
+    gap: 60px;
+  }
+}

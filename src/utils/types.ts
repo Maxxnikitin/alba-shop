@@ -74,8 +74,11 @@ export type TContacts = {
   telegram: string;
   instagram: string;
   vk: string;
+  map: string;
 };
 
 export type TDataContext = {
   contacts: TContacts | null;
+  latestSuggestedItems: TCharacteristic[];
+  hitsSuggestedItems: TCharacteristic[];
 };

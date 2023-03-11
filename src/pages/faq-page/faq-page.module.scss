@@ -3,8 +3,8 @@
 .container {
   box-sizing: border-box;
   width: 100%;
-  max-width: 1366px;
-  padding: 84px 70px 164px;
+  max-width: 1274px;
+  padding: 84px 24px 164px;
 
   .title {
     margin-bottom: 45px;
@@ -22,11 +22,11 @@
 
 @media screen and (max-width: 900px) {
   .container {
-    padding: 56px 36px 156px;
+    padding: 56px 24px 156px;
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 700px) {
   .container {
     padding-right: 16px;
     padding-left: 16px;

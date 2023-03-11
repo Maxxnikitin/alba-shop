@@ -10,9 +10,9 @@
 
   box-sizing: border-box;
   width: 100%;
-  max-width: 1366px;
+  max-width: 1274px;
   margin: 0 auto;
-  padding: 110px 70px 37px;
+  padding: 110px 24px 37px;
 
   &_copyright {
     justify-content: space-between;
@@ -114,7 +114,7 @@
 
 @media screen and (max-width: 900px) {
   .container {
-    padding: 110px 36px 37px;
+    padding: 110px 24px 37px;
 
     &_copyright {
       padding-top: 0;
