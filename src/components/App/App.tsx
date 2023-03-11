@@ -7,7 +7,15 @@ import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails 
 import { AboutPage, FaqPage, NotFound } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
-import { DataContext, mockCharacteristicsData, mockContactsData, TDataContext } from '~utils';
+import {
+  DataContext,
+  // getContacts,
+  // getHitsItems,
+  // getLatestItems,
+  mockCharacteristicsData,
+  mockContactsData,
+  TDataContext,
+} from '~utils';
 
 export function App() {
   const [contextData, setContextData] = useState<TDataContext>({
@@ -18,6 +26,16 @@ export function App() {
   console.log('Render App');
 
   useEffect(() => {
+    // Promise.all([getContacts(), getLatestItems('?limit=7'), getHitsItems('?limit=7')])
+    //   .then(([contacts, latest, hits]) =>
+    //     setContextData({
+    //       contacts,
+    //       latestSuggestedItems: latest.data,
+    //       hitsSuggestedItems: hits.data,
+    //     }),
+    //   )
+    //   .catch(err => console.error(err));
+
     setContextData({
       contacts: mockContactsData,
       latestSuggestedItems: mockCharacteristicsData,

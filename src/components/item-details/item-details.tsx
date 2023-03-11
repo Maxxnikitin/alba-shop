@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { FC, memo, MouseEventHandler, useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 

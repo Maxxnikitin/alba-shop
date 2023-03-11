@@ -8,6 +8,7 @@ import type {
   TContacts,
   TGetFaqDataRes,
   TGetProductRes,
+  TItemsWithPagination,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -42,3 +43,13 @@ export const getAboutInfo = () =>
 
 export const getContacts = () =>
   axios.get(`${URL}/pages/contacts/`).then((res: AxiosResponse<TContacts>) => checkResponse(res));
+
+export const getLatestItems = (query = '') =>
+  axios
+    .get(`${URL}/products/latest/${query}`)
+    .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));
+
+export const getHitsItems = (query = '') =>
+  axios
+    .get(`${URL}/products/bestsellers/${query}`)
+    .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));
