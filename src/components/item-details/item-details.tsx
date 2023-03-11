@@ -1,10 +1,11 @@
+import clsx from 'clsx';
 import { FC, memo, MouseEventHandler, useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import styles from './item-details.module.scss';
 import { IItemDetailsProps } from './types';
 
-import { ItemGallery, PageWrapperWithCommonBlocks } from '..';
+import { ItemGallery } from '..';
 
 import { ItemCharacteristics } from '../item-characteristics';
 
@@ -213,22 +214,20 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
   }
 
   return (
-    <PageWrapperWithCommonBlocks className={className} {...rest}>
-      <div className={styles.main_box}>
-        <ItemGallery
-          className={styles.gallery}
-          dataObj={data}
-          currentCharacteristic={currentCharacteristic}
-          onLikeClick={handleLikeToggle}
-        />
-        <ItemCharacteristics
-          characteristics={characteristics}
-          currentCharacteristic={currentCharacteristic}
-          dataObj={data}
-          onClick={handleChangeCurrentCharacteristic}
-          onLikeClick={handleLikeToggle}
-        />
-      </div>
-    </PageWrapperWithCommonBlocks>
+    <div className={clsx(styles.main_box, className)} {...rest}>
+      <ItemGallery
+        className={styles.gallery}
+        dataObj={data}
+        currentCharacteristic={currentCharacteristic}
+        onLikeClick={handleLikeToggle}
+      />
+      <ItemCharacteristics
+        characteristics={characteristics}
+        currentCharacteristic={currentCharacteristic}
+        dataObj={data}
+        onClick={handleChangeCurrentCharacteristic}
+        onLikeClick={handleLikeToggle}
+      />
+    </div>
   );
 });

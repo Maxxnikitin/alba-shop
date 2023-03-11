@@ -16,3 +16,4 @@ export * from './item-characteristics';
 export * from './contacts';
 export * from './social-icons';
 export * from './page-wrapper-with-common-blocks';
+export * from './items-without-filters';

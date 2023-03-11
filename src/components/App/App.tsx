@@ -3,8 +3,8 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails } from '..';
-import { AboutPage, FaqPage, NotFound } from '../../pages';
+import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart } from '..';
+import { AboutPage, FaqPage, NotFound, ItemDetailsPage, LatestPage, HitsPage } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
 import {
@@ -83,7 +83,7 @@ export function App() {
     },
     {
       path: '/catalog/:id',
-      element: <ItemDetails />,
+      element: <ItemDetailsPage />,
     },
     {
       path: '/faq',
@@ -92,6 +92,14 @@ export function App() {
     {
       path: '/about',
       element: <AboutPage />,
+    },
+    {
+      path: '/latest',
+      element: <LatestPage />,
+    },
+    {
+      path: '/bestsellers',
+      element: <HitsPage />,
     },
     {
       path: '*',
