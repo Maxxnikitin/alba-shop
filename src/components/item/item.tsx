@@ -50,7 +50,7 @@ export const Item: FC<IItemProps> = memo(
             <Paragraph className={styles.name}>{name}</Paragraph>
           </div>
         </article>
-        {isCartButton && <CartButton max={stock} amount={inCart} />}
+        {isCartButton && <CartButton max={stock} amount={inCart} isSmall />}
       </li>
     );
   },

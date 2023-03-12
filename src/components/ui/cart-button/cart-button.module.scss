@@ -23,10 +23,23 @@
     visibility: visible;
     opacity: 1;
   }
+
+  .small {
+    left: 8px;
+    width: 276px;
+    min-width: 276px;
+  }
 }
 
 @media screen and (max-width: 500px) {
-  .btn {
-    width: 100%;
+  .container {
+    .btn {
+      width: 100%;
+    }
+
+    .small {
+      left: 0;
+      width: 100%;
+    }
   }
 }
