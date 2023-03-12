@@ -4,7 +4,14 @@ import { useRoutes } from 'react-router-dom';
 import styles from './App.module.scss';
 
 import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart } from '..';
-import { AboutPage, FaqPage, NotFound, ItemDetailsPage, LatestPage, HitsPage } from '../../pages';
+import {
+  AboutPage,
+  FaqPage,
+  NotFound,
+  ItemDetailsPage,
+  LatestPage,
+  BestsellersPage,
+} from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
 import {
@@ -99,7 +106,7 @@ export function App() {
     },
     {
       path: '/bestsellers',
-      element: <HitsPage />,
+      element: <BestsellersPage />,
     },
     {
       path: '*',
