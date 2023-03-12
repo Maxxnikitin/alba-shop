@@ -34,7 +34,7 @@ export type TCharacteristic = {
   name: string;
   product_id: string;
   is_new: boolean;
-  is_hit: boolean;
+  is_bestseller: boolean;
   in_cart: number;
   in_favorite: boolean;
   stock: number;
@@ -80,7 +80,7 @@ export type TContacts = {
 export type TDataContext = {
   contacts: TContacts | null;
   latestSuggestedItems: TCharacteristic[];
-  hitsSuggestedItems: TCharacteristic[];
+  bestsellersSuggestedItems: TCharacteristic[];
 };
 
 export type TPagination = {

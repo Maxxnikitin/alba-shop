@@ -36,7 +36,7 @@ export const Filters: FC<IFiltersProps> = ({ classList = '', ...rest }) => {
       { f_id: 11, f_name: 'Количество', f_quantity: 43 },
       { f_id: 12, f_name: 'S3 super', f_quantity: 246 },
     ],
-    is_hit: true,
+    is_bestseller: true,
     in_stock: true,
     is_new: false,
     discount: false,
@@ -62,7 +62,7 @@ export const Filters: FC<IFiltersProps> = ({ classList = '', ...rest }) => {
 
   const [switchFiltersData, setSwitchFiltersData] = useState<TSwitchFiltersData>({
     is_new: false,
-    is_hit: false,
+    is_bestseller: false,
     in_stock: true,
     discount: false,
   });
@@ -72,7 +72,7 @@ export const Filters: FC<IFiltersProps> = ({ classList = '', ...rest }) => {
   const switchFilters = useMemo(
     () => [
       { f_name: 'in_stock', f_id: nanoid() },
-      { f_name: 'is_hit', f_id: nanoid() },
+      { f_name: 'is_bestseller', f_id: nanoid() },
       { f_name: 'is_new', f_id: nanoid() },
     ],
     [],

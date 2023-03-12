@@ -5,5 +5,5 @@ import { TDataContext } from './types';
 export const DataContext = createContext<TDataContext>({
   contacts: null,
   latestSuggestedItems: [],
-  hitsSuggestedItems: [],
+  bestsellersSuggestedItems: [],
 });

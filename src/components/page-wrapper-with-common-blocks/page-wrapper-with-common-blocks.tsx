@@ -10,13 +10,13 @@ import { DataContext } from '~utils';
 
 export const PageWrapperWithCommonBlocks: FC<IPageWrapperWithCommonBlocksProps> = memo(
   ({ children, className = '', ...rest }) => {
-    const { latestSuggestedItems, hitsSuggestedItems } = useContext(DataContext);
+    const { latestSuggestedItems, bestsellersSuggestedItems } = useContext(DataContext);
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
         {children}
         <ItemsBox type='latest' data={latestSuggestedItems} />
-        <ItemsBox type='hits' data={hitsSuggestedItems} />
+        <ItemsBox type='bestsellers' data={bestsellersSuggestedItems} />
       </div>
     );
   },
