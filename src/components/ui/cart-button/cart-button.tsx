@@ -10,7 +10,7 @@ import { Button } from '../button';
 import { ItemsCount } from '../items-count';
 
 export const CartButton: FC<ICartButtonProps> = memo(
-  ({ className = '', amount = 1, max, ...rest }) => {
+  ({ max, className = '', amount = 1, isSmall = false, ...rest }) => {
     const [curAmount, setCurAmount] = useState(amount);
     const [cart, setCart] = useState(curAmount);
     const { t } = useTranslation();
@@ -55,14 +55,20 @@ export const CartButton: FC<ICartButtonProps> = memo(
         <Button
           text={t('item.btn')}
           onClick={handleAddToCartCLick}
-          className={clsx(styles.btn, styles.invisible, { [styles.visible]: cart <= 0 })}
+          className={clsx(styles.btn, styles.invisible, {
+            [styles.visible]: cart <= 0,
+            [styles.small]: isSmall,
+          })}
         />
         <ItemsCount
           max={max}
           amount={curAmount}
           handleBtnsClick={handleBtnsClick}
           handleInputChange={handleInputChange}
-          className={clsx(styles.btn, styles.invisible, { [styles.visible]: cart > 0 })}
+          className={clsx(styles.btn, styles.invisible, {
+            [styles.visible]: cart > 0,
+            [styles.small]: isSmall,
+          })}
         />
       </div>
     );

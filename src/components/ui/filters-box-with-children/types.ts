@@ -25,7 +25,7 @@ export type TSwitchFiltersData = {
   // connector_type: TFilterBlock;
   // price: TFilterBlock;
   // is_new: boolean;
-  // is_hit: boolean;
+  // is_bestseller: boolean;
   // in_stock: boolean;
   // discount: boolean;
 };
@@ -41,7 +41,7 @@ export type TSwitchFiltersData = {
 //   connector_type = 'connector_type',
 //   price = 'price',
 //   is_new = 'is_new',
-//   is_hit = 'is_hit',
+//   is_bestseller = 'is_bestseller',
 //   in_stock = 'in_stock',
 //   discount = 'discount',
 // }

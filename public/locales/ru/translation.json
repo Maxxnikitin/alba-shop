@@ -58,7 +58,7 @@
     "connector_type": "Мощность",
     "price": "Цена",
     "is_new": "Новинка",
-    "is_hit": "Хит",
+    "is_bestseller": "Хит",
     "in_stock": "В наличии",
     "discount": "Со скидкой",
     "close-btn": "Сбросить фильтр"
@@ -84,7 +84,7 @@
   },
   "tags": {
     "new": "Новинка",
-    "hit": "Хит",
+    "bestseller": "Хит",
     "empty": "Нет в наличии"
   },
   "item": {
@@ -114,8 +114,9 @@
     "latest-title": "Последние поступления",
     "latest-action": "Перейти в последние поступления",
     "latest-btn": "Смотреть новинки",
-    "hits-title": "Хиты продаж",
-    "hits-action": "Перейти к популярным товарам",
-    "hits-btn": "Смотреть популярное"
+    "bestsellers-title": "Хиты продаж",
+    "bestsellers-action": "Перейти к популярным товарам",
+    "bestsellers-btn": "Смотреть популярное",
+    "load-btn": "Загрузить ещё"
   }
 }

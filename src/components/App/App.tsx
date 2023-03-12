@@ -3,14 +3,21 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails } from '..';
-import { AboutPage, FaqPage, NotFound } from '../../pages';
+import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart } from '..';
+import {
+  AboutPage,
+  FaqPage,
+  NotFound,
+  ItemDetailsPage,
+  LatestPage,
+  BestsellersPage,
+} from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
 import {
   DataContext,
   // getContacts,
-  // getHitsItems,
+  // getBestsellersItems,
   // getLatestItems,
   mockCharacteristicsData,
   mockContactsData,
@@ -21,17 +28,17 @@ export function App() {
   const [contextData, setContextData] = useState<TDataContext>({
     contacts: null,
     latestSuggestedItems: [],
-    hitsSuggestedItems: [],
+    bestsellersSuggestedItems: [],
   });
   console.log('Render App');
 
   useEffect(() => {
-    // Promise.all([getContacts(), getLatestItems('?limit=7'), getHitsItems('?limit=7')])
-    //   .then(([contacts, latest, hits]) =>
+    // Promise.all([getContacts(), getLatestItems('?limit=7'), getBestsellersItems('?limit=7')])
+    //   .then(([contacts, latest, bestsellers]) =>
     //     setContextData({
     //       contacts,
     //       latestSuggestedItems: latest.data,
-    //       hitsSuggestedItems: hits.data,
+    //       bestsellersSuggestedItems: bestsellers.data,
     //     }),
     //   )
     //   .catch(err => console.error(err));
@@ -39,7 +46,7 @@ export function App() {
     setContextData({
       contacts: mockContactsData,
       latestSuggestedItems: mockCharacteristicsData,
-      hitsSuggestedItems: mockCharacteristicsData,
+      bestsellersSuggestedItems: mockCharacteristicsData,
     });
   }, []);
 
@@ -83,7 +90,7 @@ export function App() {
     },
     {
       path: '/catalog/:id',
-      element: <ItemDetails />,
+      element: <ItemDetailsPage />,
     },
     {
       path: '/faq',
@@ -92,6 +99,14 @@ export function App() {
     {
       path: '/about',
       element: <AboutPage />,
+    },
+    {
+      path: '/latest',
+      element: <LatestPage />,
+    },
+    {
+      path: '/bestsellers',
+      element: <BestsellersPage />,
     },
     {
       path: '*',

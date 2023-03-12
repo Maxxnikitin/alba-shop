@@ -49,7 +49,7 @@ export const getLatestItems = (query = '') =>
     .get(`${URL}/products/latest/${query}`)
     .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));
 
-export const getHitsItems = (query = '') =>
+export const getBestsellersItems = (query = '') =>
   axios
     .get(`${URL}/products/bestsellers/${query}`)
     .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));

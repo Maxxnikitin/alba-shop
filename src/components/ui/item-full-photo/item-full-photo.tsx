@@ -10,7 +10,7 @@ import { TagsBox } from '..';
 export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
   ({ className = '', photo, currentCharacteristic, dataObj, onLikeClick, ...rest }) => {
     const {
-      is_hit: isHit,
+      is_bestseller: isBestseller,
       is_new: isNew,
       in_favorite: inFavorite,
       stock: inStock,
@@ -22,10 +22,10 @@ export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
       const arr = [];
 
       if (isNew) arr.push('new');
-      if (isHit) arr.push('hit');
+      if (isBestseller) arr.push('bestseller');
 
       return arr;
-    }, [isNew, isHit]);
+    }, [isNew, isBestseller]);
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
