@@ -1,10 +1,10 @@
-import { FC, memo } from 'react';
+import { FC } from 'react';
 
 import { IItemDetailsPageProps } from './types';
 
 import { ItemDetails, PageWrapperWithCommonBlocks } from '../../components';
 
-export const ItemDetailsPage: FC<IItemDetailsPageProps> = memo(({ className = '', ...rest }) => {
+export const ItemDetailsPage: FC<IItemDetailsPageProps> = ({ className = '', ...rest }) => {
   console.log('q');
 
   return (
@@ -12,4 +12,4 @@ export const ItemDetailsPage: FC<IItemDetailsPageProps> = memo(({ className = ''
       <ItemDetails />
     </PageWrapperWithCommonBlocks>
   );
-});
+};

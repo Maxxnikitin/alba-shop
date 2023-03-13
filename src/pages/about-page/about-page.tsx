@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, memo, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -12,7 +12,7 @@ import img from '../../images/about.jpg';
 
 import { DataContext } from '~utils';
 
-export const AboutPage: FC<IAboutPageProps> = memo(({ className = '', ...rest }) => {
+export const AboutPage: FC<IAboutPageProps> = ({ className = '', ...rest }) => {
   const [aboutText, setAboutText] = useState('');
   const { contacts } = useContext(DataContext);
 
@@ -53,4 +53,4 @@ export const AboutPage: FC<IAboutPageProps> = memo(({ className = '', ...rest })
       />
     </section>
   );
-});
+};

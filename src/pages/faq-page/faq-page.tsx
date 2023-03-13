@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { MouseEventHandler, FC, memo, useCallback, useEffect, useState } from 'react';
+import { MouseEventHandler, FC, useCallback, useEffect, useState } from 'react';
 
 import styles from './faq-page.module.scss';
 import { IFaqPageProps } from './types';
@@ -8,7 +8,7 @@ import { Title, Accordion } from '../../components/ui';
 
 import { TGetFaqDataRes } from '~utils';
 
-export const FaqPage: FC<IFaqPageProps> = memo(({ className = '', ...rest }) => {
+export const FaqPage: FC<IFaqPageProps> = ({ className = '', ...rest }) => {
   const [data, setData] = useState<TGetFaqDataRes[]>([]);
   const [openId, setOpenId] = useState<string>('');
 
@@ -66,4 +66,4 @@ export const FaqPage: FC<IFaqPageProps> = memo(({ className = '', ...rest }) => 
       </div>
     </section>
   );
-});
+};
