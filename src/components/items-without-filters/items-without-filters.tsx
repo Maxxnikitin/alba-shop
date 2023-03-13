@@ -138,9 +138,9 @@ const mockData = {
 };
 
 export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
-  ({ title, fetchFn, className = '', ...rest }) => {
+  ({ title, fetchFn, additionalQuery = '', className = '', ...rest }) => {
     const [data, setData] = useState<TItemsWithPagination | null>(null);
-    const [query] = useState('');
+    const [query] = useState(additionalQuery ? `?${additionalQuery}` : '');
 
     const { t } = useTranslation();
 

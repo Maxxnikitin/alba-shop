@@ -117,6 +117,8 @@
     "bestsellers-title": "Хиты продаж",
     "bestsellers-action": "Перейти к популярным товарам",
     "bestsellers-btn": "Смотреть популярное",
+    "discount-title": "Товары на скидках",
+    "discount-with-percent-title": "Товары со скидкой {{percent}}%",
     "load-btn": "Загрузить ещё"
   }
 }
