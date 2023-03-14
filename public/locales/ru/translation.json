@@ -130,5 +130,11 @@
     "discount-title": "Товары на скидках",
     "discount-with-percent-title": "Товары со скидкой {{percent}}%",
     "load-btn": "Загрузить ещё"
+  },
+  "breadcrumbs": {
+    "main": "Главная",
+    "latest": "Последние поступления",
+    "bestsellers": "Хиты продаж",
+    "discount": "Товары на скидках"
   }
 }

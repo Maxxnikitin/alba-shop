@@ -8,7 +8,7 @@ import styles from './items-without-filters.module.scss';
 import { IItemsWithoutFiltersProps } from './types';
 
 import { Item } from '..';
-import { Button, EButtonKinds, SortSelect, Title } from '../ui';
+import { Breadcrumbs, Button, EButtonKinds, SortSelect, Title } from '../ui';
 
 import { TItemsWithPagination, TSortingItems } from '~utils';
 
@@ -162,6 +162,7 @@ export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
+        <Breadcrumbs />
         <Title className={styles.title}>{title}</Title>
         <SortSelect value={currSort} onChange={handleSortingChange} className={styles.sort_box} />
         <ul className={styles.list}>

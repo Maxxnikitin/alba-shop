@@ -1,0 +1,23 @@
+@import '../../common';
+
+.text {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 100%;
+  color: $text-gray;
+  letter-spacing: 0.02em;
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: none;
+  transition: $common-transition;
+}
+
+.link:hover {
+  opacity: $common-hover-opacity;
+}
+
+.active {
+  color: $text-black;
+}
