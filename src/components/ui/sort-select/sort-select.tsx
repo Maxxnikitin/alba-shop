@@ -17,7 +17,9 @@ export const SortSelect: FC<ISortSelectProps> = memo(
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
-        <Paragraph className={styles.text}>{t('sorting.select-text')}</Paragraph>
+        <Paragraph className={clsx(styles.text, styles.mob_text)}>
+          {t('sorting.select-text')}
+        </Paragraph>
         <select className={clsx(styles.select, styles.text)} value={value} onChange={onChange}>
           {sortingItems.map((item, i) => (
             <option key={i} value={item}>
