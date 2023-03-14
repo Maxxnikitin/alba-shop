@@ -98,3 +98,5 @@ export type TItemsWithPagination = {
   meta: TMeta;
   data: TCharacteristic[];
 };
+
+export type TSortingItems = 'is_hit' | '-is_hit' | 'is_new' | '-is_new' | 'price' | '-price';

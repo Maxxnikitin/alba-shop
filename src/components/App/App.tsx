@@ -11,6 +11,8 @@ import {
   ItemDetailsPage,
   LatestPage,
   BestsellersPage,
+  DiscountPage,
+  DiscountWithPercentPage,
 } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
@@ -107,6 +109,14 @@ export function App() {
     {
       path: '/bestsellers',
       element: <BestsellersPage />,
+    },
+    {
+      path: '/discount',
+      element: <DiscountPage />,
+    },
+    {
+      path: '/discount/:percent',
+      element: <DiscountWithPercentPage />,
     },
     {
       path: '*',

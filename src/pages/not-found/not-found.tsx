@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -11,7 +11,7 @@ import notGoundImg from '../../images/404.svg';
 
 import { useReturn } from '~utils';
 
-export const NotFound: FC<INotFoundProps> = memo(({ className = '', ...rest }) => {
+export const NotFound: FC<INotFoundProps> = ({ className = '', ...rest }) => {
   const { t } = useTranslation();
 
   const { handleReturnClick } = useReturn();
@@ -25,4 +25,4 @@ export const NotFound: FC<INotFoundProps> = memo(({ className = '', ...rest }) =
       <Button text={t('not-found.btn')} onClick={handleReturnClick} />
     </div>
   );
-});
+};

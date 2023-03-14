@@ -53,3 +53,8 @@ export const getBestsellersItems = (query = '') =>
   axios
     .get(`${URL}/products/bestsellers/${query}`)
     .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));
+
+export const getDiscountItems = (query = '') =>
+  axios
+    .get(`${URL}/products/latest/${query}`)
+    .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));
