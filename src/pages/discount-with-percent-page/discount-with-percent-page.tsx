@@ -24,7 +24,7 @@ export const DiscountWithPercentPage: FC<IDiscountWithPercentPageProps> = ({
       <ItemsWithoutFilters
         title={t('items.discount-with-percent-title', { percent })}
         fetchFn={getDiscountItems}
-        additionalQuery={`percent=${percent}`}
+        additionalQuery={`&percent=${percent}`}
       />
     </PageWrapperWithCommonBlocks>
   );

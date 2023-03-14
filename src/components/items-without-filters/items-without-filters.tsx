@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, memo, useEffect, useState } from 'react';
+import { ChangeEventHandler, FC, memo, useCallback, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -8,9 +8,9 @@ import styles from './items-without-filters.module.scss';
 import { IItemsWithoutFiltersProps } from './types';
 
 import { Item } from '..';
-import { Button, EButtonKinds, Title } from '../ui';
+import { Button, EButtonKinds, SortSelect, Title } from '../ui';
 
-import { TItemsWithPagination } from '~utils';
+import { TItemsWithPagination, TSortingItems } from '~utils';
 
 const mockData = {
   meta: {
@@ -140,23 +140,30 @@ const mockData = {
 export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
   ({ title, fetchFn, additionalQuery = '', className = '', ...rest }) => {
     const [data, setData] = useState<TItemsWithPagination | null>(null);
-    const [query] = useState(additionalQuery ? `?${additionalQuery}` : '');
+    const [currSort, setCurrSort] = useState<TSortingItems>('is_hit');
 
     const { t } = useTranslation();
 
+    const handleSortingChange: ChangeEventHandler<HTMLSelectElement> = useCallback(e => {
+      setCurrSort(e.target.value as TSortingItems);
+    }, []);
+
     useEffect(() => {
-      // fetchFn(query)
+      // fetchFn(`?sort=${currSort}${additionalQuery}`)
       //   .then(res => setData(res))
       //   .catch(err => console.error(err));
 
+      console.log(`?sort=${currSort}${additionalQuery}`);
+
       setData(mockData);
-    }, [fetchFn, query]);
+    }, [currSort, additionalQuery, fetchFn]);
 
     if (!data) return <p>loader</p>;
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
         <Title className={styles.title}>{title}</Title>
+        <SortSelect value={currSort} onChange={handleSortingChange} className={styles.sort_box} />
         <ul className={styles.list}>
           {data.data.map(item => (
             <Item key={item.id} data={item} onLikeClick={() => console.log('like')} isCartButton />

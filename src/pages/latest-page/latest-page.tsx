@@ -4,9 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import { ILatestPageProps } from './types';
 
-import { ItemsWithoutFilters } from '../../components';
+import { ItemsWithoutFilters, PageWrapperWithCommonBlocks } from '../../components';
 
-import { PageWrapperWithCommonBlocks } from 'src/components';
 import { getLatestItems } from '~utils';
 
 export const LatestPage: FC<ILatestPageProps> = ({ className = '', ...rest }) => {

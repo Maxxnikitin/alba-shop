@@ -27,3 +27,4 @@ export * from './photos-box';
 export * from './cost-box';
 export * from './characteristics-photos-box';
 export * from './contact-item';
+export * from './sort-select';
