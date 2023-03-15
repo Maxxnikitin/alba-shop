@@ -1,0 +1,68 @@
+@import '../../common';
+
+.container {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  height: 31px;
+}
+
+.btn {
+  cursor: pointer;
+
+  background: none;
+  border: none;
+  outline: none;
+
+  transition: $common-transition;
+
+  &_arrow {
+    width: 32px;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &_left {
+      background-image: url('../../../images/icons/arrow-pag-left.svg');
+    }
+
+    &_right {
+      background-image: url('../../../images/icons/arrow-pag-right.svg');
+    }
+  }
+
+  &_num {
+    box-sizing: border-box;
+    width: 24px;
+    padding: 4px 6px;
+  }
+}
+
+.btn:hover {
+  opacity: $common-hover-opacity;
+}
+
+.btn:disabled {
+  cursor: default;
+}
+
+.btn_arrow:disabled {
+  opacity: 0.5;
+}
+
+.btn_num:disabled {
+  opacity: 1;
+}
+
+.text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+  color: $gray3;
+
+  &_active {
+    font-size: 18px;
+    font-weight: 700;
+    color: $text-black;
+  }
+}
