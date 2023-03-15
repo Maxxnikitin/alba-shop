@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
@@ -16,41 +15,11 @@ import {
 } from '../../pages';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
-import {
-  DataContext,
-  // getContacts,
-  // getBestsellersItems,
-  // getLatestItems,
-  mockCharacteristicsData,
-  mockContactsData,
-  TDataContext,
-} from '~utils';
+import { DataContext, useContextData } from '~utils';
 
 export function App() {
-  const [contextData, setContextData] = useState<TDataContext>({
-    contacts: null,
-    latestSuggestedItems: [],
-    bestsellersSuggestedItems: [],
-  });
   console.log('Render App');
-
-  useEffect(() => {
-    // Promise.all([getContacts(), getLatestItems('?limit=7'), getBestsellersItems('?limit=7')])
-    //   .then(([contacts, latest, bestsellers]) =>
-    //     setContextData({
-    //       contacts,
-    //       latestSuggestedItems: latest.data,
-    //       bestsellersSuggestedItems: bestsellers.data,
-    //     }),
-    //   )
-    //   .catch(err => console.error(err));
-
-    setContextData({
-      contacts: mockContactsData,
-      latestSuggestedItems: mockCharacteristicsData,
-      bestsellersSuggestedItems: mockCharacteristicsData,
-    });
-  }, []);
+  const { contextData } = useContextData();
 
   const routes = useRoutes([
     {

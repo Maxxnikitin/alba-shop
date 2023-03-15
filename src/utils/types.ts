@@ -81,6 +81,7 @@ export type TDataContext = {
   contacts: TContacts | null;
   latestSuggestedItems: TCharacteristic[];
   bestsellersSuggestedItems: TCharacteristic[];
+  categories: TCategory[];
 };
 
 export type TPagination = {
