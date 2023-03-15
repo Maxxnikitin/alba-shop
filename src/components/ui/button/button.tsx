@@ -5,7 +5,7 @@ import styles from './button.module.scss';
 
 import { IButtonProps } from './types';
 
-import MenuIcon from '../../../images/icons/menu-icon.svg';
+import { MenuIcon } from '../icons';
 import { Paragraph } from '../paragraph';
 
 export const Button: FC<IButtonProps> = memo(
@@ -21,7 +21,7 @@ export const Button: FC<IButtonProps> = memo(
       type={type}
       {...rest}
     >
-      {kind === 'menu' && <img className={styles.button_icon} src={MenuIcon} alt='Иконка.' />}
+      {kind === 'menu' && <MenuIcon className={styles.button_icon} />}
       <Paragraph className={clsx(styles.text, { [styles.text_none]: kind === 'menu' })}>
         {text}
       </Paragraph>

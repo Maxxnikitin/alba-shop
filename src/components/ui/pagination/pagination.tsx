@@ -4,6 +4,7 @@ import { FC, memo, useMemo } from 'react';
 import styles from './pagination.module.scss';
 import { IPaginationProps } from './types';
 
+import { ArrowPagIcon } from '../icons';
 import { Paragraph } from '../paragraph';
 
 export const Pagination: FC<IPaginationProps> = memo(
@@ -13,10 +14,12 @@ export const Pagination: FC<IPaginationProps> = memo(
     return (
       <div className={clsx(styles.container, className)} {...rest}>
         <button
-          className={clsx(styles.btn, styles.btn_arrow, styles.btn_arrow_left)}
+          className={clsx(styles.btn, styles.btn_arrow)}
           type='button'
           disabled={activePage === 1}
-        />
+        >
+          <ArrowPagIcon />
+        </button>
         {list.map(item => (
           <button
             key={item}
@@ -34,10 +37,12 @@ export const Pagination: FC<IPaginationProps> = memo(
           </button>
         ))}
         <button
-          className={clsx(styles.btn, styles.btn_arrow, styles.btn_arrow_right)}
+          className={clsx(styles.btn, styles.btn_arrow)}
           type='button'
           disabled={activePage === list.length}
-        />
+        >
+          <ArrowPagIcon className={styles.btn_arrow_right} />
+        </button>
       </div>
     );
   },

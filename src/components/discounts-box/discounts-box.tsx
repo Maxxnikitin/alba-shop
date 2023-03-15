@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom';
 import styles from './discounts-box.module.scss';
 import { IDiscountsBoxProps } from './types';
 
-import arrowIcon from '../../images/icons/arrow-link.svg';
-import { DiscountItem, EDiscounts, Paragraph, Title } from '../ui';
+import { ArrowLinkIcon, DiscountItem, EDiscounts, Paragraph, Title } from '../ui';
 
 export const DiscountsBox: FC<IDiscountsBoxProps> = memo(({ className = '', ...rest }) => {
   const { t } = useTranslation();
@@ -20,8 +19,7 @@ export const DiscountsBox: FC<IDiscountsBoxProps> = memo(({ className = '', ...r
       <Title className={styles.title}>{t('discount.title')}</Title>
       <Link to={`/discount`} className={styles.link}>
         <Paragraph className={styles.text}>
-          {t('discount.link')}{' '}
-          <img className={styles.img} src={arrowIcon} alt={t('alts.arrow-icon') || ''} />
+          {t('discount.link')} <ArrowLinkIcon className={styles.icon} />
         </Paragraph>
       </Link>
       <div className={styles.items_box}>

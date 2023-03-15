@@ -1,4 +1,6 @@
-export const ArrowLinkGradient = ({ className = '' }: { className?: string }) => (
+import { TIconProps } from './utils';
+
+export const ArrowLinkGradientIcon = ({ className = '' }: TIconProps) => (
   <svg
     width='7'
     height='11'

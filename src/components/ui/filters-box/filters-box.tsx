@@ -7,7 +7,8 @@ import styles from './filters-box.module.scss';
 import { IFiltersBoxProps } from './types';
 
 import { Title, ETitleLevel, Checkbox } from '..';
-import arrowIcon from '../../../images/icons/arrow.svg';
+
+import { ArrowFilterIcon } from '../icons';
 
 import { handleToggleState } from '~utils';
 
@@ -35,11 +36,7 @@ export const FiltersBox: FC<IFiltersBoxProps> = memo(
       <div className={clsx(styles.container, className)} {...rest}>
         <button className={styles.btn} type='button' onClick={handleToggleState(setIsOpen)}>
           <Title level={ETitleLevel.h6}>{t(`filters.${title}`)}</Title>
-          <img
-            className={clsx(styles.img, { [styles.img_open]: isOpen })}
-            src={arrowIcon}
-            alt={t('alts.arrow-icon') || ''}
-          />
+          <ArrowFilterIcon className={clsx(styles.img, { [styles.img_open]: isOpen })} />
         </button>
         <ul
           className={clsx(styles.list, { [styles.list_open]: isOpen })}

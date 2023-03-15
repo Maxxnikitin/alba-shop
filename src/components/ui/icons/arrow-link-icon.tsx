@@ -1,4 +1,6 @@
-export const ArrowLink = ({ className = '' }: { className?: string }) => (
+import { TIconProps } from './utils';
+
+export const ArrowLinkIcon = ({ className = '' }: TIconProps) => (
   <svg
     width='8'
     height='24'

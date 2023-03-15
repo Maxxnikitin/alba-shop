@@ -17,17 +17,15 @@
   transition: $common-transition;
 
   &_arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 32px;
     height: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    &_left {
-      background-image: url('../../../images/icons/arrow-pag-left.svg');
-    }
 
     &_right {
-      background-image: url('../../../images/icons/arrow-pag-right.svg');
+      transform: rotate(180deg);
     }
   }
 

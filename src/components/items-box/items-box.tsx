@@ -11,8 +11,7 @@ import styles from './items-box.module.scss';
 import { IItemsBoxProps } from './types';
 
 import { Item } from '..';
-import arrowIcon from '../../images/icons/arrow-link.svg';
-import { Button, EButtonKinds, Paragraph, Title } from '../ui';
+import { ArrowLinkIcon, Button, EButtonKinds, Paragraph, Title } from '../ui';
 
 export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', ...rest }) => {
   const { t } = useTranslation();
@@ -22,8 +21,7 @@ export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', 
       <Title className={styles.title}>{t(`items.${type}-title`)}</Title>
       <Link to={`/${type}`} className={styles.link}>
         <Paragraph className={styles.text}>
-          {t(`items.${type}-action`)}{' '}
-          <img className={styles.img} src={arrowIcon} alt={t('alts.arrow-icon') || ''} />
+          {t(`items.${type}-action`)} <ArrowLinkIcon className={styles.icon} />
         </Paragraph>
       </Link>
       <Swiper

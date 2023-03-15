@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import styles from './discount-item.module.scss';
 import { IDiscountItemProps } from './types';
 
-import { Paragraph, ArrowLink, ArrowLinkGradient } from '..';
+import { Paragraph, ArrowLinkIcon, ArrowLinkGradientIcon } from '..';
 
 export const DiscountItem: FC<IDiscountItemProps> = memo(({ amount, className = '', ...rest }) => {
   const { t } = useTranslation();
@@ -33,9 +33,9 @@ export const DiscountItem: FC<IDiscountItemProps> = memo(({ amount, className = 
           {t('discount.link-item')}
         </Paragraph>
         {amount === 40 ? (
-          <ArrowLinkGradient className={clsx(styles.icon, styles[`icon_${amount}`])} />
+          <ArrowLinkGradientIcon className={clsx(styles.icon, styles[`icon_${amount}`])} />
         ) : (
-          <ArrowLink className={clsx(styles.icon, styles[`icon_${amount}`])} />
+          <ArrowLinkIcon className={clsx(styles.icon, styles[`icon_${amount}`])} />
         )}
       </div>
     </Link>
