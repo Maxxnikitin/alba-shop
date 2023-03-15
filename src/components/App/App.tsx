@@ -2,7 +2,7 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart } from '..';
+import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, DiscountsBox } from '..';
 import {
   AboutPage,
   FaqPage,
@@ -27,6 +27,7 @@ export function App() {
       element: (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
           <SignIn />
+          <DiscountsBox />
           <EmptyCart />
           <QueryNotFound />
           <div style={{ width: 292 }}>
