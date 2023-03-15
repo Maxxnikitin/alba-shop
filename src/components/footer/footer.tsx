@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, memo, useContext, useEffect, useState } from 'react';
+import { FC, memo, useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
