@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './sort-select.module.scss';
 import { ISortSelectProps } from './types';
 
-// import { ArrowSortIcon } from '../icons';
+import { ArrowSortIcon } from '../icons';
 import { Paragraph } from '../paragraph';
 
 import { sortingItems } from '~utils';
@@ -27,7 +27,7 @@ export const SortSelect: FC<ISortSelectProps> = memo(
             </option>
           ))}
         </select>
-        {/* <ArrowSortIcon className={styles.icon} /> */}
+        <ArrowSortIcon className={styles.icon} />
       </div>
     );
   },

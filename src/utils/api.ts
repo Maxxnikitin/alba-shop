@@ -9,6 +9,8 @@ import type {
   TGetFaqDataRes,
   TGetProductRes,
   TItemsWithPagination,
+  ResWithData,
+  TBrand,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -58,3 +60,8 @@ export const getDiscountItems = (query = '') =>
   axios
     .get(`${URL}/products/latest/${query}`)
     .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));
+
+export const getBrandsItems = () =>
+  axios
+    .get(`${URL}/brands/`)
+    .then((res: AxiosResponse<ResWithData<TBrand[]>>) => checkResponse(res));

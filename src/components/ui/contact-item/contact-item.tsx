@@ -8,10 +8,10 @@ import { Paragraph } from '..';
 import { AddressIcon, EmailIcon, PhoneIcon, TimeIcon } from '../icons';
 
 const iconsMap = {
-  address: () => <AddressIcon />,
-  time: () => <TimeIcon />,
-  phone: () => <PhoneIcon />,
-  email: () => <EmailIcon />,
+  address: AddressIcon,
+  time: TimeIcon,
+  phone: PhoneIcon,
+  email: EmailIcon,
 };
 
 export const ContactItem: FC<IContactItemProps> = memo(

@@ -237,3 +237,41 @@ export const mockCategories = [
     parend_id: null,
   },
 ];
+
+export const mockBrands = [
+  {
+    type: 'brands',
+    id: 1,
+    name: 'Xiaomi',
+    logo: 'photo/xiaomi.jpg',
+    in_brand_section: true,
+  },
+  {
+    type: 'brands',
+    id: 2,
+    name: 'Xiaomi',
+    logo: 'photo/xiaomi.jpg',
+    in_brand_section: true,
+  },
+  {
+    type: 'brands',
+    id: 3,
+    name: 'Xiaomi',
+    logo: 'photo/xiaomi.jpg',
+    in_brand_section: true,
+  },
+  {
+    type: 'brands',
+    id: 4,
+    name: 'Xiaomi',
+    logo: 'photo/xiaomi.jpg',
+    in_brand_section: true,
+  },
+  {
+    type: 'brands',
+    id: 5,
+    name: 'Xiaomi',
+    logo: 'photo/xiaomi.jpg',
+    in_brand_section: true,
+  },
+];

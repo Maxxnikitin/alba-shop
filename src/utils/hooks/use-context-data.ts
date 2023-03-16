@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react';
 
+// import {
+//   getBestsellersItems,
+//   getBrandsItems,
+//   getCategories,
+//   getContacts,
+//   getLatestItems,
+// } from '../api';
+
 // import { getBestsellersItems, getCategories, getContacts, getLatestItems } from '../api';
-import { mockCategories, mockCharacteristicsData, mockContactsData } from '../mock';
+import { mockBrands, mockCategories, mockCharacteristicsData, mockContactsData } from '../mock';
 import { TDataContext } from '../types';
 
 export const useContextData = () => {
@@ -10,6 +18,7 @@ export const useContextData = () => {
     latestSuggestedItems: [],
     bestsellersSuggestedItems: [],
     categories: [],
+    brands: [],
   });
 
   useEffect(() => {
@@ -18,13 +27,15 @@ export const useContextData = () => {
     //   getLatestItems('?limit=7'),
     //   getBestsellersItems('?limit=7'),
     //   getCategories(),
+    //   getBrandsItems(),
     // ])
-    //   .then(([contacts, latest, bestsellers, categories]) =>
+    //   .then(([contacts, latest, bestsellers, categories, brands]) =>
     //     setContextData({
     //       contacts,
     //       latestSuggestedItems: latest.data,
     //       bestsellersSuggestedItems: bestsellers.data,
     //       categories,
+    //       brands: brands.data,
     //     }),
     //   )
     //   .catch(err => console.error(err));
@@ -34,6 +45,7 @@ export const useContextData = () => {
       latestSuggestedItems: mockCharacteristicsData,
       bestsellersSuggestedItems: mockCharacteristicsData,
       categories: mockCategories,
+      brands: mockBrands,
     });
   }, []);
 
