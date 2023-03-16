@@ -2,7 +2,17 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, DiscountsBox } from '..';
+import {
+  SignIn,
+  Header,
+  Footer,
+  Filters,
+  QueryNotFound,
+  EmptyCart,
+  DiscountsBox,
+  ScrollToTop,
+} from '..';
+
 import {
   AboutPage,
   FaqPage,
@@ -13,6 +23,7 @@ import {
   DiscountPage,
   DiscountWithPercentPage,
 } from '../../pages';
+import { ItemsBox } from '../items-box';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
 import { DataContext, useContextData } from '~utils';
@@ -27,6 +38,7 @@ export function App() {
       element: (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
           <SignIn />
+          <ItemsBox type='brands' data={contextData.brands} />
           <DiscountsBox />
           <EmptyCart />
           <QueryNotFound />
@@ -96,6 +108,7 @@ export function App() {
 
   return (
     <div className={styles.container}>
+      <ScrollToTop />
       <DataContext.Provider value={contextData}>
         <Header />
         {routes}
