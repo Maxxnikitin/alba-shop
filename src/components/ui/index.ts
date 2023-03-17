@@ -30,3 +30,7 @@ export * from './contact-item';
 export * from './sort-select';
 export * from './breadcrumbs';
 export * from './breadcrumbs-item';
+export * from './pagination';
+export * from './discount-item';
+export * from './icons';
+export * from './brand-item';

@@ -8,7 +8,7 @@ import styles from './items-without-filters.module.scss';
 import { IItemsWithoutFiltersProps } from './types';
 
 import { Item } from '..';
-import { Breadcrumbs, Button, EButtonKinds, SortSelect, Title } from '../ui';
+import { Breadcrumbs, Button, EButtonKinds, Pagination, SortSelect, Title } from '../ui';
 
 import { TItemsWithPagination, TSortingItems } from '~utils';
 
@@ -153,8 +153,6 @@ export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
       //   .then(res => setData(res))
       //   .catch(err => console.error(err));
 
-      console.log(`?sort=${currSort}${additionalQuery}`);
-
       setData(mockData);
     }, [currSort, additionalQuery, fetchFn]);
 
@@ -171,6 +169,7 @@ export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
           ))}
         </ul>
         <Button kind={EButtonKinds.load} text={t('items.load-btn')} />
+        <Pagination className={styles.pagination} amountPage={4} activePage={1} />
       </div>
     );
   },

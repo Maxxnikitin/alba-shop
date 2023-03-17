@@ -17,3 +17,6 @@ export * from './contacts';
 export * from './social-icons';
 export * from './page-wrapper-with-common-blocks';
 export * from './items-without-filters';
+export * from './catalog-main';
+export * from './discounts-box';
+export * from './scroll-to-top';

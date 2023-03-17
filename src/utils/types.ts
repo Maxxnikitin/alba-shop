@@ -81,6 +81,8 @@ export type TDataContext = {
   contacts: TContacts | null;
   latestSuggestedItems: TCharacteristic[];
   bestsellersSuggestedItems: TCharacteristic[];
+  categories: TCategory[];
+  brands: TBrand[];
 };
 
 export type TPagination = {
@@ -99,4 +101,16 @@ export type TItemsWithPagination = {
   data: TCharacteristic[];
 };
 
-export type TSortingItems = 'is_hit' | '-is_hit' | 'is_new' | '-is_new' | 'price' | '-price';
+export type TSortingItems = 'is_hit' | 'is_new' | 'price' | '-price';
+
+export type TBrand = {
+  type: string;
+  id: number;
+  name: string;
+  logo: string;
+  in_brand_section: boolean;
+};
+
+export type ResWithData<T> = {
+  data: T;
+};

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, memo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Link } from 'react-router-dom';
@@ -11,24 +11,28 @@ import styles from './items-box.module.scss';
 import { IItemsBoxProps } from './types';
 
 import { Item } from '..';
-import arrowIcon from '../../images/icons/arrow-link.svg';
-import { Button, EButtonKinds, Paragraph, Title } from '../ui';
+import { ArrowLinkIcon, BrandItem, Button, EButtonKinds, Paragraph, Title } from '../ui';
+
+import { TBrand, TCharacteristic } from '~utils';
 
 export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', ...rest }) => {
   const { t } = useTranslation();
 
+  const isBrands = useMemo(() => type === 'brands', [type]);
+
   return (
     <section className={clsx(styles.container, className)} {...rest}>
       <Title className={styles.title}>{t(`items.${type}-title`)}</Title>
-      <Link to={`/${type}`} className={styles.link}>
-        <Paragraph className={styles.text}>
-          {t(`items.${type}-action`)}{' '}
-          <img className={styles.img} src={arrowIcon} alt={t('alts.arrow-icon') || ''} />
-        </Paragraph>
-      </Link>
+      {!isBrands && (
+        <Link to={`/${type}`} className={styles.link}>
+          <Paragraph className={styles.text}>
+            {t(`items.${type}-action`)} <ArrowLinkIcon className={styles.icon} />
+          </Paragraph>
+        </Link>
+      )}
       <Swiper
         slidesPerView='auto'
-        spaceBetween={20}
+        spaceBetween={isBrands ? 24 : 20}
         loop
         navigation
         modules={[Navigation]}
@@ -36,20 +40,34 @@ export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', 
       >
         {data.map(item => (
           <SwiperSlide className={styles.slide} key={item.id}>
-            <Item data={item} onLikeClick={() => console.log('like')} />
+            {type === 'brands' ? (
+              <BrandItem data={item as TBrand} />
+            ) : (
+              <Item data={item as TCharacteristic} onLikeClick={() => console.log('like')} />
+            )}
           </SwiperSlide>
         ))}
       </Swiper>
       <ul className={styles.list_mobile}>
-        {data.map(item => (
-          <Item key={item.id} data={item} onLikeClick={() => console.log('like')} />
-        ))}
+        {data.map(item =>
+          isBrands ? (
+            <BrandItem key={item.id} data={item as TBrand} />
+          ) : (
+            <Item
+              key={item.id}
+              data={item as TCharacteristic}
+              onLikeClick={() => console.log('like')}
+            />
+          ),
+        )}
       </ul>
-      <Button
-        className={styles.btn_mobile}
-        kind={EButtonKinds.load}
-        text={t(`items.${type}-btn`)}
-      />
+      {!isBrands && (
+        <Button
+          className={styles.btn_mobile}
+          kind={EButtonKinds.load}
+          text={t(`items.${type}-btn`)}
+        />
+      )}
     </section>
   );
 });

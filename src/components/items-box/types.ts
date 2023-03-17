@@ -1,7 +1,7 @@
-import { TCharacteristic } from '~utils';
+import { TBrand, TCharacteristic } from '~utils';
 
 export interface IItemsBoxProps {
-  type: 'latest' | 'bestsellers';
-  data: TCharacteristic[];
+  type: 'latest' | 'bestsellers' | 'brands';
+  data: TCharacteristic[] | TBrand[];
   className?: string;
 }

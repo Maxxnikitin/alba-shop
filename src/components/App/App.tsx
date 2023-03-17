@@ -1,9 +1,18 @@
-import { useEffect, useState } from 'react';
 import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart } from '..';
+import {
+  SignIn,
+  Header,
+  Footer,
+  Filters,
+  QueryNotFound,
+  EmptyCart,
+  DiscountsBox,
+  ScrollToTop,
+} from '..';
+
 import {
   AboutPage,
   FaqPage,
@@ -14,43 +23,14 @@ import {
   DiscountPage,
   DiscountWithPercentPage,
 } from '../../pages';
+import { ItemsBox } from '../items-box';
 import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
-import {
-  DataContext,
-  // getContacts,
-  // getBestsellersItems,
-  // getLatestItems,
-  mockCharacteristicsData,
-  mockContactsData,
-  TDataContext,
-} from '~utils';
+import { DataContext, useContextData } from '~utils';
 
 export function App() {
-  const [contextData, setContextData] = useState<TDataContext>({
-    contacts: null,
-    latestSuggestedItems: [],
-    bestsellersSuggestedItems: [],
-  });
   console.log('Render App');
-
-  useEffect(() => {
-    // Promise.all([getContacts(), getLatestItems('?limit=7'), getBestsellersItems('?limit=7')])
-    //   .then(([contacts, latest, bestsellers]) =>
-    //     setContextData({
-    //       contacts,
-    //       latestSuggestedItems: latest.data,
-    //       bestsellersSuggestedItems: bestsellers.data,
-    //     }),
-    //   )
-    //   .catch(err => console.error(err));
-
-    setContextData({
-      contacts: mockContactsData,
-      latestSuggestedItems: mockCharacteristicsData,
-      bestsellersSuggestedItems: mockCharacteristicsData,
-    });
-  }, []);
+  const { contextData } = useContextData();
 
   const routes = useRoutes([
     {
@@ -58,6 +38,8 @@ export function App() {
       element: (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
           <SignIn />
+          <ItemsBox type='brands' data={contextData.brands} />
+          <DiscountsBox />
           <EmptyCart />
           <QueryNotFound />
           <div style={{ width: 292 }}>
@@ -126,6 +108,7 @@ export function App() {
 
   return (
     <div className={styles.container}>
+      <ScrollToTop />
       <DataContext.Provider value={contextData}>
         <Header />
         {routes}
