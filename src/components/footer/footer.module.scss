@@ -88,6 +88,14 @@
   color: $text-gray;
 }
 
+.link {
+  transition: $common-transition;
+}
+
+.link:hover {
+  opacity: $common-hover-opacity;
+}
+
 @media screen and (max-width: 1000px) {
   .container {
     flex-direction: column;

@@ -44,12 +44,15 @@ export const Footer: FC<IFooterProps> = memo(({ className = '', ...rest }) => {
           </nav>
           <div className={styles.about_box}>
             <a
-              className={clsx(styles.text, styles.phone, styles.about_text)}
+              className={clsx(styles.link, styles.text, styles.phone, styles.about_text)}
               href={`tel:${contacts.phone}`}
             >
               {contacts.phone}
             </a>
-            <a className={clsx(styles.text, styles.about_text)} href={`mailto:${contacts.email}`}>
+            <a
+              className={clsx(styles.link, styles.text, styles.about_text)}
+              href={`mailto:${contacts.email}`}
+            >
               {contacts.email}
             </a>
           </div>

@@ -32,7 +32,7 @@ export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', 
       )}
       <Swiper
         slidesPerView='auto'
-        spaceBetween={20}
+        spaceBetween={isBrands ? 24 : 20}
         loop
         navigation
         modules={[Navigation]}

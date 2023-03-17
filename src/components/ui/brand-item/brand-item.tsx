@@ -8,7 +8,7 @@ export const BrandItem: FC<IBrandItemProps> = memo(({ data, className = '', ...r
   console.log('q');
 
   return (
-    <div
+    <li
       className={clsx(styles.brand, className)}
       style={{ backgroundImage: data.logo }}
       {...rest}
