@@ -23,11 +23,11 @@
   margin: 0;
 
   vertical-align: top;
+
   appearance: none;
   background: $text-white;
   border: 1px solid $text-gray;
   border-radius: $common-switch-border-radius;
-  outline: none;
 }
 
 .input::after {
