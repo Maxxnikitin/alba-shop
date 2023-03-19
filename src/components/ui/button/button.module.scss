@@ -100,11 +100,21 @@
     }
   }
 
+  &_type_main-slide {
+    color: $text-white;
+    background: $gray-gradient;
+  }
+
   &_type_primary:hover,
   &_type_sign-in:hover,
   &_type_menu:hover {
     filter: $blue-gradient1-filter;
     box-shadow: $blue-gradient1-shadow;
+  }
+
+  &_type_main-slide:hover {
+    filter: $gray-gradient1-filter;
+    box-shadow: $gray-gradient1-shadow;
   }
 
   &_type_secondary:hover,
