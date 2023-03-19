@@ -16,4 +16,5 @@ export enum EButtonKinds {
   signIn = 'sign-in',
   delay = 'delay',
   order = 'order',
+  mainSlide = 'main-slide',
 }
