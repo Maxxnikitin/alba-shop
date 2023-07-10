@@ -1,17 +1,28 @@
 import clsx from 'clsx';
 import { FC, memo } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import styles from './brand-item.module.scss';
 import { IBrandItemProps } from './types';
 
-export const BrandItem: FC<IBrandItemProps> = memo(({ data, className = '', ...rest }) => {
-  console.log('q');
+import { Paragraph } from '../paragraph';
 
-  return (
-    <li
-      className={clsx(styles.brand, className)}
-      style={{ backgroundImage: data.logo }}
-      {...rest}
-    />
-  );
-});
+import { TCategory } from '~utils';
+
+export const BrandItem: FC<IBrandItemProps> = memo(
+  ({ data, className = '', isCategory = false, ...rest }) => {
+    console.log('q');
+
+    return (
+      <li className={clsx(styles.brand, className)} {...rest}>
+        <Link
+          className={styles.link}
+          style={{ backgroundImage: `url(data.logo)` }}
+          to={isCategory ? (data as TCategory).slug : data.name}
+        />
+        {isCategory && <Paragraph className={styles.text}>{data.name}</Paragraph>}
+      </li>
+    );
+  },
+);

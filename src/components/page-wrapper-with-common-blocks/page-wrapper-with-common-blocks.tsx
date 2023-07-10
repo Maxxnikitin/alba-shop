@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import styles from './page-wrapper-with-common-blocks.module.scss';
 import { IPageWrapperWithCommonBlocksProps } from './types';
 
-import { ItemsBox } from '../items-box';
+import { EBrands, ItemsBox } from '../items-box';
 
 import { DataContext } from '~utils';
 
@@ -19,9 +19,9 @@ export const PageWrapperWithCommonBlocks: FC<IPageWrapperWithCommonBlocksProps> 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
         {children}
-        {pathname !== '/latest' && <ItemsBox type='latest' data={latestSuggestedItems} />}
+        {pathname !== '/latest' && <ItemsBox type={EBrands.LATEST} data={latestSuggestedItems} />}
         {pathname !== '/bestsellers' && (
-          <ItemsBox type='bestsellers' data={bestsellersSuggestedItems} />
+          <ItemsBox type={EBrands.BESTSELLERS} data={bestsellersSuggestedItems} />
         )}
       </div>
     );

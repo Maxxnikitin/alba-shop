@@ -10,7 +10,7 @@ import { IBreadcrumbsItemProps } from './types';
 import { Paragraph } from '../paragraph';
 
 export const BreadcrumbsItem: FC<IBreadcrumbsItemProps> = memo(
-  ({ text, link = '', isActive = false, className = '', ...rest }) => {
+  ({ text, link = '', isActive = false, className = '', brandName, ...rest }) => {
     const { t } = useTranslation();
 
     return (
@@ -20,11 +20,11 @@ export const BreadcrumbsItem: FC<IBreadcrumbsItemProps> = memo(
             className={clsx(styles.text, { [styles.active]: isActive }, className)}
             {...rest}
           >
-            {t(`breadcrumbs.${text}`)}
+            {brandName && isActive ? brandName : t(`breadcrumbs.${text}`)}
           </Paragraph>
         ) : (
           <Link className={clsx(styles.text, styles.link, className)} to={link} {...rest}>
-            {t(`breadcrumbs.${text}`) + ' /'}
+            {brandName && isActive ? brandName : t(`breadcrumbs.${text}`) + ' /'}
           </Link>
         )}
       </>

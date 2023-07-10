@@ -15,9 +15,24 @@
   max-width: 1366px;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  align-items: center;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 16px;
+}
+
 @media screen and (max-width: 500px) {
   .container {
     gap: 70px;
     padding-bottom: 68px;
+  }
+
+  .main {
+    gap: 70px;
   }
 }

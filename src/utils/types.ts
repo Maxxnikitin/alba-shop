@@ -53,7 +53,9 @@ export type TCategory = {
   photo: string;
   level: number;
   slug: string;
-  parend_id: number | null;
+  position: number;
+  mob_position: number;
+  parend_id?: number | null;
 };
 
 export type TGetCategoriesRes = TCategory[];

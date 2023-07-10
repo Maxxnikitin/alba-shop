@@ -7,3 +7,4 @@ export * from './bestsellers-page';
 export * from './discount-page';
 export * from './discount-with-percent-page';
 export * from './main-page';
+export * from './brand-page';

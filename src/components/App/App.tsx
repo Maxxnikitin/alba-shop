@@ -16,6 +16,7 @@ import {
   MainPage,
 } from '../../pages';
 
+import { BrandsPage } from 'src/pages/brand-page';
 import { DataContext, useContextData } from '~utils';
 
 export function App() {
@@ -66,6 +67,10 @@ export function App() {
     {
       path: '/discount/:percent',
       element: <DiscountWithPercentPage />,
+    },
+    {
+      path: '/:brand',
+      element: <BrandsPage />,
     },
     {
       path: '*',

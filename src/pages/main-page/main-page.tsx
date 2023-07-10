@@ -8,7 +8,7 @@ import styles from './main-page.module.scss';
 import './main-extra-styles.scss';
 import { IMainPageProps } from './types';
 
-import { DiscountsBox, ItemsBox, MainSlide } from '../../components';
+import { CatalogMain, DiscountsBox, EBrands, ItemsBox, MainSlide } from '../../components';
 
 import { DataContext, getMainSlides, TMainSlide } from '~utils';
 
@@ -48,7 +48,7 @@ const moxkSlideData: TMainSlide[] = [
 export const MainPage: FC<IMainPageProps> = ({ className = '', ...rest }) => {
   const [slides, setSlides] = useState<TMainSlide[]>([]);
 
-  const { latestSuggestedItems, bestsellersSuggestedItems } = useContext(DataContext);
+  const { latestSuggestedItems, bestsellersSuggestedItems, brands } = useContext(DataContext);
   console.log('rr');
 
   useEffect(() => {
@@ -76,9 +76,13 @@ export const MainPage: FC<IMainPageProps> = ({ className = '', ...rest }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <ItemsBox type='latest' data={latestSuggestedItems} />
-      <ItemsBox type='bestsellers' data={bestsellersSuggestedItems} />
-      <DiscountsBox />
+      <div className={styles.main}>
+        <CatalogMain />
+        <ItemsBox type={EBrands.BRANDS} data={brands} />
+        <ItemsBox type={EBrands.LATEST} data={latestSuggestedItems} />
+        <ItemsBox type={EBrands.BESTSELLERS} data={bestsellersSuggestedItems} />
+        <DiscountsBox />
+      </div>
     </section>
   );
 };

@@ -12,6 +12,7 @@ import type {
   ResWithData,
   TBrand,
   TMainSlide,
+  TCategory,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -66,6 +67,11 @@ export const getBrandsItems = () =>
   axios
     .get(`${URL}/brands/`)
     .then((res: AxiosResponse<ResWithData<TBrand[]>>) => checkResponse(res));
+
+export const getBrandCategories = (id: string | number) =>
+  axios
+    .get(`${URL}/brands/${id}/categories`)
+    .then((res: AxiosResponse<ResWithData<TCategory[]>>) => checkResponse(res));
 
 export const getMainSlides = () =>
   axios

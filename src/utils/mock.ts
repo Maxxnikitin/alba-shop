@@ -154,6 +154,8 @@ export const mockCategories = [
     level: 0,
     slug: 'stekla-dlya-iphone',
     parend_id: null,
+    position: 1,
+    mob_position: 1,
   },
   {
     type: 'categories',
@@ -164,6 +166,8 @@ export const mockCategories = [
     level: 0,
     slug: 'stekla-dlya-iphone',
     parend_id: null,
+    position: 2,
+    mob_position: 2,
   },
   {
     type: 'categories',
@@ -174,6 +178,8 @@ export const mockCategories = [
     level: 0,
     slug: 'stekla-dlya-iphone',
     parend_id: null,
+    position: 6,
+    mob_position: 3,
   },
   {
     type: 'categories',
@@ -184,8 +190,9 @@ export const mockCategories = [
     level: 0,
     slug: 'stekla-dlya-iphone',
     parend_id: null,
+    position: 4,
+    mob_position: 5,
   },
-
   {
     type: 'categories',
     id: 7,
@@ -195,6 +202,8 @@ export const mockCategories = [
     level: 0,
     slug: 'stekla-dlya-iphone',
     parend_id: null,
+    position: 3,
+    mob_position: 4,
   },
   {
     type: 'categories',
@@ -205,6 +214,8 @@ export const mockCategories = [
     level: 0,
     slug: 'stekla-dlya-iphone',
     parend_id: null,
+    position: 8,
+    mob_position: 8,
   },
   {
     type: 'categories',
@@ -215,6 +226,8 @@ export const mockCategories = [
     level: 0,
     slug: 'stekla-dlya-iphone',
     parend_id: null,
+    position: 9,
+    mob_position: 9,
   },
   {
     type: 'categories',
@@ -225,6 +238,8 @@ export const mockCategories = [
     level: 0,
     slug: 'stekla-dlya-iphone',
     parend_id: null,
+    position: 7,
+    mob_position: 7,
   },
   {
     type: 'categories',
@@ -235,6 +250,8 @@ export const mockCategories = [
     level: 0,
     slug: 'stekla-dlya-iphone',
     parend_id: null,
+    position: 5,
+    mob_position: 6,
   },
 ];
 

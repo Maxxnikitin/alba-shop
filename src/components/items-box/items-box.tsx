@@ -8,7 +8,7 @@ import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import styles from './items-box.module.scss';
-import { IItemsBoxProps } from './types';
+import { EBrands, IItemsBoxProps } from './types';
 
 import { Item } from '..';
 import { ArrowLinkIcon, BrandItem, Button, EButtonKinds, Paragraph, Title } from '../ui';
@@ -18,7 +18,7 @@ import { TBrand, TCharacteristic } from '~utils';
 export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', ...rest }) => {
   const { t } = useTranslation();
 
-  const isBrands = useMemo(() => type === 'brands', [type]);
+  const isBrands = useMemo(() => type === EBrands.BRANDS, [type]);
 
   return (
     <section className={clsx(styles.container, className)} {...rest}>
@@ -40,7 +40,7 @@ export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', 
       >
         {data.map(item => (
           <SwiperSlide className={styles.slide} key={item.id}>
-            {type === 'brands' ? (
+            {type === EBrands.BRANDS ? (
               <BrandItem data={item as TBrand} />
             ) : (
               <Item data={item as TCharacteristic} onLikeClick={() => console.log('like')} />
