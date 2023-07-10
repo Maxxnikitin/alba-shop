@@ -2,16 +2,7 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import {
-  SignIn,
-  Header,
-  Footer,
-  Filters,
-  QueryNotFound,
-  EmptyCart,
-  DiscountsBox,
-  ScrollToTop,
-} from '..';
+import { Header, Footer, ScrollToTop } from '..';
 
 import {
   AboutPage,
@@ -22,9 +13,8 @@ import {
   BestsellersPage,
   DiscountPage,
   DiscountWithPercentPage,
+  MainPage,
 } from '../../pages';
-import { ItemsBox } from '../items-box';
-import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
 import { DataContext, useContextData } from '~utils';
 
@@ -35,30 +25,7 @@ export function App() {
   const routes = useRoutes([
     {
       path: '/',
-      element: (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
-          <SignIn />
-          <ItemsBox type='brands' data={contextData.brands} />
-          <DiscountsBox />
-          <EmptyCart />
-          <QueryNotFound />
-          <div style={{ width: 292 }}>
-            <CloseButton text='Close filters' />
-            <Filters />
-          </div>
-          <Button text='Да, очистить корзину' />
-          <Button text='Отменить' kind={EButtonKinds.secondary} />
-          <Button text='Каталог' kind={EButtonKinds.menu} />
-          <Button text='Изменить' kind={EButtonKinds.addition} />
-          <Button text='Загрузить ещё' kind={EButtonKinds.load} />
-          <Button text='Ожидает поступления' kind={EButtonKinds.itemMissing} />
-          <Button text='Войти' kind={EButtonKinds.signIn} />
-          <Button text='Отправить повторно через 50с' kind={EButtonKinds.delay} />
-          <Input label='Город' />
-          <Input placeholder='Имя' label='Имя' />
-          <Input placeholder='Пароль' type='password' />
-        </div>
-      ),
+      element: <MainPage />,
     },
     {
       path: '/account',

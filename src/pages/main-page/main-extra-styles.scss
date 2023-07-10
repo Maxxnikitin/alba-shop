@@ -1,0 +1,17 @@
+@import '../../index';
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+  background: $text-gray;
+}
+
+.swiper-pagination-bullet-active {
+  box-sizing: border-box;
+  width: 14px;
+  height: 14px;
+
+  background: none;
+  border: 2px solid $text-gray;
+}

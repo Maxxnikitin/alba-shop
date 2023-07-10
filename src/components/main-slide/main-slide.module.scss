@@ -11,6 +11,7 @@
   min-height: 484px;
   margin: 0 auto;
   padding-top: 100px;
+  padding-right: 70px;
   padding-left: 70px;
 }
 
@@ -31,4 +32,11 @@
 
   color: $text-gray;
   text-align: left;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    min-height: 577px;
+    padding: 235px 16px 50px;
+  }
 }

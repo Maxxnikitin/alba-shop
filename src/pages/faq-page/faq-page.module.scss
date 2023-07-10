@@ -20,6 +20,11 @@
   border-bottom: 1px solid $text-black;
 }
 
+.input {
+  color: red;
+  background-color: red;
+}
+
 @media screen and (max-width: 900px) {
   .container {
     padding: 56px 24px 156px;

@@ -114,3 +114,14 @@ export type TBrand = {
 export type ResWithData<T> = {
   data: T;
 };
+
+export type TMainSlide = {
+  type: string;
+  id: number;
+  slide: string;
+  main: boolean;
+  title: string;
+  text: string;
+  btnText: string;
+  btnLink: string;
+};

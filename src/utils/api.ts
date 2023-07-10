@@ -11,6 +11,7 @@ import type {
   TItemsWithPagination,
   ResWithData,
   TBrand,
+  TMainSlide,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -65,3 +66,8 @@ export const getBrandsItems = () =>
   axios
     .get(`${URL}/brands/`)
     .then((res: AxiosResponse<ResWithData<TBrand[]>>) => checkResponse(res));
+
+export const getMainSlides = () =>
+  axios
+    .get(`${URL}/pages/mainslider/`)
+    .then((res: AxiosResponse<ResWithData<TMainSlide[]>>) => checkResponse(res));

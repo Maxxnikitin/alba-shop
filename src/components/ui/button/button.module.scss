@@ -133,10 +133,16 @@
 
 @media screen and (max-width: 550px) {
   .button {
-    &_type_menu {
-      width: 36px;
-      height: 36px;
-      padding: 10px;
+    &_type {
+      &_menu {
+        width: 36px;
+        height: 36px;
+        padding: 10px;
+      }
+
+      &_main-slide {
+        width: 100%;
+      }
     }
 
     &_icon {
