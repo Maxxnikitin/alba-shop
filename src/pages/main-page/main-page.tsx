@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 
 import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,10 +8,9 @@ import styles from './main-page.module.scss';
 import './main-extra-styles.scss';
 import { IMainPageProps } from './types';
 
-import { MainSlide } from '../../components';
+import { DiscountsBox, ItemsBox, MainSlide } from '../../components';
 
-import Popup from 'src/components/pop/popup';
-import { getMainSlides, TMainSlide } from '~utils';
+import { DataContext, getMainSlides, TMainSlide } from '~utils';
 
 const moxkSlideData: TMainSlide[] = [
   {
@@ -48,6 +47,8 @@ const moxkSlideData: TMainSlide[] = [
 
 export const MainPage: FC<IMainPageProps> = ({ className = '', ...rest }) => {
   const [slides, setSlides] = useState<TMainSlide[]>([]);
+
+  const { latestSuggestedItems, bestsellersSuggestedItems } = useContext(DataContext);
   console.log('rr');
 
   useEffect(() => {
@@ -75,6 +76,9 @@ export const MainPage: FC<IMainPageProps> = ({ className = '', ...rest }) => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <ItemsBox type='latest' data={latestSuggestedItems} />
+      <ItemsBox type='bestsellers' data={bestsellersSuggestedItems} />
+      <DiscountsBox />
     </section>
   );
 };

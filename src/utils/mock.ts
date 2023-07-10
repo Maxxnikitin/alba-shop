@@ -53,7 +53,7 @@ export const mockCharacteristicsData = [
     is_bestseller: true,
     in_favorite: false,
     photo: [
-      'https://mykapitan.ru/wp-content/uploads/2022/11/01-12.jpg',
+      'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
       'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
       'https://img.mvideo.ru/Pdb/50129627b.jpg',
     ],

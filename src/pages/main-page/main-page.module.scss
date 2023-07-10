@@ -3,13 +3,21 @@
 .container {
   display: flex;
   flex-direction: column;
+  gap: 150px;
   align-items: center;
 
   width: 100%;
-  padding-bottom: 40px;
+  padding-bottom: 150px;
 }
 
 .swiper {
   position: relative;
   max-width: 1366px;
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    gap: 70px;
+    padding-bottom: 68px;
+  }
 }

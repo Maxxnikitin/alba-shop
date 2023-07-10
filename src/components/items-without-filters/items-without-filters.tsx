@@ -54,7 +54,7 @@ const mockData = {
       is_new: true,
       is_bestseller: true,
       in_favorite: false,
-      photo: ['https://mykapitan.ru/wp-content/uploads/2022/11/01-12.jpg'],
+      photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
     },
     {
       type: 'characteristics',
