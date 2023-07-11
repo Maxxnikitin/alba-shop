@@ -18,32 +18,45 @@ export const PersonalAccountPage: FC<IPersonalAccountPageProps> = ({ className =
       <Title className={styles.title}>{t('personal-account.title')}</Title>
       <div className={styles.main}>
         <nav className={styles.nav}>
-          <NavLink
-            to='/personal-account/orders'
-            className={({ isActive }) => clsx(styles.link, { [styles.link_active]: isActive })}
-          >
-            {t('personal-account.links.orders')}
-          </NavLink>
-          <NavLink
-            to='/personal-account/favorite'
-            className={({ isActive }) => clsx(styles.link, { [styles.link_active]: isActive })}
-          >
-            {t('personal-account.links.favorite')}
-          </NavLink>
-          <NavLink
-            to='/personal-account/data'
-            className={({ isActive }) => clsx(styles.link, { [styles.link_active]: isActive })}
-          >
-            {t('personal-account.links.data')}
-          </NavLink>
-          <NavLink
-            to='/personal-account/coupons'
-            className={({ isActive }) => clsx(styles.link, { [styles.link_active]: isActive })}
-          >
-            {t('personal-account.links.coupons')}
-          </NavLink>
+          <ul className={styles.links}>
+            <li className={styles.li}>
+              <NavLink
+                to='/personal-account/orders'
+                className={({ isActive }) => clsx(styles.link, { [styles.link_active]: isActive })}
+              >
+                {t('personal-account.links.orders')}
+              </NavLink>
+            </li>
+            <li className={styles.li}>
+              <NavLink
+                to='/personal-account/favorite'
+                className={({ isActive }) => clsx(styles.link, { [styles.link_active]: isActive })}
+              >
+                {t('personal-account.links.favorite')}
+              </NavLink>
+            </li>
+            <li className={styles.li}>
+              <NavLink
+                to='/personal-account/data'
+                className={({ isActive }) => clsx(styles.link, { [styles.link_active]: isActive })}
+              >
+                {t('personal-account.links.data')}
+              </NavLink>
+            </li>
+
+            <li className={styles.li}>
+              <NavLink
+                to='/personal-account/coupons'
+                className={({ isActive }) => clsx(styles.link, { [styles.link_active]: isActive })}
+              >
+                {t('personal-account.links.coupons')}
+              </NavLink>
+            </li>
+          </ul>
         </nav>
-        <Outlet />
+        <div className={styles.right_column}>
+          <Outlet />
+        </div>
       </div>
     </section>
   );
