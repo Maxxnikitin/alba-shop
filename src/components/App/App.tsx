@@ -1,4 +1,5 @@
-import { useRoutes } from 'react-router-dom';
+import { useMemo } from 'react';
+import { useLocation, useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
@@ -14,6 +15,7 @@ import {
   DiscountPage,
   DiscountWithPercentPage,
   MainPage,
+  SignInPage,
 } from '../../pages';
 
 import { ItemsWithFilters } from '../items-with-filters';
@@ -24,8 +26,15 @@ import { DataContext, useContextData } from '~utils';
 export function App() {
   console.log('Render App');
   const { contextData } = useContextData();
+  const { pathname } = useLocation();
+
+  const isAuth = useMemo(() => pathname === '/sign-in', [pathname]);
 
   const routes = useRoutes([
+    {
+      path: '/sign-in',
+      element: <SignInPage />,
+    },
     {
       path: '/',
       element: <MainPage />,
@@ -88,9 +97,9 @@ export function App() {
     <div className={styles.container}>
       <ScrollToTop />
       <DataContext.Provider value={contextData}>
-        <Header />
+        {!isAuth && <Header />}
         {routes}
-        <Footer />
+        {!isAuth && <Footer />}
       </DataContext.Provider>
     </div>
   );

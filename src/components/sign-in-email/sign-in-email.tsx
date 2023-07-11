@@ -16,6 +16,8 @@ import { ISignInEmailProps } from './types';
 
 import { Button, EButtonKinds, Input, Paragraph, Title } from '../ui';
 
+import { authSetEmail } from '~utils';
+
 export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) => {
   const [inputsData, setInputsData] = useState({
     email: '',
@@ -38,7 +40,7 @@ export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) 
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
-    console.log('submit');
+    authSetEmail(inputsData).then(res => console.log(res));
   };
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) 
   }, [emailInputRef]);
 
   return (
-    <form className={clsx(styles.form, className)} noValidate onSubmit={handleSubmit} {...rest}>
+    <form className={clsx(styles.form, className)} onSubmit={handleSubmit} {...rest}>
       <Title className={styles.title}>{t('sign-in.title')}</Title>
       <Paragraph className={styles.paragraph}>{t('sign-in.subtitle')}</Paragraph>
       <Input
@@ -56,6 +58,7 @@ export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) 
         fieldClassName={styles.input}
         type='email'
         id='email'
+        required
         value={inputsData.email}
         onChange={handleChangeInputs}
         ref={emailInputRef}

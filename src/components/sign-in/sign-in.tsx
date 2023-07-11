@@ -9,7 +9,7 @@ import { SignInSms, SignInEmail } from '../';
 import { ETypes, Tabs } from '../ui';
 
 export const SignIn: FC<ISignInProps> = ({ className = '', ...rest }) => {
-  const [activeTab, setActiveTab] = useState<ETypes>(ETypes.phone);
+  const [activeTab, setActiveTab] = useState<ETypes>(ETypes.email);
 
   return (
     <section className={clsx(styles.signin, { [className]: className })} {...rest}>

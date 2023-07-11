@@ -1,0 +1,26 @@
+@import '../../components/common';
+
+.container {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  margin: auto 0;
+
+  .left_column {
+    width: 50%;
+    height: min(900px, 100dvh);
+
+    background-color: $text-black;
+    background-image: url('../../images/sign-in.jpg');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+  }
+
+  .right_column {
+    width: 50%;
+  }
+
+  .form {
+    margin-top: 103px;
+  }
+}

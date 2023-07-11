@@ -10,6 +10,11 @@ export type TAuthSetCodeDto = TAuthSetPhoneDto & {
   otp: number;
 };
 
+export type TAuthEmailDto = {
+  email: string;
+  password: string;
+};
+
 export type TGetFaqDataRes = {
   type: 'faq';
   id: number;

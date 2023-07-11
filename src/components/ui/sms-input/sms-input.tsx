@@ -29,7 +29,7 @@ export const SmsInput: FC<TSmsInputProps> = memo(
         const { id } = e.target;
         let { value } = e.target;
 
-        if (value !== '' && !+value) return;
+        if (value !== '' && isNaN(+value)) return;
 
         if (value.length > 1) {
           value = value.substring(value.length - 1);

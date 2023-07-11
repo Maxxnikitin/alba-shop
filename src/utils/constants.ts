@@ -1,3 +1,3 @@
-export const URL = 'localhost:3000';
+export const URL = 'https://albamobile.ru/api/v1';
 
 export const sortingItems = ['is_hit', 'is_new', 'price', '-price'];
