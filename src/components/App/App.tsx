@@ -16,6 +16,8 @@ import {
   MainPage,
 } from '../../pages';
 
+import { ItemsWithFilters } from '../items-with-filters';
+
 import { BrandsPage } from 'src/pages/brand-page';
 import { DataContext, useContextData } from '~utils';
 
@@ -67,6 +69,10 @@ export function App() {
     {
       path: '/discount/:percent',
       element: <DiscountWithPercentPage />,
+    },
+    {
+      path: '/test',
+      element: <ItemsWithFilters title='test' />,
     },
     {
       path: '/:brand',
