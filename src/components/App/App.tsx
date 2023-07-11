@@ -3,7 +3,7 @@ import { useLocation, useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import { Header, Footer, ScrollToTop } from '..';
+import { Header, Footer, ScrollToTop, FavoriteItems } from '..';
 
 import {
   AboutPage,
@@ -16,6 +16,7 @@ import {
   DiscountWithPercentPage,
   MainPage,
   SignInPage,
+  PersonalAccountPage,
 } from '../../pages';
 
 import { ItemsWithFilters } from '../items-with-filters';
@@ -82,6 +83,28 @@ export function App() {
     {
       path: '/test',
       element: <ItemsWithFilters title='test' />,
+    },
+    {
+      path: '/personal-account',
+      element: <PersonalAccountPage />,
+      children: [
+        {
+          path: 'orders',
+          element: <p>orders</p>,
+        },
+        {
+          path: 'favorite',
+          element: <FavoriteItems />,
+        },
+        {
+          path: 'data',
+          element: <p>data</p>,
+        },
+        {
+          path: 'coupons',
+          element: <p>coupons</p>,
+        },
+      ],
     },
     {
       path: '/:brand',

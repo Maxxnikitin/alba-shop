@@ -9,3 +9,4 @@ export * from './discount-with-percent-page';
 export * from './main-page';
 export * from './brand-page';
 export * from './sign-in-page';
+export * from './personal-account-page';

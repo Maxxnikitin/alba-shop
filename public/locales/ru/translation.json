@@ -150,5 +150,14 @@
   },
   "brand-items": {
     "title": "Товары {{brand}}"
+  },
+  "personal-account": {
+    "title": "Личный кабинет",
+    "links": {
+      "orders": "Мои заказы",
+      "favorite": "Избранное",
+      "data": "Мои данные",
+      "coupons": "Мои купоны"
+    }
   }
 }
