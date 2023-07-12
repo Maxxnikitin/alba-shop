@@ -138,3 +138,26 @@ export type TMainSlide = {
   btnText: string;
   btnLink: string;
 };
+
+export type TUser = {
+  type: string;
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  company_name: string | null;
+  phone_number: string;
+  city: string | null;
+  order_amount: string;
+  discount: number;
+  date_joined: string;
+  ext_id: string | null;
+};
+
+export type TLoyalties = {
+  type: string;
+  id: number;
+  name: string;
+  order_amount: number;
+  percent: number;
+};

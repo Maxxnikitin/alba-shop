@@ -15,6 +15,8 @@ import type {
   TCategory,
   TAuthEmailDto,
   TAuthResult,
+  TUser,
+  TLoyalties,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -115,3 +117,17 @@ export const getMainSlides = () =>
       headers: headersWithAuth(),
     })
     .then((res: AxiosResponse<ResWithData<TMainSlide[]>>) => checkResponse(res));
+
+export const getUser = () =>
+  axios
+    .get(`${URL}/customers/me/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<ResWithData<TUser>>) => checkResponse(res));
+
+export const getUserLoyalties = () =>
+  axios
+    .get(`${URL}/pages/loyalties/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<ResWithData<TLoyalties[]>>) => checkResponse(res));

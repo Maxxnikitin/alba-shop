@@ -172,20 +172,10 @@
     },
     "status": {
       "title": "Статус",
-      "subtitle": "Ещё {{amount}} до следующего статуса",
+      "subtitle": "Ещё {{amount}}₽ до следующего статуса",
       "steps": {
-        "one": {
-          "name": "Basic",
-          "discount": "Пока без скидок"
-        },
-        "two": {
-          "name": "Silver",
-          "discount": "Скидка 5%"
-        },
-        "three": {
-          "name": "Gold",
-          "discount": "Скидка 15%"
-        }
+        "without-discount": "Пока без скидок",
+        "discount": "Скидка {{percent}}%"
       }
     }
   }
