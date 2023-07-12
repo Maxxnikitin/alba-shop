@@ -29,7 +29,7 @@ export function App() {
   const { contextData } = useContextData();
   const { pathname } = useLocation();
 
-  const isAuth = useMemo(() => pathname === '/sign-in', [pathname]);
+  const isAuthPage = useMemo(() => pathname === '/sign-in', [pathname]);
 
   const routes = useRoutes([
     {
@@ -120,9 +120,9 @@ export function App() {
     <div className={styles.container}>
       <ScrollToTop />
       <DataContext.Provider value={contextData}>
-        {!isAuth && <Header />}
+        {!isAuthPage && <Header />}
         {routes}
-        {!isAuth && <Footer />}
+        {!isAuthPage && <Footer />}
       </DataContext.Provider>
     </div>
   );

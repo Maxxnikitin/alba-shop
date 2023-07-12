@@ -6,8 +6,6 @@ import { useTranslation } from 'react-i18next';
 import styles from './category-item.module.scss';
 import { ICategoryItemProps } from './types';
 
-import cableIcon from '../../../images/icons/cable.svg';
-
 import { Paragraph } from '../paragraph';
 
 export const CategoryItem: FC<ICategoryItemProps> = ({ text, className = '', icon, ...rest }) => {
@@ -15,7 +13,7 @@ export const CategoryItem: FC<ICategoryItemProps> = ({ text, className = '', ico
 
   return (
     <li className={clsx(styles.container, className)} {...rest}>
-      <img src={cableIcon} alt={t('alts.category-icon') || ''} />
+      <img src={icon} alt={t('alts.category-icon') || ''} />
       <Paragraph className={styles.text}>{text}</Paragraph>
     </li>
   );
