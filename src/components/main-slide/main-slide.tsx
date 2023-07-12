@@ -22,12 +22,14 @@ export const MainSlide: FC<IMainSlideProps> = memo(({ data, className = '', ...r
     >
       <Title className={styles.title}>{title}</Title>
       <Paragraph className={styles.text}>{text}</Paragraph>
-      <Button
-        onClick={handleClick}
-        text={btnText}
-        className={styles.btn}
-        kind={EButtonKinds.mainSlide}
-      />
+      {btnText && btnLink && (
+        <Button
+          onClick={handleClick}
+          text={btnText}
+          className={styles.btn}
+          kind={EButtonKinds.mainSlide}
+        />
+      )}
     </div>
   );
 });

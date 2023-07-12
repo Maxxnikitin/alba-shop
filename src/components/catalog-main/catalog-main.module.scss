@@ -1,5 +1,11 @@
 @import '../common';
 
+.container {
+  width: 100%;
+  max-width: 1226px;
+  margin: 0 auto;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -9,8 +15,10 @@
   &_item {
     cursor: pointer;
     background-color: $gray2;
+    background-repeat: no-repeat;
+    background-position: center bottom;
 
-    &_0 {
+    &_1 {
       display: flex;
       grid-column: 1/6;
       grid-row: 1/2;
@@ -18,27 +26,27 @@
       align-items: flex-start;
     }
 
-    &_1 {
+    &_2 {
       grid-column: 6/10;
       grid-row: 1/2;
     }
 
-    &_2 {
+    &_3 {
       grid-column: 10/13;
       grid-row: 1/2;
     }
 
-    &_3 {
+    &_4 {
       grid-column: 1/5;
       grid-row: 2/3;
     }
 
-    &_4 {
+    &_5 {
       grid-column: 5/10;
       grid-row: 2/3;
     }
 
-    &_5 {
+    &_6 {
       display: flex;
       grid-column: 10/13;
       grid-row: 2/4;
@@ -46,17 +54,17 @@
       justify-content: center;
     }
 
-    &_6 {
+    &_7 {
       grid-column: 1/4;
       grid-row: 3/4;
     }
 
-    &_7 {
+    &_8 {
       grid-column: 4/7;
       grid-row: 3/4;
     }
 
-    &_8 {
+    &_9 {
       grid-column: 7/10;
       grid-row: 3/4;
     }
@@ -64,8 +72,13 @@
     &_title {
       margin-top: 34px;
 
-      &_0 {
+      &_1 {
         padding-left: 40px;
+      }
+
+      &_6 {
+        margin-top: 15px;
+        text-align: center;
       }
     }
   }

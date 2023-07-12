@@ -18,13 +18,17 @@ export const CatalogMain: FC<ICatalogMainProps> = memo(({ className = '', ...res
     <section className={clsx(styles.container, className)} {...rest}>
       <Title className={styles.title}>{t('catalog.title')}</Title>
       <div className={styles.grid}>
-        {categories.map((category, i) => (
-          <div key={category.id} className={clsx(styles.grid_item, styles[`grid_item_${i}`])}>
+        {categories.map(({ id, photo, position, name }) => (
+          <div
+            key={id}
+            className={clsx(styles.grid_item, styles[`grid_item_${position}`])}
+            style={{ backgroundImage: `url(${photo})` }}
+          >
             <Title
               level={ETitleLevel.h4}
-              className={clsx(styles.grid_item_title, styles[`grid_item_title_${i}`])}
+              className={clsx(styles.grid_item_title, styles[`grid_item_title_${position}`])}
             >
-              {category.name}
+              {name}
             </Title>
           </div>
         ))}

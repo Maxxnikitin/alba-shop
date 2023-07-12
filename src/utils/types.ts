@@ -6,6 +6,11 @@ export type TAuthSetPhoneRes = {
   message: string;
 };
 
+export type TAuthResult = {
+  access: string;
+  refresh: string;
+};
+
 export type TAuthSetCodeDto = TAuthSetPhoneDto & {
   otp: number;
 };
@@ -81,7 +86,7 @@ export type TContacts = {
   telegram: string;
   instagram: string;
   vk: string;
-  map: string;
+  map_link: string;
 };
 
 export type TDataContext = {
@@ -120,6 +125,7 @@ export type TBrand = {
 
 export type ResWithData<T> = {
   data: T;
+  meta: TMeta;
 };
 
 export type TMainSlide = {

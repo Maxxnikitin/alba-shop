@@ -14,6 +14,7 @@ import type {
   TMainSlide,
   TCategory,
   TAuthEmailDto,
+  TAuthResult,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -23,6 +24,11 @@ export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res =
   return Promise.reject(res);
 };
 
+const headersWithAuth = () => ({
+  'Content-Type': 'application-json',
+  Authorization: `Bearer ${localStorage.getItem('access')}`,
+});
+
 export const authSetPhone = (data: TAuthSetPhoneDto) =>
   axios
     .post(`${URL}/auth/otp_request/`, data)
@@ -31,55 +37,81 @@ export const authSetPhone = (data: TAuthSetPhoneDto) =>
 export const authSetEmail = (data: TAuthEmailDto) =>
   axios
     .post(`${URL}/auth/login/`, data)
-    .then((res: AxiosResponse<TAuthSetPhoneRes>) => checkResponse(res));
+    .then((res: AxiosResponse<TAuthResult>) => checkResponse(res));
 
 export const getFaqData = () =>
-  axios.get(`${URL}/pages/faq/`).then((res: AxiosResponse<TGetFaqDataRes[]>) => checkResponse(res));
+  axios
+    .get(`${URL}/pages/faq/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<TGetFaqDataRes[]>) => checkResponse(res));
 
 export const getProduct = (id: string) =>
   axios
-    .get(`${URL}/products/${id}/`)
+    .get(`${URL}/products/${id}/`, {
+      headers: headersWithAuth(),
+    })
     .then((res: AxiosResponse<TGetProductRes>) => checkResponse(res));
 
 export const getCategories = () =>
   axios
-    .get(`${URL}/categories/`)
-    .then((res: AxiosResponse<TGetCategoriesRes>) => checkResponse(res));
+    .get(`${URL}/categories/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<ResWithData<TGetCategoriesRes>>) => checkResponse(res));
 
 export const getAboutInfo = () =>
   axios
-    .get(`${URL}/pages/about/`)
+    .get(`${URL}/pages/about/`, {
+      headers: headersWithAuth(),
+    })
     .then((res: AxiosResponse<TGetAboutInfoRes>) => checkResponse(res));
 
 export const getContacts = () =>
-  axios.get(`${URL}/pages/contacts/`).then((res: AxiosResponse<TContacts>) => checkResponse(res));
+  axios
+    .get(`${URL}/pages/contacts/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<ResWithData<TContacts>>) => checkResponse(res));
 
 export const getLatestItems = (query = '') =>
   axios
-    .get(`${URL}/products/latest/${query}`)
+    .get(`${URL}/products/latest/${query}`, {
+      headers: headersWithAuth(),
+    })
     .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));
 
 export const getBestsellersItems = (query = '') =>
   axios
-    .get(`${URL}/products/bestsellers/${query}`)
+    .get(`${URL}/products/bestsellers/${query}`, {
+      headers: headersWithAuth(),
+    })
     .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));
 
 export const getDiscountItems = (query = '') =>
   axios
-    .get(`${URL}/products/latest/${query}`)
+    .get(`${URL}/products/discount/${query}`, {
+      headers: headersWithAuth(),
+    })
     .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));
 
 export const getBrandsItems = () =>
   axios
-    .get(`${URL}/brands/`)
+    .get(`${URL}/brands/`, {
+      headers: headersWithAuth(),
+    })
     .then((res: AxiosResponse<ResWithData<TBrand[]>>) => checkResponse(res));
 
 export const getBrandCategories = (id: string | number) =>
   axios
-    .get(`${URL}/brands/${id}/categories`)
+    .get(`${URL}/brands/${id}/categories`, {
+      headers: headersWithAuth(),
+    })
     .then((res: AxiosResponse<ResWithData<TCategory[]>>) => checkResponse(res));
 
 export const getMainSlides = () =>
   axios
-    .get(`${URL}/pages/mainslider/`)
+    .get(`${URL}/pages/mainslider/`, {
+      headers: headersWithAuth(),
+    })
     .then((res: AxiosResponse<ResWithData<TMainSlide[]>>) => checkResponse(res));
