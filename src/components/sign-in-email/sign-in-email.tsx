@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import clsx from 'clsx';
 import {
   ChangeEventHandler,
@@ -9,6 +10,8 @@ import {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { useNavigate } from 'react-router-dom';
 
 import styles from './sign-in-email.module.scss';
 
@@ -23,24 +26,43 @@ export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) 
     email: '',
     password: '',
   });
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const emailInputRef = useRef(null);
 
   const handleChangeInputs: ChangeEventHandler<HTMLInputElement> = useCallback(
     e => {
+      submitError && setSubmitError(null);
       setInputsData({
         ...inputsData,
         [e.target.id]: e.target.value,
       });
     },
-    [inputsData],
+    [inputsData, submitError],
   );
+
+  console.log(document.cookie);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
-    authSetEmail(inputsData).then(res => console.log(res));
+    submitError && setSubmitError(null);
+    authSetEmail(inputsData)
+      .then(({ access, refresh }) => {
+        localStorage.setItem('access', access);
+        localStorage.setItem('refresh', refresh);
+
+        navigate('/', { replace: true });
+      })
+      .catch((err: AxiosError) => {
+        if (err.response?.status === 401) {
+          setSubmitError(t('sign-in.password-error'));
+        } else {
+          setSubmitError(t('sign-in.server-error'));
+        }
+      });
   };
 
   useEffect(() => {
@@ -53,6 +75,11 @@ export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) 
     <form className={clsx(styles.form, className)} onSubmit={handleSubmit} {...rest}>
       <Title className={styles.title}>{t('sign-in.title')}</Title>
       <Paragraph className={styles.paragraph}>{t('sign-in.subtitle')}</Paragraph>
+      {submitError && (
+        <Paragraph className={styles.error} isError>
+          {submitError}
+        </Paragraph>
+      )}
       <Input
         placeholder='E-mail'
         fieldClassName={styles.input}
@@ -62,6 +89,7 @@ export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) 
         value={inputsData.email}
         onChange={handleChangeInputs}
         ref={emailInputRef}
+        isError={!!submitError}
       />
       <Input
         placeholder={t('inputs.password') || ''}
@@ -70,6 +98,7 @@ export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) 
         id='password'
         value={inputsData.password}
         onChange={handleChangeInputs}
+        isError={!!submitError}
       />
       <Button text={t('sign-in.submit-btn')} kind={EButtonKinds.signIn} type='submit' />
     </form>

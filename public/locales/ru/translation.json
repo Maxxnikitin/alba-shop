@@ -7,7 +7,8 @@
     "submit-btn": "Войти",
     "sent-sms-btn": "Отправить повторно через {{amount}} с.",
     "resent-sms-btn": "Отправить повторно",
-    "password-error": "Неверный E-mail или пароль"
+    "password-error": "Неверный E-mail или пароль",
+    "server-error": "Ошибка сервера"
   },
   "main-page": {
     "catalog-btn": "Каталог",
@@ -47,7 +48,8 @@
       "phone": "Иконка телефона.",
       "email": "Иконка почты."
     },
-    "sign-in": "Входная картинка."
+    "sign-in": "Входная картинка.",
+    "category": "Категория товара."
   },
   "filters": {
     "description": "Описание",
