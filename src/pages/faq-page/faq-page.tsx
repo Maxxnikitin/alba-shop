@@ -4,7 +4,7 @@ import { MouseEventHandler, FC, useCallback, useEffect, useState } from 'react';
 import styles from './faq-page.module.scss';
 import { IFaqPageProps } from './types';
 
-import { Title, Accordion, Input } from '../../components/ui';
+import { Title, Accordion } from '../../components/ui';
 
 import { TGetFaqDataRes } from '~utils';
 
@@ -19,7 +19,7 @@ export const FaqPage: FC<IFaqPageProps> = ({ className = '', ...rest }) => {
   }, []);
 
   useEffect(() => {
-    // getFaqData().then(res => setData(res))
+    // getFaqData().then(res => setData(res));
     setData([
       {
         type: 'faq',
@@ -64,7 +64,6 @@ export const FaqPage: FC<IFaqPageProps> = ({ className = '', ...rest }) => {
             />
           ))}
       </div>
-      <Input className={styles.input} />
     </section>
   );
 };
