@@ -3,7 +3,7 @@ import { useLocation, useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import { Header, Footer, ScrollToTop, FavoriteItems } from '..';
+import { Header, Footer, ScrollToTop, FavoriteItems, PersonalData } from '..';
 
 import {
   AboutPage,
@@ -98,7 +98,7 @@ export function App() {
         },
         {
           path: 'data',
-          element: <p>data</p>,
+          element: <PersonalData />,
         },
         {
           path: 'coupons',

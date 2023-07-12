@@ -20,12 +20,12 @@ export const Navigation: FC<INavigationProps> = ({ className = '', ...rest }) =>
           </Link>
         </li>
         <li className={clsx(styles.list_item, styles.list_item_mob_none)}>
-          <Link className={styles.list_link} to='/account'>
+          <Link className={styles.list_link} to='/personal-account/data'>
             <AccountIcon className={styles.icon} />
           </Link>
         </li>
         <li className={clsx(styles.list_item, styles.list_item_mob_none)}>
-          <Link className={styles.list_link} to='/favorites'>
+          <Link className={styles.list_link} to='/personal-account/favorite'>
             <FavoriteNavIcon className={styles.icon} />
             <Count className={styles.count} count={100} />
           </Link>

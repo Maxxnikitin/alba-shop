@@ -24,3 +24,4 @@ export * from './scroll-to-top';
 export * from './main-slide';
 export * from './brand-items';
 export * from './favorite-items';
+export * from './personal-data';

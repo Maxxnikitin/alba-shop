@@ -160,6 +160,33 @@
       "favorite": "Избранное",
       "data": "Мои данные",
       "coupons": "Мои купоны"
+    },
+    "data": {
+      "email": "Эл. почта",
+      "phone": "Телефон",
+      "city": "Город",
+      "password": "Пароль",
+      "btn-edit": "Изменить",
+      "btn-submit": "Применить",
+      "btn-cancel": "Отмена"
+    },
+    "status": {
+      "title": "Статус",
+      "subtitle": "Ещё {{amount}} до следующего статуса",
+      "steps": {
+        "one": {
+          "name": "Basic",
+          "discount": "Пока без скидок"
+        },
+        "two": {
+          "name": "Silver",
+          "discount": "Скидка 5%"
+        },
+        "three": {
+          "name": "Gold",
+          "discount": "Скидка 15%"
+        }
+      }
     }
   }
 }

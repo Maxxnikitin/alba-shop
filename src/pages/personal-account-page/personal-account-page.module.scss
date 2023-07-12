@@ -4,6 +4,7 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 1274px;
+  min-height: calc(100vh - 112px - 490px);
   padding: 50px 24px 115px;
 
   .title {
