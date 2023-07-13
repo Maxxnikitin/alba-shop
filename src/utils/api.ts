@@ -135,13 +135,9 @@ export const getUserLoyalties = () =>
 
 export const updateUserData = (data: TEditData) =>
   axios
-    .patch(
-      `${URL}/customers/me/update/`,
-      { data },
-      {
-        headers: headersWithAuth(),
-      },
-    )
+    .patch(`${URL}/customers/me/update/`, data, {
+      headers: headersWithAuth(),
+    })
     .then((res: AxiosResponse<ResWithData<TUser>>) => checkResponse(res));
 
 export const getFavoriteItems = () =>

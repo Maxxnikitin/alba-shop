@@ -9,7 +9,7 @@ import {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import PhoneInputWithCountrySelect from 'react-phone-number-input';
+import PhoneInputWithCountrySelect from 'react-phone-number-input/input';
 
 import styles from './personal-data.module.scss';
 import 'react-phone-number-input/style.css';
@@ -34,7 +34,9 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
     password: '',
     password2: '',
   });
-  const [isPasswordError, setIsPasswordError] = useState(false);
+  const [isPasswordRepeatError, setIsPasswordRepeatError] = useState(false);
+  const [isPasswordLengthError, setIsPasswordLengthError] = useState(false);
+  const [isPhoneError, setIsPhoneError] = useState(false);
 
   const { t } = useTranslation();
 
@@ -42,7 +44,8 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
 
   const handleEditCancelClick = useCallback(() => {
     setMode(EMode.READ);
-    isPasswordError && setIsPasswordError(false);
+    isPasswordRepeatError && setIsPasswordRepeatError(false);
+    isPasswordLengthError && setIsPasswordLengthError(false);
     setEditData({
       email: userData?.email || '',
       first_name: userData?.first_name || '',
@@ -53,21 +56,23 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
       password: '',
       password2: '',
     });
-  }, [isPasswordError, userData]);
+  }, [isPasswordRepeatError, userData, isPasswordLengthError]);
 
   const handleChangeInputs: ChangeEventHandler<HTMLInputElement> = useCallback(
     e => {
-      isPasswordError && setIsPasswordError(false);
+      isPasswordRepeatError && setIsPasswordRepeatError(false);
+      isPasswordLengthError && setIsPasswordLengthError(false);
 
       setEditData(prev => ({
         ...prev,
         [e.target.id]: e.target.value,
       }));
     },
-    [isPasswordError],
+    [isPasswordRepeatError, isPasswordLengthError],
   );
 
   const handleChangePhone = (v: string | undefined) => {
+    isPhoneError && setIsPhoneError(false);
     setEditData(prev => ({
       ...prev,
       phone_number: v ?? '',
@@ -77,12 +82,30 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
   const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
 
-    if (editData.password !== editData.password2) {
-      setIsPasswordError(true);
+    if (editData.phone_number.length !== 12) {
+      setIsPhoneError(true);
       return;
     }
 
-    updateUserData(editData)
+    if (editData.password && editData.password.length < 8) {
+      setIsPasswordLengthError(true);
+      return;
+    }
+
+    if (editData.password !== editData.password2) {
+      setIsPasswordRepeatError(true);
+      return;
+    }
+
+    const dataToRequest: Record<string, string> = {};
+
+    for (let key in editData) {
+      if (editData[key]) {
+        dataToRequest[key] = editData[key];
+      }
+    }
+
+    updateUserData(dataToRequest)
       .then(({ data }) => {
         setUserData(data);
         setMode(EMode.READ);
@@ -189,13 +212,21 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
                 id='email'
                 onChange={handleChangeInputs}
               />
-              <PhoneInputWithCountrySelect
-                defaultCountry='RU'
-                inputComponent={PhoneInput}
-                value={editData.phone_number}
-                id='phone_number'
-                onChange={handleChangePhone}
-              />
+              <div className={styles.edit_phone_box}>
+                <PhoneInputWithCountrySelect
+                  defaultCountry='RU'
+                  inputComponent={PhoneInput}
+                  value={editData.phone_number}
+                  id='phone_number'
+                  onChange={handleChangePhone}
+                />
+                {isPhoneError && (
+                  <Paragraph className={styles.edit_phone_error} isError>
+                    {t('personal-account.data.phone-error')}
+                  </Paragraph>
+                )}
+              </div>
+
               <Input
                 placeholder={t('personal-account.data.city')!}
                 value={editData.city}
@@ -210,7 +241,10 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
                 id='password'
                 type='password'
                 onChange={handleChangeInputs}
-                isError={isPasswordError}
+                isError={isPasswordRepeatError || isPasswordLengthError}
+                errorText={
+                  isPasswordLengthError ? t('personal-account.data.password-length-error')! : ''
+                }
               />
               <Input
                 placeholder={t('personal-account.data.new-password')!}
@@ -218,8 +252,8 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
                 id='password2'
                 type='password'
                 onChange={handleChangeInputs}
-                isError={isPasswordError}
-                errorText={isPasswordError ? t('personal-account.data.password-error')! : ''}
+                isError={isPasswordRepeatError}
+                errorText={isPasswordRepeatError ? t('personal-account.data.password-error')! : ''}
               />
             </div>
             <div className={styles.edit_btns_box}>
