@@ -94,6 +94,7 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
               </Title>
               <Paragraph
                 className={clsx(styles.status_line_box_text, {
+                  [styles.status_line_box_text_first]: item.percent === 0,
                   [styles.status_line_box_text_last]: loyalties.length === i + 1,
                 })}
               >
