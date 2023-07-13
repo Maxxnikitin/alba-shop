@@ -17,6 +17,7 @@ import type {
   TAuthResult,
   TUser,
   TLoyalties,
+  TEditData,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -27,7 +28,7 @@ export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res =
 };
 
 const headersWithAuth = () => ({
-  'Content-Type': 'application-json',
+  // 'Content-Type': 'application-json',
   Authorization: `Bearer ${localStorage.getItem('access')}`,
 });
 
@@ -131,3 +132,21 @@ export const getUserLoyalties = () =>
       headers: headersWithAuth(),
     })
     .then((res: AxiosResponse<ResWithData<TLoyalties[]>>) => checkResponse(res));
+
+export const updateUserData = (data: TEditData) =>
+  axios
+    .patch(
+      `${URL}/customers/me/update/`,
+      { data },
+      {
+        headers: headersWithAuth(),
+      },
+    )
+    .then((res: AxiosResponse<ResWithData<TUser>>) => checkResponse(res));
+
+export const getFavoriteItems = () =>
+  axios
+    .get(`${URL}/customers/me/favorites/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));

@@ -161,3 +161,14 @@ export type TLoyalties = {
   order_amount: number;
   percent: number;
 };
+
+export type TEditData = {
+  email: string;
+  first_name: string;
+  last_name: string;
+  company_name: string;
+  phone_number: string;
+  city: string;
+  password: string;
+  password2: string;
+};

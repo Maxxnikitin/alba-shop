@@ -10,7 +10,7 @@ import { IItemsWithoutFiltersProps } from './types';
 import { Item } from '..';
 import { Breadcrumbs, Button, EButtonKinds, Pagination, SortSelect, Title } from '../ui';
 
-import { TCharacteristic, TSortingItems } from '~utils';
+import { TItemsWithPagination, TSortingItems } from '~utils';
 
 // const mockData = {
 //   meta: {
@@ -139,7 +139,7 @@ import { TCharacteristic, TSortingItems } from '~utils';
 
 export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
   ({ title, fetchFn, additionalQuery = '', className = '', ...rest }) => {
-    const [data, setData] = useState<TCharacteristic[] | null>(null);
+    const [data, setData] = useState<TItemsWithPagination | null>(null);
     const [currSort, setCurrSort] = useState<TSortingItems>('is_hit');
 
     const { t } = useTranslation();
@@ -150,10 +150,8 @@ export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
 
     useEffect(() => {
       fetchFn(`?sort=${currSort}${additionalQuery}`)
-        .then(({ data, meta }) => setData(data))
+        .then(res => setData(res))
         .catch(err => console.error(err));
-
-      // setData(mockData);
     }, [currSort, additionalQuery, fetchFn]);
 
     if (!data) return <p>loader</p>;
@@ -164,7 +162,7 @@ export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
         <Title className={styles.title}>{title}</Title>
         <SortSelect value={currSort} onChange={handleSortingChange} className={styles.sort_box} />
         <ul className={styles.list}>
-          {data.map(item => (
+          {data.data.map(item => (
             <Item key={item.id} data={item} onLikeClick={() => console.log('like')} isCartButton />
           ))}
         </ul>

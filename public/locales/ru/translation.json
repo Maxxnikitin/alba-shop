@@ -173,7 +173,8 @@
       "last-name": "Фамилия",
       "email-placeholder": "Адрес эл. почты",
       "old-password": "Старый пароль",
-      "new-password": "Новый пароль"
+      "new-password": "Новый пароль",
+      "password-error": "Пароли не совпадают"
     },
     "status": {
       "title": "Статус",

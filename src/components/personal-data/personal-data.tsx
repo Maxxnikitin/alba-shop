@@ -1,5 +1,13 @@
 import clsx from 'clsx';
-import { FC, memo, useEffect, useState } from 'react';
+import {
+  ChangeEventHandler,
+  FC,
+  FormEventHandler,
+  memo,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import PhoneInputWithCountrySelect from 'react-phone-number-input';
 
@@ -9,21 +17,104 @@ import { EMode, IPersonalDataProps, TStatusData } from './types';
 
 import { Button, EButtonKinds, ETitleLevel, Input, Paragraph, PhoneInput, Title } from '../ui';
 
-import { getUser, getUserLoyalties, TLoyalties, TUser } from '~utils';
+import { getUser, getUserLoyalties, TEditData, TLoyalties, TUser, updateUserData } from '~utils';
 
 export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...rest }) => {
   const [userData, setUserData] = useState<TUser | null>(null);
   const [loyalties, setLoyalties] = useState<TLoyalties[] | null>(null);
   const [statusData, setStatusData] = useState<TStatusData | null>(null);
-  const [mode, setMode] = useState<EMode>(EMode.EDIT);
+  const [mode, setMode] = useState<EMode>(EMode.READ);
+  const [editData, setEditData] = useState<TEditData>({
+    email: '',
+    first_name: '',
+    last_name: '',
+    company_name: '',
+    phone_number: '',
+    city: '',
+    password: '',
+    password2: '',
+  });
+  const [isPasswordError, setIsPasswordError] = useState(false);
 
   const { t } = useTranslation();
+
+  const handleEditClick = useCallback(() => setMode(EMode.EDIT), []);
+
+  const handleEditCancelClick = useCallback(() => {
+    setMode(EMode.READ);
+    isPasswordError && setIsPasswordError(false);
+    setEditData({
+      email: userData?.email || '',
+      first_name: userData?.first_name || '',
+      last_name: userData?.last_name || '',
+      company_name: '',
+      phone_number: userData?.phone_number || '',
+      city: userData?.city || '',
+      password: '',
+      password2: '',
+    });
+  }, [isPasswordError, userData]);
+
+  const handleChangeInputs: ChangeEventHandler<HTMLInputElement> = useCallback(
+    e => {
+      isPasswordError && setIsPasswordError(false);
+
+      setEditData(prev => ({
+        ...prev,
+        [e.target.id]: e.target.value,
+      }));
+    },
+    [isPasswordError],
+  );
+
+  const handleChangePhone = (v: string | undefined) => {
+    setEditData(prev => ({
+      ...prev,
+      phone_number: v ?? '',
+    }));
+  };
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
+    e.preventDefault();
+
+    if (editData.password !== editData.password2) {
+      setIsPasswordError(true);
+      return;
+    }
+
+    updateUserData(editData)
+      .then(({ data }) => {
+        setUserData(data);
+        setMode(EMode.READ);
+        setEditData({
+          email: data.email || '',
+          first_name: data.first_name || '',
+          last_name: data.last_name || '',
+          company_name: '',
+          phone_number: data.phone_number || '',
+          city: data.city || '',
+          password: '',
+          password2: '',
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   useEffect(() => {
     Promise.all([getUser(), getUserLoyalties()])
       .then(([user, loyalty]) => {
         setUserData(user.data);
         setLoyalties(loyalty.data);
+        setEditData({
+          email: user.data.email,
+          first_name: user.data.first_name,
+          last_name: user.data.last_name,
+          company_name: user.data.company_name ?? '',
+          phone_number: user.data.phone_number,
+          city: user.data.city ?? '',
+          password: '',
+          password2: '',
+        });
 
         const myAmount = Math.floor(+user.data.order_amount);
         const endSum = loyalty.data[loyalty.data.length - 1].order_amount;
@@ -66,41 +157,85 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
               <Paragraph className={styles.fieldname}>
                 {t('personal-account.data.password')}
               </Paragraph>
-              <Paragraph className={styles.fieldvalue}>{'******'}</Paragraph>
+              <Paragraph className={styles.fieldvalue}>*************</Paragraph>
             </div>
             <Button
               kind={EButtonKinds.addition}
               className={styles.btn_edit}
               text={t('personal-account.data.btn-edit')}
+              onClick={handleEditClick}
             />
           </>
         )}
         {mode === EMode.EDIT && (
-          <>
+          <form onSubmit={handleSubmit}>
             <div className={styles.edit_main_box}>
-              <Input placeholder={t('personal-account.data.first-name')!} />
-              <Input placeholder={t('personal-account.data.last-name')!} />
-              <Input type='email' placeholder={t('personal-account.data.email-placeholder')!} />
+              <Input
+                placeholder={t('personal-account.data.first-name')!}
+                value={editData.first_name}
+                id='first_name'
+                onChange={handleChangeInputs}
+              />
+              <Input
+                placeholder={t('personal-account.data.last-name')!}
+                value={editData.last_name}
+                id='last_name'
+                onChange={handleChangeInputs}
+              />
+              <Input
+                type='email'
+                placeholder={t('personal-account.data.email-placeholder')!}
+                value={editData.email}
+                id='email'
+                onChange={handleChangeInputs}
+              />
               <PhoneInputWithCountrySelect
                 defaultCountry='RU'
                 inputComponent={PhoneInput}
-                onChange={() => console.log('rr')}
+                value={editData.phone_number}
+                id='phone_number'
+                onChange={handleChangePhone}
               />
-              <Input placeholder={t('personal-account.data.city')!} />
+              <Input
+                placeholder={t('personal-account.data.city')!}
+                value={editData.city}
+                id='city'
+                onChange={handleChangeInputs}
+              />
             </div>
             <div className={styles.edit_password_box}>
-              <Input placeholder={t('personal-account.data.old-password')!} />
-              <Input placeholder={t('personal-account.data.new-password')!} />
+              <Input
+                placeholder={t('personal-account.data.old-password')!}
+                value={editData.password}
+                id='password'
+                type='password'
+                onChange={handleChangeInputs}
+                isError={isPasswordError}
+              />
+              <Input
+                placeholder={t('personal-account.data.new-password')!}
+                value={editData.password2}
+                id='password2'
+                type='password'
+                onChange={handleChangeInputs}
+                isError={isPasswordError}
+                errorText={isPasswordError ? t('personal-account.data.password-error')! : ''}
+              />
             </div>
             <div className={styles.edit_btns_box}>
-              <Button className={styles.btn_submit} text={t('personal-account.data.btn-submit')} />
+              <Button
+                className={styles.btn_submit}
+                text={t('personal-account.data.btn-submit')}
+                type='submit'
+              />
               <Button
                 kind={EButtonKinds.addition}
                 className={styles.btn_cancel}
                 text={t('personal-account.data.btn-cancel')}
+                onClick={handleEditCancelClick}
               />
             </div>
-          </>
+          </form>
         )}
       </div>
       <div className={styles.status_box}>
