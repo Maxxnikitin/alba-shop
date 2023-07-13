@@ -9,3 +9,8 @@ export type TStatusData = {
     otherSum: number;
   };
 };
+
+export enum EMode {
+  READ = 'read',
+  EDIT = 'edit',
+}

@@ -29,3 +29,9 @@
   border-radius: $common-small-border-radius;
   outline: none;
 }
+
+@media screen and (max-width: 332px) {
+  .input {
+    font-size: 15px;
+  }
+}

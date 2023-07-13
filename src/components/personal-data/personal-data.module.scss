@@ -7,9 +7,7 @@
 
   .data {
     &_box {
-      padding-top: 42px;
-      padding-bottom: 45px;
-      padding-left: 50px;
+      padding: 42px 50px 45px;
       background-color: $gray7;
 
       .title {
@@ -37,10 +35,13 @@
       }
 
       .fieldvalue {
+        overflow: hidden;
+
         font-size: 22px;
         font-weight: 600;
         line-height: 100%;
         text-align: left;
+        text-overflow: ellipsis;
       }
     }
   }
@@ -178,6 +179,58 @@
       }
     }
   }
+
+  .edit {
+    &_main_box {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 35px;
+      max-width: 555px;
+    }
+
+    &_password_box {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 35px;
+
+      max-width: 555px;
+      margin-top: 35px;
+    }
+
+    &_btns_box {
+      display: flex;
+      gap: 30px;
+      margin-top: 57px;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    .edit {
+      &_main_box {
+        grid-template-columns: 200px 1fr;
+      }
+
+      &_password_box {
+        grid-template-columns: 200px 1fr;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 930px) {
+  .container {
+    .edit {
+      &_main_box {
+        grid-template-columns: 1fr;
+      }
+
+      &_password_box {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -200,6 +253,40 @@
   }
 }
 
+@media screen and (max-width: 800px) {
+  .container {
+    .edit {
+      &_main_box {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      &_password_box {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    .edit {
+      &_main_box {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      &_password_box {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      &_btns_box {
+        margin-top: 35px;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 500px) {
   .container {
     .data_box {
@@ -210,12 +297,9 @@
       grid-template-columns: 107px 1fr;
 
       .fieldvalue {
-        overflow: hidden;
-
         font-size: 16px;
         font-weight: 700;
         line-height: 120%;
-        text-overflow: ellipsis;
       }
     }
 
@@ -289,6 +373,21 @@
   .container {
     .btn_edit {
       width: 100%;
+    }
+
+    .edit {
+      &_btns_box {
+        flex-direction: column;
+        gap: 20px;
+
+        .btn_submit {
+          width: 100%;
+        }
+
+        .btn_cancel {
+          width: 100%;
+        }
+      }
     }
   }
 }

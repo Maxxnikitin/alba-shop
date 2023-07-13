@@ -168,7 +168,12 @@
       "password": "Пароль",
       "btn-edit": "Изменить",
       "btn-submit": "Применить",
-      "btn-cancel": "Отмена"
+      "btn-cancel": "Отмена",
+      "first-name": "Имя",
+      "last-name": "Фамилия",
+      "email-placeholder": "Адрес эл. почты",
+      "old-password": "Старый пароль",
+      "new-password": "Новый пароль"
     },
     "status": {
       "title": "Статус",
