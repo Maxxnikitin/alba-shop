@@ -1,3 +1,5 @@
+import { TCharacteristic } from './types';
+
 export const mockContactsData = {
   type: 'contacts',
   id: 0,
@@ -11,13 +13,12 @@ export const mockContactsData = {
   map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2819.8111710142707!2d38.958102615451274!3d45.0287585704135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40f04fa5fdab425f%3A0xd09e60dccfdc40f4!2z0YPQuy4g0KfQutCw0LvQvtCy0LAsIDEsINCa0YDQsNGB0L3QvtC00LDRgCwg0JrRgNCw0YHQvdC-0LTQsNGA0YHQutC40Lkg0LrRgNCw0LksIDM1MDAwMA!5e0!3m2!1sru!2sru!4v1678171046142!5m2!1sru!2sru',
 };
 
-export const mockCharacteristicsData = [
+export const mockCharacteristicsData: TCharacteristic[] = [
   {
     type: 'characteristics',
     id: 'rrewecdsc',
     name: 'Чехол Luxo original green',
     product_id: 'string44',
-    weight: 10,
     stock: 20,
     in_cart: 0,
     price: '510.00',
@@ -26,6 +27,7 @@ export const mockCharacteristicsData = [
     color: 'Black',
     is_new: true,
     is_bestseller: true,
+    is_hit: true,
     in_favorite: false,
     photo: [
       'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
@@ -42,7 +44,6 @@ export const mockCharacteristicsData = [
     id: 'rrewecdscs',
     name: 'Чехол Luxo original gray',
     product_id: 'string44',
-    weight: 10,
     stock: 0,
     in_cart: 0,
     price: '487.00',
@@ -51,6 +52,7 @@ export const mockCharacteristicsData = [
     color: 'Black',
     is_new: true,
     is_bestseller: true,
+    is_hit: true,
     in_favorite: false,
     photo: [
       'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
@@ -63,7 +65,6 @@ export const mockCharacteristicsData = [
     id: 'rrewecdscd',
     name: 'Чехол Luxo original yellow',
     product_id: 'string44',
-    weight: 10,
     stock: 200,
     in_cart: 0,
     price: '460.00',
@@ -72,6 +73,7 @@ export const mockCharacteristicsData = [
     color: 'Black',
     is_new: true,
     is_bestseller: false,
+    is_hit: true,
     in_favorite: false,
     photo: [
       'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
@@ -84,7 +86,6 @@ export const mockCharacteristicsData = [
     id: 'rrewecdscf',
     name: 'Чехол Luxo original black',
     product_id: 'string44',
-    weight: 10,
     stock: 200,
     in_cart: 0,
     price: '410.00',
@@ -93,6 +94,7 @@ export const mockCharacteristicsData = [
     color: 'Black',
     is_new: false,
     is_bestseller: true,
+    is_hit: true,
     in_favorite: false,
     photo: [
       'https://белоеяблоко.рф/upload/resize_cache/iblock/e98/800_800_1a1fde8d5e7dcaa11be442336c9d37f5e/y3xladtiypp4q4asb15458430j8h59wv.jpeg',
@@ -105,7 +107,6 @@ export const mockCharacteristicsData = [
     id: 'rrewecdscdt',
     name: 'Чехол Luxo original yellow',
     product_id: 'string44',
-    weight: 10,
     stock: 200,
     in_cart: 0,
     price: '460.00',
@@ -114,6 +115,7 @@ export const mockCharacteristicsData = [
     color: 'Black',
     is_new: true,
     is_bestseller: true,
+    is_hit: true,
     in_favorite: false,
     photo: [
       'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
@@ -126,7 +128,6 @@ export const mockCharacteristicsData = [
     id: 'rrewecdscfr',
     name: 'Чехол Luxo original black',
     product_id: 'string44',
-    weight: 10,
     stock: 200,
     in_cart: 0,
     price: '410.00',
@@ -135,6 +136,7 @@ export const mockCharacteristicsData = [
     color: 'Black',
     is_new: true,
     is_bestseller: true,
+    is_hit: true,
     in_favorite: false,
     photo: [
       'https://белоеяблоко.рф/upload/resize_cache/iblock/e98/800_800_1a1fde8d5e7dcaa11be442336c9d37f5e/y3xladtiypp4q4asb15458430j8h59wv.jpeg',

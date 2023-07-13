@@ -38,6 +38,7 @@ const mockData = {
       color: 'Black',
       is_new: true,
       is_bestseller: true,
+      is_hit: true,
       in_favorite: false,
       photo: [
         'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
@@ -63,6 +64,7 @@ const mockData = {
       color: 'Black',
       is_new: true,
       is_bestseller: true,
+      is_hit: true,
       in_favorite: false,
       photo: [
         'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
@@ -84,6 +86,7 @@ const mockData = {
       color: 'Black',
       is_new: true,
       is_bestseller: false,
+      is_hit: true,
       in_favorite: false,
       photo: [
         'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
@@ -105,6 +108,7 @@ const mockData = {
       color: 'Black',
       is_new: false,
       is_bestseller: true,
+      is_hit: true,
       in_favorite: false,
       photo: [
         'https://белоеяблоко.рф/upload/resize_cache/iblock/e98/800_800_1a1fde8d5e7dcaa11be442336c9d37f5e/y3xladtiypp4q4asb15458430j8h59wv.jpeg',
@@ -126,6 +130,7 @@ const mockData = {
       color: 'Black',
       is_new: true,
       is_bestseller: true,
+      is_hit: true,
       in_favorite: false,
       photo: [
         'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
@@ -147,6 +152,7 @@ const mockData = {
       color: 'Black',
       is_new: true,
       is_bestseller: true,
+      is_hit: true,
       in_favorite: false,
       photo: [
         'https://белоеяблоко.рф/upload/resize_cache/iblock/e98/800_800_1a1fde8d5e7dcaa11be442336c9d37f5e/y3xladtiypp4q4asb15458430j8h59wv.jpeg',

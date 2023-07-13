@@ -5,6 +5,7 @@ import {
   getBrandsItems,
   getCategories,
   getContacts,
+  getFavoritesCount,
   getLatestItems,
 } from '../api';
 import { mockBrands, mockCharacteristicsData } from '../mock';
@@ -18,6 +19,7 @@ export const useContextData = () => {
     bestsellersSuggestedItems: [],
     categories: [],
     brands: [],
+    favoritesCount: 0,
   });
 
   useEffect(() => {
@@ -27,6 +29,7 @@ export const useContextData = () => {
       getBestsellersItems('?limit=7'),
       getCategories(),
       getBrandsItems(),
+      // getFavoritesCount(),
     ])
       .then(([contacts, latest, bestsellers, categories, brands]) =>
         setContextData({
@@ -35,6 +38,7 @@ export const useContextData = () => {
           bestsellersSuggestedItems: mockCharacteristicsData,
           categories: categories.data,
           brands: mockBrands,
+          favoritesCount: 1,
         }),
       )
       .catch(err => console.error(err));

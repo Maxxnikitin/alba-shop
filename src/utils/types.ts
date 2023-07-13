@@ -45,6 +45,7 @@ export type TCharacteristic = {
   product_id: string;
   is_new: boolean;
   is_bestseller: boolean;
+  is_hit: boolean;
   in_cart: number;
   in_favorite: boolean;
   stock: number;
@@ -95,6 +96,7 @@ export type TDataContext = {
   bestsellersSuggestedItems: TCharacteristic[];
   categories: TCategory[];
   brands: TBrand[];
+  favoritesCount: number;
 };
 
 export type TPagination = {
@@ -163,3 +165,40 @@ export type TLoyalties = {
 };
 
 export type TEditData = Record<string, string>;
+
+export type TOrdersWithPagination = {
+  meta: TMeta;
+  data: TOrder[];
+};
+
+export type TOrder = {
+  type: string;
+  id: number;
+  customer: TUser;
+  amount: number;
+  weight: number;
+  status: 'NEW';
+  content: TOrderContent[];
+  history: TOrderHistory[];
+  created: string;
+  updated: string;
+};
+
+export type TOrderHistory = {
+  type: string;
+  id: number;
+  actor: string;
+  created: string;
+  status: string;
+};
+
+export type TOrderContent = {
+  type: string;
+  id: number;
+  characteristic: TCharacteristic;
+  quantity: number;
+  weight: number;
+  amount: number;
+  discounted_amount: number;
+  final_amount: number;
+};

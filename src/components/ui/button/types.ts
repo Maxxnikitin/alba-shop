@@ -17,4 +17,5 @@ export enum EButtonKinds {
   delay = 'delay',
   order = 'order',
   mainSlide = 'main-slide',
+  textOnly = 'text-only',
 }

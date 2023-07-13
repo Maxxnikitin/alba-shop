@@ -18,6 +18,7 @@ import type {
   TUser,
   TLoyalties,
   TEditData,
+  TOrdersWithPagination,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -146,3 +147,17 @@ export const getFavoriteItems = () =>
       headers: headersWithAuth(),
     })
     .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));
+
+export const getFavoritesCount = () =>
+  axios
+    .get(`${URL}/customers/me/favorites/count/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<ResWithData<number>>) => checkResponse(res));
+
+export const getOrders = () =>
+  axios
+    .get(`${URL}/orders/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<TOrdersWithPagination>) => checkResponse(res));

@@ -21,6 +21,8 @@ import {
 
 import { ItemsWithFilters } from '../items-with-filters';
 
+import { OrderItems } from '../order-items';
+
 import { BrandsPage } from 'src/pages/brand-page';
 import { DataContext, useContextData } from '~utils';
 
@@ -90,7 +92,7 @@ export function App() {
       children: [
         {
           path: 'orders',
-          element: <p>orders</p>,
+          element: <OrderItems />,
         },
         {
           path: 'favorite',

@@ -1,0 +1,62 @@
+@import '../common';
+
+.container {
+  padding: 27px;
+  list-style-type: none;
+
+  .row {
+    &_first {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 27px;
+
+      .order {
+        &_num_box {
+          display: flex;
+          gap: 14px;
+          align-items: center;
+        }
+
+        &_num {
+          font-size: 22px;
+          font-weight: 600;
+          line-height: 100%;
+        }
+
+        &_date {
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 100%;
+        }
+
+        &_amount {
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 100%;
+        }
+
+        &_price {
+          font-size: 22px;
+          font-weight: 600;
+          line-height: 100%;
+        }
+      }
+    }
+
+    &_second {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .photos {
+        display: flex;
+        gap: 18px;
+
+        &_photo {
+          width: 54px;
+          height: 54px;
+        }
+      }
+    }
+  }
+}

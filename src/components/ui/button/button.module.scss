@@ -105,6 +105,21 @@
     background: $gray-gradient;
   }
 
+  &_type_text-only {
+    padding: 0;
+    background: none;
+
+    .text {
+      font-size: 14px;
+
+      background-image: $blue-gradient1;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+    }
+  }
+
   &_type_primary:hover,
   &_type_sign-in:hover,
   &_type_menu:hover {

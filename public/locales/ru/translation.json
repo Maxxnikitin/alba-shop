@@ -185,6 +185,16 @@
         "without-discount": "Пока без скидок",
         "discount": "Скидка {{percent}}%"
       }
+    },
+    "order": {
+      "number": "Заказ №{{number}}",
+      "date": "от {{date}}",
+      "amount": "{{amount}} товаров",
+      "price": "{{price}}₽",
+      "statuses": {
+        "new": "В пути"
+      },
+      "btn": "Смотреть все"
     }
   }
 }

@@ -34,3 +34,4 @@ export * from './pagination';
 export * from './discount-item';
 export * from './icons';
 export * from './brand-item';
+export * from './order-status';
