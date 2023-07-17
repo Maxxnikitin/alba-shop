@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, memo, MouseEventHandler, useCallback, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -7,10 +7,10 @@ import styles from './order-items.module.scss';
 
 import { IOrderItemsProps } from './types';
 
-import { ItemOrder } from '..';
+import { ItemOrder, OrderDetails } from '..';
 import { Button, EButtonKinds, Pagination } from '../ui';
 
-import { getOrders, TOrdersWithPagination } from '~utils';
+import { getOrders, TOrder, TOrdersWithPagination } from '~utils';
 
 const mockData: TOrdersWithPagination = {
   meta: {
@@ -71,10 +71,10 @@ const mockData: TOrdersWithPagination = {
         },
         {
           type: 'positions',
-          id: 0,
+          id: 1,
           characteristic: {
             type: 'characteristics',
-            id: '8d44b432-9353-4d6b-89b8-4591e2f21d02',
+            id: '8d44b432-9353-4d6b-89b8-4591e2f21d03',
             name: 'Стекло для iPhone 11 Pro 10D, Черный',
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
@@ -97,10 +97,10 @@ const mockData: TOrdersWithPagination = {
         },
         {
           type: 'positions',
-          id: 0,
+          id: 2,
           characteristic: {
             type: 'characteristics',
-            id: '8d44b432-9353-4d6b-89b8-4591e2f21d02',
+            id: '8d44b432-9353-4d6b-89b8-4591e2f21d04',
             name: 'Стекло для iPhone 11 Pro 10D, Черный',
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
@@ -123,10 +123,10 @@ const mockData: TOrdersWithPagination = {
         },
         {
           type: 'positions',
-          id: 0,
+          id: 3,
           characteristic: {
             type: 'characteristics',
-            id: '8d44b432-9353-4d6b-89b8-4591e2f21d02',
+            id: '8d44b432-9353-4d6b-89b8-4591e2f21d05',
             name: 'Стекло для iPhone 11 Pro 10D, Черный',
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
@@ -465,8 +465,20 @@ const mockData: TOrdersWithPagination = {
 
 export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest }) => {
   const [data, setData] = useState<TOrdersWithPagination | null>(null);
+  const [currItem, setCurrItem] = useState<TOrder | null>(null);
+
+  console.log(currItem);
 
   const { t } = useTranslation();
+
+  const handleClick: MouseEventHandler<HTMLButtonElement> = useCallback(
+    ({ currentTarget }) => {
+      const { id } = currentTarget;
+
+      setCurrItem(data?.data.find(item => item.id === +id)!);
+    },
+    [data],
+  );
 
   useEffect(() => {
     getOrders()
@@ -478,13 +490,19 @@ export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest 
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>
-      <ul className={styles.list}>
-        {data.data?.map(item => (
-          <ItemOrder key={item.id} data={item} />
-        ))}
-      </ul>
-      <Button kind={EButtonKinds.load} text={t('items.load-btn')} />
-      <Pagination className={styles.pagination} amountPage={4} activePage={1} />
+      {currItem ? (
+        <OrderDetails data={currItem} />
+      ) : (
+        <>
+          <ul className={styles.list}>
+            {data.data?.map(item => (
+              <ItemOrder key={item.id} data={item} onClick={handleClick} />
+            ))}
+          </ul>
+          <Button kind={EButtonKinds.load} text={t('items.load-btn')} />
+          <Pagination className={styles.pagination} amountPage={4} activePage={1} />
+        </>
+      )}
     </div>
   );
 });

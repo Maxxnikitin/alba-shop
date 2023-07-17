@@ -9,7 +9,7 @@ import { IItemOrderProps } from './types';
 
 import { Button, EButtonKinds, EOrderStatus, OrderStatus, Paragraph } from '../ui';
 
-export const ItemOrder: FC<IItemOrderProps> = memo(({ data, className = '', ...rest }) => {
+export const ItemOrder: FC<IItemOrderProps> = memo(({ data, onClick, className = '', ...rest }) => {
   const { t } = useTranslation();
 
   return (
@@ -49,7 +49,9 @@ export const ItemOrder: FC<IItemOrderProps> = memo(({ data, className = '', ...r
         </ul>
         <Button
           className={styles.btn}
+          onClick={onClick}
           kind={EButtonKinds.textOnly}
+          id={data.id.toString()}
           text={t('personal-account.order.btn')}
         />
       </div>
