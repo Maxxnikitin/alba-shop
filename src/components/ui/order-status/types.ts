@@ -1,4 +1,13 @@
 export interface IOrderStatusProps {
-  type: 'NEW';
+  type: EOrderStatus;
   className?: string;
+}
+
+export enum EOrderStatus {
+  NEW = 'NEW',
+  IN_PROGRESS = 'IN_PROGRESS',
+  READY = 'READY',
+  SENT = 'SENT',
+  CANCELED = 'CANCELED',
+  RECEIVED = 'RECEIVED',
 }

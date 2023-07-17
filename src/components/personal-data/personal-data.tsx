@@ -44,35 +44,32 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
 
   const handleEditCancelClick = useCallback(() => {
     setMode(EMode.READ);
-    isPasswordRepeatError && setIsPasswordRepeatError(false);
-    isPasswordLengthError && setIsPasswordLengthError(false);
-    setEditData({
-      email: userData?.email || '',
-      first_name: userData?.first_name || '',
-      last_name: userData?.last_name || '',
+    setIsPasswordRepeatError(false);
+    setIsPasswordLengthError(false);
+    setEditData(prev => ({
+      email: prev?.email || '',
+      first_name: prev?.first_name || '',
+      last_name: prev?.last_name || '',
       company_name: '',
-      phone_number: userData?.phone_number || '',
-      city: userData?.city || '',
+      phone_number: prev?.phone_number || '',
+      city: prev?.city || '',
       password: '',
       password2: '',
-    });
-  }, [isPasswordRepeatError, userData, isPasswordLengthError]);
+    }));
+  }, []);
 
-  const handleChangeInputs: ChangeEventHandler<HTMLInputElement> = useCallback(
-    e => {
-      isPasswordRepeatError && setIsPasswordRepeatError(false);
-      isPasswordLengthError && setIsPasswordLengthError(false);
+  const handleChangeInputs: ChangeEventHandler<HTMLInputElement> = useCallback(e => {
+    setIsPasswordRepeatError(false);
+    setIsPasswordLengthError(false);
 
-      setEditData(prev => ({
-        ...prev,
-        [e.target.id]: e.target.value,
-      }));
-    },
-    [isPasswordRepeatError, isPasswordLengthError],
-  );
+    setEditData(prev => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
+  }, []);
 
   const handleChangePhone = (v: string | undefined) => {
-    isPhoneError && setIsPhoneError(false);
+    setIsPhoneError(false);
     setEditData(prev => ({
       ...prev,
       phone_number: v ?? '',

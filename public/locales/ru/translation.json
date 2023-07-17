@@ -190,9 +190,14 @@
       "number": "Заказ №{{number}}",
       "date": "от {{date}}",
       "amount": "{{amount}} товаров",
-      "price": "{{price}}₽",
+      "price": "{{price}} ₽",
       "statuses": {
-        "new": "В пути"
+        "new": "Новый",
+        "in-progress": "В обработке",
+        "ready": "Собран",
+        "sent": "Отправлен",
+        "canceled": "Отменён",
+        "received": "Получен"
       },
       "btn": "Смотреть все"
     }

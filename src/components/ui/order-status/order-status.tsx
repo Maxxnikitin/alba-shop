@@ -12,6 +12,16 @@ export const OrderStatus: FC<IOrderStatusProps> = memo(({ type, className = '', 
     switch (type) {
       case 'NEW':
         return t('personal-account.order.statuses.new');
+      case 'IN_PROGRESS':
+        return t('personal-account.order.statuses.in-progress');
+      case 'READY':
+        return t('personal-account.order.statuses.ready');
+      case 'SENT':
+        return t('personal-account.order.statuses.sent');
+      case 'CANCELED':
+        return t('personal-account.order.statuses.canceled');
+      case 'RECEIVED':
+        return t('personal-account.order.statuses.received');
     }
   }, [type, t]);
 

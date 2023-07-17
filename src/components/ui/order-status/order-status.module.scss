@@ -1,7 +1,7 @@
 @import '../../common';
 
 .container {
-  width: 57px;
+  min-width: 57px;
   padding: 10px;
 
   font-size: 12px;
@@ -15,7 +15,37 @@
 .type {
   &_new {
     color: $orange2;
-    background-color: rgb(255 191 47 / 12%); // or #FFF2E2
+    background-color: rgb(255 191 47 / 12%);
     border: 1px solid $orange2;
+  }
+
+  &_in_progress {
+    color: $orange2;
+    background-color: rgb(255 191 47 / 12%);
+    border: 1px solid $orange2;
+  }
+
+  &_ready {
+    color: $orange2;
+    background-color: rgb(255 191 47 / 12%);
+    border: 1px solid $orange2;
+  }
+
+  &_sent {
+    color: $orange2;
+    background-color: rgb(255 191 47 / 12%);
+    border: 1px solid $orange2;
+  }
+
+  &_canceled {
+    color: $text-gray;
+    background-color: $gray4;
+    border: 1px solid $gray3;
+  }
+
+  &_received {
+    color: $green1;
+    background-color: rgb(76 204 73 / 12%);
+    border: 1px solid $green1;
   }
 }

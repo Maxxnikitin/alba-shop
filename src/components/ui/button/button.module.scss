@@ -137,7 +137,8 @@
   &_type_load:hover,
   &_type_item-missing:hover,
   &_type_delay:hover,
-  &_type_order:hover {
+  &_type_order:hover,
+  &_type_text-only:hover {
     opacity: $common-hover-opacity;
   }
 
@@ -153,6 +154,12 @@
         width: 36px;
         height: 36px;
         padding: 10px;
+      }
+
+      &_text-only {
+        .text {
+          font-size: 16px;
+        }
       }
 
       &_main-slide {

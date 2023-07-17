@@ -177,7 +177,7 @@ export type TOrder = {
   customer: TUser;
   amount: number;
   weight: number;
-  status: 'NEW';
+  status: string;
   content: TOrderContent[];
   history: TOrderHistory[];
   created: string;

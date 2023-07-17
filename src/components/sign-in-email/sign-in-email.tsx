@@ -33,22 +33,19 @@ export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) 
 
   const emailInputRef = useRef(null);
 
-  const handleChangeInputs: ChangeEventHandler<HTMLInputElement> = useCallback(
-    e => {
-      submitError && setSubmitError(null);
-      setInputsData({
-        ...inputsData,
-        [e.target.id]: e.target.value,
-      });
-    },
-    [inputsData, submitError],
-  );
+  const handleChangeInputs: ChangeEventHandler<HTMLInputElement> = useCallback(e => {
+    setSubmitError(null);
+    setInputsData(prev => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
+  }, []);
 
   console.log(document.cookie);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
-    submitError && setSubmitError(null);
+    setSubmitError(null);
     authSetEmail(inputsData)
       .then(({ access, refresh }) => {
         localStorage.setItem('access', access);
