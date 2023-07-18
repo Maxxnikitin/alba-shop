@@ -216,6 +216,7 @@
       "price": "Сумма",
       "remove": "Удалить",
       "total-weight": "Общий вес корзины:",
+      "total-weight-unit": "г",
       "min-order": "Минимальная сумма заказа: {{amount}} ₽",
       "total-price": "Сумма заказа:",
       "status-discount": "{{status}} скидка",

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './cart-page.module.scss';
 import { ICartPageProps } from './types';
 
-import { Paragraph, Title } from '../../components/ui';
+import { Button, Paragraph, Title } from '../../components/ui';
 
 import { ItemCart } from 'src/components/item-cart';
 import { TCart, getCart } from '~utils';
@@ -169,6 +169,36 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
             <ItemCart key={item.id} data={item} className={styles.table_list_item} />
           ))}
         </ul>
+      </div>
+      <div className={styles.summary}>
+        <div className={styles.first_col}>
+          <Paragraph className={styles.weight_text}>
+            {t('cart.table.total-weight')}{' '}
+            <span className={styles.weight}>{`${data?.weight} ${t(
+              'cart.table.total-weight-unit',
+            )}`}</span>
+          </Paragraph>
+          <Paragraph className={styles.min_order}>
+            {t('cart.table.min-order', { amount: 7000 })}
+          </Paragraph>
+        </div>
+        <div className={styles.second_col}>
+          <div className={styles.row}>
+            <Paragraph className={styles.row_text}>{t('cart.table.total-price')}</Paragraph>
+            <Paragraph className={styles.row_value}>{`${data?.final_amount} ₽`}</Paragraph>
+          </div>
+          {!!data?.customer.discount && (
+            <div className={styles.row}>
+              <Paragraph className={styles.row_text}>{t('cart.table.status-discount')}</Paragraph>
+              <Paragraph className={styles.row_value}>{`${data?.customer.discount} ₽`}</Paragraph>
+            </div>
+          )}
+          <div className={styles.row}>
+            <Paragraph className={styles.row_text}>{t('cart.table.total-pay')}</Paragraph>
+            <Paragraph className={styles.row_value}>{`${data?.final_amount} ₽`}</Paragraph>
+          </div>
+          <Button className={styles.btn} text={t('cart.table.btn')} />
+        </div>
       </div>
     </section>
   );

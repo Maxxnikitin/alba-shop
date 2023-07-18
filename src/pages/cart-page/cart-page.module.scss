@@ -82,6 +82,88 @@
       }
     }
   }
+
+  .summary {
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+    margin-top: 45px;
+
+    .first_col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .weight_text {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 100%;
+        color: $text-black;
+        text-align: left;
+      }
+
+      .weight {
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 150%;
+        color: $text-black;
+      }
+
+      .min_order {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 25px;
+        color: $text-gray;
+        text-align: left;
+      }
+    }
+
+    .second_col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .row {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: space-between;
+
+        min-width: 392px;
+
+        &_text {
+          font-size: 22px;
+          font-weight: 600;
+          line-height: 100%;
+          color: $text-black;
+        }
+
+        &_value {
+          font-size: 28px;
+          font-weight: 500;
+          line-height: 150%;
+          color: $text-black;
+        }
+      }
+
+      .btn {
+        align-self: flex-end;
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    .summary {
+      .second_col {
+        .row {
+          min-width: 300px;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 750px) {
@@ -105,11 +187,65 @@
 @media screen and (max-width: 700px) {
   .container {
     padding: 50px 16px 68px;
+
+    .summary {
+      flex-direction: column;
+      gap: 24px;
+      align-items: flex-end;
+    }
   }
 }
 
 @media screen and (max-width: 500px) {
   .container {
     padding-top: 24px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .container {
+    .summary {
+      align-items: flex-start;
+      margin-top: 12px;
+
+      .first_col {
+        .weight_text {
+          display: none;
+        }
+
+        .min_order {
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.24px;
+        }
+      }
+
+      .second_col {
+        gap: 8px;
+        width: 100%;
+
+        .row {
+          width: 100%;
+          min-width: 0;
+
+          &_text {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 100%;
+          }
+
+          &_value {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 150%;
+          }
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+    }
   }
 }
