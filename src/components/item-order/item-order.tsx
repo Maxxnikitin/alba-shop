@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './item-order.module.scss';
 import { IItemOrderProps } from './types';
 
-import { Button, EButtonKinds, EOrderStatus, OrderStatus, Paragraph } from '../ui';
+import { Button, EButtonKinds, OrderStatus, Paragraph } from '../ui';
 
 export const ItemOrder: FC<IItemOrderProps> = memo(({ data, onClick, className = '', ...rest }) => {
   const { t } = useTranslation();
@@ -32,11 +32,11 @@ export const ItemOrder: FC<IItemOrderProps> = memo(({ data, onClick, className =
           <Paragraph className={styles.order_price}>
             {t('personal-account.order.price', { price: data.amount })}
           </Paragraph>
-          <OrderStatus type={data.status as EOrderStatus} className={styles.status_mob} />
+          <OrderStatus type={data.status} className={styles.status_mob} />
         </div>
       </div>
       <div className={styles.row_second}>
-        <OrderStatus type={data.status as EOrderStatus} className={styles.status} />
+        <OrderStatus type={data.status} className={styles.status} />
         <ul className={styles.photos}>
           {data.content.slice(0, 3).map(item => (
             <img

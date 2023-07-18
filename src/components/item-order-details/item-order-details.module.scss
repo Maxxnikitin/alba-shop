@@ -2,7 +2,6 @@
 
 .container {
   display: flex;
-  gap: 20px;
   align-items: center;
 
   .img {
@@ -71,6 +70,15 @@
 
 @container (width <= 500px) {
   .container {
+    gap: 16px;
+
+    .img {
+      align-self: flex-start;
+      width: 40px;
+      height: 40px;
+      padding: 12px;
+    }
+
     .main_box {
       grid-template-columns: 1fr;
       gap: 14px;

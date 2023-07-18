@@ -10,7 +10,7 @@ import { IOrderItemsProps } from './types';
 import { ItemOrder, OrderDetails } from '..';
 import { Button, EButtonKinds, Pagination } from '../ui';
 
-import { getOrders, TOrder, TOrdersWithPagination } from '~utils';
+import { EOrderStatus, getOrders, TOrder, TOrdersWithPagination } from '~utils';
 
 const mockData: TOrdersWithPagination = {
   meta: {
@@ -41,7 +41,7 @@ const mockData: TOrdersWithPagination = {
       },
       amount: 134586,
       weight: 0,
-      status: 'NEW',
+      status: EOrderStatus.NEW,
       content: [
         {
           type: 'positions',
@@ -179,7 +179,7 @@ const mockData: TOrdersWithPagination = {
       },
       amount: 134586,
       weight: 0,
-      status: 'IN_PROGRESS',
+      status: EOrderStatus.IN_PROGRESS,
       content: [
         {
           type: 'positions',
@@ -239,7 +239,7 @@ const mockData: TOrdersWithPagination = {
       },
       amount: 134586,
       weight: 0,
-      status: 'READY',
+      status: EOrderStatus.READY,
       content: [
         {
           type: 'positions',
@@ -299,7 +299,7 @@ const mockData: TOrdersWithPagination = {
       },
       amount: 134586,
       weight: 0,
-      status: 'SENT',
+      status: EOrderStatus.SENT,
       content: [
         {
           type: 'positions',
@@ -359,7 +359,7 @@ const mockData: TOrdersWithPagination = {
       },
       amount: 134586,
       weight: 0,
-      status: 'CANCELED',
+      status: EOrderStatus.CANCELED,
       content: [
         {
           type: 'positions',
@@ -419,7 +419,7 @@ const mockData: TOrdersWithPagination = {
       },
       amount: 134586,
       weight: 0,
-      status: 'RECEIVED',
+      status: EOrderStatus.RECEIVED,
       content: [
         {
           type: 'positions',
@@ -466,8 +466,7 @@ const mockData: TOrdersWithPagination = {
 export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest }) => {
   const [data, setData] = useState<TOrdersWithPagination | null>(null);
   const [currItem, setCurrItem] = useState<TOrder | null>(null);
-
-  console.log(currItem);
+  const [offset, setOffset] = useState(0);
 
   const { t } = useTranslation();
 
@@ -476,9 +475,14 @@ export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest 
       const { id } = currentTarget;
 
       setCurrItem(data?.data.find(item => item.id === +id)!);
+      setOffset(window.pageYOffset);
     },
     [data],
   );
+
+  const handleBackClick: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
+    setCurrItem(null);
+  }, []);
 
   useEffect(() => {
     getOrders()
@@ -486,12 +490,36 @@ export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest 
       .catch(err => console.log(err));
   }, []);
 
+  useEffect(() => {
+    if (currItem) {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    } else {
+      window.scrollTo({
+        top: offset,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+  }, [offset, currItem]);
+
   if (!data) return <p>loader</p>;
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>
       {currItem ? (
-        <OrderDetails data={currItem} />
+        <>
+          <Button
+            kind={EButtonKinds.back}
+            text={t('personal-account.order.back')}
+            className={styles.btn_back}
+            onClick={handleBackClick}
+          />
+          <OrderDetails data={currItem} />
+        </>
       ) : (
         <>
           <ul className={styles.list}>

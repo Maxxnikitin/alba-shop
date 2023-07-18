@@ -22,6 +22,7 @@ export const Button: FC<IButtonProps> = memo(
       {...rest}
     >
       {kind === 'menu' && <MenuIcon className={styles.button_icon} />}
+      {kind === 'back' && <div className={styles.button_back_icon} />}
       <Paragraph className={clsx(styles.text, { [styles.text_none]: kind === 'menu' })}>
         {text}
       </Paragraph>

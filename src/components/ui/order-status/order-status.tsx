@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import styles from './order-status.module.scss';
 import { IOrderStatusProps } from './types';
 
+import { Paragraph } from '../paragraph';
+
 export const OrderStatus: FC<IOrderStatusProps> = memo(({ type, className = '', ...rest }) => {
   const { t } = useTranslation();
 
@@ -30,7 +32,9 @@ export const OrderStatus: FC<IOrderStatusProps> = memo(({ type, className = '', 
       className={clsx(styles.container, styles[`type_${type.toLowerCase()}`], className)}
       {...rest}
     >
-      {text}
+      <div className={styles.wrapper}>
+        <Paragraph className={styles.text}>{text}</Paragraph>
+      </div>
     </div>
   );
 });

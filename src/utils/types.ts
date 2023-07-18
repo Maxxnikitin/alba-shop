@@ -177,12 +177,21 @@ export type TOrder = {
   customer: TUser;
   amount: number;
   weight: number;
-  status: string;
+  status: EOrderStatus;
   content: TOrderContent[];
   history: TOrderHistory[];
   created: string;
   updated: string;
 };
+
+export enum EOrderStatus {
+  NEW = 'NEW',
+  IN_PROGRESS = 'IN_PROGRESS',
+  READY = 'READY',
+  SENT = 'SENT',
+  CANCELED = 'CANCELED',
+  RECEIVED = 'RECEIVED',
+}
 
 export type TOrderHistory = {
   type: string;

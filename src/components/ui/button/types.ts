@@ -18,4 +18,5 @@ export enum EButtonKinds {
   order = 'order',
   mainSlide = 'main-slide',
   textOnly = 'text-only',
+  back = 'back',
 }
