@@ -29,3 +29,5 @@ export * from './order-items';
 export * from './item-order';
 export * from './item-order-details';
 export * from './order-details';
+export * from './cart-table';
+export * from './cart-confirm';

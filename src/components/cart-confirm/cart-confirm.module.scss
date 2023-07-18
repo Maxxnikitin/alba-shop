@@ -1,0 +1,67 @@
+@import '../common';
+
+.container {
+  .title {
+    text-align: left;
+  }
+
+  .subtitle {
+    margin: 24px 0 27px;
+    text-align: left;
+  }
+
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    max-width: 80%;
+
+    .input {
+      width: max(200px, 260px);
+    }
+  }
+
+  .delivery_box {
+    margin-top: 47px;
+
+    .delivery_title {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .radios {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      width: fit-content;
+    }
+  }
+
+  .total_box {
+    margin-top: 56px;
+
+    .total {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 100%;
+      color: $text-black;
+      text-align: left;
+
+      &_num {
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 150%;
+        color: $text-black;
+      }
+    }
+
+    .addition {
+      margin-bottom: 28px;
+
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 120%;
+      text-align: left;
+    }
+  }
+}

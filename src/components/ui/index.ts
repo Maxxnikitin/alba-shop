@@ -14,6 +14,7 @@ export * from './sms-input';
 export * from './navigation';
 export * from './category-item';
 export * from './checkbox';
+export * from './radio';
 export * from './switch';
 export * from './filters-box';
 export * from './filters-box-with-children';
