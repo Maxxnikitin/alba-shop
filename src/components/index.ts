@@ -27,4 +27,5 @@ export * from './favorite-items';
 export * from './personal-data';
 export * from './order-items';
 export * from './item-order';
+export * from './item-order-details';
 export * from './order-details';

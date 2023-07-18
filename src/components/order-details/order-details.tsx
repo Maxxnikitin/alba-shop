@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './order-details.module.scss';
 import { IOrderDetailsProps } from './types';
 
+import { ItemOrderDetails } from '../item-order-details';
 import { Button, EButtonKinds, EOrderStatus, OrderStatus, Paragraph } from '../ui';
 import { Tooltip } from '../ui/tooltip';
 
@@ -41,7 +42,7 @@ export const OrderDetails: FC<IOrderDetailsProps> = memo(({ data, className = ''
       </div>
       <ul className={styles.list}>
         {data.content.map(item => (
-          <p key={item.id}>{item.characteristic.name}</p>
+          <ItemOrderDetails key={item.id} data={item} />
         ))}
       </ul>
       <Button kind={EButtonKinds.load} text={t('items.load-btn')} />
