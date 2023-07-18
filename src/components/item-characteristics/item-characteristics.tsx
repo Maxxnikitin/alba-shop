@@ -61,7 +61,7 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
           modules={[Navigation, Pagination]}
           className={styles.swiper}
         >
-          {photo.map((item, i) => (
+          {Object.values(photo).map((item, i) => (
             <SwiperSlide key={i}>
               <ItemFullPhoto
                 photo={item}

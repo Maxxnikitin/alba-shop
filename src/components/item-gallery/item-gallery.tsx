@@ -24,7 +24,7 @@ export const ItemGallery: FC<IItemGalleryProps> = memo(
       <div className={clsx(styles.container, className)} {...rest}>
         <PhotosBox photos={photos} activePhoto={activePhoto} onClick={handlePhotoClick} />
         <ItemFullPhoto
-          photo={photos[activePhoto]}
+          photo={photos.front}
           currentCharacteristic={currentCharacteristic}
           dataObj={dataObj}
           onLikeClick={onLikeClick}

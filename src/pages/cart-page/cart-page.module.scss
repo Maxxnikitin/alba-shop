@@ -1,0 +1,115 @@
+@import '../../components/common';
+
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1226px;
+  padding: 82px 24px 127px;
+
+  .title {
+    margin-bottom: 4px;
+    text-align: left;
+  }
+
+  .btn_clean {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 33px;
+    padding: 0;
+
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 25px;
+    color: $text-dark;
+
+    background: none;
+    border: none;
+
+    transition: $common-transition;
+
+    &:hover {
+      opacity: $common-hover-opacity;
+    }
+
+    &_icon {
+      width: 21px;
+      height: 21px;
+      margin-left: 16px;
+
+      background-image: url('../../images/icons/close-cross.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  .table {
+    &_head {
+      display: grid;
+      grid-template-columns: 50% 1fr 1fr 1fr 1fr;
+      gap: 10px;
+      justify-items: center;
+
+      margin-bottom: 20px;
+
+      &_text {
+        &:nth-child(1) {
+          justify-self: start;
+        }
+
+        &:nth-child(4) {
+          justify-self: end;
+        }
+
+        &:nth-child(5) {
+          justify-self: end;
+        }
+      }
+    }
+
+    &_list {
+      margin: 0;
+      padding: 0;
+
+      &_item {
+        display: grid;
+        grid-template-columns: 50% 1fr 1fr 1fr 1fr;
+        gap: 10px;
+        justify-items: center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .container {
+    .table {
+      &_head {
+        display: none;
+      }
+
+      &_list {
+        &_item {
+          display: flex;
+          gap: 10px;
+          align-items: stretch;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    padding: 50px 16px 68px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    padding-top: 24px;
+  }
+}

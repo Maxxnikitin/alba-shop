@@ -61,7 +61,12 @@ const mockData: TOrdersWithPagination = {
             discount: 10,
             discounted_price: '99.00',
             color: 'Черный',
-            photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
+            photo: {
+              front:
+                'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+              left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+              inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+            },
           },
           quantity: 0,
           weight: 0,
@@ -87,7 +92,12 @@ const mockData: TOrdersWithPagination = {
             discount: 10,
             discounted_price: '99.00',
             color: 'Черный',
-            photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
+            photo: {
+              front:
+                'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+              left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+              inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+            },
           },
           quantity: 0,
           weight: 0,
@@ -113,7 +123,12 @@ const mockData: TOrdersWithPagination = {
             discount: 10,
             discounted_price: '99.00',
             color: 'Черный',
-            photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
+            photo: {
+              front:
+                'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+              left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+              inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+            },
           },
           quantity: 0,
           weight: 0,
@@ -139,7 +154,12 @@ const mockData: TOrdersWithPagination = {
             discount: 10,
             discounted_price: '99.00',
             color: 'Черный',
-            photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
+            photo: {
+              front:
+                'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+              left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+              inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+            },
           },
           quantity: 0,
           weight: 0,
@@ -199,7 +219,12 @@ const mockData: TOrdersWithPagination = {
             discount: 10,
             discounted_price: '99.00',
             color: 'Черный',
-            photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
+            photo: {
+              front:
+                'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+              left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+              inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+            },
           },
           quantity: 0,
           weight: 0,
@@ -259,7 +284,12 @@ const mockData: TOrdersWithPagination = {
             discount: 10,
             discounted_price: '99.00',
             color: 'Черный',
-            photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
+            photo: {
+              front:
+                'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+              left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+              inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+            },
           },
           quantity: 0,
           weight: 0,
@@ -319,7 +349,12 @@ const mockData: TOrdersWithPagination = {
             discount: 10,
             discounted_price: '99.00',
             color: 'Черный',
-            photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
+            photo: {
+              front:
+                'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+              left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+              inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+            },
           },
           quantity: 0,
           weight: 0,
@@ -379,7 +414,12 @@ const mockData: TOrdersWithPagination = {
             discount: 10,
             discounted_price: '99.00',
             color: 'Черный',
-            photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
+            photo: {
+              front:
+                'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+              left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+              inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+            },
           },
           quantity: 0,
           weight: 0,
@@ -439,7 +479,12 @@ const mockData: TOrdersWithPagination = {
             discount: 10,
             discounted_price: '99.00',
             color: 'Черный',
-            photo: ['https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg'],
+            photo: {
+              front:
+                'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+              left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+              inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+            },
           },
           quantity: 0,
           weight: 0,

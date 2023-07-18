@@ -71,6 +71,8 @@
 @container (width <= 500px) {
   .container {
     gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(205 205 205 / 30%);
 
     .img {
       align-self: flex-start;

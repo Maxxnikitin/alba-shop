@@ -17,6 +17,7 @@ import {
   MainPage,
   SignInPage,
   PersonalAccountPage,
+  CartPage,
 } from '../../pages';
 
 import { ItemsWithFilters } from '../items-with-filters';
@@ -48,7 +49,7 @@ export function App() {
     },
     {
       path: '/cart',
-      element: <p>Cart</p>,
+      element: <CartPage />,
     },
     {
       path: '/favorites',

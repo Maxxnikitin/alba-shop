@@ -14,7 +14,11 @@ export const ItemOrderDetails: FC<IItemOrderDetailsProps> = memo(
 
     return (
       <li className={clsx(styles.container, className)} {...rest}>
-        <img className={styles.img} src={data.characteristic.photo[0]} alt={t('alts.item') || ''} />
+        <img
+          className={styles.img}
+          src={data.characteristic.photo.front}
+          alt={t('alts.item') || ''}
+        />
         <div className={styles.main_box}>
           <div className={styles.desc}>
             <Paragraph className={styles.name}>{data.characteristic.name}</Paragraph>

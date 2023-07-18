@@ -11,7 +11,7 @@ export const PhotosBox: FC<IPhotosBoxProps> = memo(
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
-        {photos.map((item, i) => (
+        {Object.values(photos).map((item, i) => (
           <img
             className={clsx(styles.img, { [styles.img_active]: activePhoto === i })}
             src={item}

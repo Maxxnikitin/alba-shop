@@ -19,6 +19,7 @@ import type {
   TLoyalties,
   TEditData,
   TOrdersWithPagination,
+  TCart,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -161,3 +162,10 @@ export const getOrders = () =>
       headers: headersWithAuth(),
     })
     .then((res: AxiosResponse<TOrdersWithPagination>) => checkResponse(res));
+
+export const getCart = () =>
+  axios
+    .get(`${URL}/cart/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<ResWithData<TCart | null>>) => checkResponse(res));

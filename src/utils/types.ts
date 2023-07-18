@@ -53,7 +53,13 @@ export type TCharacteristic = {
   discount: number;
   discounted_price: string;
   color: string;
-  photo: string[];
+  photo: TPhotos;
+};
+
+export type TPhotos = {
+  front: string;
+  left: string;
+  inside: string;
 };
 
 export type TCategory = {
@@ -210,4 +216,16 @@ export type TOrderContent = {
   amount: number;
   discounted_amount: number;
   final_amount: number;
+};
+
+export type TCart = {
+  type: string;
+  id: number;
+  customer: TUser;
+  created: string;
+  amount: number;
+  discounted_amount: number;
+  final_amount: number;
+  weight: number;
+  content: TOrderContent[];
 };

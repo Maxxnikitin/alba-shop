@@ -42,7 +42,7 @@ export const ItemOrder: FC<IItemOrderProps> = memo(({ data, onClick, className =
             <img
               className={styles.photos_photo}
               key={item.id}
-              src={item.characteristic.photo[0]}
+              src={item.characteristic.photo.front}
               alt={t('alts.item') || ''}
             />
           ))}

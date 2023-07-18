@@ -35,7 +35,7 @@ export const Item: FC<IItemProps> = memo(
     return (
       <li className={clsx(styles.container, className)} {...rest}>
         <article className={styles.article}>
-          <img className={styles.img} src={photo[0]} alt={t('alts.item') || ''} />
+          <img className={styles.img} src={photo.front} alt={t('alts.item') || ''} />
           <div className={styles.addition_box}>
             <div className={styles.tags_like_box}>
               <button

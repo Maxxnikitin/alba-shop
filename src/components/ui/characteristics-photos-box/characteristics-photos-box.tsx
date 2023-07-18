@@ -20,7 +20,7 @@ export const CharacteristicsPhotoBox: FC<ICharacteristicsPhotoBoxProps> = memo(
                 [styles.img_active]: currentCharacteristic.id === item.id,
                 [styles.stock_off]: !item.stock,
               })}
-              src={item.photo[0]}
+              src={item.photo.front}
               id={item.id}
               alt={t('alts.item') || ''}
               onClick={onClick}

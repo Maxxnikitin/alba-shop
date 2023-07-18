@@ -29,15 +29,12 @@ export const mockCharacteristicsData: TCharacteristic[] = [
     is_bestseller: true,
     is_hit: true,
     in_favorite: false,
-    photo: [
-      'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
-      'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
-      'https://img.mvideo.ru/Pdb/50129627b.jpg',
-      'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
-      'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
-      'https://img.mvideo.ru/Pdb/50129627b.jpg',
-      'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
-    ],
+    photo: {
+      front:
+        'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+      left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+      inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+    },
   },
   {
     type: 'characteristics',
@@ -54,11 +51,12 @@ export const mockCharacteristicsData: TCharacteristic[] = [
     is_bestseller: true,
     is_hit: true,
     in_favorite: false,
-    photo: [
-      'https://hi-stores.ru/upload/iblock/6a0/1kv5pzzka13q4bgoew7a93bylcednbbw.jpg',
-      'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
-      'https://img.mvideo.ru/Pdb/50129627b.jpg',
-    ],
+    photo: {
+      front:
+        'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+      left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+      inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+    },
   },
   {
     type: 'characteristics',
@@ -75,11 +73,12 @@ export const mockCharacteristicsData: TCharacteristic[] = [
     is_bestseller: false,
     is_hit: true,
     in_favorite: false,
-    photo: [
-      'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
-      'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
-      'https://img.mvideo.ru/Pdb/50129627b.jpg',
-    ],
+    photo: {
+      front:
+        'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+      left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+      inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+    },
   },
   {
     type: 'characteristics',
@@ -96,11 +95,12 @@ export const mockCharacteristicsData: TCharacteristic[] = [
     is_bestseller: true,
     is_hit: true,
     in_favorite: false,
-    photo: [
-      'https://белоеяблоко.рф/upload/resize_cache/iblock/e98/800_800_1a1fde8d5e7dcaa11be442336c9d37f5e/y3xladtiypp4q4asb15458430j8h59wv.jpeg',
-      'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
-      'https://img.mvideo.ru/Pdb/50129627b.jpg',
-    ],
+    photo: {
+      front:
+        'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+      left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+      inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+    },
   },
   {
     type: 'characteristics',
@@ -117,11 +117,12 @@ export const mockCharacteristicsData: TCharacteristic[] = [
     is_bestseller: true,
     is_hit: true,
     in_favorite: false,
-    photo: [
-      'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
-      'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
-      'https://img.mvideo.ru/Pdb/50129627b.jpg',
-    ],
+    photo: {
+      front:
+        'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+      left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+      inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+    },
   },
   {
     type: 'characteristics',
@@ -138,11 +139,12 @@ export const mockCharacteristicsData: TCharacteristic[] = [
     is_bestseller: true,
     is_hit: true,
     in_favorite: false,
-    photo: [
-      'https://белоеяблоко.рф/upload/resize_cache/iblock/e98/800_800_1a1fde8d5e7dcaa11be442336c9d37f5e/y3xladtiypp4q4asb15458430j8h59wv.jpeg',
-      'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
-      'https://img.mvideo.ru/Pdb/50129627b.jpg',
-    ],
+    photo: {
+      front:
+        'https://itechstore.ru/media/images/products/2022/7/0fe4203947ee11ebb2be3cecef20832b_e37732805ad111ebb2be3cecef20832b.jpg',
+      left: 'https://iphoriya.ru/wp-content/uploads/apple-silicone-case-iphone-11-vitamin-c.jpeg',
+      inside: 'https://img.mvideo.ru/Pdb/50129627b.jpg',
+    },
   },
 ];
 
