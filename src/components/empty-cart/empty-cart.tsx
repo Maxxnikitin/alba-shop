@@ -18,6 +18,7 @@ export const EmptyCart: FC<IEmptyCartProps> = memo(({ className = '', ...rest })
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>
+      <Title className={styles.page_title}>{t('cart.title')}</Title>
       <img className={styles.img} src={image} alt={t('alts.not-found') || ''} />
       <Title className={styles.title} level={ETitleLevel.h6}>
         {t('empty-cart.title')}

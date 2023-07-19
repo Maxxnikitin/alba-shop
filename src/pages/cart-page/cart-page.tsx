@@ -5,7 +5,13 @@ import { useTranslation } from 'react-i18next';
 import styles from './cart-page.module.scss';
 import { ICartPageProps } from './types';
 
-import { CartConfirm, CartTable, ModalConfirmedOrder, ModalSmall } from '../../components';
+import {
+  CartConfirm,
+  CartTable,
+  EmptyCart,
+  ModalConfirmedOrder,
+  ModalSmall,
+} from '../../components';
 
 import {
   EDeliveryType,
@@ -223,6 +229,7 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
           setData(null);
         })
         .catch(err => console.log(err));
+      setData(null);
     } else {
       setIsRemoveCart(true);
     }
@@ -273,7 +280,7 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
             onClick={handleConfirmCart}
           />
         ) : (
-          <p>empty</p>
+          <EmptyCart />
         )
       ) : (
         <CartConfirm
