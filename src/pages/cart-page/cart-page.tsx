@@ -5,15 +5,7 @@ import { ICartPageProps } from './types';
 
 import { CartConfirm, CartTable } from '../../components';
 
-import {
-  EDeliveryType,
-  TCart,
-  TConfirmOrderData,
-  TUser,
-  createOrder,
-  getCart,
-  getUser,
-} from '~utils';
+import { EDeliveryType, TCart, TConfirmOrderData, createOrder, getCart, getUser } from '~utils';
 
 const mockData: TCart = {
   type: 'carts',
@@ -159,7 +151,7 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
       return;
     }
 
-    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,5}$/;
+    const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,5}$/;
 
     if (!editData.email.match(regex)) {
       setIsEmailError(true);
