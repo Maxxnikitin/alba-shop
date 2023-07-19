@@ -1,11 +1,23 @@
-import { ChangeEventHandler, FC, useCallback, useEffect, useState } from 'react';
+import { ChangeEventHandler, FC, MouseEventHandler, useCallback, useEffect, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
 
 import styles from './cart-page.module.scss';
 import { ICartPageProps } from './types';
 
-import { CartConfirm, CartTable } from '../../components';
+import { CartConfirm, CartTable, ModalConfirmedOrder, ModalSmall } from '../../components';
 
-import { EDeliveryType, TCart, TConfirmOrderData, createOrder, getCart, getUser } from '~utils';
+import {
+  EDeliveryType,
+  TCart,
+  TConfirmOrderData,
+  createOrder,
+  getCart,
+  getUser,
+  handleToggleState,
+  removeCart,
+  removeCartItem,
+} from '~utils';
 
 const mockData: TCart = {
   type: 'carts',
@@ -131,6 +143,9 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
   const [mode, setMode] = useState<'cart' | 'confirm'>('cart');
   const [isPhoneError, setIsPhoneError] = useState(false);
   const [isEmailError, setIsEmailError] = useState(false);
+  const [isCreateOrderSuccess, setIsCreateOrderSuccess] = useState(false);
+  const [isRemoveCart, setIsRemoveCart] = useState(false);
+  const [removeItem, setRemoveItem] = useState<string | number | null>(null);
   const [editData, setEditData] = useState<TConfirmOrderData>({
     first_name: '',
     last_name: '',
@@ -141,8 +156,15 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
     delivery: EDeliveryType.SELF,
   });
 
+  const { t } = useTranslation();
+
   const handleConfirmCart = useCallback(() => {
     setMode('confirm');
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }, []);
 
   const handleCreateOrder = useCallback(() => {
@@ -160,7 +182,8 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
 
     createOrder(editData)
       .then(res => console.log(res))
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
+      .finally(() => setIsCreateOrderSuccess(true));
   }, [editData]);
 
   const handleBackClick = useCallback(() => {
@@ -192,6 +215,36 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
     }
   }, []);
 
+  const handleRemoveCart: MouseEventHandler<HTMLButtonElement> = () => {
+    if (isRemoveCart) {
+      removeCart()
+        .then(() => {
+          setIsRemoveCart(false);
+          setData(null);
+        })
+        .catch(err => console.log(err));
+    } else {
+      setIsRemoveCart(true);
+    }
+  };
+
+  const handleRemoveItem: MouseEventHandler<HTMLButtonElement> = ({ currentTarget }) => {
+    if (removeItem) {
+      removeCartItem(removeItem)
+        .then(() => {
+          setRemoveItem(null);
+          setData(null);
+        })
+        .catch(err => console.log(err));
+    } else {
+      setRemoveItem(currentTarget.id);
+    }
+  };
+
+  const handleCloseRemoveItemModal = useCallback(() => {
+    setRemoveItem(null);
+  }, []);
+
   useEffect(() => {
     Promise.all([getCart(), getUser()])
       .then(([cartData, userData]) => {
@@ -213,7 +266,12 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
     <section className={styles.container} {...rest}>
       {mode === 'cart' ? (
         data ? (
-          <CartTable data={data} onClick={handleConfirmCart} />
+          <CartTable
+            handleRemoveCart={handleRemoveCart}
+            handleRemoveItem={handleRemoveItem}
+            data={data}
+            onClick={handleConfirmCart}
+          />
         ) : (
           <p>empty</p>
         )
@@ -229,6 +287,27 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
           price={data?.final_amount || 0}
         />
       )}
+      <ModalConfirmedOrder isOpen={isCreateOrderSuccess} />
+      <ModalSmall
+        title={t('modals.cart.removeCart.title')!}
+        text={t('modals.cart.removeCart.text', { amount: 10 })!}
+        isOpen={isRemoveCart}
+        successBtnText={t('modals.cart.removeCart.btn_success')!}
+        cancellBtnText={t('modals.cart.removeCart.btn_cancel')!}
+        onClose={handleToggleState(setIsRemoveCart)}
+        onSuccess={handleRemoveCart}
+        withCloseBtn
+      />
+      <ModalSmall
+        title={t('modals.cart.removeItem.title')!}
+        text={t('modals.cart.removeItem.text', { amount: 10 })!}
+        isOpen={!!removeItem}
+        successBtnText={t('modals.cart.removeItem.btn_success')!}
+        cancellBtnText={t('modals.cart.removeItem.btn_cancel')!}
+        onClose={handleCloseRemoveItemModal}
+        onSuccess={handleRemoveItem}
+        withCloseBtn
+      />
     </section>
   );
 };

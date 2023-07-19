@@ -8,40 +8,46 @@ import { IItemCartProps } from './types';
 
 import { Paragraph } from '../ui';
 
-export const ItemCart: FC<IItemCartProps> = memo(({ data, className = '', ...rest }) => {
-  const { t } = useTranslation();
+export const ItemCart: FC<IItemCartProps> = memo(
+  ({ data, handleRemoveItem, className = '', ...rest }) => {
+    const { t } = useTranslation();
 
-  return (
-    <li className={clsx(styles.container, className)} {...rest}>
-      <div className={styles.main_box}>
-        <img
-          className={styles.img}
-          src={data.characteristic.photo.front}
-          alt={t('alts.item') || ''}
-        />
-        <div className={styles.name_box}>
-          <Paragraph className={styles.name}>{data.characteristic.name}</Paragraph>
-          <Paragraph className={styles.about}>{data.characteristic.color}</Paragraph>
-          <Paragraph className={styles.able}>
-            {t('cart.item.able', { able: data.characteristic.stock })}
-          </Paragraph>
-          <p className={styles.cart_btn}>- 1 +</p>
+    return (
+      <li className={clsx(styles.container, className)} {...rest}>
+        <div className={styles.main_box}>
+          <img
+            className={styles.img}
+            src={data.characteristic.photo.front}
+            alt={t('alts.item') || ''}
+          />
+          <div className={styles.name_box}>
+            <Paragraph className={styles.name}>{data.characteristic.name}</Paragraph>
+            <Paragraph className={styles.about}>{data.characteristic.color}</Paragraph>
+            <Paragraph className={styles.able}>
+              {t('cart.item.able', { able: data.characteristic.stock })}
+            </Paragraph>
+            <p className={styles.cart_btn}>- 1 +</p>
+          </div>
         </div>
-      </div>
-      <Paragraph className={styles.able}>{data.quantity}</Paragraph>
-      <p className={styles.cart_btn}>- 1 +</p>
-      <div className={styles.price_box}>
-        <Paragraph className={styles.price}>{data.final_amount}</Paragraph>
-        <Paragraph
-          className={styles.price_amount}
-        >{`${data.quantity} × ${data.characteristic.price}`}</Paragraph>
-      </div>
-      <div className={styles.btn_box}>
-        <button className={styles.btn_remove} />
-        <div className={clsx(styles.price_box, styles.price_box_mob)}>
+        <Paragraph className={styles.able}>{data.quantity}</Paragraph>
+        <p className={styles.cart_btn}>- 1 +</p>
+        <div className={styles.price_box}>
           <Paragraph className={styles.price}>{data.final_amount}</Paragraph>
+          <Paragraph
+            className={styles.price_amount}
+          >{`${data.quantity} × ${data.characteristic.price}`}</Paragraph>
         </div>
-      </div>
-    </li>
-  );
-});
+        <div className={styles.btn_box}>
+          <button
+            className={styles.btn_remove}
+            id={data.id.toString()}
+            onClick={handleRemoveItem}
+          />
+          <div className={clsx(styles.price_box, styles.price_box_mob)}>
+            <Paragraph className={styles.price}>{data.final_amount}</Paragraph>
+          </div>
+        </div>
+      </li>
+    );
+  },
+);

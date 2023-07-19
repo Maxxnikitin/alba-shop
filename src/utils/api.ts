@@ -178,3 +178,17 @@ export const createOrder = (data: TConfirmOrderData) =>
       headers: headersWithAuth(),
     })
     .then((res: AxiosResponse<ResWithData<TOrder>>) => checkResponse(res));
+
+export const removeCart = () =>
+  axios
+    .delete(`${URL}/cart/delete/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse) => checkResponse(res));
+
+export const removeCartItem = (id: string | number) =>
+  axios
+    .delete(`${URL}/cart/positions/${id}/delete/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse) => checkResponse(res));
