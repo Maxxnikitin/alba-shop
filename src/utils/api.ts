@@ -20,6 +20,8 @@ import type {
   TEditData,
   TOrdersWithPagination,
   TCart,
+  TConfirmOrderData,
+  TOrder,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -169,3 +171,10 @@ export const getCart = () =>
       headers: headersWithAuth(),
     })
     .then((res: AxiosResponse<ResWithData<TCart | null>>) => checkResponse(res));
+
+export const createOrder = (data: TConfirmOrderData) =>
+  axios
+    .post(`${URL}/orders/create/`, data, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<ResWithData<TOrder>>) => checkResponse(res));

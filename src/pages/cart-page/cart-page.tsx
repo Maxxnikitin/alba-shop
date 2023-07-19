@@ -1,11 +1,19 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { ChangeEventHandler, FC, useCallback, useEffect, useState } from 'react';
 
 import styles from './cart-page.module.scss';
 import { ICartPageProps } from './types';
 
 import { CartConfirm, CartTable } from '../../components';
 
-import { TCart, getCart } from '~utils';
+import {
+  EDeliveryType,
+  TCart,
+  TConfirmOrderData,
+  TUser,
+  createOrder,
+  getCart,
+  getUser,
+} from '~utils';
 
 const mockData: TCart = {
   type: 'carts',
@@ -129,14 +137,83 @@ const mockData: TCart = {
 export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
   const [data, setData] = useState<TCart | null>(null);
   const [mode, setMode] = useState<'cart' | 'confirm'>('cart');
+  const [isPhoneError, setIsPhoneError] = useState(false);
+  const [isEmailError, setIsEmailError] = useState(false);
+  const [editData, setEditData] = useState<TConfirmOrderData>({
+    first_name: '',
+    last_name: '',
+    middle_name: '',
+    city: '',
+    phone_number: '',
+    email: '',
+    delivery: EDeliveryType.SELF,
+  });
 
   const handleConfirmCart = useCallback(() => {
     setMode('confirm');
   }, []);
 
+  const handleCreateOrder = useCallback(() => {
+    if (editData.phone_number.length !== 12) {
+      setIsPhoneError(true);
+      return;
+    }
+
+    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,5}$/;
+
+    if (!editData.email.match(regex)) {
+      setIsEmailError(true);
+      return;
+    }
+
+    createOrder(editData)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  }, [editData]);
+
+  const handleBackClick = useCallback(() => {
+    setMode('cart');
+  }, []);
+
+  const handleChangePhone = (v: string | undefined) => {
+    setIsPhoneError(false);
+    setEditData(prev => ({
+      ...prev,
+      phone_number: v ?? '',
+    }));
+  };
+
+  const handleChangeInputs: ChangeEventHandler<HTMLInputElement> = useCallback(e => {
+    const { name } = e.target;
+    setIsEmailError(false);
+
+    if (name === 'delivery') {
+      setEditData(prev => ({
+        ...prev,
+        [name]: e.target.value as EDeliveryType,
+      }));
+    } else {
+      setEditData(prev => ({
+        ...prev,
+        [e.target.id]: e.target.value,
+      }));
+    }
+  }, []);
+
   useEffect(() => {
-    getCart()
-      .then(res => setData(mockData))
+    Promise.all([getCart(), getUser()])
+      .then(([cartData, userData]) => {
+        setData(mockData);
+        setEditData({
+          first_name: userData.data.first_name,
+          last_name: userData.data.last_name,
+          middle_name: '',
+          city: userData.data.city || '',
+          phone_number: userData.data.phone_number,
+          email: userData.data.email,
+          delivery: EDeliveryType.SELF,
+        });
+      })
       .catch(err => console.log(err));
   }, []);
 
@@ -149,7 +226,16 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
           <p>empty</p>
         )
       ) : (
-        <CartConfirm price={data?.final_amount || 0} />
+        <CartConfirm
+          data={editData}
+          handleChangeInputs={handleChangeInputs}
+          handleChangePhone={handleChangePhone}
+          handleBackClick={handleBackClick}
+          handleCreateOrder={handleCreateOrder}
+          isPhoneError={isPhoneError}
+          isEmailError={isEmailError}
+          price={data?.final_amount || 0}
+        />
       )}
     </section>
   );

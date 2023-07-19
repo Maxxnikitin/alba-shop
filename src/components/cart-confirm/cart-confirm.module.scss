@@ -1,6 +1,10 @@
 @import '../common';
 
 .container {
+  .btn_back {
+    margin-bottom: 20px;
+  }
+
   .title {
     text-align: left;
   }
@@ -14,10 +18,24 @@
     display: flex;
     flex-wrap: wrap;
     gap: 35px;
-    max-width: 80%;
+    max-width: 90%;
 
     .input {
       width: max(200px, 260px);
+
+      &_error {
+        color: $red1;
+        border: 1px solid $red1;
+      }
+
+      &_error::placeholder {
+        color: $red1;
+      }
+    }
+
+    .edit_phone_error {
+      margin-top: 4px;
+      text-align: left;
     }
   }
 
@@ -62,6 +80,58 @@
       font-weight: 400;
       line-height: 120%;
       text-align: left;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    .title {
+      margin-bottom: 24px;
+    }
+
+    .subtitle {
+      display: none;
+    }
+
+    .form {
+      flex-direction: column;
+      gap: 30px;
+      padding: 32px 28px;
+      background-color: $gray7;
+
+      .input {
+        width: 100%;
+      }
+    }
+
+    .delivery_box {
+      margin-top: 40px;
+
+      .delivery_title {
+        margin-bottom: 20px;
+      }
+
+      .radios {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+
+    .total_box {
+      display: flex;
+      flex-direction: column;
+      margin-top: 32px;
+
+      .addition {
+        order: 1;
+        text-align: center;
+      }
+
+      .btn {
+        margin-top: 24px;
+        margin-bottom: 16px;
+      }
     }
   }
 }

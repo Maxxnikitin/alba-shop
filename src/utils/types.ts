@@ -172,6 +172,21 @@ export type TLoyalties = {
 
 export type TEditData = Record<string, string>;
 
+export type TConfirmOrderData = {
+  first_name: string;
+  last_name: string;
+  middle_name: string;
+  city: string;
+  phone_number: string;
+  email: string;
+  delivery: EDeliveryType;
+};
+
+export enum EDeliveryType {
+  SELF = 'SELF',
+  DELIVERY = 'DELIVERY',
+}
+
 export type TOrdersWithPagination = {
   meta: TMeta;
   data: TOrder[];

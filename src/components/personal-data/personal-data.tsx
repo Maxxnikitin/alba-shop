@@ -211,6 +211,7 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
               />
               <div className={styles.edit_phone_box}>
                 <PhoneInputWithCountrySelect
+                  className={clsx(styles.input, { [styles.input_error]: isPhoneError })}
                   defaultCountry='RU'
                   inputComponent={PhoneInput}
                   value={editData.phone_number}

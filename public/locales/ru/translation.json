@@ -177,7 +177,8 @@
       "new-password": "Новый пароль",
       "password-error": "Пароли не совпадают",
       "password-length-error": "Не менее 8 символов",
-      "phone-error": "Телефон не валиден"
+      "phone-error": "Телефон не валиден",
+      "email-error": "E-mail не валиден"
     },
     "status": {
       "title": "Статус",

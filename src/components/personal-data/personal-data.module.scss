@@ -186,6 +186,17 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 35px;
       max-width: 555px;
+
+      .input {
+        &_error {
+          color: $red1;
+          border: 1px solid $red1;
+        }
+
+        &_error::placeholder {
+          color: $red1;
+        }
+      }
     }
 
     &_password_box {
@@ -214,20 +225,6 @@
     }
   }
 }
-
-// @media screen and (max-width: 1000px) {
-//   .container {
-//     .edit {
-//       &_main_box {
-//         grid-template-columns: 200px 1fr;
-//       }
-
-//       &_password_box {
-//         grid-template-columns: 200px 1fr;
-//       }
-//     }
-//   }
-// }
 
 @media screen and (max-width: 900px) {
   .container {
