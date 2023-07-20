@@ -15,3 +15,5 @@ export * from './time-icon';
 export * from './menu-icon';
 export * from './search-icon';
 export * from './search-mobile-icon';
+export * from './arrow-menu-icon';
+export * from './arrow-back-icon';

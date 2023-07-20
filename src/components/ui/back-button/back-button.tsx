@@ -1,15 +1,15 @@
 import clsx from 'clsx';
 import { FC } from 'react';
 
-import styles from './close-button.module.scss';
+import styles from './back-button.module.scss';
 
-import { ICloseButtonProps } from './types';
+import { IBackButtonProps } from './types';
 
 import { Paragraph } from '..';
 
-import { CrossIcon } from '../icons';
+import { ArrowBackIcon } from '../icons';
 
-export const CloseButton: FC<ICloseButtonProps> = ({
+export const BackButton: FC<IBackButtonProps> = ({
   className = '',
   textClassName = '',
   iconClassName = '',
@@ -17,7 +17,7 @@ export const CloseButton: FC<ICloseButtonProps> = ({
   ...rest
 }) => (
   <button className={clsx(styles.button, className)} {...rest}>
+    <ArrowBackIcon className={clsx(styles.icon, iconClassName)} />
     {text && <Paragraph className={clsx(styles.text, textClassName)}>{text}</Paragraph>}
-    <CrossIcon className={clsx(styles.icon, iconClassName)} />
   </button>
 );

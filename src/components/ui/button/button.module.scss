@@ -120,29 +120,6 @@
     }
   }
 
-  &_type_back {
-    width: fit-content;
-    padding: 12px;
-    background: none;
-
-    .text {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 100%;
-      color: $text-black;
-    }
-  }
-
-  &_back_icon {
-    width: 13px;
-    height: 14px;
-    margin-right: 8px;
-
-    background-image: url('../../../images/icons/back-arrow.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
   &_type_primary:hover,
   &_type_sign-in:hover,
   &_type_menu:hover {
@@ -161,8 +138,7 @@
   &_type_item-missing:hover,
   &_type_delay:hover,
   &_type_order:hover,
-  &_type_text-only:hover,
-  &_type_back:hover {
+  &_type_text-only:hover {
     opacity: $common-hover-opacity;
   }
 
