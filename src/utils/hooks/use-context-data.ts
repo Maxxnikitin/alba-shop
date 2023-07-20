@@ -44,5 +44,7 @@ export const useContextData = () => {
       .catch(err => console.error(err));
   }, []);
 
+  console.log(contextData.categories);
+
   return { contextData };
 };

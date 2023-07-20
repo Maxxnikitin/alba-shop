@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, memo, useEffect, useMemo, useState } from 'react';
+import { FC, memo, useContext, useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -11,11 +11,12 @@ import { IBrandItemsProps } from './types';
 
 import { BrandItem, Breadcrumbs, Title } from '../ui';
 
-import { mockCategories, TCategory } from '~utils';
+import { DataContext, TCategory } from '~utils';
 
 export const BrandItems: FC<IBrandItemsProps> = memo(({ className = '', ...rest }) => {
   const [data, setData] = useState<TCategory[] | null>(null);
   const { brand } = useParams();
+  const { categories } = useContext(DataContext);
 
   const { t } = useTranslation();
 
@@ -26,8 +27,8 @@ export const BrandItems: FC<IBrandItemsProps> = memo(({ className = '', ...rest 
     //   .then(res => setData(res))
     //   .catch(err => console.error(err));
 
-    setData(mockCategories);
-  }, []);
+    setData(categories);
+  }, [categories]);
 
   if (!data) return <p>loader</p>;
 

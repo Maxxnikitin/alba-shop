@@ -9,6 +9,7 @@ import styles from './cart-confirm.module.scss';
 import { ICartConfirmProps } from './types';
 
 import {
+  BackButton,
   Button,
   EButtonKinds,
   ETitleLevel,
@@ -38,9 +39,8 @@ export const CartConfirm: FC<ICartConfirmProps> = memo(
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
-        <Button
-          kind={EButtonKinds.back}
-          text={t('personal-account.order.back')}
+        <BackButton
+          text={t('personal-account.order.back')!}
           className={styles.btn_back}
           onClick={handleBackClick}
         />

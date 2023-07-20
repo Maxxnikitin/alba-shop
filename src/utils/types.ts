@@ -72,7 +72,16 @@ export type TCategory = {
   slug: string;
   position: number;
   mob_position: number;
+  children: TCategoryChildren[];
   parend_id?: number | null;
+};
+
+export type TCategoryChildren = {
+  id: number;
+  name: string;
+  slug: string;
+  type: string;
+  children: TCategoryChildren[];
 };
 
 export type TGetCategoriesRes = TCategory[];

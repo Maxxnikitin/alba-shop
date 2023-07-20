@@ -110,7 +110,7 @@ export function App() {
       ],
     },
     {
-      path: '/:brand',
+      path: '/brands/:brand',
       element: <BrandsPage />,
     },
     {

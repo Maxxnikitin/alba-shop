@@ -8,7 +8,7 @@ import styles from './order-items.module.scss';
 import { IOrderItemsProps } from './types';
 
 import { ItemOrder, OrderDetails } from '..';
-import { Button, EButtonKinds, Pagination } from '../ui';
+import { BackButton, Button, EButtonKinds, Pagination } from '../ui';
 
 import { EOrderStatus, getOrders, TOrder, TOrdersWithPagination } from '~utils';
 
@@ -557,9 +557,8 @@ export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest 
     <div className={clsx(styles.container, className)} {...rest}>
       {currItem ? (
         <>
-          <Button
-            kind={EButtonKinds.back}
-            text={t('personal-account.order.back')}
+          <BackButton
+            text={t('personal-account.order.back')!}
             className={styles.btn_back}
             onClick={handleBackClick}
           />
