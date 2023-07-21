@@ -22,6 +22,7 @@ import type {
   TCart,
   TConfirmOrderData,
   TOrder,
+  TCategoryChild,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -66,6 +67,20 @@ export const getCategories = () =>
       headers: headersWithAuth(),
     })
     .then((res: AxiosResponse<ResWithData<TGetCategoriesRes>>) => checkResponse(res));
+
+export const getCategory = (id: string | number) =>
+  axios
+    .get(`${URL}/categories/${id}/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<ResWithData<TCategory>>) => checkResponse(res));
+
+export const getCategoryChilds = (id: string | number) =>
+  axios
+    .get(`${URL}/categories/${id}/child/`, {
+      headers: headersWithAuth(),
+    })
+    .then((res: AxiosResponse<ResWithData<TCategoryChild[]>>) => checkResponse(res));
 
 export const getAboutInfo = () =>
   axios

@@ -1,7 +1,6 @@
-import { TBrand, TCategory } from '~utils';
+import { TBrand } from '~utils';
 
 export interface IBrandItemProps {
-  data: TBrand | TCategory;
-  isCategory?: boolean;
+  data: TBrand;
   className?: string;
 }

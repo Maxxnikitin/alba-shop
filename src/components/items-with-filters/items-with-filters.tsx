@@ -9,7 +9,7 @@ import { IItemsWithFiltersProps } from './types';
 
 import { Item } from '..';
 import { Filters } from '../filters';
-import { Breadcrumbs, Button, EButtonKinds, Pagination, SortSelect, Title } from '../ui';
+import { Button, EButtonKinds, Pagination, SortSelect, Title } from '../ui';
 
 import { TItemsWithPagination, TSortingItems } from '~utils';
 
@@ -187,7 +187,6 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
-        <Breadcrumbs />
         <Title className={styles.title}>{title}</Title>
         <SortSelect value={currSort} onChange={handleSortingChange} className={styles.sort_box} />
         <div className={styles.columns}>

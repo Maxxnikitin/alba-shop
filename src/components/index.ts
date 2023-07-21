@@ -32,3 +32,4 @@ export * from './order-details';
 export * from './cart-table';
 export * from './cart-confirm';
 export * from './modal-small';
+export * from './catalog-items';

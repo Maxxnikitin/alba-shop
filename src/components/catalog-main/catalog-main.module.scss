@@ -14,6 +14,10 @@
 
   &_item {
     cursor: pointer;
+
+    color: $text-black;
+    text-decoration: none;
+
     background-color: $gray2;
     background-repeat: no-repeat;
     background-position: center bottom;

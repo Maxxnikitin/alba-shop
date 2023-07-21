@@ -11,3 +11,5 @@ export * from './brand-page';
 export * from './sign-in-page';
 export * from './personal-account-page';
 export * from './cart-page';
+export * from './catalog-page';
+export * from './catalog-clildren-page';

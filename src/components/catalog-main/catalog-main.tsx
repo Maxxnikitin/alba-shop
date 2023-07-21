@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { FC, memo, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Link } from 'react-router-dom';
+
 import styles from './catalog-main.module.scss';
 import { ICatalogMainProps } from './types';
 
@@ -12,15 +14,16 @@ import { DataContext } from '~utils';
 export const CatalogMain: FC<ICatalogMainProps> = memo(({ className = '', ...rest }) => {
   const { categories } = useContext(DataContext);
   const { t } = useTranslation();
-  console.log('q');
+  console.log(categories);
 
   return (
     <section className={clsx(styles.container, className)} {...rest}>
       <Title className={styles.title}>{t('catalog.title')}</Title>
       <div className={styles.grid}>
-        {categories.map(({ id, photo, position, name }) => (
-          <div
+        {categories.map(({ id, photo, position, name, slug }) => (
+          <Link
             key={id}
+            to={`/catalog/${id}_${slug}`}
             className={clsx(styles.grid_item, styles[`grid_item_${position}`])}
             style={{ backgroundImage: `url(${photo})` }}
           >
@@ -30,7 +33,7 @@ export const CatalogMain: FC<ICatalogMainProps> = memo(({ className = '', ...res
             >
               {name}
             </Title>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

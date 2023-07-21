@@ -68,6 +68,8 @@ export type TCategory = {
   name: string;
   icon: string;
   photo: string;
+  photo_2x: string;
+  photo_3x: string;
   level: number;
   slug: string;
   position: number;
@@ -81,7 +83,17 @@ export type TCategoryChildren = {
   name: string;
   slug: string;
   type: string;
+  photo: string;
   children: TCategoryChildren[];
+};
+
+export type TCategoryChild = {
+  type: string;
+  id: number;
+  name: string;
+  photo: string;
+  photo_2x: string;
+  photo_3x: string;
 };
 
 export type TGetCategoriesRes = TCategory[];

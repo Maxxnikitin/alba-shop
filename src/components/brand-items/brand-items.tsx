@@ -9,7 +9,7 @@ import styles from './brand-items.module.scss';
 
 import { IBrandItemsProps } from './types';
 
-import { BrandItem, Breadcrumbs, Title } from '../ui';
+import { Breadcrumbs, CatalogItem, Title } from '../ui';
 
 import { DataContext, TCategory } from '~utils';
 
@@ -38,7 +38,7 @@ export const BrandItems: FC<IBrandItemsProps> = memo(({ className = '', ...rest 
       <Title className={styles.title}>{t('brand-items.title', { brand: brandNameToPage })}</Title>
       <ul className={styles.list}>
         {data.map(item => (
-          <BrandItem key={item.id} data={item} isCategory />
+          <CatalogItem key={item.id} data={item} prefixUrl='/brands' />
         ))}
       </ul>
     </div>

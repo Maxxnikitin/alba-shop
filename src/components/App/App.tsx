@@ -18,6 +18,8 @@ import {
   SignInPage,
   PersonalAccountPage,
   CartPage,
+  CatalogPage,
+  CatalogChildrenPage,
 } from '../../pages';
 
 import { ItemsWithFilters } from '../items-with-filters';
@@ -56,8 +58,17 @@ export function App() {
       element: <p>favorite</p>,
     },
     {
-      path: '/catalog/:id',
-      element: <ItemDetailsPage />,
+      path: '/catalog/:category',
+      element: <CatalogChildrenPage />,
+    },
+
+    {
+      path: '/catalog/:category/:category',
+      element: <CatalogChildrenPage />,
+    },
+    {
+      path: '/catalog/:category/:category/:category',
+      element: <CatalogChildrenPage />,
     },
     {
       path: '/faq',
@@ -112,6 +123,10 @@ export function App() {
     {
       path: '/brands/:brand',
       element: <BrandsPage />,
+    },
+    {
+      path: '/catalog',
+      element: <CatalogPage />,
     },
     {
       path: '*',
