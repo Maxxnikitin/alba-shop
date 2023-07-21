@@ -6,7 +6,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import styles from './catalog-clildren-page.module.scss';
 import { ICatalogChildrenPageProps } from './types';
 
-import { CatalogItems, ItemsWithFilters } from '../../components';
+import { CatalogItems, ItemsWithFilters, PageWrapperWithCommonBlocks } from '../../components';
 import { Breadcrumbs } from '../../components/ui';
 
 import { TCategory, getCategory } from '~utils';
@@ -31,11 +31,13 @@ export const CatalogChildrenPage: FC<ICatalogChildrenPageProps> = ({ className =
 
   return (
     <section className={clsx(styles.container, className)} {...rest}>
-      <Breadcrumbs />
+      <Breadcrumbs className={styles.breadcrumbs} />
       {data.children.length ? (
         <CatalogItems data={data.children} prefixUrl={pathname} />
       ) : (
-        <ItemsWithFilters title={data.name} />
+        <PageWrapperWithCommonBlocks className={styles.wrapper}>
+          <ItemsWithFilters title={data.name} />
+        </PageWrapperWithCommonBlocks>
       )}
     </section>
   );
