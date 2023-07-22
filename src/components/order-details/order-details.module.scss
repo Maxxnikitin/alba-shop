@@ -65,14 +65,13 @@
     .btn_cancel {
       cursor: pointer;
 
+      display: flex;
+
       width: 32px;
       height: 32px;
       padding: 0;
 
       background-color: rgb(255 0 0 / 13%);
-      background-image: url('../../images/icons/close-cross-red.svg');
-      background-repeat: no-repeat;
-      background-position: center;
       border: none;
       border-radius: 50%;
 
@@ -85,6 +84,11 @@
           visibility: visible;
           opacity: 1;
         }
+      }
+
+      &_icon {
+        margin: auto;
+        fill: $red1;
       }
     }
   }

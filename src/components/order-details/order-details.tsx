@@ -8,7 +8,7 @@ import styles from './order-details.module.scss';
 import { IOrderDetailsProps } from './types';
 
 import { ItemOrderDetails } from '../item-order-details';
-import { Button, EButtonKinds, OrderStatus, Paragraph } from '../ui';
+import { Button, CrossIcon, EButtonKinds, OrderStatus, Paragraph } from '../ui';
 import { Tooltip } from '../ui/tooltip';
 
 import { EOrderStatus } from '~utils';
@@ -31,7 +31,9 @@ export const OrderDetails: FC<IOrderDetailsProps> = memo(({ data, className = ''
         </div>
         {data.status === EOrderStatus.NEW && (
           <div className={styles.btn_cancel_box}>
-            <button className={styles.btn_cancel} />
+            <button className={styles.btn_cancel}>
+              <CrossIcon className={styles.btn_cancel_icon} />
+            </button>
             <Tooltip text={t('tooltip.cancel-order')} className={styles.tooltip} />
           </div>
         )}

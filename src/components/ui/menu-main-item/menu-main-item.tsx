@@ -15,7 +15,7 @@ export const MenuMainItem: FC<IMenuMainItemProps> = memo(
 
     return (
       <button className={clsx(styles.container, className)} type={type} {...rest}>
-        <img src={icon} alt={t('alts.category-icon')!} />
+        <img className={styles.icon} src={icon} alt={t('alts.category-icon')!} />
         <Paragraph className={styles.text}>{text}</Paragraph>
         <ArrowMenuIcon className={clsx(styles.img, { [styles.img_open]: isOpen })} />
       </button>

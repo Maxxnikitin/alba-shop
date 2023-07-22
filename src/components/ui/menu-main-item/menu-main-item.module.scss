@@ -24,6 +24,10 @@
     white-space: nowrap;
   }
 
+  .icon {
+    filter: invert(100%);
+  }
+
   .img {
     margin-left: auto;
     fill: $text-black;
@@ -43,6 +47,10 @@
   .container {
     .text {
       color: $text-white;
+    }
+
+    .icon {
+      filter: none;
     }
 
     .img {

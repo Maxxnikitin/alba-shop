@@ -6,8 +6,11 @@ export type TAuthSetPhoneRes = {
   message: string;
 };
 
-export type TAuthResult = {
+export type TAccessRes = {
   access: string;
+};
+
+export type TAuthResult = TAccessRes & {
   refresh: string;
 };
 

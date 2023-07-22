@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 import { TAuthSetPhoneDto, TAuthSetPhoneRes, URL } from '.';
 
@@ -23,6 +23,7 @@ import type {
   TConfirmOrderData,
   TOrder,
   TCategoryChild,
+  TAccessRes,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -31,6 +32,19 @@ export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res =
   }
   return Promise.reject(res);
 };
+
+export const catchHandler = ({ response }: AxiosError) => {
+  if (response?.status === 401) {
+    refreshTocken(localStorage.getItem('refresh') || '').then(res => {
+      localStorage.setItem('access', res.access);
+    });
+  }
+};
+
+export const refreshTocken = (refresh: string) =>
+  axios
+    .post(`${URL}/auth/token_refresh/`, { refresh })
+    .then((res: AxiosResponse<TAccessRes>) => checkResponse(res));
 
 const headersWithAuth = () => ({
   // 'Content-Type': 'application-json',
@@ -136,6 +150,13 @@ export const getMainSlides = () =>
     .get(`${URL}/pages/mainslider/`, {
       headers: headersWithAuth(),
     })
+    .then((res: AxiosResponse<ResWithData<TMainSlide[]>>) => checkResponse(res))
+    .catch(catchHandler)
+    .then(() =>
+      axios.get(`${URL}/pages/mainslider/`, {
+        headers: headersWithAuth(),
+      }),
+    )
     .then((res: AxiosResponse<ResWithData<TMainSlide[]>>) => checkResponse(res));
 
 export const getUser = () =>

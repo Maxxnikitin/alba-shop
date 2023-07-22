@@ -26,3 +26,9 @@
   line-height: 105%;
   color: $text-black;
 }
+
+@media screen and (max-width: 450px) {
+  .container {
+    max-width: 100%;
+  }
+}

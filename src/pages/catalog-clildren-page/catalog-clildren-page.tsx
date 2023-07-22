@@ -31,7 +31,7 @@ export const CatalogChildrenPage: FC<ICatalogChildrenPageProps> = ({ className =
 
   return (
     <section className={clsx(styles.container, className)} {...rest}>
-      <Breadcrumbs className={styles.breadcrumbs} />
+      <Breadcrumbs />
       {data.children.length ? (
         <CatalogItems data={data.children} prefixUrl={pathname} />
       ) : (
