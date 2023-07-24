@@ -47,7 +47,6 @@ export type TCharacteristic = {
   name: string;
   product_id: string;
   is_new: boolean;
-  is_bestseller: boolean;
   is_hit: boolean;
   in_cart: number;
   in_favorite: boolean;
@@ -234,7 +233,7 @@ export type TEditData = Record<string, string>;
 export type TConfirmOrderData = {
   first_name: string;
   last_name: string;
-  middle_name: string;
+  surname: string;
   city: string;
   phone_number: string;
   email: string;
@@ -242,8 +241,8 @@ export type TConfirmOrderData = {
 };
 
 export enum EDeliveryType {
-  SELF = 'SELF',
-  DELIVERY = 'DELIVERY',
+  PICKUP = 'pickup',
+  DELIVERY = 'delivery',
 }
 
 export type TOrdersWithPagination = {

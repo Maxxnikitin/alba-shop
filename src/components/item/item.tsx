@@ -16,7 +16,7 @@ export const Item: FC<IItemProps> = memo(
       price,
       discount,
       discounted_price: discountedPrice,
-      is_bestseller: isBestseller,
+      is_hit: isHit,
       is_new: isNew,
       in_favorite: inFavorite,
       in_cart: inCart,
@@ -27,10 +27,10 @@ export const Item: FC<IItemProps> = memo(
       const arr = [];
 
       if (isNew) arr.push('new');
-      if (isBestseller) arr.push('bestseller');
+      if (isHit) arr.push('hit');
 
       return arr;
-    }, [isNew, isBestseller]);
+    }, [isNew, isHit]);
 
     return (
       <li className={clsx(styles.container, className)} {...rest}>

@@ -60,7 +60,7 @@ const mockData: TCart = {
         is_hit: true,
         in_cart: 1,
         in_favorite: true,
-        is_bestseller: true,
+
         stock: 100,
         price: '110.00',
         discount: 10,
@@ -91,7 +91,7 @@ const mockData: TCart = {
         is_hit: true,
         in_cart: 1,
         in_favorite: true,
-        is_bestseller: true,
+
         stock: 100,
         price: '110.00',
         discount: 10,
@@ -122,7 +122,7 @@ const mockData: TCart = {
         is_hit: true,
         in_cart: 1,
         in_favorite: true,
-        is_bestseller: true,
+
         stock: 100,
         price: '110.00',
         discount: 10,
@@ -155,11 +155,11 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
   const [editData, setEditData] = useState<TConfirmOrderData>({
     first_name: '',
     last_name: '',
-    middle_name: '',
+    surname: '',
     city: '',
     phone_number: '',
     email: '',
-    delivery: EDeliveryType.SELF,
+    delivery: EDeliveryType.PICKUP,
   });
 
   const { t } = useTranslation();
@@ -259,11 +259,11 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
         setEditData({
           first_name: userData.data.first_name,
           last_name: userData.data.last_name,
-          middle_name: '',
+          surname: '',
           city: userData.data.city || '',
           phone_number: userData.data.phone_number,
           email: userData.data.email,
-          delivery: EDeliveryType.SELF,
+          delivery: EDeliveryType.PICKUP,
         });
       })
       .catch(err => console.log(err));

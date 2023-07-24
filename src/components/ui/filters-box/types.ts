@@ -28,7 +28,7 @@ export type TCheckboxFiltersData = {
   // connector_type: TFilterBlock;
   // price: TFilterBlock;
   // is_new: boolean;
-  // is_bestseller: boolean;
+  // is_hit: boolean;
   // in_stock: boolean;
   // discount: boolean;
 };
@@ -44,7 +44,7 @@ export type TCheckboxFiltersData = {
 //   connector_type = 'connector_type',
 //   price = 'price',
 //   is_new = 'is_new',
-//   is_bestseller = 'is_bestseller',
+//   is_hit = 'is_bestseller',
 //   in_stock = 'in_stock',
 //   discount = 'discount',
 // }

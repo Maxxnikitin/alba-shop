@@ -37,7 +37,7 @@ const mockData = {
       discounted_price: '510.00',
       color: 'Black',
       is_new: true,
-      is_bestseller: true,
+
       is_hit: true,
       in_favorite: false,
       photo: {
@@ -60,7 +60,7 @@ const mockData = {
       discounted_price: '310.00',
       color: 'Black',
       is_new: true,
-      is_bestseller: true,
+
       is_hit: true,
       in_favorite: false,
       photo: {
@@ -83,7 +83,7 @@ const mockData = {
       discounted_price: '310.00',
       color: 'Black',
       is_new: true,
-      is_bestseller: false,
+
       is_hit: true,
       in_favorite: false,
       photo: {
@@ -106,7 +106,7 @@ const mockData = {
       discounted_price: '290.00',
       color: 'Black',
       is_new: false,
-      is_bestseller: true,
+
       is_hit: true,
       in_favorite: false,
       photo: {
@@ -129,7 +129,7 @@ const mockData = {
       discounted_price: '340.00',
       color: 'Black',
       is_new: true,
-      is_bestseller: true,
+
       is_hit: true,
       in_favorite: false,
       photo: {
@@ -152,7 +152,7 @@ const mockData = {
       discounted_price: '280.00',
       color: 'Black',
       is_new: true,
-      is_bestseller: true,
+
       is_hit: true,
       in_favorite: false,
       photo: {

@@ -8,17 +8,7 @@ import PhoneInputWithCountrySelect from 'react-phone-number-input/input';
 import styles from './cart-confirm.module.scss';
 import { ICartConfirmProps } from './types';
 
-import {
-  BackButton,
-  Button,
-  EButtonKinds,
-  ETitleLevel,
-  Input,
-  Paragraph,
-  PhoneInput,
-  Radio,
-  Title,
-} from '../ui';
+import { BackButton, Button, ETitleLevel, Input, Paragraph, PhoneInput, Radio, Title } from '../ui';
 
 import { EDeliveryType } from '~utils';
 
@@ -65,10 +55,10 @@ export const CartConfirm: FC<ICartConfirmProps> = memo(
           />
           <Input
             className={styles.input}
-            type='middle_name'
+            type='surname'
             placeholder={t('personal-account.data.middle-name')!}
-            value={data.middle_name}
-            id='middle_name'
+            value={data.surname}
+            id='surname'
             onChange={handleChangeInputs}
           />
           <Input
@@ -113,9 +103,9 @@ export const CartConfirm: FC<ICartConfirmProps> = memo(
           <form className={styles.radios}>
             <Radio
               name='delivery'
-              value={EDeliveryType.SELF}
-              checked={data.delivery === EDeliveryType.SELF}
-              label={t('cart.confirm.delivery.self')}
+              value={EDeliveryType.PICKUP}
+              checked={data.delivery === EDeliveryType.PICKUP}
+              label={t('cart.confirm.delivery.pickup')}
               onChange={handleChangeInputs}
             />
             <Radio

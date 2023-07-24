@@ -53,7 +53,7 @@ const mockData: TOrdersWithPagination = {
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
             is_hit: true,
-            is_bestseller: true,
+
             in_cart: 1,
             in_favorite: true,
             stock: 100,
@@ -84,7 +84,7 @@ const mockData: TOrdersWithPagination = {
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
             is_hit: true,
-            is_bestseller: true,
+
             in_cart: 1,
             in_favorite: true,
             stock: 100,
@@ -115,7 +115,7 @@ const mockData: TOrdersWithPagination = {
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
             is_hit: true,
-            is_bestseller: true,
+
             in_cart: 1,
             in_favorite: true,
             stock: 100,
@@ -146,7 +146,7 @@ const mockData: TOrdersWithPagination = {
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
             is_hit: true,
-            is_bestseller: true,
+
             in_cart: 1,
             in_favorite: true,
             stock: 100,
@@ -211,7 +211,7 @@ const mockData: TOrdersWithPagination = {
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
             is_hit: true,
-            is_bestseller: true,
+
             in_cart: 1,
             in_favorite: true,
             stock: 100,
@@ -276,7 +276,7 @@ const mockData: TOrdersWithPagination = {
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
             is_hit: true,
-            is_bestseller: true,
+
             in_cart: 1,
             in_favorite: true,
             stock: 100,
@@ -341,7 +341,7 @@ const mockData: TOrdersWithPagination = {
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
             is_hit: true,
-            is_bestseller: true,
+
             in_cart: 1,
             in_favorite: true,
             stock: 100,
@@ -406,7 +406,7 @@ const mockData: TOrdersWithPagination = {
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
             is_hit: true,
-            is_bestseller: true,
+
             in_cart: 1,
             in_favorite: true,
             stock: 100,
@@ -471,7 +471,7 @@ const mockData: TOrdersWithPagination = {
             product_id: '8d44b432-9353-4d6b-89b8-4591e2f21d01',
             is_new: true,
             is_hit: true,
-            is_bestseller: true,
+
             in_cart: 1,
             in_favorite: true,
             stock: 100,
