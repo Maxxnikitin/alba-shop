@@ -4,6 +4,8 @@
   list-style-type: none;
 
   .link {
+    position: relative;
+
     display: flex;
     align-items: center;
 
@@ -11,10 +13,23 @@
 
     text-decoration: none;
 
-    transition: $common-transition;
+    &::after {
+      content: '';
 
-    &:hover {
-      opacity: $common-hover-opacity;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      width: 0;
+      height: 2px;
+
+      background: $blue-gradient1;
+
+      transition: $common-transition;
+    }
+
+    &:hover.link::after {
+      width: 95%;
     }
   }
 
