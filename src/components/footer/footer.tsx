@@ -26,8 +26,8 @@ export const Footer: FC<IFooterProps> = memo(({ className = '', ...rest }) => {
           <Paragraph className={styles.title} isGradient>
             {t('footer.title-items')}
           </Paragraph>
-          {categories.map(({ name, id, icon }) => (
-            <CategoryItem text={name} key={id} icon={icon} />
+          {categories.map(item => (
+            <CategoryItem key={item.id} data={item} />
           ))}
         </ul>
         <div className={styles.about}>

@@ -123,13 +123,16 @@ export const CartConfirm: FC<ICartConfirmProps> = memo(
               value={EDeliveryType.DELIVERY}
               checked={data.delivery === EDeliveryType.DELIVERY}
               label={t('cart.confirm.delivery.delivery')}
+              labelClassName={styles.radios_label}
               onChange={handleChangeInputs}
             />
           </form>
           <div className={styles.total_box}>
-            <Paragraph className={styles.total}>
-              {t('cart.confirm.total')} <span className={styles.total_num}>{`${price} ₽`}</span>
-            </Paragraph>
+            <div className={styles.price_box}>
+              <Paragraph className={styles.total}>{t('cart.confirm.total')}</Paragraph>
+              <Paragraph className={styles.total_num}>{`${price} ₽`}</Paragraph>
+            </div>
+
             <Paragraph className={styles.addition}>{t('cart.confirm.addition')}</Paragraph>
             <Button
               className={styles.btn}

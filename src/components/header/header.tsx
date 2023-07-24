@@ -105,6 +105,7 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
                   <MenuChildrenItem
                     key={item.id}
                     dataObj={item}
+                    prefixUrl={`/catalog/${currMenuItem.id}_${currMenuItem.slug}`}
                     handleCloseAllModals={handleCloseAllModals}
                   />
                 ))}

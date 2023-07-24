@@ -1,10 +1,22 @@
 @import '../../common';
 
 .container {
-  display: flex;
-  align-items: center;
-  padding: 8px 0;
   list-style-type: none;
+
+  .link {
+    display: flex;
+    align-items: center;
+
+    padding: 8px 0;
+
+    text-decoration: none;
+
+    transition: $common-transition;
+
+    &:hover {
+      opacity: $common-hover-opacity;
+    }
+  }
 
   .text {
     margin-left: 20px;

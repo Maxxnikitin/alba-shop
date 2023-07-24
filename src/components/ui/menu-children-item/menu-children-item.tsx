@@ -12,8 +12,8 @@ import { ArrowMenuIcon } from '../icons';
 import { handleToggleState } from '~utils';
 
 export const MenuChildrenItem: FC<IMenuChildrenItemProps> = memo(
-  ({ className = '', dataObj, handleCloseAllModals, ...rest }) => {
-    const { id, children, name } = dataObj;
+  ({ className = '', dataObj, handleCloseAllModals, prefixUrl, ...rest }) => {
+    const { id, children, name, slug } = dataObj;
     const [isOpenList, setIsOpenList] = useState(false);
 
     return (
@@ -34,7 +34,11 @@ export const MenuChildrenItem: FC<IMenuChildrenItemProps> = memo(
             >
               {children.map(item => (
                 <li className={styles.list_item} key={item.id}>
-                  <Link className={styles.link} to='#' onClick={handleCloseAllModals}>
+                  <Link
+                    className={styles.link}
+                    to={`${prefixUrl}/${id}_${slug}/${item.id}_${item.slug}`}
+                    onClick={handleCloseAllModals}
+                  >
                     {item.name}
                   </Link>
                 </li>
@@ -42,7 +46,11 @@ export const MenuChildrenItem: FC<IMenuChildrenItemProps> = memo(
             </ul>
           </>
         ) : (
-          <Link className={styles.link} to='#' onClick={handleCloseAllModals}>
+          <Link
+            className={styles.link}
+            to={`${prefixUrl}/${id}_${slug}`}
+            onClick={handleCloseAllModals}
+          >
             {name}
           </Link>
         )}
