@@ -20,11 +20,15 @@ export const CatalogMain: FC<ICatalogMainProps> = memo(({ className = '', ...res
     <section className={clsx(styles.container, className)} {...rest}>
       <Title className={styles.title}>{t('catalog.title')}</Title>
       <div className={styles.grid}>
-        {categories.map(({ id, photo, position, name, slug }) => (
+        {categories.map(({ id, photo, position, name, slug, mob_position }) => (
           <Link
             key={id}
             to={`/catalog/${id}_${slug}`}
-            className={clsx(styles.grid_item, styles[`grid_item_${position}`])}
+            className={clsx(
+              styles.grid_item,
+              styles[`grid_item_${position}`],
+              styles[`grid_item_mob_${mob_position}`],
+            )}
             style={{ backgroundImage: `url(${photo})` }}
           >
             <Title
