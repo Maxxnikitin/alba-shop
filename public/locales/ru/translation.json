@@ -63,10 +63,15 @@
     "connector_type": "Мощность",
     "price": "Цена",
     "is_new": "Новинка",
-    "is_bestseller": "Хит",
+    "is_hit": "Хит",
     "in_stock": "В наличии",
+    "in_stock_title": "Наличие",
     "discount": "Со скидкой",
-    "close-btn": "Сбросить фильтр"
+    "close-btn": "Сбросить фильтр",
+    "btn": "Фильтры",
+    "title": "Фильтры",
+    "btn_submit": "Применить",
+    "btn_remove_filters": "Сбросить фильтр"
   },
   "sorting": {
     "select-text": "Сортировать по:",

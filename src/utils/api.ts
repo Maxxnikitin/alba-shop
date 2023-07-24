@@ -26,6 +26,7 @@ import type {
   TOrder,
   TCategoryChild,
   TAccessRes,
+  TItemsWithPaginationAndFilters,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -49,6 +50,11 @@ export const getFaqData = () =>
   axiosInstance
     .get(`${URL}/pages/faq/`)
     .then((res: AxiosResponse<TGetFaqDataRes[]>) => checkResponse(res));
+
+export const getProducts = (id: string | number) =>
+  axiosInstance
+    .get(`${URL}/categories/${id}/products/`)
+    .then((res: AxiosResponse<TItemsWithPaginationAndFilters>) => checkResponse(res));
 
 export const getProduct = (id: string) =>
   axiosInstance

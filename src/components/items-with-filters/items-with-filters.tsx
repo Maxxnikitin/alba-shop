@@ -1,7 +1,9 @@
 import clsx from 'clsx';
-import { ChangeEventHandler, FC, memo, useCallback, useEffect, useState } from 'react';
+import { ChangeEventHandler, FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
+
+import { useParams } from 'react-router-dom';
 
 import styles from './items-with-filters.module.scss';
 
@@ -9,9 +11,14 @@ import { IItemsWithFiltersProps } from './types';
 
 import { Item } from '..';
 import { Filters } from '../filters';
-import { Button, EButtonKinds, Pagination, SortSelect, Title } from '../ui';
+import { Button, EButtonKinds, FilterPopupButton, Pagination, SortSelect, Title } from '../ui';
 
-import { TItemsWithPagination, TSortingItems } from '~utils';
+import {
+  TItemsWithPagination,
+  TItemsWithPaginationAndFilters,
+  TSortingItems,
+  getProducts,
+} from '~utils';
 
 const mockData = {
   meta: {
@@ -166,32 +173,56 @@ const mockData = {
 
 export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
   ({ title, className = '', ...rest }) => {
-    const [data, setData] = useState<TItemsWithPagination | null>(null);
+    const [data, setData] = useState<TItemsWithPaginationAndFilters | null>(null);
     const [currSort, setCurrSort] = useState<TSortingItems>('is_hit');
+    const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
     const { t } = useTranslation();
+
+    const { category } = useParams();
+
+    const categoryId = useMemo(() => category?.split('_')[0], [category]);
 
     const handleSortingChange: ChangeEventHandler<HTMLSelectElement> = useCallback(e => {
       setCurrSort(e.target.value as TSortingItems);
     }, []);
 
+    console.log({ data });
+
+    const handleToggleFilters = useCallback(() => setIsFiltersOpen(prev => !prev), []);
+
     useEffect(() => {
+      if (categoryId) {
+        getProducts(categoryId).then(res => setData(res));
+      }
       // fetchFn(`?sort=${currSort}${additionalQuery}`)
       //   .then(res => setData(res))
       //   .catch(err => console.error(err));
 
-      setData(mockData);
-    }, [currSort]);
+      // setData(mockData);
+    }, [currSort, categoryId]);
 
     if (!data) return <p>loader</p>;
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
         <Title className={styles.title}>{title}</Title>
-        <SortSelect value={currSort} onChange={handleSortingChange} className={styles.sort_box} />
+        <div className={styles.sort_filters_box}>
+          <SortSelect value={currSort} onChange={handleSortingChange} className={styles.sort_box} />
+          <FilterPopupButton className={styles.filter_btn} onClick={handleToggleFilters} />
+          {isFiltersOpen && (
+            <Filters
+              filters={data.meta.filters}
+              className={styles.filters_mob}
+              isTitle
+              isFooter
+              onClose={handleToggleFilters}
+            />
+          )}
+        </div>
         <div className={styles.columns}>
           <aside className={styles.filters_box}>
-            <Filters />
+            <Filters filters={data.meta.filters} />
           </aside>
           <div className={styles.main_content}>
             <ul className={styles.list}>

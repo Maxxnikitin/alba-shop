@@ -1,3 +1,9 @@
+import { TFilters } from '~utils';
+
 export interface IFiltersProps {
-  classList?: string;
+  filters: TFilters;
+  onClose?: () => void;
+  isTitle?: boolean;
+  isFooter?: boolean;
+  className?: string;
 }

@@ -136,12 +136,47 @@ export type TPagination = {
   previous: number | null;
 };
 
+export type TCheckboxFilter = { f_id: number; f_name: string; f_quantity: number };
+
+export type TFiltersFields = {
+  brand: TCheckboxFilter[];
+  color: TCheckboxFilter[];
+  material: TCheckboxFilter[];
+  model: TCheckboxFilter[];
+  length: TCheckboxFilter[];
+  output: TCheckboxFilter[];
+  charging_type: TCheckboxFilter[];
+  connector_type: TCheckboxFilter[];
+  discount: boolean;
+  in_stock: boolean;
+  is_hit: boolean;
+  is_new: boolean;
+  price: {
+    min: number;
+    max: number;
+  };
+};
+
+export type TFilters = {
+  fields: TFiltersFields;
+  queries: {};
+};
+
 export type TMeta = {
   pagination: TPagination;
 };
 
+export type TMetaWithFilters = TMeta & {
+  filters: TFilters;
+};
+
 export type TItemsWithPagination = {
   meta: TMeta;
+  data: TCharacteristic[];
+};
+
+export type TItemsWithPaginationAndFilters = {
+  meta: TMetaWithFilters;
   data: TCharacteristic[];
 };
 

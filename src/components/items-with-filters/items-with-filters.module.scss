@@ -1,3 +1,5 @@
+@import '../common';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -24,8 +26,18 @@
   padding: 0;
 }
 
-.sort_box {
+.sort_filters_box {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   margin-bottom: 36px;
+}
+
+.filter_btn {
+  display: none;
 }
 
 .pagination {
@@ -40,6 +52,34 @@
   width: 100%;
 }
 
+@media screen and (max-width: 970px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .filter_btn {
+    display: flex;
+  }
+
+  .filters_box {
+    display: none;
+  }
+
+  .filters_mob {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    overflow-y: auto;
+
+    height: calc(100dvh - 130px);
+    padding-bottom: 20px;
+
+    background-color: $text-white;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .list {
     margin-bottom: 16px;
@@ -50,7 +90,7 @@
     margin-bottom: 13px;
   }
 
-  .sort_box {
+  .sort_filters_box {
     margin-bottom: 29px;
   }
 }

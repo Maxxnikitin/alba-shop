@@ -30,6 +30,12 @@
   transform: rotate(90deg);
 }
 
+@media screen and (max-width: 970px) {
+  .mob_text {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .text {
     font-size: 16px;

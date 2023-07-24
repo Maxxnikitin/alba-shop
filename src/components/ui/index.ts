@@ -41,3 +41,4 @@ export * from './menu-main-item';
 export * from './menu-children-item';
 export * from './back-button';
 export * from './catalog-item';
+export * from './filter-popup-button';

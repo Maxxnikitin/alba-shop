@@ -8,6 +8,8 @@ import styles from './filters.module.scss';
 import { IFiltersProps } from './types';
 
 import {
+  Button,
+  CloseButton,
   FiltersBox,
   FiltersBoxWithChildren,
   RangeInput,
@@ -16,31 +18,20 @@ import {
   TOnInputsChange,
   TOnRangeChange,
   TSwitchFiltersData,
+  Title,
 } from '../ui';
 
-export const Filters: FC<IFiltersProps> = ({ classList = '', ...rest }) => {
-  const [data, setData] = useState({
-    brand: [
-      { f_id: 1, f_name: 'Автомобильные', f_quantity: 2 },
-      { f_id: 2, f_name: 'Количество', f_quantity: 6 },
-      { f_id: 3, f_name: 'S3 super', f_quantity: 87 },
-    ],
-    material: [
-      { f_id: 4, f_name: 'Автомобильные', f_quantity: 104 },
-      { f_id: 5, f_name: 'Количество', f_quantity: 43 },
-      { f_id: 6, f_name: 'S3 super', f_quantity: 246 },
-      { f_id: 7, f_name: 'Автомобильные', f_quantity: 104 },
-      { f_id: 8, f_name: 'Количество', f_quantity: 43 },
-      { f_id: 9, f_name: 'S3 super', f_quantity: 246 },
-      { f_id: 10, f_name: 'Автомобильные', f_quantity: 104 },
-      { f_id: 11, f_name: 'Количество', f_quantity: 43 },
-      { f_id: 12, f_name: 'S3 super', f_quantity: 246 },
-    ],
-    is_bestseller: true,
-    in_stock: true,
-    is_new: false,
-    discount: false,
-  });
+export const Filters: FC<IFiltersProps> = ({
+  filters,
+  className = '',
+  isTitle,
+  isFooter,
+  onClose,
+  ...rest
+}) => {
+  const { t } = useTranslation();
+
+  const data = useMemo(() => filters.fields, [filters]);
 
   const [priceFilterData, setPriceFilterData] = useState({
     price: {
@@ -61,19 +52,17 @@ export const Filters: FC<IFiltersProps> = ({ classList = '', ...rest }) => {
   });
 
   const [switchFiltersData, setSwitchFiltersData] = useState<TSwitchFiltersData>({
-    is_new: false,
-    is_bestseller: false,
-    in_stock: true,
-    discount: false,
+    is_new: data.is_new,
+    is_hit: data.is_hit,
+    in_stock: data.in_stock,
+    discount: data.discount,
   });
-
-  const { t } = useTranslation();
 
   const switchFilters = useMemo(
     () => [
       { f_name: 'in_stock', f_id: nanoid() },
-      { f_name: 'is_bestseller', f_id: nanoid() },
       { f_name: 'is_new', f_id: nanoid() },
+      { f_name: 'is_hit', f_id: nanoid() },
     ],
     [],
   );
@@ -90,18 +79,18 @@ export const Filters: FC<IFiltersProps> = ({ classList = '', ...rest }) => {
 
   const switchChildrenNode = useMemo(
     () =>
-      switchFilters.map(item => (
-        <li className={styles.list_item} key={item.f_id}>
+      switchFilters.map(({ f_id, f_name }) => (
+        <li className={styles.list_item} key={f_id}>
           <Switch
-            label={item.f_name}
-            checked={switchFiltersData[item.f_name]}
-            id={item.f_id?.toString()}
-            name={item.f_name}
+            label={t(`filters.${f_name}`)}
+            checked={switchFiltersData[f_name]}
+            id={f_id?.toString()}
+            name={f_name}
             onChange={handleSwitchChange}
           />
         </li>
       )),
-    [switchFilters, switchFiltersData, handleSwitchChange],
+    [switchFilters, switchFiltersData, handleSwitchChange, t],
   );
 
   const handlePriceChange: TOnRangeChange = useCallback(val => {
@@ -163,12 +152,16 @@ export const Filters: FC<IFiltersProps> = ({ classList = '', ...rest }) => {
     ],
   );
 
-  console.log('Render Filters');
-
   return (
-    <div className={clsx(styles.container, classList)} {...rest}>
+    <div className={clsx(styles.container, className)} {...rest}>
+      {isTitle && (
+        <div className={styles.title_box}>
+          <Title>{t('filters.title')}</Title>
+          <CloseButton onClick={onClose} />
+        </div>
+      )}
       <FiltersBoxWithChildren title={'price'}>{priceChildrenNode}</FiltersBoxWithChildren>
-      <FiltersBoxWithChildren title={'in_stock'}>{switchChildrenNode}</FiltersBoxWithChildren>
+      <FiltersBoxWithChildren title={'in_stock_title'}>{switchChildrenNode}</FiltersBoxWithChildren>
       {Object.entries(data).map(([key, value]) => {
         if (Array.isArray(value)) {
           return (
@@ -183,6 +176,12 @@ export const Filters: FC<IFiltersProps> = ({ classList = '', ...rest }) => {
         }
         return null;
       })}
+      {isFooter && (
+        <div className={styles.footer}>
+          <Button text={t('filters.btn_submit')} className={styles.success_btn} />
+          <CloseButton text={t('filters.btn_remove_filters')!} className={styles.close_btn} />
+        </div>
+      )}
     </div>
   );
 };
