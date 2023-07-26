@@ -26,8 +26,11 @@ export const Modal: FC<IModalProps> = ({
       };
       document.addEventListener('keyup', handleCloseModal);
 
+      document.body.classList.add(styles.body);
+
       return () => {
         document.removeEventListener('keyup', handleCloseModal);
+        document.body.classList.remove(styles.body);
       };
     }
   }, [onClose, isOpen]);

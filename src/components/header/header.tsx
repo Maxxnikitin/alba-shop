@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, MouseEventHandler, memo, useCallback, useContext, useState } from 'react';
+import { FC, MouseEventHandler, memo, useCallback, useContext, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -57,6 +57,16 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
     handleCloseMenu();
     setCurrMenuItem(null);
   }, [handleCloseMenu]);
+
+  useEffect(() => {
+    if (isMenuOpen || isMenuOpen) {
+      document.body.classList.add(styles.body);
+
+      return () => {
+        document.body.classList.remove(styles.body);
+      };
+    }
+  }, [isMenuOpen, currMenuItem]);
 
   return (
     <header className={clsx(styles.header, className)} {...rest}>
