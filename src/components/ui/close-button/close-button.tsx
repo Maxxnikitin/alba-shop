@@ -14,10 +14,15 @@ export const CloseButton: FC<ICloseButtonProps> = ({
   textClassName = '',
   iconClassName = '',
   text,
+  icon: Icon,
   ...rest
 }) => (
   <button className={clsx(styles.button, className)} {...rest}>
     {text && <Paragraph className={clsx(styles.text, textClassName)}>{text}</Paragraph>}
-    <CrossIcon className={clsx(styles.icon, iconClassName)} />
+    {Icon ? (
+      <Icon className={clsx(styles.icon, iconClassName)} />
+    ) : (
+      <CrossIcon className={clsx(styles.icon, iconClassName)} />
+    )}
   </button>
 );

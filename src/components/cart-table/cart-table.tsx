@@ -7,7 +7,7 @@ import styles from './cart-table.module.scss';
 import { ICartTableProps } from './types';
 
 import { ItemCart } from '../item-cart';
-import { Button, Paragraph, Title } from '../ui';
+import { Button, CloseButton, Paragraph, RemoveCrossIcon, Title } from '../ui';
 
 export const CartTable: FC<ICartTableProps> = memo(
   ({ data, onClick, handleRemoveCart, handleRemoveItem, className = '', ...rest }) => {
@@ -27,9 +27,13 @@ export const CartTable: FC<ICartTableProps> = memo(
     return (
       <div className={clsx(styles.container, className)} {...rest}>
         <Title className={styles.title}>{t('cart.title')}</Title>
-        <button className={styles.btn_clean} onClick={handleRemoveCart}>
-          {t('cart.btn-clean')} <div className={styles.btn_clean_icon} />
-        </button>
+        <CloseButton
+          className={styles.btn_clean}
+          textClassName={styles.btn_clean_text}
+          text={t('cart.btn-clean')!}
+          onClick={handleRemoveCart}
+          icon={RemoveCrossIcon}
+        />
         <div className={styles.table}>
           <div className={styles.table_head}>
             {headers.map((item, i) => (

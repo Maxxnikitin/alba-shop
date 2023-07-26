@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './item-cart.module.scss';
 import { IItemCartProps } from './types';
 
-import { Paragraph } from '../ui';
+import { CloseButton, Paragraph, RemoveCrossIcon } from '../ui';
 
 export const ItemCart: FC<IItemCartProps> = memo(
   ({ data, handleRemoveItem, className = '', ...rest }) => {
@@ -38,11 +38,7 @@ export const ItemCart: FC<IItemCartProps> = memo(
           >{`${data.quantity} × ${data.characteristic.price}`}</Paragraph>
         </div>
         <div className={styles.btn_box}>
-          <button
-            className={styles.btn_remove}
-            id={data.id.toString()}
-            onClick={handleRemoveItem}
-          />
+          <CloseButton id={data.id.toString()} onClick={handleRemoveItem} icon={RemoveCrossIcon} />
           <div className={clsx(styles.price_box, styles.price_box_mob)}>
             <Paragraph className={styles.price}>{data.final_amount}</Paragraph>
           </div>

@@ -5,4 +5,5 @@ export interface ICloseButtonProps extends HTMLProps<HTMLButtonElement> {
   text?: string;
   iconClassName?: string;
   textClassName?: string;
+  icon?: (props: { className: string }) => JSX.Element;
 }
