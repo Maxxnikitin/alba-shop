@@ -1,14 +1,26 @@
 import clsx from 'clsx';
-import { FC, MouseEventHandler, memo, useCallback, useContext, useEffect, useState } from 'react';
+import { debounce } from 'lodash';
+import {
+  ChangeEventHandler,
+  FC,
+  FormEventHandler,
+  MouseEventHandler,
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import styles from './header.module.scss';
 import { IHeaderProps } from './types';
 
 import logoIcon from '../../images/logo-white.svg';
+import { ModalSearch } from '../modal-search';
 import {
   Button,
   EButtonKinds,
@@ -19,12 +31,18 @@ import {
   SearchInput,
 } from '../ui';
 
-import { DataContext, TCategory } from '~utils';
+import { DataContext, TCategory, TLiveSearchRes, getSearchLive } from '~utils';
 
 export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currMenuItem, setCurrMenuItem] = useState<TCategory | null>(null);
+  const [searchData, setSearchData] = useState<TLiveSearchRes | null>(null);
+  const [isMobSearchOpen, setIsMobSearchOpen] = useState(false);
+  const [isMobMenuOpen, setIsMobMenuOpen] = useState(false);
+
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
 
   const { categories } = useContext(DataContext);
 
@@ -35,6 +53,31 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
   const handleCloseMenu = useCallback(() => {
     setIsMenuOpen(false);
   }, []);
+
+  const handleOpenMobMenu = useCallback(() => {
+    setIsMobMenuOpen(true);
+  }, []);
+
+  const handleCloseMobMenu = useCallback(() => {
+    setIsMobMenuOpen(false);
+  }, []);
+
+  const handleSearch: ChangeEventHandler<HTMLInputElement> = useCallback(e => {
+    const { value } = e.target;
+
+    if (value.length < 2) {
+      setSearchData(null);
+      return;
+    }
+    getSearchLive(e.target.value).then(res => setSearchData(res));
+  }, []);
+
+  const handleSearchSubmit: FormEventHandler<HTMLFormElement> = useCallback(e => {
+    e.preventDefault();
+  }, []);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleSearchDebounced = useCallback(debounce(handleSearch, 500), [handleSearch]);
 
   const handleMenuItemClick: MouseEventHandler<HTMLButtonElement> = useCallback(
     ({ currentTarget }) => {
@@ -53,10 +96,19 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
     [categories, currMenuItem],
   );
 
+  const handleMobSearchOpen = useCallback(() => {
+    setIsMobSearchOpen(true);
+  }, []);
+
+  const handleMobSearchClose = useCallback(() => {
+    setIsMobSearchOpen(false);
+  }, []);
+
   const handleCloseAllModals = useCallback(() => {
     handleCloseMenu();
+    handleCloseMobMenu();
     setCurrMenuItem(null);
-  }, [handleCloseMenu]);
+  }, [handleCloseMenu, handleCloseMobMenu]);
 
   useEffect(() => {
     if (isMenuOpen || isMenuOpen) {
@@ -79,8 +131,18 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
             className={styles.btn}
             kind={EButtonKinds.menu}
             text={t('main-page.catalog-btn')}
-            onClick={handleOpenMenu}
+            onClick={window.innerWidth <= 550 ? handleOpenMobMenu : handleOpenMenu}
           />
+          {isMobMenuOpen && (
+            <MenuPopup
+              className={styles.menu_popup_main}
+              onClose={handleCloseMobMenu}
+              title={'test'}
+              handleCloseAllModals={handleCloseAllModals}
+            >
+              <Navigation />
+            </MenuPopup>
+          )}
           {isMenuOpen && (
             <MenuPopup
               className={styles.menu_popup_main}
@@ -123,9 +185,31 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
             </MenuPopup>
           )}
         </div>
-        <SearchInput formClassName={styles.header_search} placeholder={t('inputs.search') || ''} />
-        <Navigation className={styles.nav} />
+        <div className={styles.search_box}>
+          <SearchInput
+            formClassName={styles.header_search}
+            placeholder={t('inputs.search') || ''}
+            onChange={handleSearchDebounced}
+            onFormSubmit={handleSearchSubmit}
+          />
+          {searchData && (
+            <MenuPopup
+              className={styles.menu_popup_search}
+              title={t('modals.menu.title')!}
+              isOverlay={false}
+            >
+              <p>ss</p>
+            </MenuPopup>
+          )}
+        </div>
+        <Navigation className={styles.nav} handleMobSearchOpen={handleMobSearchOpen} />
       </div>
+      <ModalSearch
+        data={searchData}
+        isOpen={isMobSearchOpen}
+        onClose={handleMobSearchClose}
+        onChange={handleSearchDebounced}
+      />
     </header>
   );
 });

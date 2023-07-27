@@ -16,6 +16,7 @@ export const MenuPopup: FC<IMenuPopupProps> = memo(
     className = '',
     title,
     isBackBtn = false,
+    isOverlay = true,
     ...rest
   }) => {
     console.log('q');
@@ -34,7 +35,7 @@ export const MenuPopup: FC<IMenuPopupProps> = memo(
           </div>
           {children}
         </div>
-        <div className={styles.overlay} onClick={onClose} />
+        {isOverlay && <div className={styles.overlay} onClick={onClose} />}
       </>
     );
   },

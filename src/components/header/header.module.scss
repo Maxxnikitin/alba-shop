@@ -16,6 +16,21 @@
   max-width: 1274px;
   margin: 0 auto;
   padding: 32px 24px;
+
+  .search_box {
+    position: relative;
+    width: 50%;
+
+    .menu_popup_search {
+      position: absolute;
+      top: 50px;
+      left: 0;
+
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0 24px;
+    }
+  }
 }
 
 .logo {
@@ -144,7 +159,7 @@
     margin: 0;
   }
 
-  .header_search {
+  .search_box {
     display: none;
   }
 }

@@ -25,6 +25,13 @@
     text-decoration: none;
 
     transition: $common-transition;
+
+    &_btn {
+      margin: 0;
+      padding: 0;
+      background: none;
+      border: none;
+    }
   }
 
   &_link:hover {
@@ -45,6 +52,7 @@
 @media screen and (max-width: 900px) {
   .icon {
     width: 36px;
+    height: 36px;
   }
 
   .list {
@@ -65,21 +73,18 @@
   }
 
   .icon_search {
-    width: 22px;
+    width: 24px;
+    height: 24px;
     margin: auto;
-  }
-}
-
-@media screen and (max-width: 750px) {
-  .list {
-    &_item_mob_none {
-      display: none;
-    }
   }
 }
 
 @media screen and (max-width: 550px) {
   .list {
+    &_item_mob_none {
+      display: none;
+    }
+
     &_link {
       width: 32px;
       height: 32px;

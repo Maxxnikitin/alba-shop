@@ -302,3 +302,19 @@ export type TCart = {
   weight: number;
   content: TOrderContent[];
 };
+
+export type TLiveSearchRes = {
+  meta: TLiveSearchMeta;
+  data: TLiveSearchData[];
+};
+
+export type TLiveSearchMeta = {
+  total_categories: number;
+  total_products: number;
+};
+
+export type TLiveSearchData = {
+  type: string;
+  id: number;
+  name: string;
+};

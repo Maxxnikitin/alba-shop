@@ -27,6 +27,7 @@ import type {
   TCategoryChild,
   TAccessRes,
   TItemsWithPaginationAndFilters,
+  TLiveSearchRes,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -163,3 +164,8 @@ export const removeCartItem = (id: string | number) =>
   axiosInstance
     .delete(`${URL}/cart/positions/${id}/delete/`)
     .then((res: AxiosResponse) => checkResponse(res));
+
+export const getSearchLive = (q: string) =>
+  axiosInstance
+    .get(`${URL}/products/live_search/?q=${q}`)
+    .then((res: AxiosResponse<TLiveSearchRes>) => checkResponse(res));

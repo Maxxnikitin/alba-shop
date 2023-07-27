@@ -33,3 +33,4 @@ export * from './cart-table';
 export * from './cart-confirm';
 export * from './modal-small';
 export * from './catalog-items';
+export * from './modal-search';

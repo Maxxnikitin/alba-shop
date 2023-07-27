@@ -10,7 +10,11 @@ import { AccountIcon, CartIcon, FavoriteNavIcon, SearchMobileIcon } from '../ico
 
 import { DataContext } from '~utils';
 
-export const Navigation: FC<INavigationProps> = ({ className = '', ...rest }) => {
+export const Navigation: FC<INavigationProps> = ({
+  handleMobSearchOpen,
+  className = '',
+  ...rest
+}) => {
   const { favoritesCount } = useContext(DataContext);
   console.log('tt');
 
@@ -18,9 +22,12 @@ export const Navigation: FC<INavigationProps> = ({ className = '', ...rest }) =>
     <nav className={clsx(styles.nav, className)} {...rest}>
       <ul className={styles.list}>
         <li className={clsx(styles.list_item, styles.list_item_search)}>
-          <Link className={styles.list_link} to='/search'>
+          <button
+            className={clsx(styles.list_link, styles.list_link_btn)}
+            onClick={handleMobSearchOpen}
+          >
             <SearchMobileIcon className={clsx(styles.icon, styles.icon_search)} />
-          </Link>
+          </button>
         </li>
         <li className={clsx(styles.list_item, styles.list_item_mob_none)}>
           <Link className={styles.list_link} to='/personal-account/data'>

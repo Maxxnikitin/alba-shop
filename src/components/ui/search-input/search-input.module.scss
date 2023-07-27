@@ -2,8 +2,7 @@
 
 .form {
   position: relative;
-  width: 50%;
-  min-width: 655px;
+  width: 100%;
 }
 
 .input {
@@ -33,6 +32,12 @@
   position: absolute;
   top: 11px;
   right: 24px;
+
+  &_mob {
+    top: 7px;
+    right: auto;
+    left: 9px;
+  }
 }
 
 @media screen and (max-width: 1250px) {
