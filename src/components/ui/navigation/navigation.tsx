@@ -1,22 +1,22 @@
 import clsx from 'clsx';
-import { FC, useContext } from 'react';
+import { useStore } from 'effector-react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './navigation.module.scss';
 import { INavigationProps } from './types';
 
 import { Count } from '..';
+import { $cartCountStore, $favoritesCountStore } from '../../../models';
 import { AccountIcon, CartIcon, FavoriteNavIcon, SearchMobileIcon } from '../icons';
-
-import { DataContext } from '~utils';
 
 export const Navigation: FC<INavigationProps> = ({
   handleMobSearchOpen,
   className = '',
   ...rest
 }) => {
-  const { favoritesCount } = useContext(DataContext);
-  console.log('tt');
+  const cartCount = useStore($cartCountStore);
+  const favoritesCount = useStore($favoritesCountStore);
 
   return (
     <nav className={clsx(styles.nav, className)} {...rest}>
@@ -43,7 +43,7 @@ export const Navigation: FC<INavigationProps> = ({
         <li className={styles.list_item}>
           <Link className={styles.list_link} to='/cart'>
             <CartIcon className={styles.icon} />
-            <Count className={styles.count} count={222} />
+            {!!cartCount && <Count className={styles.count} count={cartCount} />}
           </Link>
         </li>
       </ul>

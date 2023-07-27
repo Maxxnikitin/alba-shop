@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useLocation, useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
@@ -26,8 +26,11 @@ import { ItemsWithFilters } from '../items-with-filters';
 
 import { OrderItems } from '../order-items';
 
+import { updateCartFx, updateFavoritesFx } from 'src/models';
 import { BrandsPage } from 'src/pages/brand-page';
 import { DataContext, useContextData } from '~utils';
+
+import '../../models/init';
 
 export function App() {
   console.log('Render App');
@@ -133,6 +136,11 @@ export function App() {
       element: <NotFound />,
     },
   ]);
+
+  useEffect(() => {
+    updateCartFx();
+    updateFavoritesFx();
+  }, []);
 
   return (
     <div className={styles.container}>

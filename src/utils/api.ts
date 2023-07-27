@@ -142,6 +142,11 @@ export const getFavoritesCount = () =>
     .get(`${URL}/customers/me/favorites/count/`)
     .then((res: AxiosResponse<ResWithData<number>>) => checkResponse(res));
 
+export const getCartCount = () =>
+  axiosInstance
+    .get(`${URL}/cart/positions/count/`)
+    .then((res: AxiosResponse<ResWithData<number>>) => checkResponse(res));
+
 export const getOrders = () =>
   axiosInstance
     .get(`${URL}/orders/`)

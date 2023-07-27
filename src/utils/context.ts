@@ -8,5 +8,4 @@ export const DataContext = createContext<TDataContext>({
   bestsellersSuggestedItems: [],
   categories: [],
   brands: [],
-  favoritesCount: 0,
 });

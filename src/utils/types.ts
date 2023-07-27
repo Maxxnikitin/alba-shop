@@ -125,7 +125,6 @@ export type TDataContext = {
   bestsellersSuggestedItems: TCharacteristic[];
   categories: TCategory[];
   brands: TBrand[];
-  favoritesCount: number;
 };
 
 export type TPagination = {
