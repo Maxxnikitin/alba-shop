@@ -73,7 +73,6 @@
     top: 68px;
     left: 0;
     transform: none;
-    transform: translate(0, 100%);
 
     min-width: 100%;
     height: calc(100% - 68px);
@@ -84,10 +83,6 @@
     border-radius: 0;
 
     transition: $common-transition;
-
-    &_open {
-      transform: translate(0, 0);
-    }
   }
 
   .overlay_open {
