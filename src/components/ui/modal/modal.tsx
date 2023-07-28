@@ -83,9 +83,9 @@ export const Modal: FC<IModalProps> = ({
             ? { transform: isOpen ? 'translate(0, 0)' : 'translate(0, 100%)' }
             : {}
         }
-        onTouchStart={window.innerWidth <= 450 ? handleTouchStart : undefined}
-        onTouchMove={window.innerWidth <= 450 ? handleTouchMove : undefined}
-        onTouchEnd={window.innerWidth <= 450 ? handleTouchEnd : undefined}
+        onTouchStart={window.innerWidth <= 450 && onClose ? handleTouchStart : undefined}
+        onTouchMove={window.innerWidth <= 450 && onClose ? handleTouchMove : undefined}
+        onTouchEnd={window.innerWidth <= 450 && onClose ? handleTouchEnd : undefined}
         ref={modalRef}
       >
         {withCloseBtn && <CloseButton className={styles.close_btn} onClick={onClose} />}

@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
 
+    width: fit-content;
     padding: 8px 0;
 
     text-decoration: none;
@@ -29,7 +30,7 @@
     }
 
     &:hover.link::after {
-      width: 95%;
+      width: 103%;
     }
   }
 
