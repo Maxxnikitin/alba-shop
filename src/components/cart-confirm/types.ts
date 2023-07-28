@@ -1,4 +1,4 @@
-import { ChangeEventHandler, MouseEventHandler } from 'react';
+import { ChangeEventHandler, FormEventHandler, MouseEventHandler } from 'react';
 
 import { TConfirmOrderData } from '~utils';
 
@@ -8,7 +8,7 @@ export interface ICartConfirmProps {
   handleChangeInputs: ChangeEventHandler<HTMLInputElement>;
   handleChangePhone: (v: string | undefined) => void;
   handleBackClick: MouseEventHandler<HTMLButtonElement>;
-  handleCreateOrder: MouseEventHandler<HTMLButtonElement>;
+  handleCreateOrder: FormEventHandler<HTMLFormElement>;
   isPhoneError: boolean;
   isEmailError: boolean;
   className?: string;

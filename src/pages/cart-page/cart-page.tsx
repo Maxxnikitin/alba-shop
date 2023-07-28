@@ -1,4 +1,12 @@
-import { ChangeEventHandler, FC, MouseEventHandler, useCallback, useEffect, useState } from 'react';
+import {
+  ChangeEventHandler,
+  FC,
+  FormEventHandler,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -174,24 +182,29 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
     });
   }, []);
 
-  const handleCreateOrder = useCallback(() => {
-    if (editData.phone_number.length !== 12) {
-      setIsPhoneError(true);
-      return;
-    }
+  const handleCreateOrder: FormEventHandler<HTMLFormElement> = useCallback(
+    e => {
+      e.preventDefault();
 
-    const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,5}$/;
+      if (editData.phone_number.length !== 12) {
+        setIsPhoneError(true);
+        return;
+      }
 
-    if (!editData.email.match(regex)) {
-      setIsEmailError(true);
-      return;
-    }
+      const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,5}$/;
 
-    createOrder(editData)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
-      .finally(() => setIsCreateOrderSuccess(true));
-  }, [editData]);
+      if (!editData.email.match(regex)) {
+        setIsEmailError(true);
+        return;
+      }
+
+      createOrder(editData)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+        .finally(() => setIsCreateOrderSuccess(true));
+    },
+    [editData],
+  );
 
   const handleBackClick = useCallback(() => {
     setMode('cart');
