@@ -28,6 +28,7 @@ import {
   MenuMainItem,
   MenuPopup,
   Navigation,
+  NavigationMob,
   SearchInput,
 } from '../ui';
 
@@ -111,14 +112,14 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
   }, [handleCloseMenu, handleCloseMobMenu]);
 
   useEffect(() => {
-    if (isMenuOpen || isMenuOpen) {
+    if (isMenuOpen || isMenuOpen || isMobMenuOpen) {
       document.body.classList.add(styles.body);
 
       return () => {
         document.body.classList.remove(styles.body);
       };
     }
-  }, [isMenuOpen, currMenuItem]);
+  }, [isMenuOpen, currMenuItem, isMobMenuOpen]);
 
   return (
     <header className={clsx(styles.header, className)} {...rest}>
@@ -137,10 +138,12 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
             <MenuPopup
               className={styles.menu_popup_main}
               onClose={handleCloseMobMenu}
-              title={'test'}
               handleCloseAllModals={handleCloseAllModals}
             >
-              <Navigation />
+              <NavigationMob
+                handleOpenMenu={handleOpenMenu}
+                handleCloseAllModals={handleCloseAllModals}
+              />
             </MenuPopup>
           )}
           {isMenuOpen && (

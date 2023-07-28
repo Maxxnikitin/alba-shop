@@ -42,3 +42,4 @@ export * from './menu-children-item';
 export * from './back-button';
 export * from './catalog-item';
 export * from './filter-popup-button';
+export * from './navigation-mob';

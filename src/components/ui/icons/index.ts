@@ -20,3 +20,7 @@ export * from './arrow-back-icon';
 export * from './filter-icon';
 export * from './remove-cross-icon';
 export * from './cross-white-icon';
+export * from './favorite-nav-icon-mob';
+export * from './cart-icon-mob';
+export * from './account-icon-mob';
+export * from './menu-mob-icon';
