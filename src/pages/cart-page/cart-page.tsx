@@ -34,6 +34,7 @@ const mockData: TCart = {
     email: 'ivanov@yandex.ru',
     first_name: 'Иван',
     last_name: 'Иванов',
+    surname: '',
     company_name: null,
     phone_number: '+79001234567',
     city: null,

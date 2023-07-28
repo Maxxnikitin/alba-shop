@@ -28,7 +28,7 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
     email: '',
     first_name: '',
     last_name: '',
-    company_name: '',
+    surname: '',
     phone_number: '',
     city: '',
     password: '',
@@ -50,6 +50,7 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
       email: prev?.email || '',
       first_name: prev?.first_name || '',
       last_name: prev?.last_name || '',
+      surname: prev?.surname || '',
       company_name: '',
       phone_number: prev?.phone_number || '',
       city: prev?.city || '',
@@ -94,15 +95,7 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
       return;
     }
 
-    const dataToRequest: Record<string, string> = {};
-
-    for (let key in editData) {
-      if (editData[key]) {
-        dataToRequest[key] = editData[key];
-      }
-    }
-
-    updateUserData(dataToRequest)
+    updateUserData(editData)
       .then(({ data }) => {
         setUserData(data);
         setMode(EMode.READ);
@@ -110,7 +103,7 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
           email: data.email || '',
           first_name: data.first_name || '',
           last_name: data.last_name || '',
-          company_name: '',
+          surname: data.surname || '',
           phone_number: data.phone_number || '',
           city: data.city || '',
           password: '',
@@ -129,7 +122,7 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
           email: user.data.email,
           first_name: user.data.first_name,
           last_name: user.data.last_name,
-          company_name: user.data.company_name ?? '',
+          surname: user.data.surname || '',
           phone_number: user.data.phone_number,
           city: user.data.city ?? '',
           password: '',
@@ -165,7 +158,9 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
         {mode === EMode.READ && (
           <>
             <Title level={ETitleLevel.h4} className={styles.title}>
-              {`${userData.first_name} ${userData.last_name}`}
+              {`${userData.first_name} ${userData.surname ? userData.surname + ' ' : ''}${
+                userData.last_name
+              }`}
             </Title>
             <div className={styles.data_list}>
               <Paragraph className={styles.fieldname}>{t('personal-account.data.email')}</Paragraph>
@@ -203,10 +198,9 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
                 onChange={handleChangeInputs}
               />
               <Input
-                type='email'
-                placeholder={t('personal-account.data.email-placeholder')!}
-                value={editData.email}
-                id='email'
+                placeholder={t('personal-account.data.surname')!}
+                value={editData.surname}
+                id='surname'
                 onChange={handleChangeInputs}
               />
               <div className={styles.edit_phone_box}>
@@ -229,6 +223,13 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
                 placeholder={t('personal-account.data.city')!}
                 value={editData.city}
                 id='city'
+                onChange={handleChangeInputs}
+              />
+              <Input
+                type='email'
+                placeholder={t('personal-account.data.email-placeholder')!}
+                value={editData.email}
+                id='email'
                 onChange={handleChangeInputs}
               />
             </div>

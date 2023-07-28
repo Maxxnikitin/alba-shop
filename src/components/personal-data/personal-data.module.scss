@@ -11,8 +11,10 @@
       background-color: $gray7;
 
       .title {
+        overflow: hidden;
         margin-bottom: 36px;
         text-align: left;
+        text-overflow: ellipsis;
       }
 
       .btn {
