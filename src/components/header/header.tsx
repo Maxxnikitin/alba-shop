@@ -121,6 +121,8 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
     }
   }, [isMenuOpen, currMenuItem, isMobMenuOpen]);
 
+  console.log(isMobSearchOpen);
+
   return (
     <header className={clsx(styles.header, className)} {...rest}>
       <div className={styles.container}>

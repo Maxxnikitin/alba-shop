@@ -7,7 +7,7 @@ import {
   getContacts,
   getLatestItems,
 } from '../api';
-import { mockBrands, mockCharacteristicsData } from '../mock';
+import { mockCharacteristicsData } from '../mock';
 
 import { TDataContext } from '../types';
 
@@ -31,10 +31,10 @@ export const useContextData = () => {
       .then(([contacts, latest, bestsellers, categories, brands]) =>
         setContextData({
           contacts: contacts.data,
-          latestSuggestedItems: mockCharacteristicsData,
-          bestsellersSuggestedItems: mockCharacteristicsData,
+          latestSuggestedItems: latest.data,
+          bestsellersSuggestedItems: bestsellers.data,
           categories: categories.data,
-          brands: mockBrands,
+          brands: brands.data,
         }),
       )
       .catch(err => console.error(err));

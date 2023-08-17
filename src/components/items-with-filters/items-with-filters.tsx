@@ -9,7 +9,7 @@ import styles from './items-with-filters.module.scss';
 
 import { IItemsWithFiltersProps } from './types';
 
-import { Item } from '..';
+import { Item, QueryNotFound } from '..';
 import { Filters } from '../filters';
 import { Button, EButtonKinds, FilterPopupButton, Pagination, SortSelect, Title } from '../ui';
 
@@ -184,14 +184,11 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
       if (categoryId) {
         getProducts(categoryId).then(res => setData(res));
       }
-      // fetchFn(`?sort=${currSort}${additionalQuery}`)
-      //   .then(res => setData(res))
-      //   .catch(err => console.error(err));
-
-      // setData(mockData);
     }, [currSort, categoryId]);
 
     if (!data) return <p>loader</p>;
+
+    if (!data.data.length) return <QueryNotFound />;
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>

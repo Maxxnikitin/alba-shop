@@ -71,6 +71,8 @@ export const Modal: FC<IModalProps> = ({
     }
   }, [onClose, isOpen]);
 
+  console.log({ isOpen });
+
   return ReactDOM.createPortal(
     <>
       <div

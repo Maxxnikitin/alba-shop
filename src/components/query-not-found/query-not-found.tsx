@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './query-not-found.module.scss';
 import { IQueryNotFoundProps } from './types';
 
-import notGoundImg from '../../images/404.svg';
+import notGoundImg from '../../images/query-not-found.svg';
 import { Button, ETitleLevel, Title } from '../ui';
 
 import { useNavigateToMain } from '~utils';

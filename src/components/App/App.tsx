@@ -124,6 +124,10 @@ export function App() {
       ],
     },
     {
+      path: '/brands',
+      element: <BrandsPage />,
+    },
+    {
       path: '/brands/:brand',
       element: <BrandsPage />,
     },

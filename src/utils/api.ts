@@ -109,7 +109,7 @@ export const getBrandsItems = () =>
 
 export const getBrandCategories = (id: string | number) =>
   axiosInstance
-    .get(`${URL}/brands/${id}/categories`)
+    .get(`${URL}/brands/${id}/categories/`)
     .then((res: AxiosResponse<ResWithData<TCategory[]>>) => checkResponse(res));
 
 export const getMainSlides = () =>
