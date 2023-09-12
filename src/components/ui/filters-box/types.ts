@@ -16,6 +16,13 @@ export type TFilterItem = {
 
 export type TFilterBlock = Record<number | string, boolean>;
 
+export type TPriceFiltersData = {
+  price: {
+    min: number;
+    max: number;
+  };
+};
+
 export type TCheckboxFiltersData = {
   [key: string]: TFilterBlock;
   // brand: TFilterBlock;

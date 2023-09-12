@@ -43,3 +43,4 @@ export * from './back-button';
 export * from './catalog-item';
 export * from './filter-popup-button';
 export * from './navigation-mob';
+export * from './filter-label';

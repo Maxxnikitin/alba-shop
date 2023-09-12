@@ -14,7 +14,7 @@ import { handleToggleState } from '~utils';
 
 export const FiltersBoxWithChildren: FC<IFiltersBoxWithChildrenProps> = memo(
   ({ className = '', children, title, ...rest }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const { t } = useTranslation();
 
     console.log('Render Filters SwitchBox');

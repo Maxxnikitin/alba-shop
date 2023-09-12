@@ -15,7 +15,7 @@ import { TItemsWithPagination, TSortingItems } from '~utils';
 export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
   ({ title, fetchFn, additionalQuery = '', className = '', ...rest }) => {
     const [data, setData] = useState<TItemsWithPagination | null>(null);
-    const [currSort, setCurrSort] = useState<TSortingItems>('is_hit');
+    const [currSort, setCurrSort] = useState<TSortingItems>('-is_hit');
 
     const { t } = useTranslation();
 

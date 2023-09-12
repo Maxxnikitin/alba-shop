@@ -52,6 +52,11 @@
   width: 100%;
 }
 
+.modal {
+  width: 100%;
+  height: 100%;
+}
+
 @media screen and (max-width: 970px) {
   .columns {
     grid-template-columns: 1fr;

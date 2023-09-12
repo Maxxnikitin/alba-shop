@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { nanoid } from 'nanoid';
 import { ChangeEventHandler, FC, memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -14,18 +15,20 @@ import { handleToggleState } from '~utils';
 
 export const FiltersBox: FC<IFiltersBoxProps> = memo(
   ({ className = '', title, filtersList, checkedFiltersData, setCheckedFiltersData, ...rest }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const { t } = useTranslation();
 
     console.log('Render Filters Checkbox');
+    console.log(55555, title);
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
       e => {
+        console.log(888888, title, e.target.id);
         setCheckedFiltersData(prev => ({
           ...prev,
           [title]: {
             ...prev[title],
-            [e.target.id]: e.target.checked,
+            [e.target.id.split('_')[0]]: e.target.checked,
           },
         }));
       },
@@ -48,7 +51,7 @@ export const FiltersBox: FC<IFiltersBoxProps> = memo(
                 label={item.f_name}
                 quantity={item.f_quantity}
                 checked={checkedFiltersData[title][item.f_id] ?? false}
-                id={item.f_id?.toString()}
+                id={item.f_id?.toString() + `_${nanoid()}`}
                 onChange={handleChange}
               />
             </li>

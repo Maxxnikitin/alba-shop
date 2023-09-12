@@ -178,7 +178,7 @@ export type TItemsWithPaginationAndFilters = {
   data: TCharacteristic[];
 };
 
-export type TSortingItems = 'is_hit' | 'is_new' | 'price' | '-price';
+export type TSortingItems = '-is_hit' | '-is_new' | 'price' | '-price';
 
 export type TBrand = {
   type: string;

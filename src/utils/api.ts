@@ -52,10 +52,13 @@ export const getFaqData = () =>
     .get(`${URL}/pages/faq/`)
     .then((res: AxiosResponse<TGetFaqDataRes[]>) => checkResponse(res));
 
-export const getProducts = (id: string | number) =>
-  axiosInstance
-    .get(`${URL}/categories/${id}/products/`)
+export const getProducts = (id: string | number, ...queries: string[]) => {
+  const queryString = '?' + queries.filter(item => item !== '').join('&');
+
+  return axiosInstance
+    .get(`${URL}/categories/${id}/products/${queries.length ? queryString : ''}`)
     .then((res: AxiosResponse<TItemsWithPaginationAndFilters>) => checkResponse(res));
+};
 
 export const getProduct = (id: string) =>
   axiosInstance

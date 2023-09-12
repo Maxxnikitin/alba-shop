@@ -1,6 +1,7 @@
 import clsx from 'clsx';
+import { debounce } from 'lodash';
 import { nanoid } from 'nanoid';
-import { ChangeEventHandler, FC, useCallback, useMemo, useState } from 'react';
+import { ChangeEventHandler, FC, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -10,6 +11,7 @@ import { IFiltersProps } from './types';
 import {
   Button,
   CloseButton,
+  FilterLabel,
   FiltersBox,
   FiltersBoxWithChildren,
   RangeInput,
@@ -17,15 +19,21 @@ import {
   TCheckboxFiltersData,
   TOnInputsChange,
   TOnRangeChange,
+  TPriceFiltersData,
   TSwitchFiltersData,
   Title,
 } from '../ui';
+
+import { TItemsWithPaginationAndFilters, getProducts } from '~utils';
 
 export const Filters: FC<IFiltersProps> = ({
   filters,
   className = '',
   isTitle,
   isFooter,
+  categoryId,
+  currSort,
+  setData,
   onClose,
   ...rest
 }) => {
@@ -33,10 +41,10 @@ export const Filters: FC<IFiltersProps> = ({
 
   const data = useMemo(() => filters.fields, [filters]);
 
-  const [priceFilterData, setPriceFilterData] = useState({
+  const [priceFilterData, setPriceFilterData] = useState<TPriceFiltersData>({
     price: {
-      min: 1,
-      max: 300000,
+      min: +data.price.min,
+      max: +data.price.max,
     },
   });
 
@@ -58,6 +66,8 @@ export const Filters: FC<IFiltersProps> = ({
     discount: data.discount,
   });
 
+  const [labelTopPosition, setLabelTopPosition] = useState(0);
+
   const switchFilters = useMemo(
     () => [
       { f_name: 'in_stock', f_id: nanoid() },
@@ -66,9 +76,72 @@ export const Filters: FC<IFiltersProps> = ({
     ],
     [],
   );
+  const [filteredData, setFilteredData] = useState<TItemsWithPaginationAndFilters | null>(null);
+  const [currFiltersQuery, setCurrFiltersQuery] = useState('');
+  const [currSwitchQuery, setCurrSwitchQuery] = useState('');
+  const [currPriceQuery, setCurrPriceQuery] = useState('');
+  const [isNeedRequest, setIsNeedRequest] = useState(false);
+
+  const handleCreateFiltersQuery = (data: TCheckboxFiltersData) => {
+    const res = Object.entries(data).reduce((acc: string[], [key, value]) => {
+      const filterValue: string[] = [];
+      Object.entries(value).forEach(([innerKey, innerValue]) => {
+        if (innerValue) filterValue.push(innerKey);
+      });
+
+      if (filterValue.length) {
+        return [...acc, `filter[${key}]=${filterValue.join(',')}`];
+      }
+      return acc;
+    }, []);
+
+    setCurrFiltersQuery(res.join('&'));
+  };
+
+  const handleCreateSwitchQuery = (data: TSwitchFiltersData) => {
+    const res = Object.entries(data).reduce((acc: string[], [key, value]) => {
+      if (value) {
+        return [...acc, `filter[${key}]=1`];
+      }
+
+      return acc;
+    }, []);
+
+    setCurrSwitchQuery(res.join('&'));
+  };
+
+  const handleCreatePriceQuery = useCallback(({ price }: TPriceFiltersData) => {
+    setCurrPriceQuery(`filter[price]=${price.min},${price.max}`);
+  }, []);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handlePriceDebounced = useCallback(debounce(handleCreatePriceQuery, 500), [
+    handleCreatePriceQuery,
+  ]);
+
+  const handleFilteredDataRender = useCallback(() => {
+    setData(filteredData);
+    onClose?.();
+  }, [filteredData, setData, onClose]);
+
+  const handleRemoveFilters = useCallback(() => {
+    setCheckboxFiltersData({
+      brand: {},
+      material: {},
+      model: {},
+      color: {},
+      length: {},
+      output: {},
+      charging_type: {},
+      connector_type: {},
+    });
+    getProducts(categoryId!, `sort=${currSort}`).then(res => setData(res));
+  }, [categoryId, currSort, setData]);
 
   const handleSwitchChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     e => {
+      setLabelTopPosition((e.nativeEvent as PointerEvent).clientY);
+      console.log(e);
       setSwitchFiltersData(prev => ({
         ...prev,
         [e.target.name]: e.target.checked,
@@ -84,7 +157,7 @@ export const Filters: FC<IFiltersProps> = ({
           <Switch
             label={t(`filters.${f_name}`)}
             checked={switchFiltersData[f_name]}
-            id={f_id?.toString()}
+            id={f_id?.toString() + `_${nanoid()}`}
             name={f_name}
             onChange={handleSwitchChange}
           />
@@ -131,6 +204,8 @@ export const Filters: FC<IFiltersProps> = ({
         <RangeInput
           minValue={priceFilterData.price.min}
           maxValue={priceFilterData.price.max}
+          rangeStart={+data.price.min}
+          rangeEnd={+data.price.max}
           onRangeChange={handlePriceChange}
           onInputsChange={handleInputsChange}
         />
@@ -149,8 +224,45 @@ export const Filters: FC<IFiltersProps> = ({
       t,
       handlePriceChange,
       handleInputsChange,
+      data.price,
     ],
   );
+
+  useEffect(() => {
+    if (categoryId && isNeedRequest) {
+      getProducts(
+        categoryId,
+        `sort=${currSort}`,
+        currFiltersQuery,
+        currSwitchQuery,
+        currPriceQuery,
+      ).then(res => setFilteredData(res));
+    }
+  }, [categoryId, currSort, currFiltersQuery, currSwitchQuery, currPriceQuery, isNeedRequest]);
+
+  useEffect(() => {
+    handleCreateFiltersQuery(checkboxFiltersData);
+    setIsNeedRequest(true);
+  }, [checkboxFiltersData]);
+
+  useEffect(() => {
+    handleCreateSwitchQuery(switchFiltersData);
+    setIsNeedRequest(true);
+  }, [switchFiltersData]);
+
+  useEffect(() => {
+    handlePriceDebounced(priceFilterData);
+    setIsNeedRequest(true);
+  }, [priceFilterData, handlePriceDebounced]);
+
+  useEffect(() => {
+    setPriceFilterData({
+      price: {
+        min: +data.price.min,
+        max: +data.price.max,
+      },
+    });
+  }, [data.price]);
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>
@@ -163,7 +275,7 @@ export const Filters: FC<IFiltersProps> = ({
       <FiltersBoxWithChildren title={'price'}>{priceChildrenNode}</FiltersBoxWithChildren>
       <FiltersBoxWithChildren title={'in_stock_title'}>{switchChildrenNode}</FiltersBoxWithChildren>
       {Object.entries(data).map(([key, value]) => {
-        if (Array.isArray(value)) {
+        if (Array.isArray(value) && value.length) {
           return (
             <FiltersBox
               key={key}
@@ -178,10 +290,26 @@ export const Filters: FC<IFiltersProps> = ({
       })}
       {isFooter && (
         <div className={styles.footer}>
-          <Button text={t('filters.btn_submit')} className={styles.success_btn} />
-          <CloseButton text={t('filters.btn_remove_filters')!} className={styles.close_btn} />
+          <Button
+            text={t('filters.btn_submit')}
+            className={styles.success_btn}
+            onClick={handleFilteredDataRender}
+          />
+          <CloseButton
+            text={t('filters.btn_remove_filters')!}
+            className={styles.close_btn}
+            onClick={handleRemoveFilters}
+          />
         </div>
       )}
+      {
+        <FilterLabel
+          style={{ top: labelTopPosition }}
+          className={styles.label}
+          count={filteredData?.meta.pagination.total_items ?? 0}
+          onClick={handleFilteredDataRender}
+        />
+      }
     </div>
   );
 };

@@ -20,6 +20,7 @@ export const RangeInput: FC<IRangeInputProps> = ({
   ...rest
 }) => {
   console.log('rr');
+
   return (
     <div className={clsx(styles.container, className)} {...rest}>
       <div className={styles.inputs}>

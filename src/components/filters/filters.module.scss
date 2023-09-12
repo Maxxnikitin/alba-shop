@@ -1,6 +1,8 @@
 @import '../common';
 
 .container {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -35,6 +37,11 @@
       min-width: 300px;
     }
   }
+
+  .label {
+    position: absolute;
+    right: -60%;
+  }
 }
 
 .list_item {
@@ -53,6 +60,7 @@
 @media screen and (max-width: 450px) {
   .container {
     .footer {
+      bottom: 60px;
       align-items: stretch;
 
       .close_btn {
