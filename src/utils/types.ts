@@ -197,11 +197,8 @@ export type TMainSlide = {
   type: string;
   id: number;
   slide: string;
+  slide_mob: string;
   main: boolean;
-  title: string;
-  text: string;
-  btnText: string;
-  btnLink: string;
 };
 
 export type TUser = {
