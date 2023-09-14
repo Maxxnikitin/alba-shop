@@ -63,7 +63,7 @@ export const getProducts = (id: string | number, ...queries: string[]) => {
 export const getProduct = (id: string) =>
   axiosInstance
     .get(`${URL}/products/${id}/`)
-    .then((res: AxiosResponse<TGetProductRes>) => checkResponse(res));
+    .then((res: AxiosResponse<ResWithData<TGetProductRes>>) => checkResponse(res));
 
 export const getCategories = () =>
   axiosInstance

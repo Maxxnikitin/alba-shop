@@ -27,6 +27,7 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
   ({ title, className = '', ...rest }) => {
     const [data, setData] = useState<TItemsWithPaginationAndFilters | null>(null);
     const [currSort, setCurrSort] = useState<TSortingItems>('-is_hit');
+    const [pageSize, setPageSize] = useState(3);
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
     const { t } = useTranslation();
@@ -45,7 +46,7 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
       if (categoryId) {
         getProducts(categoryId, `sort=${currSort}`).then(res => setData(res));
       }
-    }, [currSort, categoryId]);
+    }, [currSort, categoryId, pageSize]);
 
     if (!data) return <p>loader</p>;
 

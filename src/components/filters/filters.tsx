@@ -33,6 +33,7 @@ export const Filters: FC<IFiltersProps> = ({
   isFooter,
   categoryId,
   currSort,
+  pageSize = 20,
   setData,
   onClose,
   ...rest
@@ -233,12 +234,21 @@ export const Filters: FC<IFiltersProps> = ({
       getProducts(
         categoryId,
         `sort=${currSort}`,
+        // `page_size=${pageSize}`,
         currFiltersQuery,
         currSwitchQuery,
         currPriceQuery,
       ).then(res => setFilteredData(res));
     }
-  }, [categoryId, currSort, currFiltersQuery, currSwitchQuery, currPriceQuery, isNeedRequest]);
+  }, [
+    categoryId,
+    currSort,
+    currFiltersQuery,
+    currSwitchQuery,
+    currPriceQuery,
+    isNeedRequest,
+    // pageSize,
+  ]);
 
   useEffect(() => {
     handleCreateFiltersQuery(checkboxFiltersData);

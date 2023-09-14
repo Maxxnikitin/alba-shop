@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { FC, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useNavigate } from 'react-router-dom';
+
 import styles from './item.module.scss';
 import { IItemProps } from './types';
 
@@ -10,6 +12,7 @@ import { CartButton, CostBox, Paragraph, TagsBox } from '../ui';
 export const Item: FC<IItemProps> = memo(
   ({ data, isCartButton = false, className = '', onLikeClick, ...rest }) => {
     const {
+      product_id,
       photo,
       name,
       stock,
@@ -23,6 +26,8 @@ export const Item: FC<IItemProps> = memo(
     } = data;
     const { t } = useTranslation();
 
+    const navigate = useNavigate();
+
     const tagsArr = useMemo(() => {
       const arr = [];
 
@@ -32,8 +37,12 @@ export const Item: FC<IItemProps> = memo(
       return arr;
     }, [isNew, isHit]);
 
+    const handleCardClick = () => {
+      navigate(`/catalog/product/${product_id}`);
+    };
+
     return (
-      <li className={clsx(styles.container, className)} {...rest}>
+      <li className={clsx(styles.container, className)} onClick={handleCardClick} {...rest}>
         <article className={styles.article}>
           <img className={styles.img} src={photo.front} alt={t('alts.item') || ''} />
           <div className={styles.addition_box}>
@@ -50,7 +59,7 @@ export const Item: FC<IItemProps> = memo(
             <Paragraph className={styles.name}>{name}</Paragraph>
           </div>
         </article>
-        {isCartButton && <CartButton max={stock} amount={inCart} isSmall />}
+        {isCartButton && <CartButton className={styles.btn} max={stock} amount={inCart} isSmall />}
       </li>
     );
   },

@@ -50,8 +50,10 @@ export const CartButton: FC<ICartButtonProps> = memo(
       [max, handleFetchDebounced],
     );
 
+    const handleStopPropagation: MouseEventHandler<HTMLDivElement> = e => e.stopPropagation();
+
     return (
-      <div className={clsx(styles.container, className)} {...rest}>
+      <div className={clsx(styles.container, className)} onClick={handleStopPropagation} {...rest}>
         <Button
           text={t('item.btn')}
           onClick={handleAddToCartCLick}

@@ -35,11 +35,11 @@ export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
             className={clsx(styles.like, { [styles.like_active]: inFavorite })}
             onClick={onLikeClick}
           />
-          {tagsArr.length && (
+          {!!tagsArr.length && (
             <TagsBox dataArr={tagsArr} inStock={!!inStock} className={styles.tabs} />
           )}
         </div>
-        {tagsArr.length && (
+        {!!tagsArr.length && (
           <TagsBox dataArr={tagsArr} inStock={!!inStock} className={styles.tabs_mobile} />
         )}
       </div>

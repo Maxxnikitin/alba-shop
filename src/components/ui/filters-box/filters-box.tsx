@@ -23,7 +23,6 @@ export const FiltersBox: FC<IFiltersBoxProps> = memo(
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
       e => {
-        console.log(888888, title, e.target.id);
         setCheckedFiltersData(prev => ({
           ...prev,
           [title]: {

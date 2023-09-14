@@ -92,11 +92,11 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
         )}
         <div className={styles.btn_box}>
           <CartButton max={10} amount={currentCharacteristic.in_cart} />
-          {stock ? (
+          {!!stock && (
             <Paragraph className={styles.stock_text}>
               {t('item.stock', { amount: stock })}
             </Paragraph>
-          ) : null}
+          )}
         </div>
       </div>
     );

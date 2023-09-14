@@ -61,6 +61,14 @@ export function App() {
       element: <p>favorite</p>,
     },
     {
+      path: '/catalog',
+      element: <CatalogPage />,
+    },
+    {
+      path: '/catalog/product/:id',
+      element: <ItemDetailsPage />,
+    },
+    {
       path: '/catalog/:category',
       element: <CatalogChildrenPage />,
     },
@@ -130,10 +138,6 @@ export function App() {
     {
       path: '/brands/:brand',
       element: <BrandsPage />,
-    },
-    {
-      path: '/catalog',
-      element: <CatalogPage />,
     },
     {
       path: '*',

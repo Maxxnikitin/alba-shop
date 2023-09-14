@@ -6,6 +6,7 @@ export interface IFiltersProps {
   filters: TFilters;
   setData: Dispatch<SetStateAction<TItemsWithPaginationAndFilters | null>>;
   currSort: TSortingItems;
+  pageSize?: number;
   categoryId?: string;
   onClose?: () => void;
   isTitle?: boolean;
