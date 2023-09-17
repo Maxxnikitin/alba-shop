@@ -10,6 +10,11 @@
   padding: 0;
 }
 
+.main_content {
+  display: flex;
+  flex-direction: column;
+}
+
 .title {
   margin-bottom: 38px;
   text-align: left;

@@ -15,6 +15,7 @@ import { TItemsWithPagination, TSortingItems } from '~utils';
 export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
   ({ title, fetchFn, additionalQuery = '', className = '', ...rest }) => {
     const [data, setData] = useState<TItemsWithPagination | null>(null);
+    const [currPaginationPage, setCurrPaginationPage] = useState(1);
     const [currSort, setCurrSort] = useState<TSortingItems>('-is_hit');
 
     const { t } = useTranslation();
@@ -42,7 +43,12 @@ export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
           ))}
         </ul>
         <Button kind={EButtonKinds.load} text={t('items.load-btn')} />
-        <Pagination className={styles.pagination} amountPage={4} activePage={1} />
+        <Pagination
+          className={styles.pagination}
+          amountPage={4}
+          activePage={1}
+          setCurrPaginationPage={setCurrPaginationPage}
+        />
       </div>
     );
   },

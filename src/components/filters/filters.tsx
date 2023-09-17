@@ -234,7 +234,7 @@ export const Filters: FC<IFiltersProps> = ({
       getProducts(
         categoryId,
         `sort=${currSort}`,
-        // `page_size=${pageSize}`,
+        `page_size=${pageSize}`,
         currFiltersQuery,
         currSwitchQuery,
         currPriceQuery,
@@ -247,7 +247,7 @@ export const Filters: FC<IFiltersProps> = ({
     currSwitchQuery,
     currPriceQuery,
     isNeedRequest,
-    // pageSize,
+    pageSize,
   ]);
 
   useEffect(() => {

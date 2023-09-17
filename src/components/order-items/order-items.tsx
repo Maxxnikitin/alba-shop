@@ -516,6 +516,7 @@ const mockData: TOrdersWithPagination = {
 
 export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest }) => {
   const [data, setData] = useState<TOrdersWithPagination | null>(null);
+  const [currPaginationPage, setCurrPaginationPage] = useState(1);
   const [currItem, setCurrItem] = useState<TOrder | null>(null);
   const [offset, setOffset] = useState(0);
 
@@ -578,7 +579,12 @@ export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest 
             ))}
           </ul>
           <Button kind={EButtonKinds.load} text={t('items.load-btn')} />
-          <Pagination className={styles.pagination} amountPage={4} activePage={1} />
+          <Pagination
+            className={styles.pagination}
+            amountPage={4}
+            activePage={1}
+            setCurrPaginationPage={setCurrPaginationPage}
+          />
         </>
       )}
     </div>

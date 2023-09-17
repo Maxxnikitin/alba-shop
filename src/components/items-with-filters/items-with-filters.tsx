@@ -28,6 +28,7 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
     const [data, setData] = useState<TItemsWithPaginationAndFilters | null>(null);
     const [currSort, setCurrSort] = useState<TSortingItems>('-is_hit');
     const [pageSize, setPageSize] = useState(3);
+    const [currPaginationPage, setCurrPaginationPage] = useState(1);
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
     const { t } = useTranslation();
@@ -42,11 +43,20 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
 
     const handleToggleFilters = useCallback(() => setIsFiltersOpen(prev => !prev), []);
 
+    const handleLoadMoreClick = useCallback(() => {
+      setPageSize(pageSize + 3);
+    }, [pageSize]);
+
     useEffect(() => {
       if (categoryId) {
-        getProducts(categoryId, `sort=${currSort}`).then(res => setData(res));
+        getProducts(
+          categoryId,
+          `sort=${currSort}`,
+          `page_size=${pageSize}`,
+          `page=${currPaginationPage}`,
+        ).then(res => setData(res));
       }
-    }, [currSort, categoryId, pageSize]);
+    }, [currSort, categoryId, pageSize, currPaginationPage]);
 
     if (!data) return <p>loader</p>;
 
@@ -91,8 +101,21 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
                 />
               ))}
             </ul>
-            <Button kind={EButtonKinds.load} text={t('items.load-btn')} />
-            <Pagination className={styles.pagination} amountPage={4} activePage={1} />
+            {data.meta.pagination.num_pages !== 1 && (
+              <>
+                <Button
+                  kind={EButtonKinds.load}
+                  text={t('items.load-btn')}
+                  onClick={handleLoadMoreClick}
+                />
+                <Pagination
+                  className={styles.pagination}
+                  amountPage={data.meta.pagination.num_pages}
+                  activePage={currPaginationPage}
+                  setCurrPaginationPage={setCurrPaginationPage}
+                />
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -14,6 +14,7 @@ import { getFavoriteItems, TItemsWithPagination } from '~utils';
 
 export const FavoriteItems: FC<IFavoriteItemsProps> = memo(({ className = '', ...rest }) => {
   const [data, setData] = useState<TItemsWithPagination | null>(null);
+  const [currPaginationPage, setCurrPaginationPage] = useState(1);
 
   const { t } = useTranslation();
 
@@ -33,7 +34,12 @@ export const FavoriteItems: FC<IFavoriteItemsProps> = memo(({ className = '', ..
         ))}
       </ul>
       <Button kind={EButtonKinds.load} text={t('items.load-btn')} />
-      <Pagination className={styles.pagination} amountPage={4} activePage={1} />
+      <Pagination
+        className={styles.pagination}
+        amountPage={4}
+        activePage={1}
+        setCurrPaginationPage={setCurrPaginationPage}
+      />
     </div>
   );
 });
