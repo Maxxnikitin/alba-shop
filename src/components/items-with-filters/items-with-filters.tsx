@@ -27,7 +27,7 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
   ({ title, className = '', ...rest }) => {
     const [data, setData] = useState<TItemsWithPaginationAndFilters | null>(null);
     const [currSort, setCurrSort] = useState<TSortingItems>('-is_hit');
-    const [pageSize, setPageSize] = useState(3);
+    const [pageSize, setPageSize] = useState(18);
     const [currPaginationPage, setCurrPaginationPage] = useState(1);
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
@@ -44,7 +44,7 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
     const handleToggleFilters = useCallback(() => setIsFiltersOpen(prev => !prev), []);
 
     const handleLoadMoreClick = useCallback(() => {
-      setPageSize(pageSize + 3);
+      setPageSize(pageSize + 18);
     }, [pageSize]);
 
     useEffect(() => {

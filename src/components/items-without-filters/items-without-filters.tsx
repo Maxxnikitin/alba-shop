@@ -15,6 +15,7 @@ import { TItemsWithPagination, TSortingItems } from '~utils';
 export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
   ({ title, fetchFn, additionalQuery = '', className = '', ...rest }) => {
     const [data, setData] = useState<TItemsWithPagination | null>(null);
+    const [pageSize, setPageSize] = useState(18);
     const [currPaginationPage, setCurrPaginationPage] = useState(1);
     const [currSort, setCurrSort] = useState<TSortingItems>('-is_hit');
 
@@ -24,11 +25,15 @@ export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
       setCurrSort(e.target.value as TSortingItems);
     }, []);
 
+    const handleLoadMoreClick = useCallback(() => {
+      setPageSize(pageSize + 18);
+    }, [pageSize]);
+
     useEffect(() => {
-      fetchFn(`?sort=${currSort}${additionalQuery}`)
+      fetchFn(`?sort=${currSort}&page=${currPaginationPage}${additionalQuery}`)
         .then(res => setData(res))
         .catch(err => console.error(err));
-    }, [currSort, additionalQuery, fetchFn]);
+    }, [currSort, additionalQuery, currPaginationPage, fetchFn]);
 
     if (!data) return <p>loader</p>;
 
@@ -42,13 +47,21 @@ export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
             <Item key={item.id} data={item} onLikeClick={() => console.log('like')} isCartButton />
           ))}
         </ul>
-        <Button kind={EButtonKinds.load} text={t('items.load-btn')} />
-        <Pagination
-          className={styles.pagination}
-          amountPage={4}
-          activePage={1}
-          setCurrPaginationPage={setCurrPaginationPage}
-        />
+        {data.meta.pagination.num_pages !== 1 && (
+          <>
+            <Button
+              kind={EButtonKinds.load}
+              text={t('items.load-btn')}
+              onClick={handleLoadMoreClick}
+            />
+            <Pagination
+              className={styles.pagination}
+              amountPage={data.meta.pagination.num_pages}
+              activePage={currPaginationPage}
+              setCurrPaginationPage={setCurrPaginationPage}
+            />
+          </>
+        )}
       </div>
     );
   },

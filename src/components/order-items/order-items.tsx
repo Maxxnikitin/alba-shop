@@ -516,6 +516,7 @@ const mockData: TOrdersWithPagination = {
 
 export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest }) => {
   const [data, setData] = useState<TOrdersWithPagination | null>(null);
+  const [pageSize, setPageSize] = useState(18);
   const [currPaginationPage, setCurrPaginationPage] = useState(1);
   const [currItem, setCurrItem] = useState<TOrder | null>(null);
   const [offset, setOffset] = useState(0);
@@ -535,6 +536,10 @@ export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest 
   const handleBackClick: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
     setCurrItem(null);
   }, []);
+
+  const handleLoadMoreClick = useCallback(() => {
+    setPageSize(pageSize + 18);
+  }, [pageSize]);
 
   useEffect(() => {
     getOrders()
@@ -578,13 +583,21 @@ export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest 
               <ItemOrder key={item.id} data={item} onClick={handleClick} />
             ))}
           </ul>
-          <Button kind={EButtonKinds.load} text={t('items.load-btn')} />
-          <Pagination
-            className={styles.pagination}
-            amountPage={4}
-            activePage={1}
-            setCurrPaginationPage={setCurrPaginationPage}
-          />
+          {data.meta.pagination.num_pages !== 1 && (
+            <>
+              <Button
+                kind={EButtonKinds.load}
+                text={t('items.load-btn')}
+                onClick={handleLoadMoreClick}
+              />
+              <Pagination
+                className={styles.pagination}
+                amountPage={data.meta.pagination.num_pages}
+                activePage={currPaginationPage}
+                setCurrPaginationPage={setCurrPaginationPage}
+              />
+            </>
+          )}
         </>
       )}
     </div>
