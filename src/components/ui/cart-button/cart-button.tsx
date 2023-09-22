@@ -1,6 +1,14 @@
 import clsx from 'clsx';
 import debounce from 'lodash/debounce';
-import { ChangeEventHandler, FC, memo, MouseEventHandler, useCallback, useState } from 'react';
+import {
+  ChangeEventHandler,
+  FC,
+  memo,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from './cart-button.module.scss';
@@ -10,12 +18,30 @@ import { Button } from '../button';
 import { ItemsCount } from '../items-count';
 
 export const CartButton: FC<ICartButtonProps> = memo(
-  ({ max, className = '', amount = 1, isSmall = false, ...rest }) => {
+  ({
+    max,
+    className = '',
+    amount = 0,
+    isSmall = false,
+    handleAddToCart,
+    handleUpdateInCart,
+    handleDeleteFromCart,
+    ...rest
+  }) => {
     const [curAmount, setCurAmount] = useState(amount);
     const [cart, setCart] = useState(curAmount);
     const { t } = useTranslation();
 
-    const handleFetch = useCallback((val: number) => setCart(val), []);
+    const handleFetch = useCallback(
+      (val: number) => {
+        if (val) {
+          handleUpdateInCart(val);
+        } else {
+          handleDeleteFromCart();
+        }
+      },
+      [handleDeleteFromCart, handleUpdateInCart],
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleFetchDebounced = useCallback(debounce(handleFetch, 2000), [handleFetch]);
 
@@ -32,12 +58,12 @@ export const CartButton: FC<ICartButtonProps> = memo(
           setCurAmount(prev => ++prev);
         } else {
           setCurAmount(prev => --prev);
-          if (curAmount === 1) {
-            handleFetch(curAmount - 1);
-          }
+          // if (curAmount === 1) {
+          //   handleFetch(curAmount - 1);
+          // }
         }
       },
-      [curAmount, handleFetch],
+      [],
     );
 
     const handleInputChange: ChangeEventHandler<HTMLInputElement> = useCallback(
@@ -45,16 +71,26 @@ export const CartButton: FC<ICartButtonProps> = memo(
         const val = +target.value;
 
         setCurAmount(val > max ? max : val);
-        handleFetchDebounced(val);
       },
-      [max, handleFetchDebounced],
+      [max],
     );
+
+    useEffect(() => {
+      setCart(amount);
+      setCurAmount(amount);
+    }, [amount]);
+
+    useEffect(() => {
+      if (cart !== curAmount) {
+        handleFetchDebounced(curAmount);
+      }
+    }, [curAmount, handleFetchDebounced, cart]);
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
         <Button
           text={t('item.btn')}
-          onClick={handleAddToCartCLick}
+          onClick={handleAddToCart}
           className={clsx(styles.btn, styles.invisible, {
             [styles.visible]: cart <= 0,
             [styles.small]: isSmall,

@@ -310,6 +310,11 @@ export type TCart = {
   content: TOrderContent[];
 };
 
+export type TCartCreate = {
+  characteristic_id: string;
+  quantity: number;
+};
+
 export type TLiveSearchRes = {
   meta: TLiveSearchMeta;
   data: TLiveSearchData[];

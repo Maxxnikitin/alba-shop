@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import { TAuthSetPhoneDto, TAuthSetPhoneRes, URL } from '.';
 
@@ -25,13 +25,14 @@ import type {
   TConfirmOrderData,
   TOrder,
   TCategoryChild,
-  TAccessRes,
   TItemsWithPaginationAndFilters,
   TLiveSearchRes,
+  TCartCreate,
+  TOrderContent,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
-  if (res.status === 200) {
+  if (res.status.toString().startsWith('2')) {
     return res.data;
   }
   return Promise.reject(res);
@@ -145,10 +146,35 @@ export const getFavoritesCount = () =>
     .get(`${URL}/customers/me/favorites/count/`)
     .then((res: AxiosResponse<ResWithData<number>>) => checkResponse(res));
 
+export const setFavorite = (data: Omit<TCartCreate, 'quantity'>) =>
+  axiosInstance
+    .post(`${URL}/customers/me/favorites/create/`, data)
+    .then((res: AxiosResponse<ResWithData<TOrderContent>>) => checkResponse(res));
+
+export const deleteFavorite = (id: string | number) =>
+  axiosInstance
+    .delete(`${URL}/customers/me/favorites/${id}/delete/`)
+    .then((res: AxiosResponse<ResWithData<TOrderContent>>) => checkResponse(res));
+
 export const getCartCount = () =>
   axiosInstance
     .get(`${URL}/cart/positions/count/`)
     .then((res: AxiosResponse<ResWithData<number>>) => checkResponse(res));
+
+export const createCartPosition = (data: TCartCreate) =>
+  axiosInstance
+    .post(`${URL}/cart/positions/create/`, data)
+    .then((res: AxiosResponse<ResWithData<TOrderContent>>) => checkResponse(res));
+
+export const updateCartPosition = ({ characteristic_id, quantity }: TCartCreate) =>
+  axiosInstance
+    .patch(`${URL}/cart/positions/${characteristic_id}/update/`, { quantity })
+    .then((res: AxiosResponse<ResWithData<TOrderContent>>) => checkResponse(res));
+
+export const deleteCartPosition = (id: string | number) =>
+  axiosInstance
+    .delete(`${URL}/cart/positions/${id}/delete/`)
+    .then((res: AxiosResponse<ResWithData<TOrderContent>>) => checkResponse(res));
 
 export const getOrders = () =>
   axiosInstance

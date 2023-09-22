@@ -9,7 +9,7 @@ import { ItemGallery } from '..';
 
 import { ItemCharacteristics } from '../item-characteristics';
 
-import { getProduct, TCharacteristic, TGetProductRes } from '~utils';
+import { deleteFavorite, getProduct, setFavorite, TCharacteristic, TGetProductRes } from '~utils';
 
 export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...rest }) => {
   const [data, setData] = useState<TGetProductRes | null>(null);
@@ -30,24 +30,24 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
     [characteristicsMap],
   );
 
-  const handleLikeToggle: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
-    if (characteristics && currentCharacteristic) {
-      setCharacteristics(
-        characteristics.map(item => {
-          if (item.id === currentCharacteristic.id) {
-            const updatedObj = {
-              ...currentCharacteristic,
-              in_favorite: !currentCharacteristic.in_favorite,
-            };
-            setCurrentCharacteristic(updatedObj);
-            return updatedObj;
-          } else {
-            return item;
-          }
-        }),
-      );
+  const handleToggleLike = useCallback(() => {
+    if (currentCharacteristic) {
+      setCurrentCharacteristic({
+        ...currentCharacteristic,
+        in_favorite: !currentCharacteristic.in_favorite,
+      });
     }
-  }, [characteristics, currentCharacteristic]);
+  }, [currentCharacteristic]);
+
+  const handleLikeRequest: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
+    if (characteristics && currentCharacteristic) {
+      if (currentCharacteristic.in_favorite) {
+        deleteFavorite(currentCharacteristic.id).then(handleToggleLike);
+      } else {
+        setFavorite({ characteristic_id: currentCharacteristic.id }).then(handleToggleLike);
+      }
+    }
+  }, [characteristics, currentCharacteristic, handleToggleLike]);
 
   useEffect(() => {
     getProduct(id!).then(({ data }) => {
@@ -75,14 +75,14 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
         className={styles.gallery}
         dataObj={data}
         currentCharacteristic={currentCharacteristic}
-        onLikeClick={handleLikeToggle}
+        onLikeClick={handleLikeRequest}
       />
       <ItemCharacteristics
         characteristics={characteristics}
         currentCharacteristic={currentCharacteristic}
         dataObj={data}
         onClick={handleChangeCurrentCharacteristic}
-        onLikeClick={handleLikeToggle}
+        onLikeClick={handleLikeRequest}
       />
     </div>
   );
