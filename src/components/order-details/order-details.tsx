@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import moment from 'moment';
-import { FC, memo } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -14,7 +14,12 @@ import { Tooltip } from '../ui/tooltip';
 import { EOrderStatus } from '~utils';
 
 export const OrderDetails: FC<IOrderDetailsProps> = memo(({ data, className = '', ...rest }) => {
+  const [renderItemsCount, setRenderItemsCount] = useState(10);
   const { t } = useTranslation();
+
+  const handleIncrementCRenderCount = useCallback(() => {
+    setRenderItemsCount(prev => prev + 10);
+  }, []);
 
   return (
     <article className={clsx(styles.container, className)} {...rest}>
@@ -47,11 +52,20 @@ export const OrderDetails: FC<IOrderDetailsProps> = memo(({ data, className = ''
         </div>
       </div>
       <ul className={styles.list}>
-        {data.content.map(item => (
-          <ItemOrderDetails key={item.id} data={item} />
-        ))}
+        {data.content.map((item, i) => {
+          if (i < renderItemsCount) {
+            return <ItemOrderDetails key={item.id} data={item} />;
+          }
+          return null;
+        })}
       </ul>
-      <Button kind={EButtonKinds.load} text={t('items.load-btn')} />
+      {renderItemsCount < data.content.length && (
+        <Button
+          kind={EButtonKinds.load}
+          text={t('items.load-btn')}
+          onClick={handleIncrementCRenderCount}
+        />
+      )}
     </article>
   );
 });

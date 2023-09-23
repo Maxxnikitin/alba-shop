@@ -23,6 +23,7 @@ export const CartButton: FC<ICartButtonProps> = memo(
     className = '',
     amount = 0,
     isSmall = false,
+    disabled,
     handleAddToCart,
     handleUpdateInCart,
     handleDeleteFromCart,
@@ -43,12 +44,7 @@ export const CartButton: FC<ICartButtonProps> = memo(
       [handleDeleteFromCart, handleUpdateInCart],
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const handleFetchDebounced = useCallback(debounce(handleFetch, 2000), [handleFetch]);
-
-    const handleAddToCartCLick: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
-      setCurAmount(1);
-      handleFetch(1);
-    }, [handleFetch]);
+    const handleFetchDebounced = useCallback(debounce(handleFetch, 1000), [handleFetch]);
 
     const handleBtnsClick: MouseEventHandler<HTMLButtonElement> = useCallback(
       ({ currentTarget }) => {
@@ -58,9 +54,6 @@ export const CartButton: FC<ICartButtonProps> = memo(
           setCurAmount(prev => ++prev);
         } else {
           setCurAmount(prev => --prev);
-          // if (curAmount === 1) {
-          //   handleFetch(curAmount - 1);
-          // }
         }
       },
       [],
@@ -91,6 +84,7 @@ export const CartButton: FC<ICartButtonProps> = memo(
         <Button
           text={t('item.btn')}
           onClick={handleAddToCart}
+          disabled={disabled}
           className={clsx(styles.btn, styles.invisible, {
             [styles.visible]: cart <= 0,
             [styles.small]: isSmall,

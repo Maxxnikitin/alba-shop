@@ -115,6 +115,13 @@
           font-weight: 500;
           line-height: 150%;
           color: $text-black;
+
+          &_prev {
+            position: relative;
+            top: 2px;
+            line-height: 1;
+            text-decoration: line-through;
+          }
         }
       }
 

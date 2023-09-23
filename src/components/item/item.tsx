@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, MouseEvent, MouseEventHandler, memo, useCallback, useMemo, useState } from 'react';
+import { FC, MouseEventHandler, memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useNavigate } from 'react-router-dom';
@@ -9,14 +9,7 @@ import { IItemProps } from './types';
 
 import { CartButton, CostBox, Paragraph, TagsBox } from '../ui';
 
-import {
-  TCharacteristic,
-  createCartPosition,
-  deleteCartPosition,
-  deleteFavorite,
-  setFavorite,
-  updateCartPosition,
-} from '~utils';
+import { TCharacteristic, createCartPosition, deleteFavorite, setFavorite } from '~utils';
 
 export const Item: FC<IItemProps> = memo(
   ({ data, isCartButton = false, className = '', onLikeClick, ...rest }) => {
@@ -60,7 +53,7 @@ export const Item: FC<IItemProps> = memo(
 
     const handleUpdateInCart: (quantity: number) => void = useCallback(
       quantity => {
-        updateCartPosition({ characteristic_id: id, quantity }).then(() =>
+        createCartPosition({ characteristic_id: id, quantity }).then(() =>
           setStateData(prev => ({ ...prev, in_cart: quantity })),
         );
       },
@@ -68,7 +61,9 @@ export const Item: FC<IItemProps> = memo(
     );
 
     const handleDeleteFromCart: () => void = useCallback(() => {
-      deleteCartPosition(id).then(() => setStateData(prev => ({ ...prev, in_cart: 0 })));
+      createCartPosition({ characteristic_id: id, quantity: 0 }).then(() =>
+        setStateData(prev => ({ ...prev, in_cart: 0 })),
+      );
     }, [id]);
 
     const handleToggleLike = useCallback(() => {
@@ -120,6 +115,7 @@ export const Item: FC<IItemProps> = memo(
             max={stock}
             amount={inCart}
             isSmall
+            disabled={!stock}
           />
         )}
       </li>

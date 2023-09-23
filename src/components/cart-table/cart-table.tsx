@@ -9,8 +9,10 @@ import { ICartTableProps } from './types';
 import { ItemCart } from '../item-cart';
 import { Button, CloseButton, Paragraph, RemoveCrossIcon, Title } from '../ui';
 
+import { MIN_ORDER_AMOUNT } from '~utils';
+
 export const CartTable: FC<ICartTableProps> = memo(
-  ({ data, onClick, handleRemoveCart, handleRemoveItem, className = '', ...rest }) => {
+  ({ data, setData, onClick, handleRemoveCart, handleRemoveItem, className = '', ...rest }) => {
     const { t } = useTranslation();
 
     const headers = useMemo(
@@ -47,6 +49,7 @@ export const CartTable: FC<ICartTableProps> = memo(
               <ItemCart
                 key={item.id}
                 data={item}
+                setData={setData}
                 handleRemoveItem={handleRemoveItem}
                 className={styles.table_list_item}
               />
@@ -62,12 +65,15 @@ export const CartTable: FC<ICartTableProps> = memo(
               )}`}</span>
             </Paragraph>
             <Paragraph className={styles.min_order}>
-              {t('cart.table.min-order', { amount: 7000 })}
+              {t('cart.table.min-order', { amount: MIN_ORDER_AMOUNT })}
             </Paragraph>
           </div>
           <div className={styles.second_col}>
             <div className={styles.row}>
               <Paragraph className={styles.row_text}>{t('cart.table.total-price')}</Paragraph>
+              {data?.amount !== data?.final_amount && (
+                <Paragraph className={styles.row_value_prev}>{`${data?.amount} ₽`}</Paragraph>
+              )}
               <Paragraph className={styles.row_value}>{`${data?.final_amount} ₽`}</Paragraph>
             </div>
             {!!data?.customer.discount && (
@@ -80,7 +86,12 @@ export const CartTable: FC<ICartTableProps> = memo(
               <Paragraph className={styles.row_text}>{t('cart.table.total-pay')}</Paragraph>
               <Paragraph className={styles.row_value}>{`${data?.final_amount} ₽`}</Paragraph>
             </div>
-            <Button className={styles.btn} text={t('cart.table.btn')} onClick={onClick} />
+            <Button
+              className={styles.btn}
+              text={t('cart.table.btn')}
+              onClick={onClick}
+              disabled={+data.amount < MIN_ORDER_AMOUNT}
+            />
           </div>
         </div>
       </div>

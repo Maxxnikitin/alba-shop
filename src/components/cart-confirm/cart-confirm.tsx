@@ -129,6 +129,7 @@ export const CartConfirm: FC<ICartConfirmProps> = memo(
               label={t('cart.confirm.delivery.delivery')}
               labelClassName={styles.radios_label}
               onChange={handleChangeInputs}
+              disabled
             />
           </div>
           <div className={styles.total_box}>

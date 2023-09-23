@@ -1,0 +1,30 @@
+@import '../../common';
+
+.container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: space-between;
+
+  .btn {
+    cursor: pointer;
+
+    padding: 10px;
+
+    background: none;
+    border: none;
+
+    transition: $common-transition;
+
+    &:hover {
+      opacity: $common-hover-opacity;
+    }
+  }
+
+  .amount {
+    font-size: 16px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1;
+  }
+}

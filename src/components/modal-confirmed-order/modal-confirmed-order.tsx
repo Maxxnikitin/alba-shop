@@ -12,10 +12,8 @@ import { Button, Modal, Paragraph, Title } from '../ui';
 
 import { useNavigateToMain } from '~utils';
 
-const orderNum = 123123;
-
 export const ModalConfirmedOrder: FC<IModalConfirmedOrderProps> = memo(
-  ({ isOpen, className = '', onClose, ...rest }) => {
+  ({ isOpen, orderNum, className = '', onClose, ...rest }) => {
     const { t } = useTranslation();
 
     const { handleNavigateToMainClick } = useNavigateToMain();
