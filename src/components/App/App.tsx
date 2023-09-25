@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useLocation, useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
@@ -24,17 +24,18 @@ import {
 
 import { ItemsWithFilters } from '../items-with-filters';
 
+import { MainWrapperPage } from '../main-wrapper-page';
 import { OrderItems } from '../order-items';
 
-import { updateCartFx, updateFavoritesFx } from 'src/models';
+import { ProtectedRouteElement } from '../protected-route';
+
 import { BrandsPage } from 'src/pages/brand-page';
-import { DataContext, useContextData } from '~utils';
+import { DataContext } from '~utils';
 
 import '../../models/init';
 
 export function App() {
   console.log('Render App');
-  const { contextData } = useContextData();
   const { pathname } = useLocation();
 
   const isAuthPage = useMemo(() => pathname === '/sign-in', [pathname]);
@@ -46,90 +47,96 @@ export function App() {
     },
     {
       path: '/',
-      element: <MainPage />,
-    },
-    {
-      path: '/cart',
-      element: <CartPage />,
-    },
-    {
-      path: '/catalog',
-      element: <CatalogPage />,
-    },
-    {
-      path: '/catalog/product/:id',
-      element: <ItemDetailsPage />,
-    },
-    {
-      path: '/catalog/:category',
-      element: <CatalogChildrenPage />,
-    },
-
-    {
-      path: '/catalog/:category/:category',
-      element: <CatalogChildrenPage />,
-    },
-    {
-      path: '/catalog/:category/:category/:category',
-      element: <CatalogChildrenPage />,
-    },
-    {
-      path: '/faq',
-      element: <FaqPage />,
-    },
-    {
-      path: '/about',
-      element: <AboutPage />,
-    },
-    {
-      path: '/latest',
-      element: <LatestPage />,
-    },
-    {
-      path: '/bestsellers',
-      element: <BestsellersPage />,
-    },
-    {
-      path: '/discount',
-      element: <DiscountPage />,
-    },
-    {
-      path: '/discount/:percent',
-      element: <DiscountWithPercentPage />,
-    },
-    {
-      path: '/test',
-      element: <ItemsWithFilters title='test' />,
-    },
-    {
-      path: '/personal-account',
-      element: <PersonalAccountPage />,
+      element: <ProtectedRouteElement element={<MainWrapperPage />} />,
       children: [
         {
-          path: 'orders',
-          element: <OrderItems />,
+          path: '',
+          element: <MainPage />,
         },
         {
-          path: 'favorite',
-          element: <FavoriteItems />,
+          path: 'cart',
+          element: <CartPage />,
         },
         {
-          path: 'data',
-          element: <PersonalData />,
+          path: '/catalog',
+          element: <CatalogPage />,
         },
         {
-          path: 'coupons',
-          element: <p>coupons</p>,
+          path: '/catalog/product/:id',
+          element: <ItemDetailsPage />,
+        },
+        {
+          path: '/catalog/:category',
+          element: <CatalogChildrenPage />,
+        },
+
+        {
+          path: '/catalog/:category/:category',
+          element: <CatalogChildrenPage />,
+        },
+        {
+          path: '/catalog/:category/:category/:category',
+          element: <CatalogChildrenPage />,
+        },
+        {
+          path: '/faq',
+          element: <FaqPage />,
+        },
+        {
+          path: '/about',
+          element: <AboutPage />,
+        },
+        {
+          path: '/latest',
+          element: <LatestPage />,
+        },
+        {
+          path: '/bestsellers',
+          element: <BestsellersPage />,
+        },
+        {
+          path: '/discount',
+          element: <DiscountPage />,
+        },
+        {
+          path: '/discount/:percent',
+          element: <DiscountWithPercentPage />,
+        },
+        {
+          path: '/test',
+          element: <ItemsWithFilters title='test' />,
+        },
+        {
+          path: '/personal-account',
+          element: <PersonalAccountPage />,
+          children: [
+            {
+              path: 'orders',
+              element: <OrderItems />,
+            },
+            {
+              path: 'favorite',
+              element: <FavoriteItems />,
+            },
+            {
+              path: 'data',
+              element: <PersonalData />,
+            },
+            {
+              path: 'coupons',
+              element: <p>coupons</p>,
+            },
+          ],
+        },
+        {
+          path: '/brands',
+          element: <BrandsPage />,
+        },
+        {
+          path: '/brands/:brand',
+          element: <BrandsPage />,
         },
       ],
-    },
-    {
-      path: '/brands',
-      element: <BrandsPage />,
-    },
-    {
-      path: '/brands/:brand',
-      element: <BrandsPage />,
     },
     {
       path: '*',
@@ -137,19 +144,12 @@ export function App() {
     },
   ]);
 
-  useEffect(() => {
-    updateCartFx();
-    updateFavoritesFx();
-  }, []);
-
   return (
     <div className={styles.container}>
       <ScrollToTop />
-      <DataContext.Provider value={contextData}>
-        {!isAuthPage && <Header />}
-        {routes}
-        {!isAuthPage && <Footer />}
-      </DataContext.Provider>
+      {!isAuthPage && <Header />}
+      {routes}
+      {!isAuthPage && <Footer />}
     </div>
   );
 }

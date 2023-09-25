@@ -14,7 +14,7 @@ import {
 
 import { useTranslation } from 'react-i18next';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './header.module.scss';
 import { IHeaderProps } from './types';
@@ -42,8 +42,6 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
   const [isMobMenuOpen, setIsMobMenuOpen] = useState(false);
 
   const { t } = useTranslation();
-
-  const navigate = useNavigate();
 
   const { categories } = useContext(DataContext);
 

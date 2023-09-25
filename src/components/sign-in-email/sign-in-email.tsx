@@ -41,8 +41,6 @@ export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) 
     }));
   }, []);
 
-  console.log(document.cookie);
-
   const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
     setSubmitError(null);

@@ -14,7 +14,6 @@ import { DataContext } from '~utils';
 export const CatalogMain: FC<ICatalogMainProps> = memo(({ className = '', ...rest }) => {
   const { categories } = useContext(DataContext);
   const { t } = useTranslation();
-  console.log(categories);
 
   return (
     <section className={clsx(styles.container, className)} {...rest}>
