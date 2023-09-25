@@ -10,7 +10,7 @@ import { IOrderItemsProps } from './types';
 import { ItemOrder, OrderDetails } from '..';
 import { BackButton, Button, EButtonKinds, Pagination } from '../ui';
 
-import { EOrderStatus, getOrders, TOrder, TOrdersWithPagination } from '~utils';
+import { getOrders, TOrder, TOrdersWithPagination } from '~utils';
 
 export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest }) => {
   const [data, setData] = useState<TOrdersWithPagination | null>(null);
@@ -18,6 +18,7 @@ export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest 
   const [currPaginationPage, setCurrPaginationPage] = useState(1);
   const [currItem, setCurrItem] = useState<TOrder | null>(null);
   const [offset, setOffset] = useState(0);
+  const [isUpdateData, setIsUpdateData] = useState(false);
 
   const { t } = useTranslation();
 
@@ -46,6 +47,18 @@ export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest 
   }, []);
 
   useEffect(() => {
+    if (isUpdateData) {
+      getOrders()
+        .then(res => {
+          setData(res);
+          setCurrItem(null);
+        })
+        .catch(err => console.log(err))
+        .finally(() => setIsUpdateData(false));
+    }
+  }, [isUpdateData]);
+
+  useEffect(() => {
     if (currItem) {
       window.scrollTo({
         top: 0,
@@ -72,7 +85,7 @@ export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest 
             className={styles.btn_back}
             onClick={handleBackClick}
           />
-          <OrderDetails data={currItem} />
+          <OrderDetails data={currItem} setIsUpdateData={setIsUpdateData} />
         </>
       ) : (
         <>

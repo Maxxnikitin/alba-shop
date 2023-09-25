@@ -7,6 +7,7 @@ import {
   MouseEventHandler,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -24,6 +25,8 @@ export const CartButton: FC<ICartButtonProps> = memo(
     amount = 0,
     isSmall = false,
     disabled,
+    isFetchError,
+    setIsFetchError,
     handleAddToCart,
     handleUpdateInCart,
     handleDeleteFromCart,
@@ -33,6 +36,8 @@ export const CartButton: FC<ICartButtonProps> = memo(
     const [cart, setCart] = useState(curAmount);
     const { t } = useTranslation();
 
+    const inputRef = useRef<HTMLInputElement>(null);
+
     const handleFetch = useCallback(
       (val: number) => {
         if (val) {
@@ -40,6 +45,7 @@ export const CartButton: FC<ICartButtonProps> = memo(
         } else {
           handleDeleteFromCart();
         }
+        inputRef.current?.blur();
       },
       [handleDeleteFromCart, handleUpdateInCart],
     );
@@ -79,6 +85,13 @@ export const CartButton: FC<ICartButtonProps> = memo(
       }
     }, [curAmount, handleFetchDebounced, cart]);
 
+    useEffect(() => {
+      if (isFetchError) {
+        setCurAmount(amount);
+        setIsFetchError?.(false);
+      }
+    }, [isFetchError, amount, setIsFetchError]);
+
     return (
       <div className={clsx(styles.container, className)} {...rest}>
         <Button
@@ -92,6 +105,7 @@ export const CartButton: FC<ICartButtonProps> = memo(
         />
         <ItemsCount
           max={max}
+          ref={inputRef}
           amount={curAmount}
           handleBtnsClick={handleBtnsClick}
           handleInputChange={handleInputChange}

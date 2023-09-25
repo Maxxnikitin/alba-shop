@@ -191,6 +191,11 @@ export const createOrder = (data: TConfirmOrderData) =>
     .post(`${URL}/orders/create/`, data)
     .then((res: AxiosResponse<ResWithData<TOrder>>) => checkResponse(res));
 
+export const cancelOrder = (id: string | number) =>
+  axiosInstance
+    .delete(`${URL}/orders/${id}/cancel/`)
+    .then((res: AxiosResponse<ResWithData<TOrder>>) => checkResponse(res));
+
 export const removeCart = () =>
   axiosInstance.delete(`${URL}/cart/delete/`).then((res: AxiosResponse) => checkResponse(res));
 

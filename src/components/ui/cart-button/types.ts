@@ -1,4 +1,4 @@
-import { HTMLProps, MouseEventHandler } from 'react';
+import { Dispatch, HTMLProps, MouseEventHandler, SetStateAction } from 'react';
 
 export interface ICartButtonProps extends HTMLProps<HTMLDivElement> {
   max: number;
@@ -7,4 +7,6 @@ export interface ICartButtonProps extends HTMLProps<HTMLDivElement> {
   handleDeleteFromCart: () => void;
   isSmall?: boolean;
   amount?: number;
+  isFetchError?: boolean;
+  setIsFetchError?: Dispatch<SetStateAction<boolean>>;
 }

@@ -28,6 +28,7 @@ export const Item: FC<IItemProps> = memo(
       in_favorite: inFavorite,
       in_cart: inCart,
     } = stateData;
+    const [isFetchError, setIsFetchError] = useState(false);
     const { t } = useTranslation();
 
     const navigate = useNavigate();
@@ -53,17 +54,23 @@ export const Item: FC<IItemProps> = memo(
 
     const handleUpdateInCart: (quantity: number) => void = useCallback(
       quantity => {
-        createCartPosition({ characteristic_id: id, quantity }).then(() =>
-          setStateData(prev => ({ ...prev, in_cart: quantity })),
-        );
+        createCartPosition({ characteristic_id: id, quantity })
+          .then(({ data }) => setStateData(prev => ({ ...prev, in_cart: data.quantity })))
+          .catch(err => {
+            console.log(err);
+            setIsFetchError(true);
+          });
       },
       [id],
     );
 
     const handleDeleteFromCart: () => void = useCallback(() => {
-      createCartPosition({ characteristic_id: id, quantity: 0 }).then(() =>
-        setStateData(prev => ({ ...prev, in_cart: 0 })),
-      );
+      createCartPosition({ characteristic_id: id, quantity: 0 })
+        .then(() => setStateData(prev => ({ ...prev, in_cart: 0 })))
+        .catch(err => {
+          console.log(err);
+          setIsFetchError(true);
+        });
     }, [id]);
 
     const handleToggleLike = useCallback(() => {
@@ -77,9 +84,13 @@ export const Item: FC<IItemProps> = memo(
 
     const handleLikeRequest: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
       if (stateData.in_favorite) {
-        deleteFavorite(stateData.id).then(handleToggleLike);
+        deleteFavorite(stateData.id)
+          .then(handleToggleLike)
+          .catch(err => console.log(err));
       } else {
-        setFavorite({ characteristic_id: stateData.id }).then(handleToggleLike);
+        setFavorite({ characteristic_id: stateData.id })
+          .then(handleToggleLike)
+          .catch(err => console.log(err));
       }
     }, [stateData, handleToggleLike]);
 
@@ -111,6 +122,8 @@ export const Item: FC<IItemProps> = memo(
             handleAddToCart={handleAddToCart}
             handleUpdateInCart={handleUpdateInCart}
             handleDeleteFromCart={handleDeleteFromCart}
+            isFetchError={isFetchError}
+            setIsFetchError={setIsFetchError}
             className={styles.btn}
             max={stock}
             amount={inCart}
