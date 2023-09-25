@@ -17,12 +17,8 @@ import {
   Title,
 } from '../ui';
 
-import {
-  TCharacteristic,
-  createCartPosition,
-  deleteCartPosition,
-  updateCartPosition,
-} from '~utils';
+import { updateCartCount } from 'src/models';
+import { TCharacteristic, createCartPosition, getCartCount } from '~utils';
 
 export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
   ({
@@ -57,8 +53,11 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
 
     const handleUpdateInCart: (quantity: number) => void = useCallback(
       quantity => {
-        updateCartPosition({ characteristic_id: id, quantity })
-          .then(() => setStateData(prev => ({ ...prev, in_cart: quantity })))
+        createCartPosition({ characteristic_id: id, quantity })
+          .then(({ data }) => {
+            setStateData(prev => ({ ...prev, in_cart: data.quantity }));
+            getCartCount().then(({ data }) => updateCartCount(data.total_items));
+          })
           .catch(err => {
             console.log(err);
             setIsFetchError(true);
@@ -68,8 +67,11 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
     );
 
     const handleDeleteFromCart: () => void = useCallback(() => {
-      deleteCartPosition(id)
-        .then(() => setStateData(prev => ({ ...prev, in_cart: 0 })))
+      createCartPosition({ characteristic_id: id, quantity: 0 })
+        .then(() => {
+          setStateData(prev => ({ ...prev, in_cart: 0 }));
+          getCartCount().then(({ data }) => updateCartCount(data.total_items));
+        })
         .catch(err => {
           console.log(err);
           setIsFetchError(true);

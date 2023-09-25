@@ -9,5 +9,5 @@ export const clearCartCount = createEvent();
 
 export const updateCartFx = createEffect(async () => {
   const response = await getCartCount();
-  return response.data;
+  return response.data.total_items;
 });

@@ -8,6 +8,7 @@ import styles from './favorite-items.module.scss';
 import { IFavoriteItemsProps } from './types';
 
 import { Item } from '..';
+import { EmptyFavorites } from '../empty-favorites';
 import { Button, EButtonKinds, Pagination } from '../ui';
 
 import { getFavoriteItems, TItemsWithPagination } from '~utils';
@@ -30,6 +31,8 @@ export const FavoriteItems: FC<IFavoriteItemsProps> = memo(({ className = '', ..
   }, []);
 
   if (!data) return <p>loader</p>;
+
+  if (!data?.data) return <EmptyFavorites />;
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>

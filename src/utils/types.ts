@@ -330,3 +330,7 @@ export type TLiveSearchData = {
   id: number;
   name: string;
 };
+
+export type TTotalItems = {
+  total_items: number;
+};

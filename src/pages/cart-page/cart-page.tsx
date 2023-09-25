@@ -21,12 +21,14 @@ import {
   ModalSmall,
 } from '../../components';
 
+import { updateCartCount } from 'src/models';
 import {
   EDeliveryType,
   TCart,
   TConfirmOrderData,
   createOrder,
   getCart,
+  getCartCount,
   getUser,
   handleToggleState,
   removeCart,
@@ -122,6 +124,7 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
         .then(() => {
           setIsRemoveCart(false);
           setData(null);
+          getCartCount().then(({ data }) => updateCartCount(data.total_items));
         })
         .catch(err => console.log(err));
     } else {
@@ -133,8 +136,11 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
     if (removeItem) {
       removeCartItem(removeItem)
         .then(() => {
-          getCart()
-            .then(({ data }) => setData(data))
+          Promise.all([getCart(), getCartCount()])
+            .then(([{ data }, { data: countData }]) => {
+              setData(data);
+              updateCartCount(countData.total_items);
+            })
             .finally(() => setRemoveItem(null));
         })
         .catch(err => console.log(err));

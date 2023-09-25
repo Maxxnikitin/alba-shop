@@ -9,5 +9,5 @@ export const clearFavoritesCount = createEvent();
 
 export const updateFavoritesFx = createEffect(async () => {
   const response = await getFavoritesCount();
-  return response.data;
+  return response.data.total_items;
 });

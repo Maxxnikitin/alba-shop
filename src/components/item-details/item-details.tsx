@@ -9,7 +9,16 @@ import { ItemGallery } from '..';
 
 import { ItemCharacteristics } from '../item-characteristics';
 
-import { deleteFavorite, getProduct, setFavorite, TCharacteristic, TGetProductRes } from '~utils';
+import { updateFavoritesCount } from 'src/models';
+import {
+  deleteFavorite,
+  getProduct,
+  ResWithData,
+  setFavorite,
+  TCharacteristic,
+  TGetProductRes,
+  TTotalItems,
+} from '~utils';
 
 export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...rest }) => {
   const [data, setData] = useState<TGetProductRes | null>(null);
@@ -18,7 +27,7 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
   const { id } = useParams();
   const { search } = useLocation();
 
-  const [_, characteristicId] = useMemo(() => search.split('='), [search]);
+  const [, characteristicId] = useMemo(() => search.split('='), [search]);
 
   const characteristicsMap: Record<string, TCharacteristic> | undefined = useMemo(
     () => characteristics?.reduce((acc, item) => ({ ...acc, [item.id]: item }), {}),
@@ -34,14 +43,18 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
     [characteristicsMap],
   );
 
-  const handleToggleLike = useCallback(() => {
-    if (currentCharacteristic) {
-      setCurrentCharacteristic({
-        ...currentCharacteristic,
-        in_favorite: !currentCharacteristic.in_favorite,
-      });
-    }
-  }, [currentCharacteristic]);
+  const handleToggleLike = useCallback(
+    (reqData: ResWithData<TTotalItems>) => {
+      if (currentCharacteristic) {
+        setCurrentCharacteristic({
+          ...currentCharacteristic,
+          in_favorite: !currentCharacteristic.in_favorite,
+        });
+        updateFavoritesCount(reqData.data.total_items);
+      }
+    },
+    [currentCharacteristic],
+  );
 
   const handleLikeRequest: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
     if (characteristics && currentCharacteristic) {

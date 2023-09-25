@@ -8,7 +8,8 @@ import { IItemCartProps } from './types';
 
 import { CartItemButton, CloseButton, Paragraph, RemoveCrossIcon } from '../ui';
 
-import { deleteCartPosition, getCart, updateCartPosition } from '~utils';
+import { updateCartCount } from 'src/models';
+import { deleteCartPosition, getCart, getCartCount, updateCartPosition } from '~utils';
 
 export const ItemCart: FC<IItemCartProps> = memo(
   ({ data, setData, handleRemoveItem, className = '', ...rest }) => {
@@ -21,9 +22,10 @@ export const ItemCart: FC<IItemCartProps> = memo(
 
     const handleUpdateInCart: (quantity: number) => void = useCallback(
       quantity => {
-        updateCartPosition({ characteristic_id: data.id.toString(), quantity }).then(() =>
-          getCart().then(({ data }) => setData(data)),
-        );
+        updateCartPosition({ characteristic_id: data.id.toString(), quantity }).then(({ data }) => {
+          setData(data);
+          getCartCount().then(({ data }) => updateCartCount(data.total_items));
+        });
       },
       [data.id, setData],
     );

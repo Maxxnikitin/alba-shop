@@ -9,7 +9,16 @@ import { IItemProps } from './types';
 
 import { CartButton, CostBox, Paragraph, TagsBox } from '../ui';
 
-import { TCharacteristic, createCartPosition, deleteFavorite, setFavorite } from '~utils';
+import { updateCartCount, updateFavoritesCount } from 'src/models';
+import {
+  ResWithData,
+  TCharacteristic,
+  TTotalItems,
+  createCartPosition,
+  deleteFavorite,
+  getCartCount,
+  setFavorite,
+} from '~utils';
 
 export const Item: FC<IItemProps> = memo(
   ({ data, isCartButton = false, className = '', onLikeClick, ...rest }) => {
@@ -47,15 +56,19 @@ export const Item: FC<IItemProps> = memo(
     };
 
     const handleAddToCart: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
-      createCartPosition({ characteristic_id: id, quantity: 1 }).then(() =>
-        setStateData(prev => ({ ...prev, in_cart: 1 })),
-      );
+      createCartPosition({ characteristic_id: id, quantity: 1 }).then(() => {
+        setStateData(prev => ({ ...prev, in_cart: 1 }));
+        getCartCount().then(({ data }) => updateCartCount(data.total_items));
+      });
     }, [id]);
 
     const handleUpdateInCart: (quantity: number) => void = useCallback(
       quantity => {
         createCartPosition({ characteristic_id: id, quantity })
-          .then(({ data }) => setStateData(prev => ({ ...prev, in_cart: data.quantity })))
+          .then(({ data }) => {
+            setStateData(prev => ({ ...prev, in_cart: data.quantity }));
+            getCartCount().then(({ data }) => updateCartCount(data.total_items));
+          })
           .catch(err => {
             console.log(err);
             setIsFetchError(true);
@@ -66,21 +79,28 @@ export const Item: FC<IItemProps> = memo(
 
     const handleDeleteFromCart: () => void = useCallback(() => {
       createCartPosition({ characteristic_id: id, quantity: 0 })
-        .then(() => setStateData(prev => ({ ...prev, in_cart: 0 })))
+        .then(() => {
+          setStateData(prev => ({ ...prev, in_cart: 0 }));
+          getCartCount().then(({ data }) => updateCartCount(data.total_items));
+        })
         .catch(err => {
           console.log(err);
           setIsFetchError(true);
         });
     }, [id]);
 
-    const handleToggleLike = useCallback(() => {
-      if (stateData) {
-        setStateData({
-          ...stateData,
-          in_favorite: !stateData.in_favorite,
-        });
-      }
-    }, [stateData]);
+    const handleToggleLike = useCallback(
+      ({ data }: ResWithData<TTotalItems>) => {
+        if (stateData) {
+          setStateData({
+            ...stateData,
+            in_favorite: !stateData.in_favorite,
+          });
+          updateFavoritesCount(data.total_items);
+        }
+      },
+      [stateData],
+    );
 
     const handleLikeRequest: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
       if (stateData.in_favorite) {

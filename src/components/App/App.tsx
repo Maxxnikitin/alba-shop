@@ -49,16 +49,8 @@ export function App() {
       element: <MainPage />,
     },
     {
-      path: '/account',
-      element: <p>Account</p>,
-    },
-    {
       path: '/cart',
       element: <CartPage />,
-    },
-    {
-      path: '/favorites',
-      element: <p>favorite</p>,
     },
     {
       path: '/catalog',

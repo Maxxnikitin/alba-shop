@@ -7,7 +7,6 @@ import {
   getContacts,
   getLatestItems,
 } from '../api';
-import { mockCharacteristicsData } from '../mock';
 
 import { TDataContext } from '../types';
 
