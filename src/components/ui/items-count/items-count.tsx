@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, forwardRef, memo } from 'react';
+import { forwardRef, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from './items-count.module.scss';

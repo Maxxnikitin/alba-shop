@@ -43,7 +43,7 @@ export const Item: FC<IItemProps> = memo(
     }, [isNew, isHit]);
 
     const handleCardClick = () => {
-      navigate(`/catalog/product/${product_id}`);
+      navigate(`/catalog/product/${product_id}?characteristicId=${id}`);
     };
 
     const handleAddToCart: MouseEventHandler<HTMLButtonElement> = useCallback(() => {

@@ -5,8 +5,8 @@ export interface ICartButtonProps extends HTMLProps<HTMLDivElement> {
   handleAddToCart: MouseEventHandler<HTMLButtonElement>;
   handleUpdateInCart: (val: number) => void;
   handleDeleteFromCart: () => void;
+  isFetchError: boolean;
+  setIsFetchError: Dispatch<SetStateAction<boolean>>;
   isSmall?: boolean;
   amount?: number;
-  isFetchError?: boolean;
-  setIsFetchError?: Dispatch<SetStateAction<boolean>>;
 }

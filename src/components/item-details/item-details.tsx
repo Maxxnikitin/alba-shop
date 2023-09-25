@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { FC, memo, MouseEventHandler, useCallback, useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import styles from './item-details.module.scss';
 import { IItemDetailsProps } from './types';
@@ -16,6 +16,9 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
   const [characteristics, setCharacteristics] = useState<TCharacteristic[] | null>(null);
   const [currentCharacteristic, setCurrentCharacteristic] = useState<TCharacteristic | null>(null);
   const { id } = useParams();
+  const { search } = useLocation();
+
+  const [_, characteristicId] = useMemo(() => search.split('='), [search]);
 
   const characteristicsMap: Record<string, TCharacteristic> | undefined = useMemo(
     () => characteristics?.reduce((acc, item) => ({ ...acc, [item.id]: item }), {}),
@@ -25,6 +28,7 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
   const handleChangeCurrentCharacteristic: MouseEventHandler<HTMLImageElement> = useCallback(
     ({ target }) => {
       const { id } = target as HTMLImageElement;
+      console.log(characteristicsMap);
       if (characteristicsMap) setCurrentCharacteristic(characteristicsMap[id]);
     },
     [characteristicsMap],
@@ -52,18 +56,11 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
   useEffect(() => {
     getProduct(id!).then(({ data }) => {
       setData(data);
-      console.log({ data });
       setCharacteristics(data.characteristics);
 
-      for (let item of data.characteristics) {
-        if (item.stock > 0) {
-          setCurrentCharacteristic(item);
-          return;
-        }
-      }
-      setCurrentCharacteristic(data.characteristics[0]);
+      setCurrentCharacteristic(data.characteristics.find(item => item.id === characteristicId)!);
     });
-  }, [id]);
+  }, [id, characteristicId]);
 
   if (!currentCharacteristic || !data || !characteristics) {
     return <p>loader</p>;

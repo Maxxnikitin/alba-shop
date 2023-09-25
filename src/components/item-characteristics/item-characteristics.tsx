@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, MouseEventHandler, memo, useCallback, useState } from 'react';
+import { FC, MouseEventHandler, memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -35,6 +35,7 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
     ...rest
   }) => {
     const [stateData, setStateData] = useState<TCharacteristic>(currentCharacteristic);
+    const [isFetchError, setIsFetchError] = useState(false);
     const { description, weight } = dataObj;
     const {
       id,
@@ -56,16 +57,28 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
 
     const handleUpdateInCart: (quantity: number) => void = useCallback(
       quantity => {
-        updateCartPosition({ characteristic_id: id, quantity }).then(() =>
-          setStateData(prev => ({ ...prev, in_cart: quantity })),
-        );
+        updateCartPosition({ characteristic_id: id, quantity })
+          .then(() => setStateData(prev => ({ ...prev, in_cart: quantity })))
+          .catch(err => {
+            console.log(err);
+            setIsFetchError(true);
+          });
       },
       [id],
     );
 
     const handleDeleteFromCart: () => void = useCallback(() => {
-      deleteCartPosition(id).then(() => setStateData(prev => ({ ...prev, in_cart: 0 })));
+      deleteCartPosition(id)
+        .then(() => setStateData(prev => ({ ...prev, in_cart: 0 })))
+        .catch(err => {
+          console.log(err);
+          setIsFetchError(true);
+        });
     }, [id]);
+
+    useEffect(() => {
+      setStateData(currentCharacteristic);
+    }, [currentCharacteristic]);
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
@@ -123,6 +136,8 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
             handleAddToCart={handleAddToCart}
             handleUpdateInCart={handleUpdateInCart}
             handleDeleteFromCart={handleDeleteFromCart}
+            isFetchError={isFetchError}
+            setIsFetchError={setIsFetchError}
             max={stock}
             amount={stateData.in_cart}
           />

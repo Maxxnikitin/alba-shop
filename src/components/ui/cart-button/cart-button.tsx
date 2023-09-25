@@ -88,7 +88,7 @@ export const CartButton: FC<ICartButtonProps> = memo(
     useEffect(() => {
       if (isFetchError) {
         setCurAmount(amount);
-        setIsFetchError?.(false);
+        setIsFetchError(false);
       }
     }, [isFetchError, amount, setIsFetchError]);
 
