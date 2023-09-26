@@ -19,7 +19,6 @@ export const FiltersBox: FC<IFiltersBoxProps> = memo(
     const { t } = useTranslation();
 
     console.log('Render Filters Checkbox');
-    console.log(55555, title);
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
       e => {

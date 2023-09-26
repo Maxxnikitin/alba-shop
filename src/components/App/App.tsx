@@ -98,10 +98,6 @@ export function App() {
           element: <DiscountWithPercentPage />,
         },
         {
-          path: '/test',
-          element: <ItemsWithFilters title='test' />,
-        },
-        {
           path: '/personal-account',
           element: <PersonalAccountPage />,
           children: [

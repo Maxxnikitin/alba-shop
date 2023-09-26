@@ -33,7 +33,7 @@ export const Filters: FC<IFiltersProps> = ({
   isFooter,
   categoryId,
   currSort,
-  pageSize = 20,
+  pageSize,
   setData,
   onClose,
   ...rest
@@ -81,7 +81,6 @@ export const Filters: FC<IFiltersProps> = ({
   const [currFiltersQuery, setCurrFiltersQuery] = useState('');
   const [currSwitchQuery, setCurrSwitchQuery] = useState('');
   const [currPriceQuery, setCurrPriceQuery] = useState('');
-  const [isNeedRequest, setIsNeedRequest] = useState(false);
 
   const handleCreateFiltersQuery = (data: TCheckboxFiltersData) => {
     const res = Object.entries(data).reduce((acc: string[], [key, value]) => {
@@ -151,22 +150,6 @@ export const Filters: FC<IFiltersProps> = ({
     [setSwitchFiltersData],
   );
 
-  const switchChildrenNode = useMemo(
-    () =>
-      switchFilters.map(({ f_id, f_name }) => (
-        <li className={styles.list_item} key={f_id}>
-          <Switch
-            label={t(`filters.${f_name}`)}
-            checked={switchFiltersData[f_name]}
-            id={f_id?.toString() + `_${nanoid()}`}
-            name={f_name}
-            onChange={handleSwitchChange}
-          />
-        </li>
-      )),
-    [switchFilters, switchFiltersData, handleSwitchChange, t],
-  );
-
   const handlePriceChange: TOnRangeChange = useCallback(val => {
     if (Array.isArray(val)) {
       setPriceFilterData({
@@ -199,6 +182,22 @@ export const Filters: FC<IFiltersProps> = ({
     }
   }, []);
 
+  const switchChildrenNode = useMemo(
+    () =>
+      switchFilters.map(({ f_id, f_name }) => (
+        <li className={styles.list_item} key={f_id}>
+          <Switch
+            label={t(`filters.${f_name}`)}
+            checked={switchFiltersData[f_name]}
+            id={f_id?.toString() + `_${nanoid()}`}
+            name={f_name}
+            onChange={handleSwitchChange}
+          />
+        </li>
+      )),
+    [switchFilters, switchFiltersData, handleSwitchChange, t],
+  );
+
   const priceChildrenNode = useMemo(
     () => (
       <>
@@ -230,7 +229,7 @@ export const Filters: FC<IFiltersProps> = ({
   );
 
   useEffect(() => {
-    if (categoryId && isNeedRequest) {
+    if (categoryId && currSort && pageSize && currPriceQuery) {
       getProducts(
         categoryId,
         `sort=${currSort}`,
@@ -240,29 +239,18 @@ export const Filters: FC<IFiltersProps> = ({
         currPriceQuery,
       ).then(res => setFilteredData(res));
     }
-  }, [
-    categoryId,
-    currSort,
-    currFiltersQuery,
-    currSwitchQuery,
-    currPriceQuery,
-    isNeedRequest,
-    pageSize,
-  ]);
+  }, [categoryId, currSort, currFiltersQuery, currSwitchQuery, currPriceQuery, pageSize]);
 
   useEffect(() => {
     handleCreateFiltersQuery(checkboxFiltersData);
-    setIsNeedRequest(true);
   }, [checkboxFiltersData]);
 
   useEffect(() => {
     handleCreateSwitchQuery(switchFiltersData);
-    setIsNeedRequest(true);
   }, [switchFiltersData]);
 
   useEffect(() => {
     handlePriceDebounced(priceFilterData);
-    setIsNeedRequest(true);
   }, [priceFilterData, handlePriceDebounced]);
 
   useEffect(() => {

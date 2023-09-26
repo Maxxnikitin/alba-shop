@@ -27,6 +27,14 @@ export const Modal: FC<IModalProps> = ({
   };
 
   const handleTouchMove: TouchEventHandler<HTMLDivElement> = e => {
+    /**
+     *  в фильтрах есть бегунок для установки суммы, который тоже на touchMove-е сделан,
+     *  и из-за этого срабатывает закрытие модалки. Здесь мы это предотвращаем
+     * */
+    if ((e.touches[0].target as HTMLDivElement).classList.contains('rc-slider-handle')) {
+      return;
+    }
+
     setCurrentY(e.touches[0].clientY);
     const modal = modalRef.current;
     const deltaY = currentY - startY;
@@ -36,7 +44,10 @@ export const Modal: FC<IModalProps> = ({
     }
   };
 
-  const handleTouchEnd: TouchEventHandler<HTMLDivElement> = () => {
+  const handleTouchEnd: TouchEventHandler<HTMLDivElement> = e => {
+    if ((e.target as HTMLDivElement).classList.contains('rc-slider-handle')) {
+      return;
+    }
     const modal = modalRef.current;
     const deltaY = currentY - startY;
 
@@ -70,8 +81,6 @@ export const Modal: FC<IModalProps> = ({
       };
     }
   }, [onClose, isOpen]);
-
-  console.log({ isOpen });
 
   return ReactDOM.createPortal(
     <>

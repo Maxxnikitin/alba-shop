@@ -78,6 +78,7 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
               categoryId={categoryId}
               currSort={currSort}
               setData={setData}
+              pageSize={pageSize}
             />
           </Modal>
         </div>
@@ -87,6 +88,7 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
               filters={data.meta.filters}
               categoryId={categoryId}
               setData={setData}
+              pageSize={pageSize}
               currSort={currSort}
             />
           </aside>

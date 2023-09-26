@@ -183,7 +183,7 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
           </>
         )}
         {mode === EMode.EDIT && (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} autoComplete='on'>
             <div className={styles.edit_main_box}>
               <Input
                 placeholder={t('personal-account.data.first-name')!}
