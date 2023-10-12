@@ -170,6 +170,7 @@ export const Filters: FC<IFiltersProps> = ({
   const handleInputsChange: TOnInputsChange = useCallback(e => {
     const { name, value } = e.target;
     setCurrShoosedFilter('discount');
+    setIsFilterLabelVisible(false);
 
     if (name === 'min') {
       setPriceFilterData(prev => ({
