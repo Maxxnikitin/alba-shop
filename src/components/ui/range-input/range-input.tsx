@@ -31,7 +31,7 @@ export const RangeInput: FC<IRangeInputProps> = ({
           kind='small'
           min={rangeStart}
           max={rangeEnd}
-          value={minValue}
+          value={minValue.toString().replace(/^0+/, '') || '0'}
           onChange={onInputsChange}
         />
         <Input
@@ -41,7 +41,7 @@ export const RangeInput: FC<IRangeInputProps> = ({
           kind='small'
           min={rangeStart}
           max={rangeEnd}
-          value={maxValue.toString().replace(/^0+/, '') || 0}
+          value={maxValue.toString().replace(/^0+/, '') || '0'}
           onChange={onInputsChange}
         />
       </div>

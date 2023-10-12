@@ -278,7 +278,6 @@ export const Filters: FC<IFiltersProps> = ({
 
   useEffect(() => {
     if (!isEqualCharacteristicsArrs(propsData, filteredData?.data)) {
-      console.log(666666);
       setIsFilterLabelVisible(true);
     }
   }, [filteredData, propsData]);
