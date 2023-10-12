@@ -22,17 +22,21 @@ export const ItemCart: FC<IItemCartProps> = memo(
 
     const handleUpdateInCart: (quantity: number) => void = useCallback(
       quantity => {
-        updateCartPosition({ characteristic_id: data.id.toString(), quantity }).then(({ data }) => {
-          setData(data);
-          getCartCount().then(({ data }) => updateCartCount(data.total_items));
-        });
+        updateCartPosition({ characteristic_id: data.characteristic.id, quantity })
+          .then(({ quantity }) => {
+            // setData(data);
+            updateCartCount(quantity);
+          })
+          .catch(err => console.log(err));
       },
-      [data.id, setData],
+      [data.characteristic.id, setData],
     );
 
     const handleDeleteFromCart: () => void = useCallback(() => {
-      deleteCartPosition(data.id).then(() => getCart().then(({ data }) => setData(data)));
-    }, [data.id, setData]);
+      deleteCartPosition(data.characteristic.id).then(() =>
+        getCart().then(({ data }) => setData(data)),
+      );
+    }, [data.characteristic.id, setData]);
 
     return (
       <li className={clsx(styles.container, className)} {...rest}>

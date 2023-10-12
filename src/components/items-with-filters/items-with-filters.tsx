@@ -71,6 +71,7 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
           <Modal isOpen={isFiltersOpen} onClose={handleToggleFilters} className={styles.modal}>
             <Filters
               filters={data.meta.filters}
+              propsData={data.data}
               className={styles.filters_mob}
               isTitle
               isFooter
@@ -87,6 +88,7 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
             <Filters
               filters={data.meta.filters}
               categoryId={categoryId}
+              propsData={data.data}
               setData={setData}
               pageSize={pageSize}
               currSort={currSort}

@@ -170,7 +170,7 @@ export const createCartPosition = (data: TCartCreate) =>
 export const updateCartPosition = ({ characteristic_id, quantity }: TCartCreate) =>
   axiosInstance
     .patch(`${URL}/cart/positions/${characteristic_id}/update/`, { quantity })
-    .then((res: AxiosResponse<ResWithData<TCart>>) => checkResponse(res));
+    .then((res: AxiosResponse<{ quantity: number }>) => checkResponse(res));
 
 export const deleteCartPosition = (id: string | number) =>
   axiosInstance

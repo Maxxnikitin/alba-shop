@@ -40,12 +40,22 @@
 
   .label {
     position: absolute;
-    right: -60%;
+    top: 50%;
+    right: -80%;
+    transform: translate(0, -50%);
   }
 }
 
 .list_item {
+  position: relative;
   list-style-type: none;
+}
+
+.price_box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 @media screen and (max-width: 550px) {
@@ -60,7 +70,6 @@
 @media screen and (max-width: 450px) {
   .container {
     .footer {
-      bottom: 60px;
       align-items: stretch;
 
       .close_btn {

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { TFilters, TItemsWithPaginationAndFilters, TSortingItems } from '~utils';
+import { TCharacteristic, TFilters, TItemsWithPaginationAndFilters, TSortingItems } from '~utils';
 
 export interface IFiltersProps {
   filters: TFilters;
@@ -8,6 +8,7 @@ export interface IFiltersProps {
   currSort: TSortingItems;
   pageSize?: number;
   categoryId?: string;
+  propsData: TCharacteristic[];
   onClose?: () => void;
   isTitle?: boolean;
   isFooter?: boolean;

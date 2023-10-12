@@ -25,7 +25,7 @@
 }
 
 .list {
-  overflow-y: hidden;
+  // overflow-y: hidden;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -41,6 +41,15 @@
   }
 
   &_item {
+    position: relative;
     list-style-type: none;
+
+    .label {
+      position: absolute;
+      z-index: 100;
+      top: 50%;
+      right: -80%;
+      transform: translate(0, -50%);
+    }
   }
 }

@@ -46,9 +46,9 @@ export const ItemCharacteristics: FC<IItemCharacteristicsProps> = memo(
     const { t } = useTranslation();
 
     const handleAddToCart: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
-      createCartPosition({ characteristic_id: id, quantity: 1 }).then(() =>
-        setStateData(prev => ({ ...prev, in_cart: 1 })),
-      );
+      createCartPosition({ characteristic_id: id })
+        .then(() => setStateData(prev => ({ ...prev, in_cart: 1 })))
+        .catch(err => console.error(err));
     }, [id]);
 
     const handleUpdateInCart: (quantity: number) => void = useCallback(

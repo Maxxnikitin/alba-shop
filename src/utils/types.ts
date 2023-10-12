@@ -312,7 +312,7 @@ export type TCart = {
 
 export type TCartCreate = {
   characteristic_id: string;
-  quantity: number;
+  quantity?: number;
 };
 
 export type TLiveSearchRes = {

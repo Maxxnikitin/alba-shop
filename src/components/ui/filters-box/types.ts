@@ -4,7 +4,13 @@ export interface IFiltersBoxProps {
   title: string;
   filtersList: TFilterItem[];
   checkedFiltersData: TCheckboxFiltersData;
+  currChoosedFilter: string | null;
+  isFilterLabelVisible: boolean;
+  setIsFilterLabelVisible: Dispatch<SetStateAction<boolean>>;
+  setCurrShoosedFilter: Dispatch<SetStateAction<string | null>>;
+  countAfterFiltered: number;
   setCheckedFiltersData: Dispatch<SetStateAction<TCheckboxFiltersData>>;
+  handleFilteredDataRender: () => void;
   className?: string;
 }
 

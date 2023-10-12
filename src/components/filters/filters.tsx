@@ -24,7 +24,7 @@ import {
   Title,
 } from '../ui';
 
-import { TItemsWithPaginationAndFilters, getProducts } from '~utils';
+import { TItemsWithPaginationAndFilters, getProducts, isEqualCharacteristicsArrs } from '~utils';
 
 export const Filters: FC<IFiltersProps> = ({
   filters,
@@ -34,6 +34,7 @@ export const Filters: FC<IFiltersProps> = ({
   categoryId,
   currSort,
   pageSize,
+  propsData,
   setData,
   onClose,
   ...rest
@@ -67,7 +68,9 @@ export const Filters: FC<IFiltersProps> = ({
     discount: data.discount,
   });
 
-  const [labelTopPosition, setLabelTopPosition] = useState(0);
+  const [currChoosedFilter, setCurrShoosedFilter] = useState<string | null>(null);
+  const [isFilterLabelVisible, setIsFilterLabelVisible] = useState(false);
+  // const [labelTopPosition, setLabelTopPosition] = useState(0);
 
   const switchFilters = useMemo(
     () => [
@@ -121,6 +124,7 @@ export const Filters: FC<IFiltersProps> = ({
 
   const handleFilteredDataRender = useCallback(() => {
     setData(filteredData);
+    setIsFilterLabelVisible(false);
     onClose?.();
   }, [filteredData, setData, onClose]);
 
@@ -140,8 +144,8 @@ export const Filters: FC<IFiltersProps> = ({
 
   const handleSwitchChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     e => {
-      setLabelTopPosition((e.nativeEvent as PointerEvent).clientY);
-      console.log(e);
+      setIsFilterLabelVisible(false);
+      setCurrShoosedFilter(e.target.name);
       setSwitchFiltersData(prev => ({
         ...prev,
         [e.target.name]: e.target.checked,
@@ -152,6 +156,8 @@ export const Filters: FC<IFiltersProps> = ({
 
   const handlePriceChange: TOnRangeChange = useCallback(val => {
     if (Array.isArray(val)) {
+      setIsFilterLabelVisible(false);
+      setCurrShoosedFilter('discount');
       setPriceFilterData({
         price: {
           min: val[0],
@@ -162,8 +168,8 @@ export const Filters: FC<IFiltersProps> = ({
   }, []);
 
   const handleInputsChange: TOnInputsChange = useCallback(e => {
-    const { name } = e.target;
-    const { value } = e.target;
+    const { name, value } = e.target;
+    setCurrShoosedFilter('discount');
 
     if (name === 'min') {
       setPriceFilterData(prev => ({
@@ -193,14 +199,30 @@ export const Filters: FC<IFiltersProps> = ({
             name={f_name}
             onChange={handleSwitchChange}
           />
+          {f_name === currChoosedFilter && isFilterLabelVisible && (
+            <FilterLabel
+              className={styles.label}
+              count={filteredData?.meta.pagination.total_items ?? 0}
+              onClick={handleFilteredDataRender}
+            />
+          )}
         </li>
       )),
-    [switchFilters, switchFiltersData, handleSwitchChange, t],
+    [
+      switchFilters,
+      switchFiltersData,
+      filteredData,
+      currChoosedFilter,
+      isFilterLabelVisible,
+      handleSwitchChange,
+      t,
+      handleFilteredDataRender,
+    ],
   );
 
   const priceChildrenNode = useMemo(
     () => (
-      <>
+      <div className={styles.price_box}>
         <RangeInput
           minValue={priceFilterData.price.min}
           maxValue={priceFilterData.price.max}
@@ -215,15 +237,26 @@ export const Filters: FC<IFiltersProps> = ({
           checked={switchFiltersData.discount}
           onChange={handleSwitchChange}
         />
-      </>
+        {currChoosedFilter === 'discount' && isFilterLabelVisible && (
+          <FilterLabel
+            className={styles.label}
+            count={filteredData?.meta.pagination.total_items ?? 0}
+            onClick={handleFilteredDataRender}
+          />
+        )}
+      </div>
     ),
     [
       switchFiltersData,
       priceFilterData.price,
+      currChoosedFilter,
+      filteredData,
+      isFilterLabelVisible,
       handleSwitchChange,
       t,
       handlePriceChange,
       handleInputsChange,
+      handleFilteredDataRender,
       data.price,
     ],
   );
@@ -237,9 +270,18 @@ export const Filters: FC<IFiltersProps> = ({
         currFiltersQuery,
         currSwitchQuery,
         currPriceQuery,
-      ).then(res => setFilteredData(res));
+      ).then(res => {
+        setFilteredData(res);
+      });
     }
   }, [categoryId, currSort, currFiltersQuery, currSwitchQuery, currPriceQuery, pageSize]);
+
+  useEffect(() => {
+    if (!isEqualCharacteristicsArrs(propsData, filteredData?.data)) {
+      console.log(666666);
+      setIsFilterLabelVisible(true);
+    }
+  }, [filteredData, propsData]);
 
   useEffect(() => {
     handleCreateFiltersQuery(checkboxFiltersData);
@@ -280,6 +322,12 @@ export const Filters: FC<IFiltersProps> = ({
               title={key}
               filtersList={value}
               checkedFiltersData={checkboxFiltersData}
+              currChoosedFilter={currChoosedFilter}
+              isFilterLabelVisible={isFilterLabelVisible}
+              setIsFilterLabelVisible={setIsFilterLabelVisible}
+              setCurrShoosedFilter={setCurrShoosedFilter}
+              countAfterFiltered={filteredData?.meta.pagination.total_items ?? 0}
+              handleFilteredDataRender={handleFilteredDataRender}
               setCheckedFiltersData={setCheckboxFiltersData}
             />
           );
@@ -300,14 +348,6 @@ export const Filters: FC<IFiltersProps> = ({
           />
         </div>
       )}
-      {
-        <FilterLabel
-          style={{ top: labelTopPosition }}
-          className={styles.label}
-          count={filteredData?.meta.pagination.total_items ?? 0}
-          onClick={handleFilteredDataRender}
-        />
-      }
     </div>
   );
 };

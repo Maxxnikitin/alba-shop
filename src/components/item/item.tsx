@@ -15,9 +15,11 @@ import {
   TCharacteristic,
   TTotalItems,
   createCartPosition,
+  deleteCartPosition,
   deleteFavorite,
   getCartCount,
   setFavorite,
+  updateCartPosition,
 } from '~utils';
 
 export const Item: FC<IItemProps> = memo(
@@ -56,17 +58,19 @@ export const Item: FC<IItemProps> = memo(
     };
 
     const handleAddToCart: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
-      createCartPosition({ characteristic_id: id, quantity: 1 }).then(() => {
-        setStateData(prev => ({ ...prev, in_cart: 1 }));
-        getCartCount().then(({ data }) => updateCartCount(data.total_items));
-      });
+      createCartPosition({ characteristic_id: id })
+        .then(() => {
+          setStateData(prev => ({ ...prev, in_cart: 1 }));
+          getCartCount().then(({ data }) => updateCartCount(data.total_items));
+        })
+        .catch(err => console.log(err));
     }, [id]);
 
     const handleUpdateInCart: (quantity: number) => void = useCallback(
       quantity => {
-        createCartPosition({ characteristic_id: id, quantity })
-          .then(({ data }) => {
-            setStateData(prev => ({ ...prev, in_cart: data.quantity }));
+        updateCartPosition({ characteristic_id: id, quantity })
+          .then(() => {
+            setStateData(prev => ({ ...prev, in_cart: quantity }));
             getCartCount().then(({ data }) => updateCartCount(data.total_items));
           })
           .catch(err => {
@@ -78,7 +82,7 @@ export const Item: FC<IItemProps> = memo(
     );
 
     const handleDeleteFromCart: () => void = useCallback(() => {
-      createCartPosition({ characteristic_id: id, quantity: 0 })
+      deleteCartPosition(id)
         .then(() => {
           setStateData(prev => ({ ...prev, in_cart: 0 }));
           getCartCount().then(({ data }) => updateCartCount(data.total_items));
