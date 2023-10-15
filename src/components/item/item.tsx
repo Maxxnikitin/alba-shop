@@ -15,7 +15,6 @@ import {
   TCharacteristic,
   TTotalItems,
   createCartPosition,
-  deleteCartPosition,
   deleteFavorite,
   getCartCount,
   setFavorite,
@@ -69,9 +68,9 @@ export const Item: FC<IItemProps> = memo(
     const handleUpdateInCart: (quantity: number) => void = useCallback(
       quantity => {
         updateCartPosition({ characteristic_id: id, quantity })
-          .then(() => {
+          .then(({ data }) => {
             setStateData(prev => ({ ...prev, in_cart: quantity }));
-            getCartCount().then(({ data }) => updateCartCount(data.total_items));
+            updateCartCount(data.total_items);
           })
           .catch(err => {
             console.log(err);
@@ -82,7 +81,7 @@ export const Item: FC<IItemProps> = memo(
     );
 
     const handleDeleteFromCart: () => void = useCallback(() => {
-      deleteCartPosition(id)
+      updateCartPosition({ characteristic_id: id, quantity: 0 })
         .then(() => {
           setStateData(prev => ({ ...prev, in_cart: 0 }));
           getCartCount().then(({ data }) => updateCartCount(data.total_items));

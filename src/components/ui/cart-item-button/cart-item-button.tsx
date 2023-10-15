@@ -8,19 +8,15 @@ import { ICartItemButtonProps } from './types';
 import { Paragraph } from '../paragraph';
 
 export const CartItemButton: FC<ICartItemButtonProps> = memo(
-  ({ max, className = '', amount = 0, handleUpdateInCart, handleDeleteFromCart, ...rest }) => {
+  ({ max, className = '', amount = 0, handleUpdateInCart, ...rest }) => {
     const [curAmount, setCurAmount] = useState(amount);
     const [cart, setCart] = useState(curAmount);
 
     const handleFetch = useCallback(
       (val: number) => {
-        if (val) {
-          handleUpdateInCart(val);
-        } else {
-          handleDeleteFromCart();
-        }
+        handleUpdateInCart(val);
       },
-      [handleDeleteFromCart, handleUpdateInCart],
+      [handleUpdateInCart],
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleFetchDebounced = useCallback(debounce(handleFetch, 1000), [handleFetch]);

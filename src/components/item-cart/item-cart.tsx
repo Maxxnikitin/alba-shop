@@ -9,7 +9,7 @@ import { IItemCartProps } from './types';
 import { CartItemButton, CloseButton, Paragraph, RemoveCrossIcon } from '../ui';
 
 import { updateCartCount } from 'src/models';
-import { deleteCartPosition, getCart, getCartCount, updateCartPosition } from '~utils';
+import { getCartCount, updateCartPositionInCart } from '~utils';
 
 export const ItemCart: FC<IItemCartProps> = memo(
   ({ data, setData, handleRemoveItem, className = '', ...rest }) => {
@@ -22,21 +22,15 @@ export const ItemCart: FC<IItemCartProps> = memo(
 
     const handleUpdateInCart: (quantity: number) => void = useCallback(
       quantity => {
-        updateCartPosition({ characteristic_id: data.characteristic.id, quantity })
-          .then(({ quantity }) => {
-            // setData(data);
-            updateCartCount(quantity);
+        updateCartPositionInCart({ characteristic_id: data.characteristic.id, quantity })
+          .then(({ data }) => {
+            setData(data);
+            getCartCount().then(({ data }) => updateCartCount(data.total_items));
           })
           .catch(err => console.log(err));
       },
       [data.characteristic.id, setData],
     );
-
-    const handleDeleteFromCart: () => void = useCallback(() => {
-      deleteCartPosition(data.characteristic.id).then(() =>
-        getCart().then(({ data }) => setData(data)),
-      );
-    }, [data.characteristic.id, setData]);
 
     return (
       <li className={clsx(styles.container, className)} {...rest}>
@@ -56,7 +50,6 @@ export const ItemCart: FC<IItemCartProps> = memo(
               amount={data.quantity}
               max={data.characteristic.stock}
               handleUpdateInCart={handleUpdateInCart}
-              handleDeleteFromCart={handleDeleteFromCart}
               className={styles.cart_btn}
             />
           </div>
@@ -66,7 +59,6 @@ export const ItemCart: FC<IItemCartProps> = memo(
           amount={data.quantity}
           max={data.characteristic.stock}
           handleUpdateInCart={handleUpdateInCart}
-          handleDeleteFromCart={handleDeleteFromCart}
           className={styles.cart_btn}
         />
         <div className={styles.price_box}>
@@ -83,7 +75,11 @@ export const ItemCart: FC<IItemCartProps> = memo(
           >{`${data.quantity} × ${data.discounted_amount}`}</Paragraph>
         </div>
         <div className={styles.btn_box}>
-          <CloseButton id={data.id.toString()} onClick={handleRemoveItem} icon={RemoveCrossIcon} />
+          <CloseButton
+            id={data.characteristic.id.toString()}
+            onClick={handleRemoveItem}
+            icon={RemoveCrossIcon}
+          />
           <div className={clsx(styles.price_box, styles.price_box_mob)}>
             <Paragraph className={styles.price}>{data.final_amount}</Paragraph>
           </div>

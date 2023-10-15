@@ -32,7 +32,7 @@ import {
   getUser,
   handleToggleState,
   removeCart,
-  removeCartItem,
+  updateCartPositionInCart,
 } from '~utils';
 
 export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
@@ -44,6 +44,7 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
   const [isRemoveCart, setIsRemoveCart] = useState(false);
   const [removeItem, setRemoveItem] = useState<string | number | null>(null);
   const [orderNum, setOrderNum] = useState<number | null>(null);
+  const [isCartLoading, setIsCartloading] = useState(true);
   const [editData, setEditData] = useState<TConfirmOrderData>({
     first_name: '',
     last_name: '',
@@ -134,16 +135,13 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
 
   const handleRemoveItem: MouseEventHandler<HTMLButtonElement> = ({ currentTarget }) => {
     if (removeItem) {
-      removeCartItem(removeItem)
-        .then(() => {
-          Promise.all([getCart(), getCartCount()])
-            .then(([{ data }, { data: countData }]) => {
-              setData(data);
-              updateCartCount(countData.total_items);
-            })
-            .finally(() => setRemoveItem(null));
+      updateCartPositionInCart({ characteristic_id: removeItem.toString(), quantity: 0 })
+        .then(({ data }) => {
+          setData(data);
+          getCartCount().then(({ data }) => updateCartCount(data.total_items));
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
+        .finally(() => setRemoveItem(null));
     } else {
       setRemoveItem(currentTarget.id);
     }
@@ -167,8 +165,11 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
           delivery: EDeliveryType.PICKUP,
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
+      .finally(() => setIsCartloading(false));
   }, []);
+
+  if (isCartLoading) return <p>loading</p>;
 
   return (
     <section className={styles.container} {...rest}>

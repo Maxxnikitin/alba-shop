@@ -170,12 +170,12 @@ export const createCartPosition = (data: TCartCreate) =>
 export const updateCartPosition = ({ characteristic_id, quantity }: TCartCreate) =>
   axiosInstance
     .patch(`${URL}/cart/positions/${characteristic_id}/update/`, { quantity })
-    .then((res: AxiosResponse<{ quantity: number }>) => checkResponse(res));
+    .then((res: AxiosResponse<ResWithData<TTotalItems>>) => checkResponse(res));
 
-export const deleteCartPosition = (id: string | number) =>
+export const updateCartPositionInCart = (data: TCartCreate) =>
   axiosInstance
-    .delete(`${URL}/cart/positions/${id}/delete/`)
-    .then((res: AxiosResponse<ResWithData<TCart>>) => checkResponse(res));
+    .patch(`${URL}/cart/update/`, data)
+    .then((res: AxiosResponse<ResWithData<TCart | null>>) => checkResponse(res));
 
 export const getOrders = () =>
   axiosInstance
@@ -199,11 +199,6 @@ export const cancelOrder = (id: string | number) =>
 
 export const removeCart = () =>
   axiosInstance.delete(`${URL}/cart/delete/`).then((res: AxiosResponse) => checkResponse(res));
-
-export const removeCartItem = (id: string | number) =>
-  axiosInstance
-    .delete(`${URL}/cart/positions/${id}/delete/`)
-    .then((res: AxiosResponse) => checkResponse(res));
 
 export const getSearchLive = (q: string) =>
   axiosInstance
