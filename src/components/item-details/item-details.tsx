@@ -9,6 +9,8 @@ import { ItemGallery } from '..';
 
 import { ItemCharacteristics } from '../item-characteristics';
 
+import { Loader } from '../ui';
+
 import { updateFavoritesCount } from 'src/models';
 import {
   deleteFavorite,
@@ -76,7 +78,7 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
   }, [id, characteristicId]);
 
   if (!currentCharacteristic || !data || !characteristics) {
-    return <p>loader</p>;
+    return <Loader />;
   }
 
   return (

@@ -15,6 +15,7 @@ import {
   Button,
   EButtonKinds,
   FilterPopupButton,
+  Loader,
   Modal,
   Pagination,
   SortSelect,
@@ -58,7 +59,7 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
       }
     }, [currSort, categoryId, pageSize, currPaginationPage]);
 
-    if (!data) return <p>loader</p>;
+    if (!data) return <Loader />;
 
     if (!data.data.length) return <QueryNotFound />;
 

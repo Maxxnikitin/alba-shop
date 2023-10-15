@@ -9,7 +9,7 @@ import { IFavoriteItemsProps } from './types';
 
 import { Item } from '..';
 import { EmptyFavorites } from '../empty-favorites';
-import { Button, EButtonKinds, Pagination } from '../ui';
+import { Button, EButtonKinds, Loader, Pagination } from '../ui';
 
 import { getFavoriteItems, TItemsWithPagination } from '~utils';
 
@@ -30,7 +30,7 @@ export const FavoriteItems: FC<IFavoriteItemsProps> = memo(({ className = '', ..
       .catch(err => console.log(err));
   }, []);
 
-  if (!data) return <p>loader</p>;
+  if (!data) return <Loader />;
 
   if (!data?.data) return <EmptyFavorites />;
 

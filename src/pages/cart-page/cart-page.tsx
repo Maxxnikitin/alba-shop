@@ -21,6 +21,7 @@ import {
   ModalSmall,
 } from '../../components';
 
+import { Loader } from 'src/components/ui';
 import { updateCartCount } from 'src/models';
 import {
   EDeliveryType,
@@ -169,7 +170,7 @@ export const CartPage: FC<ICartPageProps> = ({ className = '', ...rest }) => {
       .finally(() => setIsCartloading(false));
   }, []);
 
-  if (isCartLoading) return <p>loading</p>;
+  if (isCartLoading) return <Loader />;
 
   return (
     <section className={styles.container} {...rest}>

@@ -4,7 +4,7 @@ import { MouseEventHandler, FC, useCallback, useEffect, useState } from 'react';
 import styles from './faq-page.module.scss';
 import { IFaqPageProps } from './types';
 
-import { Title, Accordion } from '../../components/ui';
+import { Title, Accordion, Loader } from '../../components/ui';
 
 import { TGetFaqDataRes, getFaqData } from '~utils';
 
@@ -50,7 +50,7 @@ export const FaqPage: FC<IFaqPageProps> = ({ className = '', ...rest }) => {
     );
   }, []);
 
-  if (!data) return <p>loader</p>;
+  if (!data) return <Loader />;
 
   return (
     <section className={clsx(styles.container, className)} {...rest}>

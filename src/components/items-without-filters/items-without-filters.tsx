@@ -8,7 +8,7 @@ import styles from './items-without-filters.module.scss';
 import { IItemsWithoutFiltersProps } from './types';
 
 import { Item } from '..';
-import { Breadcrumbs, Button, EButtonKinds, Pagination, SortSelect, Title } from '../ui';
+import { Breadcrumbs, Button, EButtonKinds, Loader, Pagination, SortSelect, Title } from '../ui';
 
 import { TItemsWithPagination, TSortingItems } from '~utils';
 
@@ -35,7 +35,7 @@ export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
         .catch(err => console.error(err));
     }, [currSort, additionalQuery, currPaginationPage, fetchFn]);
 
-    if (!data) return <p>loader</p>;
+    if (!data) return <Loader />;
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>

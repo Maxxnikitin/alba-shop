@@ -15,7 +15,16 @@ import styles from './personal-data.module.scss';
 import 'react-phone-number-input/style.css';
 import { EMode, IPersonalDataProps, TStatusData } from './types';
 
-import { Button, EButtonKinds, ETitleLevel, Input, Paragraph, PhoneInput, Title } from '../ui';
+import {
+  Button,
+  EButtonKinds,
+  ETitleLevel,
+  Input,
+  Loader,
+  Paragraph,
+  PhoneInput,
+  Title,
+} from '../ui';
 
 import { getUser, getUserLoyalties, TEditData, TLoyalties, TUser, updateUserData } from '~utils';
 
@@ -150,7 +159,7 @@ export const PersonalData: FC<IPersonalDataProps> = memo(({ className = '', ...r
       .catch(err => console.log(err));
   }, []);
 
-  if (!userData) return <p>loader</p>;
+  if (!userData) return <Loader />;
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>

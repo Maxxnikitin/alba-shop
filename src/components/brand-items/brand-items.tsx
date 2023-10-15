@@ -10,7 +10,7 @@ import styles from './brand-items.module.scss';
 import { IBrandItemsProps } from './types';
 
 import { QueryNotFound } from '../query-not-found';
-import { CatalogItem, Title } from '../ui';
+import { CatalogItem, Loader, Title } from '../ui';
 
 import { TCategory, getBrandCategories } from '~utils';
 
@@ -28,7 +28,7 @@ export const BrandItems: FC<IBrandItemsProps> = memo(({ className = '', ...rest 
       .catch(err => console.error(err));
   }, [brandId]);
 
-  if (!data) return <p>loader</p>;
+  if (!data) return <Loader />;
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>

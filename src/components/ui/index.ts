@@ -45,3 +45,4 @@ export * from './filter-popup-button';
 export * from './navigation-mob';
 export * from './filter-label';
 export * from './cart-item-button';
+export * from './loader';

@@ -8,7 +8,7 @@ import styles from './order-items.module.scss';
 import { IOrderItemsProps } from './types';
 
 import { ItemOrder, OrderDetails } from '..';
-import { BackButton, Button, EButtonKinds, Pagination } from '../ui';
+import { BackButton, Button, EButtonKinds, Loader, Pagination } from '../ui';
 
 import { getOrders, TOrder, TOrdersWithPagination } from '~utils';
 
@@ -74,7 +74,7 @@ export const OrderItems: FC<IOrderItemsProps> = memo(({ className = '', ...rest 
     }
   }, [offset, currItem]);
 
-  if (!data) return <p>loader</p>;
+  if (!data) return <Loader />;
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>

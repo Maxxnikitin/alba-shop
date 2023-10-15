@@ -7,7 +7,7 @@ import styles from './catalog-clildren-page.module.scss';
 import { ICatalogChildrenPageProps } from './types';
 
 import { CatalogItems, ItemsWithFilters, PageWrapperWithCommonBlocks } from '../../components';
-import { Breadcrumbs } from '../../components/ui';
+import { Breadcrumbs, Loader } from '../../components/ui';
 
 import { TCategory, getCategory } from '~utils';
 
@@ -27,7 +27,7 @@ export const CatalogChildrenPage: FC<ICatalogChildrenPageProps> = ({ className =
     }
   }, [currId]);
 
-  if (!data) return <p>loader</p>;
+  if (!data) return <Loader />;
 
   return (
     <section className={clsx(styles.container, className)} {...rest}>
