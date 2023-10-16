@@ -21,8 +21,6 @@ import {
   CatalogChildrenPage,
 } from '../../pages';
 
-import { ItemsWithFilters } from '../items-with-filters';
-
 import { MainWrapperPage } from '../main-wrapper-page';
 import { OrderItems } from '../order-items';
 

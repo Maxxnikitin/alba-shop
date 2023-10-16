@@ -30,6 +30,7 @@ import {
   Navigation,
   NavigationMob,
   SearchInput,
+  SearchItem,
 } from '../ui';
 
 import { DataContext, TCategory, TLiveSearchRes, getSearchLive } from '~utils';
@@ -103,6 +104,8 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
     setIsMobSearchOpen(false);
   }, []);
 
+  const handleSearchModalClose = useCallback(() => setSearchData(null), []);
+
   const handleCloseAllModals = useCallback(() => {
     handleCloseMenu();
     handleCloseMobMenu();
@@ -118,8 +121,6 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
       };
     }
   }, [isMenuOpen, currMenuItem, isMobMenuOpen]);
-
-  console.log(isMobSearchOpen);
 
   return (
     <header className={clsx(styles.header, className)} {...rest}>
@@ -199,9 +200,31 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
             <MenuPopup
               className={styles.menu_popup_search}
               title={t('modals.menu.title')!}
-              isOverlay={false}
+              onClose={handleSearchModalClose}
             >
-              <p>ss</p>
+              {searchData.data.map(({ name, icon, id, type, slug }, i) => {
+                if (i > 7) return null;
+                return (
+                  <SearchItem
+                    name={name}
+                    icon={icon}
+                    key={id}
+                    id={id}
+                    slug={slug}
+                    dataType={type}
+                    onCloseModal={handleSearchModalClose}
+                  />
+                );
+              })}
+              {searchData.data.length > 8 && (
+                <SearchItem
+                  id='11'
+                  isBold
+                  dataType='rest'
+                  name={t('search-modal.rest', { count: searchData.data.length - 8 })}
+                  onCloseModal={handleSearchModalClose}
+                />
+              )}
             </MenuPopup>
           )}
         </div>

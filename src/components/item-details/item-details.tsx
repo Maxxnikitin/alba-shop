@@ -73,7 +73,11 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
       setData(data);
       setCharacteristics(data.characteristics);
 
-      setCurrentCharacteristic(data.characteristics.find(item => item.id === characteristicId)!);
+      if (characteristicId) {
+        setCurrentCharacteristic(data.characteristics.find(item => item.id === characteristicId)!);
+      } else {
+        setCurrentCharacteristic(data.characteristics[0]);
+      }
     });
   }, [id, characteristicId]);
 

@@ -8,7 +8,7 @@ import styles from './footer.module.scss';
 import { IFooterProps } from './types';
 
 import { SocialIcons } from '..';
-import { CategoryItem, Paragraph } from '../ui';
+import { CategoryItem, Loader, Paragraph } from '../ui';
 
 import { DataContext } from '~utils';
 
@@ -17,7 +17,7 @@ export const Footer: FC<IFooterProps> = memo(({ className = '', ...rest }) => {
 
   const { t } = useTranslation();
 
-  if (!contacts) return <div>loader</div>;
+  if (!contacts) return <Loader />;
 
   return (
     <footer className={clsx(styles.footer, className)} {...rest}>

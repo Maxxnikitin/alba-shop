@@ -326,9 +326,11 @@ export type TLiveSearchMeta = {
 };
 
 export type TLiveSearchData = {
-  type: string;
-  id: number;
+  type: 'categories' | 'products';
+  id: string | number;
   name: string;
+  slug?: string;
+  icon?: string;
 };
 
 export type TTotalItems = {

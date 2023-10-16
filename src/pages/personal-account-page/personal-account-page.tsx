@@ -12,7 +12,7 @@ import { Title } from '../../components/ui';
 
 export const PersonalAccountPage: FC<IPersonalAccountPageProps> = ({ className = '', ...rest }) => {
   const { t } = useTranslation();
-  console.log('ee');
+
   return (
     <section className={clsx(styles.container, className)} {...rest}>
       <Title className={styles.title}>{t('personal-account.title')}</Title>
@@ -43,15 +43,14 @@ export const PersonalAccountPage: FC<IPersonalAccountPageProps> = ({ className =
                 {t('personal-account.links.data')}
               </NavLink>
             </li>
-
-            <li className={styles.li}>
+            {/* <li className={styles.li}>
               <NavLink
                 to='/personal-account/coupons'
                 className={({ isActive }) => clsx(styles.link, { [styles.link_active]: isActive })}
               >
                 {t('personal-account.links.coupons')}
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </nav>
         <div className={styles.right_column}>
