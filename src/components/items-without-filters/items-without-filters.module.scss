@@ -4,10 +4,24 @@
   align-items: flex-start;
 }
 
-.title {
+.title_box {
   margin-top: 43px;
   margin-bottom: 38px;
+}
+
+.title {
+  display: inline-block;
+  margin-right: 16px;
   text-align: left;
+
+  &_q {
+    display: inline-block;
+
+    font-size: 28px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 150%;
+  }
 }
 
 .list {
@@ -30,14 +44,27 @@
   margin-top: 30px;
 }
 
+.not_found {
+  align-self: center;
+}
+
 @media screen and (max-width: 500px) {
   .list {
     margin-bottom: 16px;
   }
 
-  .title {
+  .title_box {
     margin-top: 24px;
     margin-bottom: 13px;
+  }
+
+  .title {
+    &_q {
+      font-size: 26px;
+      font-weight: 500;
+      font-style: normal;
+      line-height: 125%;
+    }
   }
 
   .sort_box {

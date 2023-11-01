@@ -45,9 +45,8 @@ export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) 
     e.preventDefault();
     setSubmitError(null);
     authSetEmail(inputsData)
-      .then(({ access, refresh }) => {
+      .then(({ access }) => {
         localStorage.setItem('access', access);
-        localStorage.setItem('refresh', refresh);
 
         navigate('/', { replace: true });
       })

@@ -16,7 +16,6 @@ import type {
   TMainSlide,
   TCategory,
   TAuthEmailDto,
-  TAuthResult,
   TUser,
   TLoyalties,
   TEditData,
@@ -30,6 +29,7 @@ import type {
   TCartCreate,
   TOrderContent,
   TTotalItems,
+  TAccessRes,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -47,7 +47,7 @@ export const authSetPhone = (data: TAuthSetPhoneDto) =>
 export const authSetEmail = (data: TAuthEmailDto) =>
   axios
     .post(`${URL}/auth/login/`, data)
-    .then((res: AxiosResponse<TAuthResult>) => checkResponse(res));
+    .then((res: AxiosResponse<TAccessRes>) => checkResponse(res));
 
 export const getFaqData = () =>
   axiosInstance
@@ -204,3 +204,8 @@ export const getSearchLive = (q: string) =>
   axiosInstance
     .get(`${URL}/products/live_search/?q=${q}`)
     .then((res: AxiosResponse<TLiveSearchRes>) => checkResponse(res));
+
+export const getSearch = (q: string, query: string) =>
+  axiosInstance
+    .get(`${URL}/products/search/?q=${q}&${query}`)
+    .then((res: AxiosResponse<TItemsWithPagination>) => checkResponse(res));

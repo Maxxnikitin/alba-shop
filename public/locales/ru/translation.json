@@ -146,6 +146,7 @@
     "discount-title": "Товары на скидках",
     "discount-with-percent-title": "Товары со скидкой {{percent}}%",
     "brands-title": "Популярные бренды",
+    "search-title": "Результаты поиска по вашему запросу:",
     "load-btn": "Загрузить ещё"
   },
   "breadcrumbs": {
@@ -285,5 +286,8 @@
         "btn_cancel": "Не отменять"
       }
     }
+  },
+  "request": {
+    "error": "Ошибка загрузки данных"
   }
 }

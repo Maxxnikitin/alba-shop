@@ -24,6 +24,8 @@ import { ModalSearch } from '../modal-search';
 import {
   Button,
   EButtonKinds,
+  ETitleLevel,
+  Loader,
   MenuChildrenItem,
   MenuMainItem,
   MenuPopup,
@@ -31,16 +33,19 @@ import {
   NavigationMob,
   SearchInput,
   SearchItem,
+  Title,
 } from '../ui';
 
-import { DataContext, TCategory, TLiveSearchRes, getSearchLive } from '~utils';
+import { DataContext, ERequestStatus, TCategory, TLiveSearchRes, getSearchLive } from '~utils';
 
 export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currMenuItem, setCurrMenuItem] = useState<TCategory | null>(null);
   const [searchData, setSearchData] = useState<TLiveSearchRes | null>(null);
+  const [searchStatus, setSearchStatus] = useState<ERequestStatus>(ERequestStatus.NONE);
   const [isMobSearchOpen, setIsMobSearchOpen] = useState(false);
   const [isMobMenuOpen, setIsMobMenuOpen] = useState(false);
+  const [searchReqString, setSearchReqString] = useState('');
 
   const { t } = useTranslation();
 
@@ -69,7 +74,7 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
       setSearchData(null);
       return;
     }
-    getSearchLive(e.target.value).then(res => setSearchData(res));
+    setSearchReqString(e.target.value);
   }, []);
 
   const handleSearchSubmit: FormEventHandler<HTMLFormElement> = useCallback(e => {
@@ -102,9 +107,14 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
 
   const handleMobSearchClose = useCallback(() => {
     setIsMobSearchOpen(false);
+    // setSearchReqString('');
+    // setSearchData(null);
   }, []);
 
-  const handleSearchModalClose = useCallback(() => setSearchData(null), []);
+  const handleSearchModalClose = useCallback(() => {
+    setSearchData(null);
+    setSearchStatus(ERequestStatus.NONE);
+  }, []);
 
   const handleCloseAllModals = useCallback(() => {
     handleCloseMenu();
@@ -121,6 +131,21 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
       };
     }
   }, [isMenuOpen, currMenuItem, isMobMenuOpen]);
+
+  useEffect(() => {
+    if (searchReqString) {
+      setSearchStatus(ERequestStatus.LOADING);
+      getSearchLive(searchReqString)
+        .then(res => {
+          setSearchStatus(ERequestStatus.SUCCESS);
+          setSearchData(res);
+        })
+        .catch(err => {
+          setSearchStatus(ERequestStatus.ERROR);
+          console.log(err);
+        });
+    }
+  }, [searchReqString]);
 
   return (
     <header className={clsx(styles.header, className)} {...rest}>
@@ -196,34 +221,43 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
             onChange={handleSearchDebounced}
             onFormSubmit={handleSearchSubmit}
           />
-          {searchData && (
+          {searchStatus !== 'none' && (
             <MenuPopup
               className={styles.menu_popup_search}
               title={t('modals.menu.title')!}
               onClose={handleSearchModalClose}
             >
-              {searchData.data.map(({ name, icon, id, type, slug }, i) => {
-                if (i > 7) return null;
-                return (
-                  <SearchItem
-                    name={name}
-                    icon={icon}
-                    key={id}
-                    id={id}
-                    slug={slug}
-                    dataType={type}
-                    onCloseModal={handleSearchModalClose}
-                  />
-                );
-              })}
-              {searchData.data.length > 8 && (
-                <SearchItem
-                  id='11'
-                  isBold
-                  dataType='rest'
-                  name={t('search-modal.rest', { count: searchData.data.length - 8 })}
-                  onCloseModal={handleSearchModalClose}
-                />
+              {searchData && (
+                <>
+                  {searchData.data.map(({ name, icon, id, type, slug }, i) => {
+                    if (i > 7) return null;
+                    return (
+                      <SearchItem
+                        name={name}
+                        icon={icon}
+                        key={id}
+                        id={id}
+                        slug={slug}
+                        dataType={type}
+                        onCloseModal={handleSearchModalClose}
+                      />
+                    );
+                  })}
+                  {searchData.data.length > 8 && (
+                    <SearchItem
+                      id='11'
+                      isBold
+                      dataType='rest'
+                      name={t('search-modal.rest', { count: searchData.data.length - 8 })}
+                      searchReqString={searchReqString}
+                      onCloseModal={handleSearchModalClose}
+                    />
+                  )}
+                </>
+              )}
+              {searchStatus === ERequestStatus.LOADING && <Loader />}
+              {searchStatus === ERequestStatus.ERROR && (
+                <Title level={ETitleLevel.h4}>{t('request.error')}</Title>
               )}
             </MenuPopup>
           )}
@@ -233,6 +267,8 @@ export const Header: FC<IHeaderProps> = memo(({ className = '', ...rest }) => {
       <ModalSearch
         data={searchData}
         isOpen={isMobSearchOpen}
+        searchStatus={searchStatus}
+        searchReqString={searchReqString}
         onClose={handleMobSearchClose}
         onChange={handleSearchDebounced}
       />

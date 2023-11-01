@@ -6,5 +6,7 @@ export interface ISearchItemProps {
   icon?: string;
   slug?: string;
   isBold?: boolean;
+  searchReqString?: string;
+  isMobile?: boolean;
   className?: string;
 }

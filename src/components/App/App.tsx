@@ -19,6 +19,7 @@ import {
   CartPage,
   CatalogPage,
   CatalogChildrenPage,
+  SearchPage,
 } from '../../pages';
 
 import { MainWrapperPage } from '../main-wrapper-page';
@@ -124,6 +125,10 @@ export function App() {
         {
           path: '/brands/:brand',
           element: <BrandsPage />,
+        },
+        {
+          path: '/search',
+          element: <SearchPage />,
         },
       ],
     },

@@ -336,3 +336,10 @@ export type TLiveSearchData = {
 export type TTotalItems = {
   total_items: number;
 };
+
+export enum ERequestStatus {
+  NONE = 'none',
+  SUCCESS = 'success',
+  ERROR = 'error',
+  LOADING = 'loading',
+}
