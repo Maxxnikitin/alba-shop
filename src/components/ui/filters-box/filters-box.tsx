@@ -31,9 +31,6 @@ export const FiltersBox: FC<IFiltersBoxProps> = memo(
     const [isOpen, setIsOpen] = useState(true);
     const { t } = useTranslation();
 
-    console.log('Render Filters Checkbox');
-    console.log(isFilterLabelVisible);
-
     const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
       ({ target }) => {
         const key = target.id.split('_')[0];

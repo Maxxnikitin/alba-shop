@@ -12,7 +12,6 @@ import { Breadcrumbs, Loader } from '../../components/ui';
 import { TCategory, getCategory } from '~utils';
 
 export const CatalogChildrenPage: FC<ICatalogChildrenPageProps> = ({ className = '', ...rest }) => {
-  console.log('q');
   const [data, setData] = useState<TCategory | null>(null);
   const { pathname } = useLocation();
   const { category } = useParams();

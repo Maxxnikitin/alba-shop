@@ -17,8 +17,6 @@ export const FiltersBoxWithChildren: FC<IFiltersBoxWithChildrenProps> = memo(
     const [isOpen, setIsOpen] = useState(true);
     const { t } = useTranslation();
 
-    console.log('Render Filters SwitchBox');
-
     return (
       <div className={clsx(styles.container, className)} {...rest}>
         <button className={styles.btn} type='button' onClick={handleToggleState(setIsOpen)}>

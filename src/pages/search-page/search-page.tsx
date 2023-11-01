@@ -10,7 +10,6 @@ import { PageWrapperWithCommonBlocks } from 'src/components';
 
 export const SearchPage: FC<ISearchPageProps> = ({ className = '', ...rest }) => {
   const { t } = useTranslation();
-  console.log('q');
 
   return (
     <PageWrapperWithCommonBlocks className={className} {...rest}>

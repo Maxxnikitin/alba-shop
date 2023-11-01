@@ -13,7 +13,6 @@ import { SORTING_ITEMS } from '~utils';
 export const SortSelect: FC<ISortSelectProps> = memo(
   ({ className = '', value, onChange, ...rest }) => {
     const { t } = useTranslation();
-    console.log('q');
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>

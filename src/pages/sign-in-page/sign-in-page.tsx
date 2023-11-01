@@ -6,15 +6,11 @@ import { ISignInPageProps } from './types';
 
 import { SignIn } from '../../components';
 
-export const SignInPage: FC<ISignInPageProps> = ({ className = '', ...rest }) => {
-  console.log('t');
-
-  return (
-    <section className={clsx(styles.container, className)} {...rest}>
-      <div className={styles.left_column} />
-      <div className={styles.right_column}>
-        <SignIn className={styles.form} />
-      </div>
-    </section>
-  );
-};
+export const SignInPage: FC<ISignInPageProps> = ({ className = '', ...rest }) => (
+  <section className={clsx(styles.container, className)} {...rest}>
+    <div className={styles.left_column} />
+    <div className={styles.right_column}>
+      <SignIn className={styles.form} />
+    </div>
+  </section>
+);

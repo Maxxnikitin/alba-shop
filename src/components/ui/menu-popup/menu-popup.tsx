@@ -18,25 +18,21 @@ export const MenuPopup: FC<IMenuPopupProps> = memo(
     isBackBtn = false,
     isOverlay = true,
     ...rest
-  }) => {
-    console.log('q');
-
-    return (
-      <>
-        <div className={clsx(styles.container, className)} {...rest}>
-          <div className={styles.header}>
-            {isBackBtn ? (
-              <BackButton onClick={onClose} iconClassName={styles.icon_color} />
-            ) : (
-              <Paragraph />
-            )}
-            <Paragraph className={styles.title}>{title}</Paragraph>
-            <CloseButton onClick={handleCloseAllModals} iconClassName={styles.icon_color} />
-          </div>
-          {children}
+  }) => (
+    <>
+      <div className={clsx(styles.container, className)} {...rest}>
+        <div className={styles.header}>
+          {isBackBtn ? (
+            <BackButton onClick={onClose} iconClassName={styles.icon_color} />
+          ) : (
+            <Paragraph />
+          )}
+          <Paragraph className={styles.title}>{title}</Paragraph>
+          <CloseButton onClick={handleCloseAllModals} iconClassName={styles.icon_color} />
         </div>
-        {isOverlay && <div className={styles.overlay} onClick={onClose} />}
-      </>
-    );
-  },
+        {children}
+      </div>
+      {isOverlay && <div className={styles.overlay} onClick={onClose} />}
+    </>
+  ),
 );

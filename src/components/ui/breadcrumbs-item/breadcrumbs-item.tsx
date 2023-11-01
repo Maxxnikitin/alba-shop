@@ -17,8 +17,6 @@ export const BreadcrumbsItem: FC<IBreadcrumbsItemProps> = memo(
     const { breadcrumbs } = useContext(DataContext);
     const categotyKey = text.split('_')[1];
 
-    console.log({ brandName });
-
     return (
       <>
         {isActive ? (

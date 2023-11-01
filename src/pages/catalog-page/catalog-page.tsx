@@ -8,13 +8,9 @@ import { CatalogMain } from '../../components';
 
 import { Breadcrumbs } from '../../components/ui';
 
-export const CatalogPage: FC<ICatalogPageProps> = ({ className = '', ...rest }) => {
-  console.log('q');
-
-  return (
-    <section className={clsx(styles.container, className)} {...rest}>
-      <Breadcrumbs />
-      <CatalogMain />
-    </section>
-  );
-};
+export const CatalogPage: FC<ICatalogPageProps> = ({ className = '', ...rest }) => (
+  <section className={clsx(styles.container, className)} {...rest}>
+    <Breadcrumbs />
+    <CatalogMain />
+  </section>
+);

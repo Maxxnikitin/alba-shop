@@ -18,42 +18,38 @@ export const RangeInput: FC<IRangeInputProps> = ({
   onRangeChange,
   onInputsChange,
   ...rest
-}) => {
-  console.log('rr');
-
-  return (
-    <div className={clsx(styles.container, className)} {...rest}>
-      <div className={styles.inputs}>
-        <Input
-          fieldClassName={styles.input}
-          type='number'
-          name='min'
-          kind='small'
-          min={rangeStart}
-          max={rangeEnd}
-          value={minValue.toString().replace(/^0+/, '') || '0'}
-          onChange={onInputsChange}
-        />
-        <Input
-          fieldClassName={styles.input}
-          type='number'
-          name='max'
-          kind='small'
-          min={rangeStart}
-          max={rangeEnd}
-          value={maxValue.toString().replace(/^0+/, '') || '0'}
-          onChange={onInputsChange}
-        />
-      </div>
-      <Slider
-        className={styles.range}
-        handleStyle={rangeHandlerStyle}
-        range
+}) => (
+  <div className={clsx(styles.container, className)} {...rest}>
+    <div className={styles.inputs}>
+      <Input
+        fieldClassName={styles.input}
+        type='number'
+        name='min'
+        kind='small'
         min={rangeStart}
         max={rangeEnd}
-        value={[minValue, maxValue]}
-        onChange={onRangeChange}
+        value={minValue.toString().replace(/^0+/, '') || '0'}
+        onChange={onInputsChange}
+      />
+      <Input
+        fieldClassName={styles.input}
+        type='number'
+        name='max'
+        kind='small'
+        min={rangeStart}
+        max={rangeEnd}
+        value={maxValue.toString().replace(/^0+/, '') || '0'}
+        onChange={onInputsChange}
       />
     </div>
-  );
-};
+    <Slider
+      className={styles.range}
+      handleStyle={rangeHandlerStyle}
+      range
+      min={rangeStart}
+      max={rangeEnd}
+      value={[minValue, maxValue]}
+      onChange={onRangeChange}
+    />
+  </div>
+);

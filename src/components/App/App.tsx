@@ -32,8 +32,6 @@ import { BrandsPage } from 'src/pages/brand-page';
 import '../../models/init';
 
 export function App() {
-  console.log('Render App');
-
   const routes = useRoutes([
     {
       path: '/sign-in',

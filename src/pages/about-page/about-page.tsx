@@ -15,7 +15,6 @@ import { DataContext, getAboutInfo } from '~utils';
 export const AboutPage: FC<IAboutPageProps> = ({ className = '', ...rest }) => {
   const [aboutText, setAboutText] = useState('');
   const { contacts } = useContext(DataContext);
-  console.log(contacts);
 
   const { t } = useTranslation();
 

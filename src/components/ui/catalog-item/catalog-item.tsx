@@ -9,18 +9,14 @@ import { ICatalogItemProps } from './types';
 import { Paragraph } from '../paragraph';
 
 export const CatalogItem: FC<ICatalogItemProps> = memo(
-  ({ data, prefixUrl, className = '', ...rest }) => {
-    console.log({ data });
-
-    return (
-      <li className={clsx(styles.container, className)} {...rest}>
-        <Link
-          className={styles.link}
-          style={{ backgroundImage: `url(${data.photo})` }}
-          to={`${prefixUrl}/${data.id}_${data.slug}`}
-        />
-        <Paragraph className={styles.text}>{data.name}</Paragraph>
-      </li>
-    );
-  },
+  ({ data, prefixUrl, className = '', ...rest }) => (
+    <li className={clsx(styles.container, className)} {...rest}>
+      <Link
+        className={styles.link}
+        style={{ backgroundImage: `url(${data.photo})` }}
+        to={`${prefixUrl}/${data.id}_${data.slug}`}
+      />
+      <Paragraph className={styles.text}>{data.name}</Paragraph>
+    </li>
+  ),
 );
