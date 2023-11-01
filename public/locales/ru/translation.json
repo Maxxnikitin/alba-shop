@@ -8,7 +8,9 @@
     "sent-sms-btn": "Отправить повторно через {{amount}} с.",
     "resent-sms-btn": "Отправить повторно",
     "password-error": "Неверный E-mail или пароль",
-    "server-error": "Ошибка сервера"
+    "server-error": "Ошибка сервера",
+    "loading": "Загрузка",
+    "loading-error": "Ошибка авторизации"
   },
   "main-page": {
     "catalog-btn": "Каталог",

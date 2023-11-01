@@ -19,7 +19,7 @@ import { ISignInEmailProps } from './types';
 
 import { Button, EButtonKinds, Input, Paragraph, Title } from '../ui';
 
-import { authSetEmail } from '~utils';
+import { authLogin } from '~utils';
 
 export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) => {
   const [inputsData, setInputsData] = useState({
@@ -44,7 +44,7 @@ export const SignInEmail: FC<ISignInEmailProps> = ({ className = '', ...rest }) 
   const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
     setSubmitError(null);
-    authSetEmail(inputsData)
+    authLogin(inputsData)
       .then(({ access }) => {
         localStorage.setItem('access', access);
 

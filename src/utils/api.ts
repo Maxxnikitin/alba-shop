@@ -30,6 +30,7 @@ import type {
   TOrderContent,
   TTotalItems,
   TAccessRes,
+  TAuthSetCodeDto,
 } from './types';
 
 export const checkResponse: <T>(res: AxiosResponse<T>) => T | Promise<T> = res => {
@@ -44,7 +45,7 @@ export const authSetPhone = (data: TAuthSetPhoneDto) =>
     .post(`${URL}/auth/otp_request/`, data)
     .then((res: AxiosResponse<TAuthSetPhoneRes>) => checkResponse(res));
 
-export const authSetEmail = (data: TAuthEmailDto) =>
+export const authLogin = (data: TAuthEmailDto | TAuthSetCodeDto) =>
   axios
     .post(`${URL}/auth/login/`, data)
     .then((res: AxiosResponse<TAccessRes>) => checkResponse(res));

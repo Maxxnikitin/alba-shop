@@ -45,11 +45,13 @@ export const SmsInput: FC<TSmsInputProps> = memo(
           if (nextInput) {
             nextInput.current?.focus();
           } else {
-            handleRequest();
+            // setTimeout(() => {
+            handleRequest(+(Object.values(inputsData).join('') + value));
+            // }, 2000);
           }
         }
       },
-      [refsData, setInputsData, handleRequest],
+      [refsData, inputsData, setInputsData, handleRequest],
     );
 
     useEffect(() => {
