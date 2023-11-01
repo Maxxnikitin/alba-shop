@@ -8,6 +8,7 @@ import {
   getLatestItems,
 } from '../api';
 
+import { createBreadcrumbsCatalogObject } from '../helpers';
 import { TDataContext } from '../types';
 
 export const useContextData = () => {
@@ -17,6 +18,7 @@ export const useContextData = () => {
     bestsellersSuggestedItems: [],
     categories: [],
     brands: [],
+    breadcrumbs: {},
   });
 
   useEffect(() => {
@@ -27,15 +29,17 @@ export const useContextData = () => {
       getCategories(),
       getBrandsItems(),
     ])
-      .then(([contacts, latest, bestsellers, categories, brands]) =>
+      .then(([contacts, latest, bestsellers, categories, brands]) => {
+        const breadcrumbs = createBreadcrumbsCatalogObject(categories.data);
         setContextData({
           contacts: contacts.data,
           latestSuggestedItems: latest.data,
           bestsellersSuggestedItems: bestsellers.data,
           categories: categories.data,
           brands: brands.data,
-        }),
-      )
+          breadcrumbs,
+        });
+      })
       .catch(err => console.error(err));
   }, []);
 

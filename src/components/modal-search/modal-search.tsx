@@ -24,7 +24,6 @@ import { ERequestStatus } from '~utils';
 export const ModalSearch: FC<IModalSearchProps> = memo(
   ({ isOpen, onClose, onChange, data, className = '', searchStatus, searchReqString, ...rest }) => {
     const { t } = useTranslation();
-    console.log(searchReqString);
 
     return (
       <Modal

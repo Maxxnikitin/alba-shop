@@ -125,6 +125,7 @@ export type TDataContext = {
   bestsellersSuggestedItems: TCharacteristic[];
   categories: TCategory[];
   brands: TBrand[];
+  breadcrumbs: Record<string, string>;
 };
 
 export type TPagination = {
