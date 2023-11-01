@@ -17,7 +17,7 @@ export const BrandsPage: FC<IBrandsPageProps> = ({ className = '', ...rest }) =>
   return (
     <PageWrapperWithCommonBlocks className={className} {...rest}>
       <div className={styles.content}>
-        <Breadcrumbs />
+        <Breadcrumbs brandName={brand?.split('_')[1]} />
         {brand ? <BrandItems /> : <ItemsBox type={EBrands.BRANDS} data={brands} />}
       </div>
     </PageWrapperWithCommonBlocks>
