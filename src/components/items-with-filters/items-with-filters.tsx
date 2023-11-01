@@ -98,12 +98,7 @@ export const ItemsWithFilters: FC<IItemsWithFiltersProps> = memo(
           <div className={styles.main_content}>
             <ul className={styles.list}>
               {data.data.map(item => (
-                <Item
-                  key={item.id}
-                  data={item}
-                  onLikeClick={() => console.log('like')}
-                  isCartButton
-                />
+                <Item key={item.id} data={item} isCartButton />
               ))}
             </ul>
             {data.meta.pagination.num_pages !== 1 && (

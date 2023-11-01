@@ -38,7 +38,7 @@ export const FavoriteItems: FC<IFavoriteItemsProps> = memo(({ className = '', ..
     <div className={clsx(styles.container, className)} {...rest}>
       <ul className={styles.list}>
         {data.data?.map(item => (
-          <Item key={item.id} data={item} onLikeClick={() => console.log('like')} isCartButton />
+          <Item key={item.id} data={item} isCartButton />
         ))}
       </ul>
       {data.meta.pagination.num_pages !== 1 && (

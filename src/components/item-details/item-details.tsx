@@ -39,7 +39,6 @@ export const ItemDetails: FC<IItemDetailsProps> = memo(({ className = '', ...res
   const handleChangeCurrentCharacteristic: MouseEventHandler<HTMLImageElement> = useCallback(
     ({ target }) => {
       const { id } = target as HTMLImageElement;
-      console.log(characteristicsMap);
       if (characteristicsMap) setCurrentCharacteristic(characteristicsMap[id]);
     },
     [characteristicsMap],

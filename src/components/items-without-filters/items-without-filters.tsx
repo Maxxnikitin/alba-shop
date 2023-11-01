@@ -3,7 +3,7 @@ import { ChangeEventHandler, FC, memo, useCallback, useEffect, useMemo, useState
 
 import { useTranslation } from 'react-i18next';
 
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import styles from './items-without-filters.module.scss';
 
@@ -14,7 +14,6 @@ import {
   Breadcrumbs,
   Button,
   EButtonKinds,
-  ETitleLevel,
   Loader,
   Pagination,
   Paragraph,
@@ -80,12 +79,7 @@ export const ItemsWithoutFilters: FC<IItemsWithoutFiltersProps> = memo(
         {data.data.length ? (
           <ul className={styles.list}>
             {data.data.map(item => (
-              <Item
-                key={item.id}
-                data={item}
-                onLikeClick={() => console.log('like')}
-                isCartButton
-              />
+              <Item key={item.id} data={item} isCartButton />
             ))}
           </ul>
         ) : (

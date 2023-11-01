@@ -22,7 +22,7 @@ import {
 } from '~utils';
 
 export const Item: FC<IItemProps> = memo(
-  ({ data, isCartButton = false, className = '', onLikeClick, ...rest }) => {
+  ({ data, isCartButton = false, className = '', ...rest }) => {
     const [stateData, setStateData] = useState<TCharacteristic>(data);
     const {
       id,
