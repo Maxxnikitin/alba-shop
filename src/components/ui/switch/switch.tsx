@@ -8,7 +8,6 @@ import { ISwitchProps } from './types';
 export const Switch: FC<ISwitchProps> = memo(
   ({ className = '', boxClassName = '', label, id, ...rest }) => {
     const currId = id ?? nanoid();
-    console.log('Render Switch');
 
     return (
       <div className={clsx(styles.container, boxClassName)}>

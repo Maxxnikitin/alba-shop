@@ -1,6 +1,8 @@
 import { HTMLProps } from 'react';
 
+import { TPhotos } from '~utils';
+
 export interface IPhotosBoxProps extends HTMLProps<HTMLImageElement> {
-  photos: string[];
-  activePhoto: number;
+  photos: TPhotos;
+  activePhoto: keyof TPhotos;
 }

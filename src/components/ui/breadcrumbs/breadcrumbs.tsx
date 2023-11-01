@@ -7,7 +7,7 @@ import { IBreadcrumbsProps } from './types';
 
 import { BreadcrumbsItem } from '..';
 
-export const Breadcrumbs: FC<IBreadcrumbsProps> = memo(({ className = '', ...rest }) => {
+export const Breadcrumbs: FC<IBreadcrumbsProps> = memo(({ className = '', brandName, ...rest }) => {
   const { pathname } = useLocation();
 
   const itemsList = useMemo(() => {
@@ -42,7 +42,13 @@ export const Breadcrumbs: FC<IBreadcrumbsProps> = memo(({ className = '', ...res
   return (
     <div className={clsx(styles.container, className)} {...rest}>
       {itemsList.map(({ text, link, isActive }) => (
-        <BreadcrumbsItem key={text} text={text} link={link} isActive={isActive} />
+        <BreadcrumbsItem
+          key={text}
+          text={text}
+          link={link}
+          isActive={isActive}
+          brandName={brandName}
+        />
       ))}
     </div>
   );

@@ -7,7 +7,10 @@
     "submit-btn": "Войти",
     "sent-sms-btn": "Отправить повторно через {{amount}} с.",
     "resent-sms-btn": "Отправить повторно",
-    "password-error": "Неверный E-mail или пароль"
+    "password-error": "Неверный E-mail или пароль",
+    "server-error": "Ошибка сервера",
+    "loading": "Загрузка",
+    "loading-error": "Ошибка авторизации"
   },
   "main-page": {
     "catalog-btn": "Каталог",
@@ -25,6 +28,9 @@
   "inputs": {
     "password": "Пароль",
     "search": "Искать товары"
+  },
+  "search-modal": {
+    "rest": "И ещё вариантов: {{count}}"
   },
   "alts": {
     "logo-alt": "Логотип.",
@@ -45,8 +51,11 @@
       "address": "Иконка локации.",
       "time": "Иконка расписания.",
       "phone": "Иконка телефона.",
-      "email": "Иконка почты"
-    }
+      "email": "Иконка почты."
+    },
+    "sign-in": "Входная картинка.",
+    "category": "Иконка категории товара.",
+    "brand": "Фото бренда."
   },
   "filters": {
     "description": "Описание",
@@ -60,10 +69,16 @@
     "connector_type": "Мощность",
     "price": "Цена",
     "is_new": "Новинка",
-    "is_bestseller": "Хит",
+    "is_hit": "Хит",
     "in_stock": "В наличии",
+    "in_stock_title": "Наличие",
     "discount": "Со скидкой",
-    "close-btn": "Сбросить фильтр"
+    "close-btn": "Сбросить фильтр",
+    "btn": "Фильтры",
+    "title": "Фильтры",
+    "btn_submit": "Применить",
+    "btn_remove_filters": "Сбросить фильтр",
+    "label_text": "Показать товаров: {{count}}"
   },
   "sorting": {
     "select-text": "Сортировать по:",
@@ -91,9 +106,13 @@
     "text": "Выберите нужный товар из каталога и добавьте его в корзину",
     "btn": "На главную"
   },
+  "empty-favorites": {
+    "title": "Вы не добавляли ничего в избранное",
+    "btn": "На главную"
+  },
   "tags": {
     "new": "Новинка",
-    "bestseller": "Хит",
+    "hit": "Хит",
     "empty": "Нет в наличии"
   },
   "item": {
@@ -129,13 +148,16 @@
     "discount-title": "Товары на скидках",
     "discount-with-percent-title": "Товары со скидкой {{percent}}%",
     "brands-title": "Популярные бренды",
+    "search-title": "Результаты поиска по вашему запросу:",
     "load-btn": "Загрузить ещё"
   },
   "breadcrumbs": {
     "main": "Главная",
     "latest": "Последние поступления",
     "bestsellers": "Хиты продаж",
-    "discount": "Товары на скидках"
+    "discount": "Товары на скидках",
+    "brands": "Бренды",
+    "catalog": "Каталог"
   },
   "catalog": {
     "title": "Каталог товаров"
@@ -145,5 +167,130 @@
     "text": "Товары со скидкой",
     "link": "Смотреть все наши товары на скидках",
     "link-item": "Смотреть"
+  },
+  "brand-items": {
+    "title": "Товары {{brand}}"
+  },
+  "personal-account": {
+    "title": "Личный кабинет",
+    "links": {
+      "orders": "Мои заказы",
+      "favorite": "Избранное",
+      "data": "Мои данные",
+      "coupons": "Мои купоны"
+    },
+    "data": {
+      "email": "Эл. почта",
+      "phone": "Телефон",
+      "city": "Город",
+      "password": "Пароль",
+      "btn-edit": "Изменить",
+      "btn-submit": "Применить",
+      "btn-cancel": "Отмена",
+      "first-name": "Имя",
+      "last-name": "Фамилия",
+      "surname": "Отчество",
+      "middle-name": "Отчество",
+      "email-placeholder": "Адрес эл. почты",
+      "old-password": "Старый пароль",
+      "new-password": "Новый пароль",
+      "password-error": "Пароли не совпадают",
+      "password-length-error": "Не менее 8 символов",
+      "phone-error": "Телефон не валиден",
+      "email-error": "E-mail не валиден"
+    },
+    "status": {
+      "title": "Статус",
+      "subtitle": "Ещё {{amount}}₽ до следующего статуса",
+      "steps": {
+        "without-discount": "Пока без скидок",
+        "discount": "Скидка {{percent}}%"
+      }
+    },
+    "order": {
+      "number": "Заказ №{{number}}",
+      "date": "от {{date}}",
+      "amount": "{{amount}} товаров",
+      "price": "{{price}} ₽",
+      "statuses": {
+        "new": "Новый",
+        "in-progress": "В обработке",
+        "ready": "Собран",
+        "sent": "Отправлен",
+        "canceled": "Отменён",
+        "received": "Получен"
+      },
+      "btn": "Смотреть все",
+      "back": "Назад"
+    }
+  },
+  "tooltip": {
+    "cancel-order": "Отменить заказ"
+  },
+  "cart": {
+    "title": "Корзина",
+    "btn-clean": "Очистить корзину",
+    "table": {
+      "name": "Наименование товара",
+      "able": "Доступно, шт",
+      "amount": "Количество",
+      "price": "Сумма",
+      "remove": "Удалить",
+      "total-weight": "Общий вес корзины:",
+      "total-weight-unit": "г",
+      "min-order": "Минимальная сумма заказа: {{amount}} ₽",
+      "total-price": "Сумма заказа:",
+      "status-discount": "{{status}} скидка",
+      "total-pay": "Итого к оплате",
+      "btn": "К оформлению"
+    },
+    "item": {
+      "able": "Доступно: {{able}} шт"
+    },
+    "confirm": {
+      "title": "Оформление заказа",
+      "subtitle": "Личные данные получателя",
+      "delivery": {
+        "title": "Способ доставки",
+        "pickup": "Самовывоз",
+        "delivery": "Доставка транспортной компанией"
+      },
+      "total": "Сумма заказа:",
+      "addition": "Наш менеджер свяжется с вами после обработки заказа и уточнит информацию",
+      "btn": "Оформить заказ"
+    }
+  },
+  "modals": {
+    "cart": {
+      "removeCart": {
+        "title": "Удаление товаров",
+        "text": "Вы действительно хотите удалить все товары ({{amount}}) из корзины?",
+        "btn_success": "Да, очистить корзину",
+        "btn_cancel": "Отменить"
+      },
+      "removeItem": {
+        "title": "Удаление товара",
+        "text": "Вы действительно хотите удалить этот товар из корзины?",
+        "btn_success": "Да, удалить",
+        "btn_cancel": "Отменить"
+      }
+    },
+    "menu": {
+      "title": "Каталог",
+      "profile": "Профиль",
+      "favorite": "Избранное",
+      "cart": "Корзина"
+    },
+    "order": {
+      "cancel-title": "Отмена заказа",
+      "cancel-text": "Вы действительно хотите отменить заказ №{{number}}?",
+      "btns": {
+        "btn_success": "Да, отменить",
+        "btn_cancel": "Не отменять"
+      }
+    }
+  },
+  "request": {
+    "error": "Ошибка загрузки данных"
   }
 }

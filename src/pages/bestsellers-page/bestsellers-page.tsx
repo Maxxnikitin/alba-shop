@@ -11,7 +11,6 @@ import { getBestsellersItems } from '~utils';
 
 export const BestsellersPage: FC<IBestsellersPageProps> = ({ className = '', ...rest }) => {
   const { t } = useTranslation();
-  console.log('q');
 
   return (
     <PageWrapperWithCommonBlocks className={className} {...rest}>

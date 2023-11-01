@@ -17,7 +17,6 @@ export const DiscountWithPercentPage: FC<IDiscountWithPercentPageProps> = ({
 }) => {
   const { t } = useTranslation();
   const { percent } = useParams();
-  console.log('q');
 
   return (
     <PageWrapperWithCommonBlocks className={className} {...rest}>

@@ -10,7 +10,7 @@ import { TagsBox } from '..';
 export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
   ({ className = '', photo, currentCharacteristic, dataObj, onLikeClick, ...rest }) => {
     const {
-      is_bestseller: isBestseller,
+      is_hit: isHit,
       is_new: isNew,
       in_favorite: inFavorite,
       stock: inStock,
@@ -22,10 +22,10 @@ export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
       const arr = [];
 
       if (isNew) arr.push('new');
-      if (isBestseller) arr.push('bestseller');
+      if (isHit) arr.push('hit');
 
       return arr;
-    }, [isNew, isBestseller]);
+    }, [isNew, isHit]);
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
@@ -35,11 +35,11 @@ export const ItemFullPhoto: FC<IItemFullPhotoProps> = memo(
             className={clsx(styles.like, { [styles.like_active]: inFavorite })}
             onClick={onLikeClick}
           />
-          {tagsArr.length && (
+          {!!tagsArr.length && (
             <TagsBox dataArr={tagsArr} inStock={!!inStock} className={styles.tabs} />
           )}
         </div>
-        {tagsArr.length && (
+        {!!tagsArr.length && (
           <TagsBox dataArr={tagsArr} inStock={!!inStock} className={styles.tabs_mobile} />
         )}
       </div>

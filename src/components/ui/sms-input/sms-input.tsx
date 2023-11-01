@@ -29,7 +29,7 @@ export const SmsInput: FC<TSmsInputProps> = memo(
         const { id } = e.target;
         let { value } = e.target;
 
-        if (value !== '' && !+value) return;
+        if (value !== '' && isNaN(+value)) return;
 
         if (value.length > 1) {
           value = value.substring(value.length - 1);
@@ -45,11 +45,13 @@ export const SmsInput: FC<TSmsInputProps> = memo(
           if (nextInput) {
             nextInput.current?.focus();
           } else {
-            handleRequest();
+            // setTimeout(() => {
+            handleRequest(+(Object.values(inputsData).join('') + value));
+            // }, 2000);
           }
         }
       },
-      [refsData, setInputsData, handleRequest],
+      [refsData, inputsData, setInputsData, handleRequest],
     );
 
     useEffect(() => {

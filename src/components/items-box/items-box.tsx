@@ -2,13 +2,13 @@ import clsx from 'clsx';
 import { FC, memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import styles from './items-box.module.scss';
-import { IItemsBoxProps } from './types';
+import { EBrands, IItemsBoxProps } from './types';
 
 import { Item } from '..';
 import { ArrowLinkIcon, BrandItem, Button, EButtonKinds, Paragraph, Title } from '../ui';
@@ -17,8 +17,11 @@ import { TBrand, TCharacteristic } from '~utils';
 
 export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', ...rest }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
-  const isBrands = useMemo(() => type === 'brands', [type]);
+  const isBrands = useMemo(() => type === EBrands.BRANDS, [type]);
+
+  const handleClickToRedirect = () => navigate(`/${type}`);
 
   return (
     <section className={clsx(styles.container, className)} {...rest}>
@@ -40,10 +43,10 @@ export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', 
       >
         {data.map(item => (
           <SwiperSlide className={styles.slide} key={item.id}>
-            {type === 'brands' ? (
+            {type === EBrands.BRANDS ? (
               <BrandItem data={item as TBrand} />
             ) : (
-              <Item data={item as TCharacteristic} onLikeClick={() => console.log('like')} />
+              <Item data={item as TCharacteristic} />
             )}
           </SwiperSlide>
         ))}
@@ -53,11 +56,7 @@ export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', 
           isBrands ? (
             <BrandItem key={item.id} data={item as TBrand} />
           ) : (
-            <Item
-              key={item.id}
-              data={item as TCharacteristic}
-              onLikeClick={() => console.log('like')}
-            />
+            <Item key={item.id} data={item as TCharacteristic} />
           ),
         )}
       </ul>
@@ -66,6 +65,7 @@ export const ItemsBox: FC<IItemsBoxProps> = memo(({ type, data, className = '', 
           className={styles.btn_mobile}
           kind={EButtonKinds.load}
           text={t(`items.${type}-btn`)}
+          onClick={handleClickToRedirect}
         />
       )}
     </section>

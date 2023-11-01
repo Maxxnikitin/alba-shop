@@ -3,4 +3,5 @@ export interface IBreadcrumbsItemProps {
   link?: string;
   isActive?: boolean;
   className?: string;
+  brandName?: string;
 }

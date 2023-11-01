@@ -4,7 +4,13 @@ export interface IFiltersBoxProps {
   title: string;
   filtersList: TFilterItem[];
   checkedFiltersData: TCheckboxFiltersData;
+  currChoosedFilter: string | null;
+  isFilterLabelVisible: boolean;
+  setIsFilterLabelVisible: Dispatch<SetStateAction<boolean>>;
+  setCurrShoosedFilter: Dispatch<SetStateAction<string | null>>;
+  countAfterFiltered: number;
   setCheckedFiltersData: Dispatch<SetStateAction<TCheckboxFiltersData>>;
+  handleFilteredDataRender: () => void;
   className?: string;
 }
 
@@ -15,6 +21,13 @@ export type TFilterItem = {
 };
 
 export type TFilterBlock = Record<number | string, boolean>;
+
+export type TPriceFiltersData = {
+  price: {
+    min: number;
+    max: number;
+  };
+};
 
 export type TCheckboxFiltersData = {
   [key: string]: TFilterBlock;
@@ -28,7 +41,7 @@ export type TCheckboxFiltersData = {
   // connector_type: TFilterBlock;
   // price: TFilterBlock;
   // is_new: boolean;
-  // is_bestseller: boolean;
+  // is_hit: boolean;
   // in_stock: boolean;
   // discount: boolean;
 };
@@ -44,7 +57,7 @@ export type TCheckboxFiltersData = {
 //   connector_type = 'connector_type',
 //   price = 'price',
 //   is_new = 'is_new',
-//   is_bestseller = 'is_bestseller',
+//   is_hit = 'is_bestseller',
 //   in_stock = 'in_stock',
 //   discount = 'discount',
 // }

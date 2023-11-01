@@ -105,6 +105,21 @@
     background: $gray-gradient;
   }
 
+  &_type_text-only {
+    padding: 0;
+    background: none;
+
+    .text {
+      font-size: 14px;
+
+      background-image: $blue-gradient1;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+    }
+  }
+
   &_type_primary:hover,
   &_type_sign-in:hover,
   &_type_menu:hover {
@@ -122,21 +137,41 @@
   &_type_load:hover,
   &_type_item-missing:hover,
   &_type_delay:hover,
-  &_type_order:hover {
+  &_type_order:hover,
+  &_type_text-only:hover {
     opacity: $common-hover-opacity;
   }
 
   &_icon {
     margin-right: 8px;
   }
+
+  &:disabled {
+    opacity: 0.6;
+    background: $gray3;
+    filter: none;
+    box-shadow: none;
+  }
 }
 
 @media screen and (max-width: 550px) {
   .button {
-    &_type_menu {
-      width: 36px;
-      height: 36px;
-      padding: 10px;
+    &_type {
+      &_menu {
+        width: 36px;
+        height: 36px;
+        padding: 10px;
+      }
+
+      &_text-only {
+        .text {
+          font-size: 16px;
+        }
+      }
+
+      &_main-slide {
+        width: 100%;
+      }
     }
 
     &_icon {

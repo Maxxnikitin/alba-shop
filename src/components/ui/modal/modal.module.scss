@@ -15,8 +15,21 @@
   min-width: 616px;
   padding: 36px 40px;
 
+  visibility: hidden;
+  opacity: 0;
   background-color: $text-white;
   border-radius: $common-large-border-radius;
+
+  transition: $common-transition;
+
+  &_small {
+    min-width: 400px;
+  }
+
+  &_open {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .overlay {
@@ -27,7 +40,26 @@
   bottom: 0;
   left: 0;
 
+  visibility: hidden;
+  opacity: 0;
   background-color: $overlay-color;
+
+  transition: $common-transition;
+
+  &_open {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.close_btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.body {
+  overflow: hidden;
 }
 
 @media screen and (max-width: 650px) {
@@ -44,8 +76,17 @@
 
     min-width: 100%;
     height: calc(100% - 68px);
-    padding: 66px 14px;
+    padding: 24px 14px;
 
+    visibility: visible;
+    opacity: 1;
     border-radius: 0;
+
+    transition: $common-transition;
+  }
+
+  .overlay_open {
+    visibility: visible;
+    opacity: 1;
   }
 }

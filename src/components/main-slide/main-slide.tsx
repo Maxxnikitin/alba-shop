@@ -1,33 +1,17 @@
 import clsx from 'clsx';
-import { FC, memo, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC, memo } from 'react';
 
 import styles from './main-slide.module.scss';
 import { IMainSlideProps } from './types';
 
-import { Button, EButtonKinds, Paragraph, Title } from '../ui';
-
 export const MainSlide: FC<IMainSlideProps> = memo(({ data, className = '', ...rest }) => {
-  const { title, text, btnLink, btnText, slide } = data;
-
-  const navigate = useNavigate();
-
-  const handleClick = useCallback(() => navigate(btnLink), [btnLink, navigate]);
+  const { slide, slide_mob: slideMob } = data;
 
   return (
     <div
       className={clsx(styles.container, className)}
-      style={{ backgroundImage: `url(${slide})` }}
+      style={{ backgroundImage: `url(${window.innerWidth > 600 ? slide : slideMob})` }}
       {...rest}
-    >
-      <Title className={styles.title}>{title}</Title>
-      <Paragraph className={styles.text}>{text}</Paragraph>
-      <Button
-        onClick={handleClick}
-        text={btnText}
-        className={styles.btn}
-        kind={EButtonKinds.mainSlide}
-      />
-    </div>
+    />
   );
 });

@@ -11,7 +11,6 @@ import { getDiscountItems } from '~utils';
 
 export const DiscountPage: FC<IDiscountPageProps> = ({ className = '', ...rest }) => {
   const { t } = useTranslation();
-  console.log('q');
 
   return (
     <PageWrapperWithCommonBlocks className={className} {...rest}>

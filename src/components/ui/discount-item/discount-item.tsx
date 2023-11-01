@@ -10,7 +10,6 @@ import { Paragraph, ArrowLinkIcon, ArrowLinkGradientIcon } from '..';
 
 export const DiscountItem: FC<IDiscountItemProps> = memo(({ amount, className = '', ...rest }) => {
   const { t } = useTranslation();
-  console.log('q');
 
   return (
     <Link

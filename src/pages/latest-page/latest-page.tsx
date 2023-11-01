@@ -10,7 +10,6 @@ import { getLatestItems } from '~utils';
 
 export const LatestPage: FC<ILatestPageProps> = ({ className = '', ...rest }) => {
   const { t } = useTranslation();
-  console.log('q');
 
   return (
     <PageWrapperWithCommonBlocks className={className} {...rest}>

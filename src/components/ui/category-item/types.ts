@@ -1,5 +1,6 @@
+import { TCategory } from '~utils';
+
 export interface ICategoryItemProps {
-  text: string;
+  data: TCategory;
   className?: string;
-  icon?: string;
 }

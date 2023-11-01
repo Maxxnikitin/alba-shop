@@ -2,16 +2,7 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import {
-  SignIn,
-  Header,
-  Footer,
-  Filters,
-  QueryNotFound,
-  EmptyCart,
-  DiscountsBox,
-  ScrollToTop,
-} from '..';
+import { FavoriteItems, PersonalData } from '..';
 
 import {
   AboutPage,
@@ -22,83 +13,122 @@ import {
   BestsellersPage,
   DiscountPage,
   DiscountWithPercentPage,
+  MainPage,
+  SignInPage,
+  PersonalAccountPage,
+  CartPage,
+  CatalogPage,
+  CatalogChildrenPage,
+  SearchPage,
 } from '../../pages';
-import { ItemsBox } from '../items-box';
-import { Button, CloseButton, EButtonKinds, Input } from '../ui';
 
-import { DataContext, useContextData } from '~utils';
+import { MainWrapperPage } from '../main-wrapper-page';
+import { OrderItems } from '../order-items';
+
+import { ProtectedRouteElement } from '../protected-route';
+
+import { BrandsPage } from 'src/pages/brand-page';
+
+import '../../models/init';
 
 export function App() {
-  console.log('Render App');
-  const { contextData } = useContextData();
-
   const routes = useRoutes([
     {
+      path: '/sign-in',
+      element: <SignInPage />,
+    },
+    {
       path: '/',
-      element: (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
-          <SignIn />
-          <ItemsBox type='brands' data={contextData.brands} />
-          <DiscountsBox />
-          <EmptyCart />
-          <QueryNotFound />
-          <div style={{ width: 292 }}>
-            <CloseButton text='Close filters' />
-            <Filters />
-          </div>
-          <Button text='Да, очистить корзину' />
-          <Button text='Отменить' kind={EButtonKinds.secondary} />
-          <Button text='Каталог' kind={EButtonKinds.menu} />
-          <Button text='Изменить' kind={EButtonKinds.addition} />
-          <Button text='Загрузить ещё' kind={EButtonKinds.load} />
-          <Button text='Ожидает поступления' kind={EButtonKinds.itemMissing} />
-          <Button text='Войти' kind={EButtonKinds.signIn} />
-          <Button text='Отправить повторно через 50с' kind={EButtonKinds.delay} />
-          <Input label='Город' />
-          <Input placeholder='Имя' label='Имя' />
-          <Input placeholder='Пароль' type='password' />
-        </div>
-      ),
-    },
-    {
-      path: '/account',
-      element: <p>Account</p>,
-    },
-    {
-      path: '/cart',
-      element: <p>Cart</p>,
-    },
-    {
-      path: '/favorites',
-      element: <p>favorite</p>,
-    },
-    {
-      path: '/catalog/:id',
-      element: <ItemDetailsPage />,
-    },
-    {
-      path: '/faq',
-      element: <FaqPage />,
-    },
-    {
-      path: '/about',
-      element: <AboutPage />,
-    },
-    {
-      path: '/latest',
-      element: <LatestPage />,
-    },
-    {
-      path: '/bestsellers',
-      element: <BestsellersPage />,
-    },
-    {
-      path: '/discount',
-      element: <DiscountPage />,
-    },
-    {
-      path: '/discount/:percent',
-      element: <DiscountWithPercentPage />,
+      element: <ProtectedRouteElement element={<MainWrapperPage />} />,
+      children: [
+        {
+          path: '',
+          element: <MainPage />,
+        },
+        {
+          path: 'cart',
+          element: <CartPage />,
+        },
+        {
+          path: '/catalog',
+          element: <CatalogPage />,
+        },
+        {
+          path: '/catalog/product/:id',
+          element: <ItemDetailsPage />,
+        },
+        {
+          path: '/catalog/:category',
+          element: <CatalogChildrenPage />,
+        },
+
+        {
+          path: '/catalog/:category/:category',
+          element: <CatalogChildrenPage />,
+        },
+        {
+          path: '/catalog/:category/:category/:category',
+          element: <CatalogChildrenPage />,
+        },
+        {
+          path: '/faq',
+          element: <FaqPage />,
+        },
+        {
+          path: '/about',
+          element: <AboutPage />,
+        },
+        {
+          path: '/latest',
+          element: <LatestPage />,
+        },
+        {
+          path: '/bestsellers',
+          element: <BestsellersPage />,
+        },
+        {
+          path: '/discount',
+          element: <DiscountPage />,
+        },
+        {
+          path: '/discount/:percent',
+          element: <DiscountWithPercentPage />,
+        },
+        {
+          path: '/personal-account',
+          element: <PersonalAccountPage />,
+          children: [
+            {
+              path: 'orders',
+              element: <OrderItems />,
+            },
+            {
+              path: 'favorite',
+              element: <FavoriteItems />,
+            },
+            {
+              path: 'data',
+              element: <PersonalData />,
+            },
+            {
+              path: 'coupons',
+              element: <p>coupons</p>,
+            },
+          ],
+        },
+        {
+          path: '/brands',
+          element: <BrandsPage />,
+        },
+        {
+          path: '/brands/:brand',
+          element: <BrandsPage />,
+        },
+        {
+          path: '/search',
+          element: <SearchPage />,
+        },
+      ],
     },
     {
       path: '*',
@@ -106,14 +136,5 @@ export function App() {
     },
   ]);
 
-  return (
-    <div className={styles.container}>
-      <ScrollToTop />
-      <DataContext.Provider value={contextData}>
-        <Header />
-        {routes}
-        <Footer />
-      </DataContext.Provider>
-    </div>
-  );
+  return <div className={styles.container}>{routes}</div>;
 }

@@ -1,0 +1,54 @@
+@import '../../common';
+
+.container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+
+  width: 100%;
+  margin: 0;
+  padding: 15px;
+
+  background: none;
+  border: none;
+
+  transition: $common-transition;
+}
+
+.container:hover {
+  cursor: pointer;
+  background-color: $gray8;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  margin: 0;
+}
+
+.invert {
+  filter: invert(100%);
+}
+
+.text {
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 105%;
+  text-align: left;
+
+  &_mob {
+    color: $text-white;
+  }
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.img {
+  flex-shrink: 0;
+  margin-left: auto;
+  fill: $text-white;
+}

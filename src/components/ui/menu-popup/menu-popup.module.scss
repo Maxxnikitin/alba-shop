@@ -1,0 +1,52 @@
+@import '../../common';
+
+.container {
+  position: relative;
+  z-index: 3;
+
+  overflow: auto;
+
+  width: 430px;
+
+  background-color: $text-white;
+  border-radius: $common-menu-border-radius;
+  box-shadow: 0 4px 18px 0 rgb(0 0 0 / 10%);
+}
+
+.overlay {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 16px 16px;
+
+  .title {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
+    color: $text-white;
+  }
+
+  .icon_color {
+    fill: $text-white;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    background-color: $black1;
+    border-radius: 0;
+
+    .header {
+      display: flex;
+    }
+  }
+}

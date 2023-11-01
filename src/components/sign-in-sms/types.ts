@@ -2,6 +2,6 @@ export interface ISignInSmsProps {
   className?: string;
 }
 
-export type THandleSignInRequest = () => void;
+export type THandleSignInRequest = (otp?: number) => void;
 
 export type TInputsData = { [key: string]: string };

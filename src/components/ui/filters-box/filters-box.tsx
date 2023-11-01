@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { nanoid } from 'nanoid';
 import { ChangeEventHandler, FC, memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -6,30 +7,44 @@ import styles from './filters-box.module.scss';
 
 import { IFiltersBoxProps } from './types';
 
-import { Title, ETitleLevel, Checkbox } from '..';
+import { Title, ETitleLevel, Checkbox, FilterLabel } from '..';
 
 import { ArrowFilterIcon } from '../icons';
 
 import { handleToggleState } from '~utils';
 
 export const FiltersBox: FC<IFiltersBoxProps> = memo(
-  ({ className = '', title, filtersList, checkedFiltersData, setCheckedFiltersData, ...rest }) => {
-    const [isOpen, setIsOpen] = useState(false);
+  ({
+    className = '',
+    title,
+    filtersList,
+    checkedFiltersData,
+    currChoosedFilter,
+    countAfterFiltered,
+    isFilterLabelVisible,
+    setIsFilterLabelVisible,
+    setCurrShoosedFilter,
+    handleFilteredDataRender,
+    setCheckedFiltersData,
+    ...rest
+  }) => {
+    const [isOpen, setIsOpen] = useState(true);
     const { t } = useTranslation();
 
-    console.log('Render Filters Checkbox');
-
     const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
-      e => {
+      ({ target }) => {
+        const key = target.id.split('_')[0];
+        setIsFilterLabelVisible(false);
+        setCurrShoosedFilter(target.name);
         setCheckedFiltersData(prev => ({
           ...prev,
           [title]: {
             ...prev[title],
-            [e.target.id]: e.target.checked,
+            [key]: target.checked,
           },
         }));
       },
-      [title, setCheckedFiltersData],
+      [title, setCheckedFiltersData, setCurrShoosedFilter, setIsFilterLabelVisible],
     );
 
     return (
@@ -46,11 +61,19 @@ export const FiltersBox: FC<IFiltersBoxProps> = memo(
             <li className={styles.list_item} key={item.f_id}>
               <Checkbox
                 label={item.f_name}
+                name={item.f_name}
                 quantity={item.f_quantity}
                 checked={checkedFiltersData[title][item.f_id] ?? false}
-                id={item.f_id?.toString()}
+                id={item.f_id?.toString() + `_${nanoid()}`}
                 onChange={handleChange}
               />
+              {currChoosedFilter === item.f_name && isFilterLabelVisible && (
+                <FilterLabel
+                  className={styles.label}
+                  count={countAfterFiltered}
+                  onClick={handleFilteredDataRender}
+                />
+              )}
             </li>
           ))}
         </ul>

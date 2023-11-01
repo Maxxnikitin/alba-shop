@@ -11,11 +11,11 @@ export const PhotosBox: FC<IPhotosBoxProps> = memo(
 
     return (
       <div className={clsx(styles.container, className)} {...rest}>
-        {photos.map((item, i) => (
+        {Object.entries(photos).map(([key, value], i) => (
           <img
-            className={clsx(styles.img, { [styles.img_active]: activePhoto === i })}
-            src={item}
-            id={i.toString()}
+            className={clsx(styles.img, { [styles.img_active]: activePhoto === key })}
+            src={value}
+            id={key}
             key={i}
             alt={t('alts.item') || ''}
             onClick={onClick}

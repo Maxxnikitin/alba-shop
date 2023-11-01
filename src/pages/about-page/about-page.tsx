@@ -10,7 +10,7 @@ import { Contacts, SocialIcons } from '../../components';
 import { Title, Paragraph } from '../../components/ui';
 import img from '../../images/about.jpg';
 
-import { DataContext } from '~utils';
+import { DataContext, getAboutInfo } from '~utils';
 
 export const AboutPage: FC<IAboutPageProps> = ({ className = '', ...rest }) => {
   const [aboutText, setAboutText] = useState('');
@@ -19,10 +19,7 @@ export const AboutPage: FC<IAboutPageProps> = ({ className = '', ...rest }) => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    // getAboutInfo().then(res => setAboutText(res.text));
-    setAboutText(
-      'Повседневная практика показывает, что внедрение современных методик выявляет срочную потребность модели развития. Прежде всего, высокотехнологичная концепция общественного уклада требует определения и уточнения соответствующих условий активизации. Как принято считать, непосредственные участники технического прогресса являются только методом политического участия и ассоциативно распределены по отраслям. ',
-    );
+    getAboutInfo().then(res => setAboutText(res.text));
   }, []);
 
   if (!contacts) return <div>loader</div>;
@@ -44,7 +41,7 @@ export const AboutPage: FC<IAboutPageProps> = ({ className = '', ...rest }) => {
         </div>
       </div>
       <iframe
-        src={contacts.map}
+        src={contacts.map_link}
         title='address'
         width='100%'
         height='375'

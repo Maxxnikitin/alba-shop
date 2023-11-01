@@ -4,12 +4,8 @@ import { IItemDetailsPageProps } from './types';
 
 import { ItemDetails, PageWrapperWithCommonBlocks } from '../../components';
 
-export const ItemDetailsPage: FC<IItemDetailsPageProps> = ({ className = '', ...rest }) => {
-  console.log('q');
-
-  return (
-    <PageWrapperWithCommonBlocks className={className} {...rest}>
-      <ItemDetails />
-    </PageWrapperWithCommonBlocks>
-  );
-};
+export const ItemDetailsPage: FC<IItemDetailsPageProps> = ({ className = '', ...rest }) => (
+  <PageWrapperWithCommonBlocks className={className} {...rest}>
+    <ItemDetails />
+  </PageWrapperWithCommonBlocks>
+);

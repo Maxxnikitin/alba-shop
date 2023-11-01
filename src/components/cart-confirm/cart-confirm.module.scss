@@ -1,0 +1,153 @@
+@import '../common';
+
+.container {
+  .btn_back {
+    margin-bottom: 20px;
+  }
+
+  .title {
+    text-align: left;
+  }
+
+  .subtitle {
+    margin: 24px 0 27px;
+    text-align: left;
+  }
+
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    max-width: 90%;
+
+    .input {
+      width: max(200px, 260px);
+
+      &_error {
+        color: $red1;
+        border: 1px solid $red1;
+      }
+
+      &_error::placeholder {
+        color: $red1;
+      }
+    }
+
+    .edit_phone_error {
+      margin-top: 4px;
+      text-align: left;
+    }
+  }
+
+  .delivery_box {
+    margin-top: 47px;
+
+    .delivery_title {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .radios {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      width: fit-content;
+    }
+  }
+
+  .total_box {
+    margin-top: 56px;
+
+    .price_box {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .total {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 100%;
+      color: $text-black;
+      text-align: left;
+
+      &_num {
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 150%;
+        color: $text-black;
+      }
+    }
+
+    .addition {
+      margin-bottom: 28px;
+
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 120%;
+      text-align: left;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    .title {
+      margin-bottom: 24px;
+    }
+
+    .subtitle {
+      display: none;
+    }
+
+    .form {
+      flex-direction: column;
+      gap: 30px;
+      padding: 32px 28px;
+      background-color: $gray7;
+
+      .input {
+        width: 100%;
+      }
+    }
+
+    .delivery_box {
+      margin-top: 40px;
+
+      .delivery_title {
+        margin-bottom: 20px;
+      }
+
+      .radios {
+        flex-direction: column;
+        gap: 16px;
+
+        &_label {
+          align-items: flex-start;
+          line-height: 1;
+          white-space: normal;
+        }
+      }
+    }
+
+    .total_box {
+      display: flex;
+      flex-direction: column;
+      margin-top: 32px;
+
+      .price_box {
+        justify-content: space-between;
+      }
+
+      .addition {
+        order: 1;
+        text-align: center;
+      }
+
+      .btn {
+        margin-top: 24px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+}

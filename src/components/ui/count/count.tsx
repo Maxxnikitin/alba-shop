@@ -6,12 +6,8 @@ import { ICountProps } from './types';
 
 import { Paragraph } from '../paragraph';
 
-export const Count: FC<ICountProps> = memo(({ className = '', count, ...rest }) => {
-  console.log('rr');
-
-  return (
-    <div className={clsx(styles.container, className)} {...rest}>
-      <Paragraph className={styles.text}>{count}</Paragraph>
-    </div>
-  );
-});
+export const Count: FC<ICountProps> = memo(({ className = '', count, ...rest }) => (
+  <div className={clsx(styles.container, className)} {...rest}>
+    <Paragraph className={styles.text}>{count}</Paragraph>
+  </div>
+));

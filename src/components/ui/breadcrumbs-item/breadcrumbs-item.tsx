@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, memo } from 'react';
+import { FC, memo, useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -9,9 +9,13 @@ import { IBreadcrumbsItemProps } from './types';
 
 import { Paragraph } from '../paragraph';
 
+import { DataContext } from '~utils';
+
 export const BreadcrumbsItem: FC<IBreadcrumbsItemProps> = memo(
-  ({ text, link = '', isActive = false, className = '', ...rest }) => {
+  ({ text, link = '', isActive = false, className = '', brandName, ...rest }) => {
     const { t } = useTranslation();
+    const { breadcrumbs } = useContext(DataContext);
+    const categotyKey = text.split('_')[1];
 
     return (
       <>
@@ -20,11 +24,19 @@ export const BreadcrumbsItem: FC<IBreadcrumbsItemProps> = memo(
             className={clsx(styles.text, { [styles.active]: isActive }, className)}
             {...rest}
           >
-            {t(`breadcrumbs.${text}`)}
+            {brandName && isActive
+              ? brandName
+              : categotyKey
+              ? breadcrumbs[categotyKey] ?? ''
+              : t(`breadcrumbs.${text}`)}
           </Paragraph>
         ) : (
           <Link className={clsx(styles.text, styles.link, className)} to={link} {...rest}>
-            {t(`breadcrumbs.${text}`) + ' /'}
+            {brandName && isActive
+              ? brandName
+              : categotyKey
+              ? (breadcrumbs[categotyKey] ?? '') + ' /'
+              : t(`breadcrumbs.${text}`) + ' /'}
           </Link>
         )}
       </>

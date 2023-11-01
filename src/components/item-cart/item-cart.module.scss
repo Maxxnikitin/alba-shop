@@ -1,0 +1,196 @@
+@import '../common';
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 0 8px;
+
+  border-top: 1px solid $gray3;
+
+  .main_box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-self: start;
+  }
+
+  .img {
+    width: 115px;
+    height: 115px;
+  }
+
+  .able {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 25px;
+    color: $text-black;
+  }
+
+  .name_box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+
+    .name {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 100%;
+      color: $text-black;
+      text-align: left;
+    }
+
+    .about {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 100%;
+      text-align: left;
+    }
+
+    .able {
+      display: none;
+    }
+
+    .cart_btn {
+      display: none;
+    }
+  }
+
+  .price_box {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-end;
+    justify-self: end;
+
+    &_mob {
+      display: none;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 100%;
+      color: $text-black;
+
+      &_amount {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 100%;
+        color: $text-gray;
+      }
+
+      &_prev {
+        position: absolute;
+        top: 8px;
+        left: -60%;
+
+        font-size: 12px;
+        font-weight: 400;
+        font-style: normal;
+        line-height: 1;
+        text-decoration: line-through;
+      }
+
+      &_discount {
+        color: $red3;
+      }
+    }
+  }
+
+  .btn_box {
+    justify-self: end;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .container {
+    padding: 20px 0 12px;
+
+    .main_box {
+      gap: 16px;
+    }
+
+    .cart_btn {
+      display: none;
+    }
+
+    .img {
+      align-self: flex-start;
+      width: 40px;
+      height: 40px;
+      padding: 12px;
+    }
+
+    .able {
+      display: none;
+    }
+
+    .name_box {
+      .name {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 120%;
+      }
+
+      .about {
+        display: none;
+      }
+
+      .able {
+        display: block;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 110%;
+      }
+
+      .cart_btn {
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 0;
+      }
+    }
+
+    .price_box {
+      display: none;
+
+      &_mob {
+        display: block;
+        margin-top: auto;
+
+        .price {
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 120%;
+          text-align: right;
+        }
+      }
+    }
+
+    .btn_box {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      .btn_remove {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .container {
+    .main_box {
+      gap: 0;
+    }
+  }
+}
