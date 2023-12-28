@@ -4,8 +4,28 @@
   display: flex;
 
   box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
 
   background-color: $gray2;
   border: 1px solid $gray1;
   border-radius: $common-small-border-radius;
+}
+
+@media screen and (max-width: 900px) {
+  .tabs {
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .tabs {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .tabs {
+    max-width: 320px;
+  }
 }

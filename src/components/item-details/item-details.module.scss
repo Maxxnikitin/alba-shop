@@ -1,4 +1,4 @@
-.container {
+.main_box {
   display: flex;
   gap: 54px;
   align-items: flex-start;
@@ -6,12 +6,19 @@
 
   box-sizing: border-box;
   width: 100%;
-  max-width: 1226px;
-  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+
+  box-sizing: border-box;
+  width: 100%;
 }
 
 @media screen and (max-width: 850px) {
-  .container {
+  .main_box {
     flex-direction: column;
     gap: 20px;
     align-items: center;
@@ -19,9 +26,13 @@
 }
 
 @media screen and (max-width: 450px) {
-  .container {
+  .main_box {
     .gallery {
       display: none;
     }
+  }
+
+  .container {
+    gap: 24px;
   }
 }

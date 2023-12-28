@@ -1,15 +1,15 @@
 import clsx from 'clsx';
-import { MouseEventHandler, FC, memo, useCallback, useEffect, useState } from 'react';
+import { MouseEventHandler, FC, useCallback, useEffect, useState } from 'react';
 
 import styles from './faq-page.module.scss';
 import { IFaqPageProps } from './types';
 
-import { Title, Accordion } from '../../components/ui';
+import { Title, Accordion, Loader } from '../../components/ui';
 
-import { getFaqData, TGetFaqDataRes } from '~utils';
+import { TGetFaqDataRes, getFaqData } from '~utils';
 
-export const FaqPage: FC<IFaqPageProps> = memo(({ className = '', ...rest }) => {
-  const [data, setData] = useState<TGetFaqDataRes[]>([]);
+export const FaqPage: FC<IFaqPageProps> = ({ className = '', ...rest }) => {
+  const [data, setData] = useState<TGetFaqDataRes[] | null>(null);
   const [openId, setOpenId] = useState<string>('');
 
   const handleOpen: MouseEventHandler<HTMLButtonElement> = useCallback(({ currentTarget }) => {
@@ -19,35 +19,10 @@ export const FaqPage: FC<IFaqPageProps> = memo(({ className = '', ...rest }) => 
   }, []);
 
   useEffect(() => {
-    // getFaqData().then(res => setData(res))
-    setData([
-      {
-        type: 'faq',
-        id: 1,
-        header: 'Как оформить заказ?',
-        description: ['Добавить товар в корзину', 'Перейти в корзину', 'Нажать оформить заказ'],
-      },
-      {
-        type: 'faq',
-        id: 2,
-        header: 'Как оформить заказ?',
-        description: ['Добавить товар в корзину', 'Перейти в корзину', 'Нажать оформить заказ'],
-      },
-      {
-        type: 'faq',
-        id: 3,
-        header: 'Как оформить заказ?',
-        description: [
-          'Добавить товар в корзину',
-          'Перейти в корзину',
-          'Нажать оформить заказ',
-          'Добавить товар в корзину',
-          'Перейти в корзину',
-          'Нажать оформить заказ',
-        ],
-      },
-    ]);
+    getFaqData().then(({ data }) => setData(data));
   }, []);
+
+  if (!data) return <Loader />;
 
   return (
     <section className={clsx(styles.container, className)} {...rest}>
@@ -66,4 +41,4 @@ export const FaqPage: FC<IFaqPageProps> = memo(({ className = '', ...rest }) => 
       </div>
     </section>
   );
-});
+};

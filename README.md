@@ -1,8 +1,3 @@
-# ALBA shop frontend
+# frontend
 
-## start
-
-```
-npm i
-npm run start
-```
+frontend of Albamobile project

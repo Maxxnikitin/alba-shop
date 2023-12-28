@@ -4,7 +4,7 @@
   cursor: pointer;
   user-select: none;
 
-  width: 120px;
+  width: 100%;
   padding: 8px 25px;
 
   font-size: 18px;
@@ -16,7 +16,6 @@
   background: none;
   border: none;
   border-radius: $common-small-border-radius;
-  outline: none;
 
   transition: $common-transition;
 

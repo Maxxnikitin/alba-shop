@@ -7,7 +7,7 @@
 
   box-sizing: border-box;
   min-width: 427px;
-  padding-right: 16px;
+  max-width: 35%;
 }
 
 .subdata {
@@ -73,6 +73,7 @@
 .swiper {
   display: none;
   margin-top: 32px;
+  padding-bottom: 25px;
 }
 
 .img {
@@ -81,20 +82,22 @@
 
 @media screen and (max-width: 850px) {
   .container {
-    padding: 0 16px;
+    max-width: 100%;
+    padding: 0;
   }
 }
 
 @media screen and (max-width: 500px) {
   .container {
     width: 100%;
-    min-width: 0;
+    min-width: fill-available;
   }
 }
 
 @media screen and (max-width: 450px) {
   .swiper {
     display: block;
+    width: 100%;
   }
 }
 

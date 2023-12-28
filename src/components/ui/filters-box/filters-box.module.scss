@@ -1,5 +1,16 @@
 @import '../../common';
 
+.container {
+  position: relative;
+
+  .label {
+    position: absolute;
+    z-index: 100;
+    left: 290px;
+    white-space: nowrap;
+  }
+}
+
 .btn {
   cursor: pointer;
 
@@ -13,7 +24,6 @@
 
   background: none;
   border: none;
-  outline: none;
 }
 
 .img {
@@ -38,10 +48,11 @@
   transition: $common-transition;
 
   &_open {
-    max-height: 150px;
+    margin-bottom: 16px;
   }
 
   &_item {
+    position: relative;
     list-style-type: none;
   }
 }

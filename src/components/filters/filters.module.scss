@@ -1,10 +1,105 @@
+@import '../common';
+
 .container {
+  position: relative;
+  z-index: 5;
+
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
+
   width: 100%;
+
+  .title_box {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 35px 16px 0;
+
+    background-color: $text-white;
+  }
+
+  .label {
+    position: absolute;
+    left: 290px;
+    white-space: nowrap;
+  }
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: 18px 16px;
+
+  background-color: $text-white;
+  box-shadow: 0 -4px 6px 0 rgb(131 131 131 / 15%);
+
+  .success_btn {
+    min-width: 300px;
+  }
 }
 
 .list_item {
+  position: relative;
   list-style-type: none;
+}
+
+.price_box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.total_box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 16px;
+
+  .total_items {
+    &_box {
+      display: flex;
+      gap: 6px;
+    }
+
+    &_text {
+      color: $text-dark;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    height: 120px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .footer {
+    align-items: stretch;
+
+    .close_btn {
+      align-self: center;
+    }
+
+    .success_btn {
+      min-width: fit-content;
+    }
+  }
 }

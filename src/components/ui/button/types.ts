@@ -4,6 +4,8 @@ export interface IButtonProps extends HTMLProps<HTMLButtonElement> {
   text: string;
   type?: 'button' | 'submit' | 'reset';
   kind?: EButtonKinds;
+  isMenuOpen?: boolean;
+  isLoading?: boolean;
 }
 
 export enum EButtonKinds {
@@ -16,4 +18,7 @@ export enum EButtonKinds {
   signIn = 'sign-in',
   delay = 'delay',
   order = 'order',
+  mainSlide = 'main-slide',
+  textOnly = 'text-only',
+  logout = 'logout',
 }

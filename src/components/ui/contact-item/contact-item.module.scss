@@ -1,0 +1,18 @@
+@import '../../common';
+
+.container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  list-style-type: none;
+}
+
+.text {
+  color: $text-black;
+  text-align: left;
+}
+
+.link {
+  color: $text-black;
+  text-decoration: none;
+}

@@ -7,7 +7,7 @@
 
   box-sizing: border-box;
   max-width: 427px;
-  padding: 16px;
+  padding: 16px 0;
 }
 
 .img_box {
@@ -17,16 +17,21 @@
 .img {
   cursor: pointer;
 
+  box-sizing: border-box;
   width: 84px;
   height: 84px;
 
-  filter: drop-shadow(0 2.2929px 2.2929px rgb(0 0 0 / 15%));
+  border-radius: $common-small-border-radius;
 
   transition: $common-transition;
 
   &_active {
-    border-radius: $common-small-border-radius;
-    box-shadow: 0 0 8px 5px $gray3;
+    background-color: $gray2;
+    border: 0.5px solid $gray3;
+  }
+
+  &:hover {
+    background-color: $gray2;
   }
 }
 
@@ -53,6 +58,12 @@
 
 @media screen and (max-width: 500px) {
   .container {
+    gap: 15px;
     width: 100%;
+  }
+
+  .img {
+    width: 70px;
+    height: 70px;
   }
 }

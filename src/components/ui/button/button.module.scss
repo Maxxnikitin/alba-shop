@@ -11,7 +11,6 @@
 
   border: none;
   border-radius: $common-large-border-radius;
-  outline: none;
 
   transition: $common-transition;
 
@@ -56,10 +55,22 @@
     }
   }
 
+  &_type_logout {
+    padding: 13px 30px;
+    background: none;
+    border: 2px solid $gray3;
+
+    .text {
+      color: $gray3;
+    }
+  }
+
   &_type_load {
     width: 100%;
+    height: 60px;
     padding-top: 18px;
     padding-bottom: 18px;
+
     background-color: $gray2;
 
     .text {
@@ -77,7 +88,7 @@
 
   &_type_sign-in {
     width: 100%;
-    max-width: 320px;
+    max-width: 400px;
     background: $blue-gradient1;
     border-radius: $common-small-border-radius;
   }
@@ -101,6 +112,26 @@
     }
   }
 
+  &_type_main-slide {
+    color: $text-white;
+    background: $gray-gradient;
+  }
+
+  &_type_text-only {
+    padding: 0;
+    background: none;
+
+    .text {
+      font-size: 14px;
+
+      background-image: $blue-gradient1;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+    }
+  }
+
   &_type_primary:hover,
   &_type_sign-in:hover,
   &_type_menu:hover {
@@ -108,26 +139,52 @@
     box-shadow: $blue-gradient1-shadow;
   }
 
+  &_type_main-slide:hover {
+    filter: $gray-gradient1-filter;
+    box-shadow: $gray-gradient1-shadow;
+  }
+
   &_type_secondary:hover,
   &_type_addition:hover,
   &_type_load:hover,
   &_type_item-missing:hover,
   &_type_delay:hover,
-  &_type_order:hover {
+  &_type_order:hover,
+  &_type_text-only:hover {
     opacity: $common-hover-opacity;
   }
 
   &_icon {
+    max-width: 18px;
     margin-right: 8px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    background: $gray3;
+    filter: none;
+    box-shadow: none;
   }
 }
 
 @media screen and (max-width: 550px) {
   .button {
-    &_type_menu {
-      width: 36px;
-      height: 36px;
-      padding: 10px;
+    &_type {
+      &_menu {
+        width: 36px;
+        height: 36px;
+        padding: 10px;
+      }
+
+      &_text-only {
+        .text {
+          font-size: 16px;
+        }
+      }
+
+      &_main-slide {
+        width: 100%;
+      }
     }
 
     &_icon {

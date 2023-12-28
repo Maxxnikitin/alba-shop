@@ -5,15 +5,17 @@
 }
 
 .inputs_box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  justify-items: center;
+
   width: 100%;
+  max-width: 400px;
 }
 
 .input {
   box-sizing: border-box;
-  max-width: 68px;
   padding-top: 10px;
   padding-bottom: 10px;
 
@@ -21,6 +23,10 @@
   font-weight: 400;
   line-height: 120%;
   text-align: center;
+}
+
+.field {
+  max-width: 88px;
 }
 
 .fill {
@@ -40,4 +46,34 @@
   line-height: 120%;
   color: $red1;
   text-align: left;
+}
+
+.error_input {
+  color: $red1;
+  background-image: none;
+  border: 1px solid $red1;
+}
+
+@media screen and (max-width: 900px) {
+  .field {
+    max-width: 68px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .field {
+    max-width: 88px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .field {
+    max-width: 68px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .inputs_box {
+    gap: 4px;
+  }
 }

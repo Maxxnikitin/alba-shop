@@ -1,28 +1,28 @@
 import clsx from 'clsx';
 import { FC } from 'react';
 
-import { useTranslation } from 'react-i18next';
-
 import styles from './close-button.module.scss';
 
 import { ICloseButtonProps } from './types';
 
 import { Paragraph } from '..';
 
-import crossIcon from '../../../images/icons/cross.svg';
+import { CrossIcon } from '../icons';
 
 export const CloseButton: FC<ICloseButtonProps> = ({
   className = '',
   textClassName = '',
+  iconClassName = '',
   text,
+  icon: Icon,
   ...rest
-}) => {
-  const { t } = useTranslation();
-
-  return (
-    <button className={clsx(styles.button, className)} {...rest}>
-      {text && <Paragraph className={clsx(styles.text, textClassName)}>{text}</Paragraph>}
-      <img src={crossIcon} alt={t('alts.close-btn') || ''} />
-    </button>
-  );
-};
+}) => (
+  <button className={clsx(styles.button, className)} {...rest}>
+    {text && <Paragraph className={clsx(styles.text, textClassName)}>{text}</Paragraph>}
+    {Icon ? (
+      <Icon className={clsx(styles.icon, iconClassName)} />
+    ) : (
+      <CrossIcon className={clsx(styles.icon, iconClassName)} />
+    )}
+  </button>
+);

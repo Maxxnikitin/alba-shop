@@ -1,0 +1,48 @@
+@import '../../components/common';
+
+.container {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  margin: auto 0;
+
+  .left_column {
+    width: 50%;
+    height: 100dvh;
+
+    background-color: $text-black;
+    background-image: url('../../images/sign-in.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .right_column {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100dvh;
+  }
+
+  .form {
+    margin-top: 103px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .container {
+    justify-content: center;
+    padding: 17px;
+
+    .left_column {
+      display: none;
+    }
+
+    .right_column {
+      width: 100%;
+    }
+
+    .form {
+      margin-top: 0;
+    }
+  }
+}

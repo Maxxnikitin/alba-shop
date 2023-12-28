@@ -13,9 +13,40 @@
 
 .input {
   width: 100%;
+  max-width: 126px;
 }
 
 // .range {
 //   width: 90%;
 //   margin: 0 auto;
 // }
+
+@media screen and (max-width: 970px) {
+  .input {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .input {
+    max-width: 250px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .input {
+    max-width: 230px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .input {
+    max-width: 220px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .input {
+    max-width: 100%;
+  }
+}

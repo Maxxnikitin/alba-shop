@@ -4,6 +4,10 @@
   flex-direction: column;
   height: 48px;
 
+  &_cart {
+    height: 16px;
+  }
+
   .btn {
     position: absolute;
     top: 0;
@@ -12,6 +16,15 @@
     min-width: 290px;
 
     transition: all 0.3s;
+
+    &_cart {
+      display: none;
+    }
+
+    &_item_cart {
+      position: static;
+      min-width: 70px;
+    }
   }
 
   .invisible {
@@ -22,5 +35,24 @@
   .visible {
     visibility: visible;
     opacity: 1;
+  }
+
+  .small {
+    left: 8px;
+    width: 276px;
+    min-width: 276px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    .btn {
+      width: 100%;
+    }
+
+    .small {
+      left: 0;
+      width: 100%;
+    }
   }
 }

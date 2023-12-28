@@ -1,0 +1,27 @@
+@import '../../index';
+
+.slick-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+}
+
+.slick-dots li button {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+  background: $text-gray;
+
+  &::before {
+    display: none;
+  }
+}
+
+.slick-dots li.slick-active button {
+  box-sizing: border-box;
+  width: 14px;
+  height: 14px;
+
+  background: none;
+  border: 2px solid $text-gray;
+}

@@ -1,0 +1,9 @@
+import './favorites-count/init';
+import './cart-count/init';
+import './get-catalog-items/init';
+import './get-catalog-filters-items/init';
+import './cart-items/init';
+import './filters/init';
+import './get-catalog-common/init';
+import './get-favorite-items/init';
+import './get-order-items/init';

@@ -13,6 +13,13 @@
   background: $blue-gradient2;
   border-radius: $common-large-border-radius;
 
+  &_cart {
+    min-width: 70px;
+    height: 16px;
+    padding: 0;
+    background: none;
+  }
+
   .input {
     width: 58px;
     height: 30px;
@@ -27,6 +34,11 @@
     background: none;
     border: none;
     outline: none;
+
+    &_cart {
+      width: 45px;
+      text-align: center;
+    }
   }
 }
 
@@ -41,16 +53,32 @@
   background-repeat: no-repeat;
   background-position: center;
   border: none;
-  outline: none;
 
   transition: $common-transition;
 
   &_minus {
     background-image: url('../../../images/icons/minus.svg');
+    filter: opacity(0.5);
+
+    &_cart {
+      width: 11px;
+      height: 10px;
+    }
   }
 
   &_plus {
     background-image: url('../../../images/icons/plus.svg');
+    filter: opacity(0.5);
+
+    &_cart {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  &:disabled {
+    cursor: auto;
+    opacity: 0.4;
   }
 }
 
@@ -58,14 +86,14 @@
   opacity: $common-hover-opacity;
 }
 
-.btn:disabled {
-  opacity: 0.4;
-}
-
 .amount_box {
   display: flex;
   align-items: center;
   margin-left: -29px;
+
+  &_cart {
+    margin-left: 0;
+  }
 }
 
 .amount {
@@ -73,4 +101,18 @@
   font-weight: 500;
   line-height: 130%;
   color: $text-black;
+}
+
+@media screen and (max-width: 850px) {
+  .btn {
+    &_minus {
+      width: 19px;
+      height: 19px;
+    }
+
+    &_plus {
+      width: 19px;
+      height: 19px;
+    }
+  }
 }

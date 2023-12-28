@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import styles from './characteristics-photos-box.module.scss';
 import { ICharacteristicsPhotoBoxProps } from './types';
 
@@ -15,17 +17,17 @@ export const CharacteristicsPhotoBox: FC<ICharacteristicsPhotoBoxProps> = memo(
       <div className={clsx(styles.container, className)} {...rest}>
         {characteristics.map(item => (
           <div className={styles.img_box} key={item.id}>
-            <img
+            <LazyLoadImage
               className={clsx(styles.img, {
                 [styles.img_active]: currentCharacteristic.id === item.id,
                 [styles.stock_off]: !item.stock,
               })}
-              src={item.photo[0]}
+              src={item.photo.front}
               id={item.id}
               alt={t('alts.item') || ''}
               onClick={onClick}
             />
-            {item.discount !== '0.00' && <Tag className={styles.tag} text='%' />}
+            {item.discount ? <Tag className={styles.tag} text='%' /> : null}
           </div>
         ))}
       </div>

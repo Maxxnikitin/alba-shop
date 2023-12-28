@@ -1,0 +1,68 @@
+@import '../../common';
+
+.container {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  padding: 15px;
+
+  background: none;
+  border: none;
+
+  transition: $common-transition;
+
+  .text {
+    margin-left: 20px;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 105%;
+    color: $text-black;
+    white-space: nowrap;
+  }
+
+  .icon {
+    filter: invert(100%);
+  }
+
+  .img {
+    margin-left: auto;
+    fill: $text-black;
+    transition: $common-transition;
+
+    &_open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &:hover {
+    background-color: $gray-menu;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    .text {
+      color: $text-white;
+    }
+
+    .icon {
+      filter: none;
+    }
+
+    .img {
+      fill: $text-white;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    .text {
+      font-size: 16px;
+    }
+  }
+}

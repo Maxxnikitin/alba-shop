@@ -1,0 +1,108 @@
+@import '../../common';
+
+.container {
+  background: none;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  border: double 1px transparent;
+  border-radius: $common-tag-border-radius;
+
+  .wrapper {
+    padding: 10px;
+    border-radius: $common-tag-border-radius;
+  }
+
+  .text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 105%;
+    text-align: center;
+
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+}
+
+.type {
+  &_new {
+    background-image: linear-gradient(white, white), $gradient-status-new;
+
+    .wrapper {
+      background-color: rgb(116 62 213 / 6%);
+
+      .text {
+        background-image: $gradient-status-new;
+      }
+    }
+  }
+
+  &_in_progress {
+    background-image: linear-gradient(white, white), $gradient-status-in-progress;
+
+    .wrapper {
+      background-color: rgb(129 129 129 / 12%);
+
+      .text {
+        background-image: $gradient-status-in-progress;
+      }
+    }
+  }
+
+  &_ready {
+    background-image: linear-gradient(white, white), $gradient-status-ready;
+
+    .wrapper {
+      background-color: rgb(216 245 255 / 25%);
+
+      .text {
+        background-image: $gradient-status-ready;
+      }
+    }
+  }
+
+  &_sent {
+    background-image: linear-gradient(white, white), $gradient-status-sent;
+
+    .wrapper {
+      background-color: rgb(255 146 18 / 12%);
+
+      .text {
+        background-image: $gradient-status-sent;
+      }
+    }
+  }
+
+  &_canceled {
+    background-image: linear-gradient(white, white), $gradient-status-canceled;
+
+    .wrapper {
+      background-color: rgb(232 53 30 / 5%);
+
+      .text {
+        background-image: $gradient-status-canceled;
+      }
+    }
+  }
+
+  &_received {
+    background-image: linear-gradient(white, white), $gradient-status-received;
+
+    .wrapper {
+      background-color: rgb(76 204 73 / 12%);
+
+      .text {
+        background-image: $gradient-status-received;
+      }
+    }
+  }
+}
+
+@container (width <= 550px) {
+  .container {
+    .wrapper {
+      padding: 8px;
+    }
+  }
+}

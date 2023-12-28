@@ -6,28 +6,41 @@ import { ICostBoxProps } from './types';
 
 import { Title, Paragraph, Tag } from '..';
 
-export const CostBox: FC<ICostBoxProps> = memo(({ className = '', price, discount, ...rest }) => {
-  const displayDiscount = useMemo(() => {
-    const [discountWithoutPenny] = discount.split('.');
-    return +discountWithoutPenny;
-  }, [discount]);
+export const CostBox: FC<ICostBoxProps> = memo(
+  ({ className = '', price, discount, discountedPrice, size = 'small', ...rest }) => {
+    const displayPrice = useMemo(() => {
+      const [priceWithoutPenny] = price.split('.');
+      return priceWithoutPenny;
+    }, [price]);
 
-  const displayPrice = useMemo(() => {
-    const [priceWithoutPenny] = price.split('.');
-    const priceToNum = +priceWithoutPenny;
+    const displayDiscountedPrice = useMemo(() => {
+      const [priceWithoutPenny] = discountedPrice.split('.');
+      return priceWithoutPenny;
+    }, [discountedPrice]);
 
-    return Math.round(priceToNum - (priceToNum / 100) * displayDiscount);
-  }, [price, displayDiscount]);
-
-  return (
-    <div className={clsx(styles.container, className)} {...rest}>
-      <Title className={styles.cost}>{displayPrice} ₽</Title>
-      {displayDiscount ? (
-        <>
-          <Paragraph className={styles.cost_prev}>{price}</Paragraph>
-          <Tag text={`-${displayDiscount}%`} />
-        </>
-      ) : null}
-    </div>
-  );
-});
+    return (
+      <div className={clsx(styles.container, className)} {...rest}>
+        {discount ? (
+          <>
+            <Title className={clsx(styles.cost, { [styles.cost_small]: size === 'small' })}>
+              {displayDiscountedPrice} ₽
+            </Title>
+            <Paragraph
+              className={clsx(styles.cost_prev, { [styles.cost_prev_small]: size === 'small' })}
+            >
+              {displayPrice} ₽
+            </Paragraph>
+            <Tag
+              className={clsx({ [styles.tag_small]: size === 'small' })}
+              text={size === 'small' ? '%' : `-${discount}%`}
+            />
+          </>
+        ) : (
+          <Title className={clsx(styles.cost, { [styles.cost_small]: size === 'small' })}>
+            {displayPrice} ₽
+          </Title>
+        )}
+      </div>
+    );
+  },
+);

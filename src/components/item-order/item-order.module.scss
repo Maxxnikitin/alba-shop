@@ -1,0 +1,177 @@
+@import '../common';
+
+.container {
+  padding: 27px;
+  list-style-type: none;
+  border: 1px solid $gray3;
+  border-radius: $common-small-border-radius;
+
+  .row {
+    &_first {
+      display: grid;
+      grid-template-columns: 60% 1fr 1fr;
+      padding-bottom: 27px;
+
+      .order {
+        &_price_box {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          align-items: flex-end;
+        }
+
+        &_num_box {
+          display: flex;
+          gap: 14px;
+          align-items: center;
+        }
+
+        &_num {
+          font-size: 22px;
+          font-weight: 600;
+          line-height: 100%;
+          color: $text-black;
+        }
+
+        &_date {
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 100%;
+        }
+
+        &_amount {
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 100%;
+          text-align: left;
+        }
+
+        &_price {
+          justify-self: end;
+
+          font-size: 22px;
+          font-weight: 600;
+          line-height: 100%;
+          color: $text-black;
+        }
+      }
+    }
+
+    &_second {
+      display: grid;
+      grid-template-columns: 60% 1fr 1fr;
+      align-items: center;
+      justify-items: start;
+
+      .photos {
+        display: flex;
+        gap: 18px;
+        padding: 0;
+
+        &_photo {
+          width: 54px;
+          height: 54px;
+        }
+      }
+
+      .btn {
+        justify-self: end;
+      }
+    }
+  }
+
+  .status_mob {
+    display: none;
+  }
+}
+
+@container (width <= 900px) {
+  .container {
+    .row {
+      &_first {
+        grid-template-columns: 50% 1fr 1fr;
+      }
+
+      &_second {
+        grid-template-columns: 50% 1fr 1fr;
+      }
+    }
+  }
+}
+
+@container (width <= 700px) {
+  .container {
+    .row {
+      &_first {
+        grid-template-columns: 40% 1fr 1fr;
+
+        .order {
+          &_num_box {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+        }
+      }
+
+      &_second {
+        grid-template-columns: 40% 1fr 1fr;
+      }
+    }
+  }
+}
+
+@container (width <= 550px) {
+  .container {
+    padding: 24px 14px;
+
+    .row {
+      &_first {
+        grid-template-columns: 1fr 1fr;
+        padding-bottom: 23px;
+
+        .order {
+          &_amount {
+            display: none;
+          }
+
+          &_num {
+            font-size: 16px;
+          }
+
+          &_date {
+            font-size: 12px;
+          }
+
+          &_num_box {
+            gap: 8px;
+          }
+
+          &_price {
+            font-size: 16px;
+          }
+        }
+      }
+
+      &_second {
+        grid-template-columns: 1fr 1fr;
+
+        .photos {
+          gap: 0;
+
+          &_photo {
+            width: 50px;
+            height: 50px;
+          }
+        }
+      }
+    }
+
+    .status {
+      display: none;
+
+      &_mob {
+        display: block;
+      }
+    }
+  }
+}

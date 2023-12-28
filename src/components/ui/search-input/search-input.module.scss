@@ -2,7 +2,7 @@
 
 .form {
   position: relative;
-  width: 50%;
+  width: 100%;
 }
 
 .input {
@@ -28,8 +28,43 @@
   color: $text-dark;
 }
 
-.icon {
+.search_btn {
+  cursor: pointer;
+
   position: absolute;
+  z-index: 3;
   top: 11px;
   right: 24px;
+
+  margin: 0;
+  padding: 0;
+
+  background: none;
+  border: none;
+
+  &_mob {
+    top: 7px;
+    right: auto;
+    left: 9px;
+  }
+}
+
+.close {
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 3;
+  top: 11px;
+  right: 58px;
+
+  &_mob {
+    top: 7px;
+    right: 15px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .form {
+    min-width: auto;
+  }
 }

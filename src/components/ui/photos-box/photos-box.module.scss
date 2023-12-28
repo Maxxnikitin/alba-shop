@@ -10,18 +10,27 @@
 
   box-sizing: border-box;
   max-height: 603px;
-  padding: 16px;
 }
 
 .img {
   cursor: pointer;
-  width: 82px;
-  height: 83px;
+
+  box-sizing: border-box;
+  width: 106px;
+  height: 107px;
+  padding: 12px;
+
+  border-radius: $common-small-border-radius;
+
   transition: $common-transition;
 
   &_active {
-    border-radius: $common-small-border-radius;
-    box-shadow: 0 0 8px 5px $gray3;
+    background-color: $gray2;
+    border: 0.5px solid $gray3;
+  }
+
+  &:hover {
+    background-color: $gray2;
   }
 }
 

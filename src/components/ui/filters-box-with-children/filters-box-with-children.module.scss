@@ -1,5 +1,9 @@
 @import '../../common';
 
+.container {
+  position: relative;
+}
+
 .btn {
   cursor: pointer;
 
@@ -13,7 +17,6 @@
 
   background: none;
   border: none;
-  outline: none;
 }
 
 .img {
@@ -39,6 +42,7 @@
 
   &_open {
     max-height: 120px;
+    margin-bottom: 16px;
   }
 
   &_item {

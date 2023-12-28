@@ -1,0 +1,155 @@
+@import '../common';
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1366px;
+  padding: 0;
+}
+
+.main_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.title_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 38px;
+  padding-left: 16px;
+}
+
+.title {
+  text-align: left;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, auto));
+  gap: 24px 19px;
+  justify-items: center;
+
+  width: 100%;
+  margin: 0 0 24px;
+  padding: 0;
+}
+
+.filters_box {
+  display: flex;
+}
+
+.filters_sticky {
+  z-index: 1;
+  width: 100%;
+  height: fit-content;
+}
+
+.sort_filters_box {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 36px;
+}
+
+.filter_btn {
+  display: none;
+}
+
+.pagination {
+  align-self: center;
+  margin-top: 30px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 292px 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+.modal {
+  z-index: 11;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 970px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+
+  .title_box {
+    padding-left: 0;
+  }
+
+  .filter_btn {
+    display: flex;
+  }
+
+  .filters_box {
+    display: none;
+  }
+
+  .filters_mob {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    overflow-y: auto;
+
+    height: calc(100dvh - 90px);
+    padding-bottom: 20px;
+
+    background-color: $text-white;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .title_box_text {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .filters_mob {
+    height: calc(100dvh - 130px);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .list {
+    margin-bottom: 16px;
+  }
+
+  .title_box {
+    margin: 0;
+  }
+
+  .title {
+    margin-top: 0;
+    margin-bottom: 14px;
+  }
+
+  .sort_filters_box {
+    margin-bottom: 29px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .modal {
+    height: calc(100dvh - 68px);
+  }
+
+  .filters_mob {
+    height: calc(100dvh - 210px);
+  }
+}

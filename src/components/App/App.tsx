@@ -2,57 +2,141 @@ import { useRoutes } from 'react-router-dom';
 
 import styles from './App.module.scss';
 
-import { SignIn, Header, Footer, Filters, QueryNotFound, EmptyCart, ItemDetails } from '..';
-import { FaqPage, NotFound } from '../../pages';
-import { Button, CloseButton, EButtonKinds, Input } from '../ui';
+import { FavoriteItems, PersonalData } from '..';
+
+import {
+  AboutPage,
+  FaqPage,
+  NotFound,
+  LatestPage,
+  BestsellersPage,
+  DiscountPage,
+  DiscountWithPercentPage,
+  MainPage,
+  SignInPage,
+  PersonalAccountPage,
+  CartPage,
+  CatalogPage,
+  CatalogChildrenPage,
+  SearchPage,
+} from '../../pages';
+
+import { MainWrapperPage } from '../main-wrapper-page';
+import { OrderItems } from '../order-items';
+
+import { ProtectedRouteElement } from '../protected-route';
+
+import { BrandsPage } from 'src/pages/brand-page';
+
+import '../../models/init';
 
 export function App() {
-  console.log('Render App');
   const routes = useRoutes([
     {
+      path: '/sign-in',
+      element: <SignInPage />,
+    },
+    {
       path: '/',
-      element: (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
-          <SignIn />
-          <EmptyCart />
-          <QueryNotFound />
-          <div style={{ width: 292 }}>
-            <CloseButton text='Close filters' />
-            <Filters />
-          </div>
-          <Button text='Да, очистить корзину' />
-          <Button text='Отменить' kind={EButtonKinds.secondary} />
-          <Button text='Каталог' kind={EButtonKinds.menu} />
-          <Button text='Изменить' kind={EButtonKinds.addition} />
-          <Button text='Загрузить ещё' kind={EButtonKinds.load} />
-          <Button text='Ожидает поступления' kind={EButtonKinds.itemMissing} />
-          <Button text='Войти' kind={EButtonKinds.signIn} />
-          <Button text='Отправить повторно через 50с' kind={EButtonKinds.delay} />
-          <Input label='Город' />
-          <Input placeholder='Имя' label='Имя' />
-          <Input placeholder='Пароль' type='password' />
-        </div>
-      ),
-    },
-    {
-      path: '/account',
-      element: <p>Account</p>,
-    },
-    {
-      path: '/cart',
-      element: <p>Cart</p>,
-    },
-    {
-      path: '/favourites',
-      element: <p>Favourites</p>,
-    },
-    {
-      path: '/catalog/:id',
-      element: <ItemDetails />,
-    },
-    {
-      path: '/faq',
-      element: <FaqPage />,
+      element: <ProtectedRouteElement element={<MainWrapperPage />} />,
+      children: [
+        {
+          path: '',
+          element: <MainPage />,
+        },
+        {
+          path: 'cart',
+          element: <CartPage />,
+        },
+        {
+          path: '/catalog',
+          element: <CatalogPage />,
+        },
+        // каталог имеет разный уровень вложенности, поэтому несколько вариантов рендеринга компонента
+        {
+          path: '/catalog/:id',
+          element: <CatalogChildrenPage />,
+        },
+        {
+          path: '/catalog/:id/:id',
+          element: <CatalogChildrenPage />,
+        },
+        {
+          path: '/catalog/:id/:id/:id',
+          element: <CatalogChildrenPage />,
+        },
+        // последний :id - это id конкретного товара, остальное - id категории.
+        {
+          path: '/catalog/:id/:id/:id/:id',
+          element: <CatalogChildrenPage />,
+        },
+        {
+          path: '/faq',
+          element: <FaqPage />,
+        },
+        {
+          path: '/about',
+          element: <AboutPage />,
+        },
+        {
+          path: '/latest',
+          element: <LatestPage />,
+        },
+        {
+          path: '/latest/:id',
+          element: <CatalogChildrenPage />,
+        },
+        {
+          path: '/bestsellers',
+          element: <BestsellersPage />,
+        },
+        {
+          path: '/bestsellers/:id',
+          element: <CatalogChildrenPage />,
+        },
+        {
+          path: '/discount',
+          element: <DiscountPage />,
+        },
+        {
+          path: '/discount/:percent',
+          element: <DiscountWithPercentPage />,
+        },
+        {
+          path: '/personal-account',
+          element: <PersonalAccountPage />,
+          children: [
+            {
+              path: 'orders',
+              element: <OrderItems />,
+            },
+            {
+              path: 'favorite',
+              element: <FavoriteItems />,
+            },
+            {
+              path: 'data',
+              element: <PersonalData />,
+            },
+            // {
+            //   path: 'coupons',
+            //   element: <p>coupons</p>,
+            // },
+          ],
+        },
+        {
+          path: '/brands',
+          element: <BrandsPage />,
+        },
+        {
+          path: '/brands/:brand',
+          element: <BrandsPage />,
+        },
+        {
+          path: '/search',
+          element: <SearchPage />,
+        },
+      ],
     },
     {
       path: '*',
@@ -60,11 +144,5 @@ export function App() {
     },
   ]);
 
-  return (
-    <div className={styles.container}>
-      <Header />
-      {routes}
-      <Footer />
-    </div>
-  );
+  return <div className={styles.container}>{routes}</div>;
 }

@@ -3,6 +3,8 @@ import { FC, memo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import styles from './empty-cart.module.scss';
 import { IEmptyCartProps } from './types';
 
@@ -18,12 +20,17 @@ export const EmptyCart: FC<IEmptyCartProps> = memo(({ className = '', ...rest })
 
   return (
     <div className={clsx(styles.container, className)} {...rest}>
-      <img className={styles.img} src={image} alt={t('alts.not-found') || ''} />
+      <Title className={styles.page_title}>{t('cart.title')}</Title>
+      <LazyLoadImage className={styles.img} src={image} alt={t('alts.not-found') || ''} />
       <Title className={styles.title} level={ETitleLevel.h6}>
         {t('empty-cart.title')}
       </Title>
       <Paragraph className={styles.text}>{t('empty-cart.text')}</Paragraph>
-      <Button text={t('empty-cart.btn')} onClick={handleNavigateToMainClick} />
+      <Button
+        className={styles.btn}
+        text={t('empty-cart.btn')}
+        onClick={handleNavigateToMainClick}
+      />
     </div>
   );
 });

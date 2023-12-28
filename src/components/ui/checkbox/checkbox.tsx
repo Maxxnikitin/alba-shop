@@ -11,8 +11,6 @@ export const Checkbox: FC<ICheckboxProps> = memo(
   ({ className = '', boxClassName = '', label, id, quantity, ...rest }) => {
     const currId = id ?? nanoid();
 
-    console.log('Render Checkbox');
-
     return (
       <div className={clsx(styles.container, boxClassName)}>
         <input className={clsx(styles.input, className)} type='checkbox' id={currId} {...rest} />

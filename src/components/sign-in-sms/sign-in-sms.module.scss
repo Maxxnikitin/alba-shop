@@ -4,7 +4,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 320px;
+
+  width: 100%;
+  max-width: 400px;
 }
 
 .title {
@@ -12,9 +14,46 @@
 }
 
 .paragraph {
-  margin-bottom: 30px;
+  margin-bottom: 8px;
+
+  &_margin {
+    margin-top: 150px;
+  }
 }
 
 .btn {
   margin-top: 15px;
+
+  &:disabled {
+    background-color: $text-gray;
+  }
+}
+
+.error {
+  align-self: flex-start;
+  height: 17px;
+  margin-bottom: 4px;
+  visibility: hidden;
+
+  &_active {
+    visibility: visible;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .form {
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .form {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .form {
+    max-width: 320px;
+  }
 }

@@ -1,2 +1,2 @@
-export * from './sign-in-sms';
-export * from './types';
+import Component from './sign-in-sms';
+export default Component;

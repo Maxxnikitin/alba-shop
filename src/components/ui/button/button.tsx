@@ -5,11 +5,20 @@ import styles from './button.module.scss';
 
 import { IButtonProps } from './types';
 
-import MenuIcon from '../../../images/icons/menu-icon.svg';
+import { MenuCloseIcon, MenuIcon } from '../icons';
 import { Paragraph } from '../paragraph';
 
 export const Button: FC<IButtonProps> = memo(
-  ({ text, type = 'button', kind = 'primary', className = '', ...rest }) => (
+  ({
+    text,
+    type = 'button',
+    kind = 'primary',
+    isMenuOpen,
+    isLoading,
+    disabled,
+    className = '',
+    ...rest
+  }) => (
     <button
       className={clsx(
         styles.button,
@@ -19,9 +28,15 @@ export const Button: FC<IButtonProps> = memo(
         className,
       )}
       type={type}
+      disabled={disabled || isLoading}
       {...rest}
     >
-      {kind === 'menu' && <img className={styles.button_icon} src={MenuIcon} alt='Иконка.' />}
+      {kind === 'menu' &&
+        (isMenuOpen ? (
+          <MenuCloseIcon className={styles.button_icon} />
+        ) : (
+          <MenuIcon className={styles.button_icon} />
+        ))}
       <Paragraph className={clsx(styles.text, { [styles.text_none]: kind === 'menu' })}>
         {text}
       </Paragraph>

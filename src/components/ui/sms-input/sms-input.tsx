@@ -16,20 +16,29 @@ import { TSmsInputProps } from './types';
 import { Input, Paragraph } from '..';
 
 export const SmsInput: FC<TSmsInputProps> = memo(
-  ({ handleRequest, setInputsData, inputsData, fieldClassName = '', errorText = '', ...rest }) => {
-    const input0Ref = useRef(null);
+  ({
+    handleRequest,
+    setInputsData,
+    inputsData,
+    fieldClassName = '',
+    errorText = '',
+    isError,
+    input0Ref,
+    handleRemoveError,
+    ...rest
+  }) => {
     const input1Ref = useRef(null);
     const input2Ref = useRef(null);
     const input3Ref = useRef(null);
 
-    const refsData = useMemo(() => [input0Ref, input1Ref, input2Ref, input3Ref], []);
+    const refsData = useMemo(() => [input0Ref, input1Ref, input2Ref, input3Ref], [input0Ref]);
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
       e => {
         const { id } = e.target;
         let { value } = e.target;
 
-        if (value !== '' && !+value) return;
+        if (value !== '' && isNaN(+value)) return;
 
         if (value.length > 1) {
           value = value.substring(value.length - 1);
@@ -45,11 +54,13 @@ export const SmsInput: FC<TSmsInputProps> = memo(
           if (nextInput) {
             nextInput.current?.focus();
           } else {
-            handleRequest();
+            const currInput: MutableRefObject<HTMLInputElement | null> = refsData[+id];
+            currInput.current?.blur();
+            handleRequest(+(Object.values(inputsData).join('') + value));
           }
         }
       },
-      [refsData, setInputsData, handleRequest],
+      [refsData, inputsData, setInputsData, handleRequest],
     );
 
     useEffect(() => {
@@ -68,9 +79,19 @@ export const SmsInput: FC<TSmsInputProps> = memo(
               id={key}
               type='text'
               ref={refsData[Number(key)]}
-              className={clsx(styles.input, { [styles.fill]: value })}
+              className={clsx(styles.input, {
+                [styles.fill]: value,
+                [styles.error_input]: isError,
+              })}
+              fieldClassName={styles.field}
               value={value}
               onChange={handleChange}
+              onFocus={() => {
+                if (isError) {
+                  handleRemoveError();
+                  (input0Ref as MutableRefObject<HTMLInputElement | null>)?.current?.focus();
+                }
+              }}
             />
           ))}
         </div>

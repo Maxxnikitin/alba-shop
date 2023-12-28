@@ -2,6 +2,7 @@
 
 .input {
   box-sizing: border-box;
+  height: 51px;
   padding: 16px;
 
   font-size: 16px;
@@ -12,6 +13,11 @@
   background-color: $text-white;
   border: 1px solid $gray3;
   border-radius: $common-small-border-radius;
+
+  &_error {
+    color: $red1;
+    border: 1px solid $red1;
+  }
 }
 
 .input::placeholder {

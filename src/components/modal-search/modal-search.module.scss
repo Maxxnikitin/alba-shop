@@ -1,0 +1,32 @@
+@import '../common';
+
+.container {
+  background-color: $text-black;
+
+  .close {
+    position: absolute;
+    top: 26px;
+    right: 14px;
+  }
+
+  .search {
+    align-self: flex-start;
+    width: calc(100% - 38px);
+  }
+
+  .input {
+    padding: 9px;
+    padding-left: 46px;
+  }
+
+  .list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .search_error {
+    padding: 15px;
+    color: $text-white;
+    text-align: left;
+  }
+}

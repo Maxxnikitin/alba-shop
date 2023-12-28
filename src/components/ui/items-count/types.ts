@@ -5,4 +5,5 @@ export interface IItemsCountProps extends HTMLProps<HTMLDivElement> {
   handleBtnsClick: MouseEventHandler<HTMLButtonElement>;
   handleInputChange: ChangeEventHandler<HTMLInputElement>;
   amount?: number;
+  isInCart?: boolean;
 }

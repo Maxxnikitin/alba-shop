@@ -1,0 +1,14 @@
+@import '../common';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  margin: 0;
+  padding: 22px 34px;
+
+  background-color: $gray2;
+  border: 0.5px solid $text-gray;
+  border-radius: $common-small-border-radius;
+}

@@ -1,0 +1,70 @@
+@import '../../common';
+
+.container {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.label {
+  cursor: pointer;
+  user-select: none;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding-right: 12px;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 14px;
+  color: $text-black;
+  white-space: nowrap;
+}
+
+.label::before {
+  content: '';
+
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+
+  border: 1px solid $gray5;
+  border-radius: 50%;
+}
+
+.input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+
+  &:disabled {
+    & + .label {
+      opacity: 0.6;
+    }
+  }
+}
+
+input:checked + .label::after {
+  content: '';
+
+  position: absolute;
+  top: 4px;
+  left: 4px;
+
+  width: 8px;
+  height: 8px;
+
+  background: $blue-gradient1;
+  border-radius: 50%;
+}

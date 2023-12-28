@@ -1,6 +1,16 @@
 import clsx from 'clsx';
+import { useStore } from 'effector-react';
 import debounce from 'lodash/debounce';
-import { ChangeEventHandler, FC, memo, MouseEventHandler, useCallback, useState } from 'react';
+import {
+  ChangeEventHandler,
+  FC,
+  memo,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from './cart-button.module.scss';
@@ -9,20 +19,42 @@ import { ICartButtonProps } from './types';
 import { Button } from '../button';
 import { ItemsCount } from '../items-count';
 
+import { $cartItemsStore } from 'src/models';
+
 export const CartButton: FC<ICartButtonProps> = memo(
-  ({ className = '', amount = 1, max, ...rest }) => {
+  ({
+    max,
+    className = '',
+    amount = 0,
+    isSmall = false,
+    disabled,
+    isInCart,
+    handleAddToCart,
+    handleUpdateInCart,
+    handleDeleteFromCart,
+    ...rest
+  }) => {
     const [curAmount, setCurAmount] = useState(amount);
     const [cart, setCart] = useState(curAmount);
     const { t } = useTranslation();
 
-    const handleFetch = useCallback((val: number) => setCart(val), []);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const handleFetchDebounced = useCallback(debounce(handleFetch, 2000), [handleFetch]);
+    const { status } = useStore($cartItemsStore);
 
-    const handleAddToCartCLick: MouseEventHandler<HTMLButtonElement> = useCallback(() => {
-      setCurAmount(1);
-      handleFetch(1);
-    }, [handleFetch]);
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const handleFetch = useCallback(
+      (val: number) => {
+        if (val) {
+          handleUpdateInCart(val);
+        } else {
+          handleDeleteFromCart();
+        }
+        inputRef.current?.blur();
+      },
+      [handleDeleteFromCart, handleUpdateInCart],
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const handleFetchDebounced = useCallback(debounce(handleFetch, 1500), [handleFetch]);
 
     const handleBtnsClick: MouseEventHandler<HTMLButtonElement> = useCallback(
       ({ currentTarget }) => {
@@ -32,12 +64,9 @@ export const CartButton: FC<ICartButtonProps> = memo(
           setCurAmount(prev => ++prev);
         } else {
           setCurAmount(prev => --prev);
-          if (curAmount === 1) {
-            handleFetch(curAmount - 1);
-          }
         }
       },
-      [curAmount, handleFetch],
+      [],
     );
 
     const handleInputChange: ChangeEventHandler<HTMLInputElement> = useCallback(
@@ -45,24 +74,54 @@ export const CartButton: FC<ICartButtonProps> = memo(
         const val = +target.value;
 
         setCurAmount(val > max ? max : val);
-        handleFetchDebounced(val);
       },
-      [max, handleFetchDebounced],
+      [max],
     );
 
+    useEffect(() => {
+      setCart(amount);
+      setCurAmount(amount);
+    }, [amount]);
+
+    useEffect(() => {
+      if (cart !== curAmount) {
+        handleFetchDebounced(curAmount);
+      }
+    }, [curAmount, handleFetchDebounced, cart]);
+
+    useEffect(() => {
+      if (status === 'REJECT') {
+        setCurAmount(amount);
+      }
+    }, [amount, status]);
+
     return (
-      <div className={clsx(styles.container, className)} {...rest}>
+      <div
+        className={clsx(styles.container, className, { [styles.container_cart]: isInCart })}
+        {...rest}
+      >
         <Button
-          text={t('item.btn')}
-          onClick={handleAddToCartCLick}
-          className={clsx(styles.btn, styles.invisible, { [styles.visible]: cart <= 0 })}
+          text={t(disabled ? 'item.btn-empty' : 'item.btn')}
+          onClick={handleAddToCart}
+          disabled={disabled}
+          className={clsx(styles.btn, styles.invisible, {
+            [styles.visible]: cart <= 0,
+            [styles.small]: isSmall,
+            [styles.btn_cart]: isInCart,
+          })}
         />
         <ItemsCount
           max={max}
+          ref={inputRef}
           amount={curAmount}
+          isInCart={isInCart}
           handleBtnsClick={handleBtnsClick}
           handleInputChange={handleInputChange}
-          className={clsx(styles.btn, styles.invisible, { [styles.visible]: cart > 0 })}
+          className={clsx(styles.btn, styles.invisible, {
+            [styles.visible]: cart > 0,
+            [styles.small]: isSmall,
+            [styles.btn_item_cart]: isInCart,
+          })}
         />
       </div>
     );

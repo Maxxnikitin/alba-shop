@@ -1,0 +1,32 @@
+@import '../../common';
+
+.button {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0;
+
+  background: none;
+  border: none;
+
+  transition: $common-transition;
+}
+
+.button:hover {
+  opacity: $common-hover-opacity;
+}
+
+.text {
+  margin-left: 8px;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 14px;
+  color: $text-black;
+}
+
+.icon {
+  fill: $text-black;
+}

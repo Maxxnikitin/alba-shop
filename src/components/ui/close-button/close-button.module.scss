@@ -10,7 +10,6 @@
 
   background: none;
   border: none;
-  outline: none;
 
   transition: $common-transition;
 }
@@ -26,4 +25,8 @@
   font-weight: 400;
   line-height: 14px;
   color: $text-black;
+}
+
+.icon {
+  fill: $text-black;
 }

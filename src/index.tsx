@@ -4,17 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './fonts/San Francisco Pro Display/fonts.css';
 import 'rc-slider/assets/index.css';
-// import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
-// import 'swiper/css/scrollbar';
-import 'swiper/scss';
-import 'swiper/scss/navigation';
-import 'swiper/scss/pagination';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './index.scss';
 import { App } from './components';
 import reportWebVitals from './reportWebVitals';
 import './i18n';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
@@ -24,6 +20,8 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>,
 );
+
+serviceWorkerRegistration.register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

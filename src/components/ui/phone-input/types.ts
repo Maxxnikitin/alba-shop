@@ -1,3 +1,5 @@
 import { HTMLProps } from 'react';
 
-export interface IPhoneInputProps extends HTMLProps<HTMLInputElement> {}
+export interface IPhoneInputProps extends HTMLProps<HTMLInputElement> {
+  isError?: boolean;
+}

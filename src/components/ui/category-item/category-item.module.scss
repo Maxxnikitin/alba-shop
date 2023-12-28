@@ -1,10 +1,38 @@
 @import '../../common';
 
 .container {
-  display: flex;
-  align-items: center;
-  padding: 8px 0;
   list-style-type: none;
+
+  .link {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: fit-content;
+    padding: 8px 0;
+
+    text-decoration: none;
+
+    &::after {
+      content: '';
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      width: 0;
+      height: 2px;
+
+      background: $blue-gradient1;
+
+      transition: $common-transition;
+    }
+
+    &:hover.link::after {
+      width: 103%;
+    }
+  }
 
   .text {
     margin-left: 20px;
@@ -19,5 +47,9 @@
 @media screen and (max-width: 570px) {
   .container {
     padding: 12px 0;
+
+    .link {
+      padding: 0;
+    }
   }
 }

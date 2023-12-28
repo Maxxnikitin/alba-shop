@@ -1,0 +1,249 @@
+@import '../common';
+
+.container {
+  .title {
+    margin-bottom: 4px;
+    text-align: left;
+  }
+
+  .btn_clean {
+    margin-bottom: 33px;
+
+    &_text {
+      font-size: 18px;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 25px;
+      color: $text-dark;
+    }
+  }
+
+  .table {
+    &_head {
+      display: grid;
+      grid-template-columns: 50% 1fr 1fr 1fr 1fr;
+      gap: 10px;
+      justify-items: center;
+
+      margin-bottom: 20px;
+
+      &_text {
+        &:nth-child(1) {
+          justify-self: start;
+        }
+
+        &:nth-child(4) {
+          justify-self: end;
+        }
+
+        &:nth-child(5) {
+          justify-self: end;
+        }
+      }
+    }
+
+    &_list {
+      margin: 0;
+      padding: 0;
+
+      &_item {
+        display: grid;
+        grid-template-columns: 50% 1fr 1fr 1fr 1fr;
+        gap: 10px;
+        justify-items: center;
+      }
+    }
+  }
+
+  .summary {
+    display: flex;
+    gap: 50px;
+    justify-content: space-between;
+    margin-top: 45px;
+
+    .first_col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      .weight_text {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 100%;
+        color: $text-black;
+        text-align: left;
+      }
+
+      .weight {
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 150%;
+        color: $text-black;
+      }
+
+      .min_order {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 25px;
+        color: $text-gray;
+        text-align: left;
+      }
+    }
+
+    .second_col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .row {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: space-between;
+
+        min-width: 392px;
+
+        &_text {
+          font-size: 22px;
+          font-weight: 600;
+          line-height: 100%;
+          color: $text-black;
+        }
+
+        &_value {
+          font-size: 28px;
+          font-weight: 500;
+          line-height: 150%;
+          color: $text-black;
+
+          &_prev {
+            position: relative;
+            top: 2px;
+            line-height: 1;
+            text-decoration: line-through;
+          }
+        }
+      }
+
+      .btn {
+        align-self: flex-end;
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    .summary {
+      .second_col {
+        .row {
+          min-width: 300px;
+        }
+      }
+    }
+
+    .table {
+      &_head {
+        display: grid;
+        grid-template-columns: 50% 1fr 1fr 1fr 60px;
+      }
+
+      &_list {
+        margin: 0;
+        padding: 0;
+
+        &_item {
+          display: grid;
+          grid-template-columns: 50% 1fr 1fr 1fr 60px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .container {
+    .table {
+      &_head {
+        display: none;
+      }
+
+      &_list {
+        &_item {
+          display: flex;
+          gap: 10px;
+          align-items: stretch;
+        }
+      }
+    }
+
+    .summary {
+      flex-direction: column;
+      gap: 24px;
+      align-items: flex-end;
+    }
+  }
+}
+
+// @media screen and (max-width: 700px) {
+//   .container {
+//     .summary {
+//       flex-direction: column;
+//       gap: 24px;
+//       align-items: flex-end;
+//     }
+//   }
+// }
+
+@media screen and (max-width: 450px) {
+  .container {
+    .summary {
+      align-items: flex-start;
+      margin-top: 12px;
+
+      .first_col {
+        .weight,
+        .weight_text {
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.24px;
+        }
+
+        .min_order {
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: 0.24px;
+        }
+      }
+
+      .second_col {
+        gap: 8px;
+        width: 100%;
+
+        .row {
+          width: 100%;
+          min-width: 0;
+
+          &_text {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 100%;
+          }
+
+          &_value {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 150%;
+          }
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
